@@ -1,0 +1,130 @@
+<nav *ngIf=" true" class="default-navbar-container navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" [href]="configuration.logoRedirect ? configuration.urlLogoRedirect: ''">
+      <div class="row">
+        <div class="col col-lg-4">
+          <img [src]="configuration.srcLogo" [alt]="configuration.altLogo"
+            class="custom-navbar-logo d-inline-block align-text-top">
+        </div>
+        <div class="col col-lg-8">
+          <label class="custom-navbar-title">{{configuration.title}}</label>
+        </div>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <div class="default-navbar-container-options">
+        <ul class="navbar-nav">
+          <li *ngFor="let option of configuration.options" class="nav-item">
+            @if (option.type === MENU_OPTION_TYPE) {
+            <a *ngIf="option.showOption" class="nav-link custom-navabar-options" aria-current="page" href="#">
+              <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>
+              {{option.name}}
+            </a>
+            }
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <div class="default-navbar-container-options">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-user"></i>&ensp;Username
+            </a>
+            <ul class="dropdown-menu">
+              <li *ngFor="let option of configuration.options; index as i;" class="nav-item">
+                @if (option.type === USERPROFILE_OPTION_TYPE) {
+                <a *ngIf="option.showOption" class="dropdown-item" aria-current="page" href="#">
+                  <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>
+                  &ensp;{{option.name}}
+                </a>
+                <hr class="dropdown-divider">
+                }
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="custom-topbar-container">
+  <div class="custom-topbar-container-logo">
+    <div>
+      <img [src]="configuration.srcLogo" [alt]="configuration.altLogo"
+        class="custom-navbar-logo d-inline-block align-text-top">
+    </div>
+  </div>
+  <div class="custom-topbar-menu-container">
+    <!--menu-->
+    <div class="custom-menu-container-dialog">
+      <div *ngIf="showCustomMenus" class="custom-menu-container-body">
+        <div class="custom-menu-container-option">
+          <ng-container *ngFor="let option of configuration.options">
+            <div class="custom-menu-option-container" *ngIf="option.type === MENU_OPTION_TYPE && option.showOption">
+              <a class="custom-menu-option" href="#">
+                <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>&nbsp;
+                {{option.name}}
+                &nbsp;
+
+              </a>
+              <i class="fa fa-arrow-right"></i>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-menu" (click)="showCustomMenu()">Menu
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+      </svg>
+    </button>
+  </div>
+  <div class="custom-topbar-userprofile-container">
+    <!--UseProfileOptions-->
+    <div class="custom-userprofile-dialog">
+      <div *ngIf="showCustomUserprofileOption" class="custom-userprofile-options-container">
+        <div class="custom-userprofile-elements-container">
+          <div class="custom-userprofile-option-container">
+            <ng-container *ngFor="let option of configuration.options">
+              <a *ngIf="option.type === USERPROFILE_OPTION_TYPE && option.showOption" class="custom-userprofile-option"
+                href="#">
+                {{option.name}}&nbsp;
+                <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>
+              </a>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="custom-topbar-userprofile-name-container">
+      <label>
+        {{getEmailShort()}}
+      </label>
+    </div>
+    <div class="custom-topbar-username-short-container">
+      <label class="custom-topbar-username-short-label">
+        {{getInitialLettersName()}}
+      </label>
+    </div>
+    <div class="custom-topbar-userprofile-actions">
+      <button class="btn" (click)="showCustomProfile()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+
+</div>

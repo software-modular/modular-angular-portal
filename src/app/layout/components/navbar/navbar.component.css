@@ -1,0 +1,315 @@
+/* Estilos para PC */
+@media (min-width: 1025px) {
+  .custom-topbar-container-logo {
+    width: 15% !important;
+  }
+
+  .custom-topbar-menu-container {
+    width: 55% !important;
+  }
+
+  .custom-topbar-userprofile-container {
+    width: 30% !important;
+  }
+}
+
+/* Estilos para laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .custom-topbar-container-logo {
+    width: 20% !important;
+  }
+
+  .custom-topbar-menu-container {
+    width: 45% !important;
+  }
+
+  .custom-topbar-userprofile-container {
+    width: 35% !important;
+  }
+}
+
+/* Estilos para tabletas */
+@media (min-width: 601px) and (max-width: 768px) {
+  .custom-topbar-container-logo {
+    width: 15% !important;
+  }
+
+  .custom-topbar-menu-container {
+    width: 40% !important;
+  }
+
+  .custom-topbar-userprofile-container {
+    width: 45% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .custom-topbar-container-logo {
+    width: 20% !important;
+  }
+
+  .custom-topbar-menu-container {
+    width: 30% !important;
+  }
+
+  .custom-topbar-userprofile-container {
+    width: 50% !important;
+  }
+
+  .custom-topbar-userprofile-name-container {
+    visibility: hidden;
+  }
+
+  .btn-menu {
+    width: 100px;
+  }
+
+}
+
+@media (max-width: 520px) {
+  .custom-topbar-container-logo {
+    width: 17% !important;
+  }
+
+  .custom-topbar-menu-container {
+    width: 18% !important;
+  }
+
+  .custom-topbar-userprofile-container {
+    width: 65% !important;
+  }
+
+  .custom-topbar-userprofile-name-container {
+    visibility: hidden;
+  }
+
+  .custom-userprofile-options-container {
+    margin-left: -70px !important;
+  }
+
+  .custom-menu-container-body {
+    margin-top: 65px !important;
+    margin-left: calc(100% - 100px) !important;
+  }
+}
+
+@media (max-width: 478px) {
+  .custom-topbar-userprofile-name-container {
+    visibility: hidden;
+  }
+
+  .custom-userprofile-options-container {
+    margin-left: -40px !important;
+  }
+
+  .custom-userprofile-options-container {
+    margin-left: -75px !important;
+  }
+
+  .custom-menu-container-body {
+    margin-top: 80px !important;
+    margin-left: calc(100% - 100px) !important;
+  }
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 460px) {
+  .custom-topbar-container-logo {
+    width: 16% !important;
+  }
+
+  .custom-topbar-menu-container {
+    width: 12% !important;
+  }
+
+  .custom-topbar-userprofile-container {
+    width: 75% !important;
+  }
+
+  .custom-topbar-userprofile-name-container {
+    visibility: hidden;
+  }
+
+  .custom-userprofile-options-container {
+    width: calc(100% + 285px) !important;
+    margin-left: -50px !important;
+  }
+
+  .custom-menu-container-body {
+    width: calc(100% + 248px) !important;
+    margin-top: 80px !important;
+    margin-left: calc(100% - 60px) !important;
+  }
+}
+
+.default-navbar-container {
+  background: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.custom-navbar-title {
+  padding-top: 2.8vh;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.custom-navbar-logo {
+  width: auto;
+  height: 9vh;
+}
+
+.default-navbar-container-options {
+  text-align: center;
+}
+
+.custom-navabar-options {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.custom-navabar-options:hover {
+  box-shadow: 0px 4px 8px rgba(220, 220, 220, 0.982);
+}
+
+.custom-topbar-container {
+  display: flex;
+  flex-direction: row;
+  height: 90px;
+  align-items: center;
+  box-shadow: 0px 4px 8px rgba(220, 220, 220, 0.982);
+}
+
+.custom-topbar-container-logo {
+  display: grid;
+  width: 10%;
+  justify-content: space-around;
+}
+
+.custom-topbar-menu-container {
+  width: 70%;
+}
+
+.custom-topbar-userprofile-container {
+  display: flex;
+  align-items: center;
+  width: 20%;
+}
+
+.custom-topbar-userprofile-name-container {
+  font-weight: 450;
+  color: var(--default-text-color);
+}
+
+.custom-topbar-username-short-container {
+  border: 1px solid var(--profile-shortname-color);
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  background: var(--profile-shortname-color);
+  display: grid;
+  margin-left: 5px;
+  place-items: center;
+}
+
+.custom-topbar-username-short-label {
+  font-weight: 500;
+  color: var(--default-text-color);
+}
+
+.custom-topbar-userprofile-actions {
+  padding-left: 10px;
+}
+
+.custom-userprofile-dialog {
+  position: relative;
+}
+
+.custom-userprofile-options-container {
+  position: absolute;
+  width: 300px;
+  height: auto;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  z-index: 999 !important;
+  margin-left: -35px;
+  margin-top: 45px;
+  box-shadow: 0px 4px 8px rgba(220, 220, 220, 0.982);
+}
+
+
+.custom-userprofile-option-container {
+  display: flex;
+  padding: 30px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.custom-userprofile-option {
+  color: var(--default-text-color);
+  font-weight: 450;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  width: 100%;
+  justify-content: center;
+}
+
+.custom-userprofile-option:hover {
+  background: whitesmoke;
+}
+
+
+.custom-menu-container-dialog {
+  position: relative;
+}
+
+.custom-menu-container-body {
+  position: absolute;
+  width: 350px;
+  height: auto;
+  float: right;
+  z-index: 1000;
+  margin-top: 65px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: 0px 4px 8px rgba(220, 220, 220, 0.982);
+  padding: 20px;
+}
+
+.custom-menu-container-option {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.custom-menu-option-container {
+  color: var(--default-text-color);
+  font-weight: 450;
+  height: auto;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  justify-content: center;
+}
+
+.custom-menu-option-container:hover {
+  background: whitesmoke;
+}
+
+.custom-menu-option {
+  color: var(--default-text-color);
+  font-weight: 450;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  justify-content: center;
+}
+
+
+.btn-menu {
+  font-weight: 450;
+}
