@@ -3,7 +3,7 @@ export const environment = {
   apiUrl: 'http://localhost:8080/api/v1',
   navbarConfiguration: {
     title: "Agro-Inversiones",
-    srcLogo: "./../../../../assets/logo.png",
+    srcLogo: "./assets/logo.png",
     logoRedirect: false,
     urlLogoRedirect: "#",
     altLogo: "Agro-Inversiones",
