@@ -7,7 +7,7 @@ export const environment = {
     logoRedirect: false,
     urlLogoRedirect: "#",
     altLogo: "Agro-Inversiones",
-    typeNavbar: "CUSTOM",
+    typeNavbar: "DEFAULT",
     navbarOptions: [
       {
         name: "Invierte",

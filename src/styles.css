@@ -4,12 +4,15 @@
   --secondary-text-color: #2ecc71;
   --accent-text-color: #e74c3c;
   --profile-shortname-color: #e3f1ff;
+
+  --footer-background-color: rgb(45, 63, 59);
 }
 
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;

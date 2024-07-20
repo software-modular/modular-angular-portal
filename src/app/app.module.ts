@@ -28,16 +28,20 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/authentication/components/login/login.component';
-import { NavbarComponent } from './layout/components/navbar/navbar.component';
 import { FooterComponent } from './layout/components/footer/footer.component';
 import { BodyComponent } from './layout/components/body/body.component';
+import { HeaderComponent } from './layout/components/header/header.component';
+import { LayoutComponent } from './layout/layout.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NavbarComponent,
     FooterComponent,
-    BodyComponent
+    BodyComponent,
+    HeaderComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

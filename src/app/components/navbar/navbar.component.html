@@ -1,4 +1,5 @@
-<nav *ngIf=" true" class="default-navbar-container navbar navbar-expand-lg bg-body-tertiary">
+<nav *ngIf="configuration.typeNavbar=== 'DEFAULT'"
+  class="default-navbar-container navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" [href]="configuration.logoRedirect ? configuration.urlLogoRedirect: ''">
       <div class="row">
@@ -15,9 +16,9 @@
       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="collapse navbar-collapse navbar-options-container" id="navbarNavDropdown">
       <div class="default-navbar-container-options">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav ">
           <li *ngFor="let option of configuration.options" class="nav-item">
             @if (option.type === MENU_OPTION_TYPE) {
             <a *ngIf="option.showOption" class="nav-link custom-navabar-options" aria-current="page" href="#">
@@ -54,7 +55,7 @@
   </div>
 </nav>
 
-<div class="custom-topbar-container">
+<div *ngIf="configuration.typeNavbar=== 'CUSTOM'" class="custom-topbar-container">
   <div class="custom-topbar-container-logo">
     <div>
       <img [src]="configuration.srcLogo" [alt]="configuration.altLogo"
@@ -125,6 +126,4 @@
       </button>
     </div>
   </div>
-
-
 </div>
