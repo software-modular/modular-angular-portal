@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BodyComponent } from './layout/components/body/body.component';
+import { LoginComponent } from './components/authentication/components/login/login.component';
 
 const routes: Routes = [
   {
     path: 'portal', component: BodyComponent, children: [
-      { path: 'nav', component: NavbarComponent }
+      { path: 'login', component: LoginComponent }
     ]
   }
 

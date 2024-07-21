@@ -1,1 +1,60 @@
-<p>login works!</p>
+<div class="login-layout">
+  <div class="login-container">
+    <div class="login-header">
+      <label class="login-header-tittle ">Login</label>
+    </div>
+    <div class="login-body">
+      <div class="login-form">
+        <form [formGroup]="loginForm">
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field [ngClass]="'login-form-input'">
+                <mat-label>Usuario</mat-label>
+                <input matInput formControlName="username" placeholder="Usuario">
+                <mat-error *ngIf="loginForm.get('username')?.invalid
+                && (loginForm.get('username')?.dirty
+                || loginForm.get('username')?.touched)">
+                  El campo usuario es obligatorio.
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field [ngClass]="'login-form-input'">
+                <mat-label>Contraseña</mat-label>
+                <input matInput formControlName="password" placeholder="Contraseña">
+                <mat-error *ngIf="loginForm.get('password')?.invalid
+                && (loginForm.get('password')?.dirty
+                || loginForm.get('password')?.touched)">
+                  El campo Contraseña es obligatorio.
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="login-footer">
+      <div class="login-footer-content">
+        <div class="row" *ngIf="false">
+          <div class="col-md-12">
+            <mat-error>Usuario o contraseña erroneos</mat-error>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-label><a>Recordar Contraseña</a></mat-label>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-label><a>Registrarte</a></mat-label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

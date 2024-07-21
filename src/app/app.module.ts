@@ -33,6 +33,8 @@ import { BodyComponent } from './layout/components/body/body.component';
 import { HeaderComponent } from './layout/components/header/header.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AgrappInvestmentsComponent } from './pages/agrapp-investments/agrapp-investments.component';
+import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FooterComponent,
     BodyComponent,
     HeaderComponent,
-    LayoutComponent
+    LayoutComponent,
+    AgrappInvestmentsComponent,
+    AgrappProjectsComponent
   ],
   imports: [
     BrowserModule,
