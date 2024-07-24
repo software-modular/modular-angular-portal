@@ -8,6 +8,7 @@ import { TypeNavbar } from '../../core/domain/enum/TypeNavbar';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  userIsAuthenticate: boolean = false;
 
   readonly MENU_OPTION_TYPE = "MENU";
   readonly USERPROFILE_OPTION_TYPE = "USER_PROFILE_MENU";

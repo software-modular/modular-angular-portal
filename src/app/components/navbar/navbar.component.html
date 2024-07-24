@@ -12,11 +12,12 @@
         </div>
       </div>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button *ngIf="userIsAuthenticate" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse navbar-options-container" id="navbarNavDropdown">
+    <div *ngIf="userIsAuthenticate" class="collapse navbar-collapse navbar-options-container" id="navbarNavDropdown">
       <div class="default-navbar-container-options">
         <ul class="navbar-nav ">
           <li *ngFor="let option of configuration.options" class="nav-item">
@@ -30,7 +31,7 @@
         </ul>
       </div>
     </div>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div *ngIf="userIsAuthenticate" class="collapse navbar-collapse default-profile-options" id="navbarNavDropdown">
       <div class="default-navbar-container-options">
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
@@ -62,7 +63,7 @@
         class="custom-navbar-logo d-inline-block align-text-top">
     </div>
   </div>
-  <div class="custom-topbar-menu-container">
+  <div *ngIf="userIsAuthenticate" class="custom-topbar-menu-container">
     <!--menu-->
     <div class="custom-menu-container-dialog">
       <div *ngIf="showCustomMenus" class="custom-menu-container-body">
@@ -81,7 +82,7 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-menu" (click)="showCustomMenu()">Menu
+    <button  class="btn btn-menu" (click)="showCustomMenu()">Menu
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
         viewBox="0 0 16 16">
         <path fill-rule="evenodd"
@@ -89,7 +90,7 @@
       </svg>
     </button>
   </div>
-  <div class="custom-topbar-userprofile-container">
+  <div *ngIf="userIsAuthenticate" class="custom-topbar-userprofile-container">
     <!--UseProfileOptions-->
     <div class="custom-userprofile-dialog">
       <div *ngIf="showCustomUserprofileOption" class="custom-userprofile-options-container">
