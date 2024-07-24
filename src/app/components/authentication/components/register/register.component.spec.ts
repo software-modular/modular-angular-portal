@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AgrappProjectsComponent } from './agrapp-projects.component';
+import { RegisterComponent } from './register.component';
 
-describe('AgrappProjectsComponent', () => {
-  let component: AgrappProjectsComponent;
-  let fixture: ComponentFixture<AgrappProjectsComponent>;
+describe('RegisterComponent', () => {
+  let component: RegisterComponent;
+  let fixture: ComponentFixture<RegisterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AgrappProjectsComponent]
+      declarations: [RegisterComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AgrappProjectsComponent);
+    fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
