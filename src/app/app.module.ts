@@ -34,6 +34,12 @@ import { HeaderComponent } from './layout/components/header/header.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/authentication/components/register/register.component';
+import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
+import { AgrappProjectsRegisterComponent } from './pages/agrapp-projects-register/agrapp-projects-register.component';
+import { AgrappInvestmentsComponent } from './pages/agrapp-investments/agrapp-investments.component';
+import { AgrappProjectsCardComponent } from './pages/agrapp-projects-card/agrapp-projects-card.component';
+import { AgrappProjectsListCardComponent } from './pages/agrapp-projects-list-card/agrapp-projects-list-card.component';
+import { AgrappHomeComponent } from './pages/agrapp-home/agrapp-home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +49,13 @@ import { RegisterComponent } from './components/authentication/components/regist
     BodyComponent,
     HeaderComponent,
     LayoutComponent,
-    RegisterComponent
+    RegisterComponent,
+    AgrappProjectsComponent,
+    AgrappProjectsRegisterComponent,
+    AgrappInvestmentsComponent,
+    AgrappProjectsCardComponent,
+    AgrappProjectsListCardComponent,
+    AgrappHomeComponent,
   ],
   imports: [
     BrowserModule,
