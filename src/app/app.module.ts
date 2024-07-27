@@ -40,6 +40,7 @@ import { AgrappInvestmentsComponent } from './pages/agrapp-investments/agrapp-in
 import { AgrappProjectsCardComponent } from './pages/agrapp-projects-card/agrapp-projects-card.component';
 import { AgrappProjectsListCardComponent } from './pages/agrapp-projects-list-card/agrapp-projects-list-card.component';
 import { AgrappHomeComponent } from './pages/agrapp-home/agrapp-home.component';
+import { InputTextComponent } from './core/components/input-text/input-text.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ import { AgrappHomeComponent } from './pages/agrapp-home/agrapp-home.component';
     HeaderComponent,
     LayoutComponent,
     RegisterComponent,
+    InputTextComponent,
     AgrappProjectsComponent,
     AgrappProjectsRegisterComponent,
     AgrappInvestmentsComponent,
