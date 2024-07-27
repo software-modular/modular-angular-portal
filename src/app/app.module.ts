@@ -34,6 +34,7 @@ import { HeaderComponent } from './layout/components/header/header.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/authentication/components/register/register.component';
+import { InputTextComponent } from './core/components/input-text/input-text.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { RegisterComponent } from './components/authentication/components/regist
     BodyComponent,
     HeaderComponent,
     LayoutComponent,
-    RegisterComponent
+    RegisterComponent,
+    InputTextComponent
   ],
   imports: [
     BrowserModule,
