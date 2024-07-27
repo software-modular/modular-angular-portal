@@ -4,8 +4,10 @@
   --secondary-text-color: #2ecc71;
   --accent-text-color: #e74c3c;
   --profile-shortname-color: #e3f1ff;
-
   --footer-background-color: rgb(45, 63, 59);
+
+  --menu-options-hover-background: rgb(45 63 59 / 8%);
+  --menu-options-hover-border-color: rgb(45, 63, 59);
 }
 
 html,
