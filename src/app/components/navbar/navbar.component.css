@@ -17,6 +17,13 @@
     margin-top: 67px !important;
     margin-left: 10px !important;
   }
+
+  .navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute !important;
+    margin-left: -30px !important;
+    float: right !important;
+    margin-top: 20px !important;
+  }
 }
 
 /* Estilos para laptops */
@@ -37,6 +44,11 @@
     margin-top: 67px !important;
     margin-left: 10px !important;
   }
+
+  .custom-menu-container-option {
+    width: 30vw !important;
+  }
+
 }
 
 /* Estilos para tabletas */
@@ -56,6 +68,11 @@
   .custom-menu-container-body {
     margin-top: 67px !important;
     margin-left: 10px !important;
+    width: 65vw !important;
+  }
+
+  .custom-menu-container-option {
+    width: 30vw !important;
   }
 }
 
@@ -84,7 +101,12 @@
 
   .custom-menu-container-body {
     margin-top: 67px !important;
-    margin-left: 10px !important;
+    margin-left: -100px !important;
+    width: 94vw !important;
+  }
+
+  .custom-menu-container-option {
+    width: 30vw !important;
   }
 
 }
@@ -114,7 +136,12 @@
 
   .custom-menu-container-body {
     margin-top: 67px !important;
-    margin-left: -20px !important;
+    margin-left: -60px !important;
+    width: 90vw !important;
+  }
+
+  .custom-menu-container-option {
+    width: 30vw !important;
   }
 }
 
@@ -131,7 +158,12 @@
 
   .custom-menu-container-body {
     margin-top: 67px !important;
-    margin-left: 10px !important;
+    margin-left: -60px !important;
+    width: 90vw !important;
+  }
+
+  .custom-menu-container-option {
+    width: 30vw !important;
   }
 }
 
@@ -160,7 +192,14 @@
 
   .custom-menu-container-body {
     margin-top: 67px !important;
-    margin-left: -15px !important;
+    margin-left: -45px !important;
+    width: 90vw !important;
+  }
+
+
+
+  .custom-menu-container-option {
+    width: 45vw !important;
   }
 }
 
@@ -169,10 +208,25 @@
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.default-container-title {
+  display: flex;
+  align-items: center;
+}
+
+.default-navbar-title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
 .custom-navbar-title {
   padding-top: 2.8vh;
   font-size: 24px;
   font-weight: 500;
+}
+
+.default-navbar-logo {
+  width: auto;
+  height: 6vh;
 }
 
 .custom-navbar-logo {
@@ -207,6 +261,8 @@
   width: 10%;
   justify-content: space-around;
 }
+
+
 
 .custom-topbar-menu-container {
   width: 70%;
@@ -291,7 +347,8 @@
 .custom-menu-container-body {
   z-index: 3 !important;
   position: fixed;
-  width: 350px;
+  width: 40vw;
+  overflow: auto;
   height: auto;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
@@ -307,6 +364,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
+  width: 20vw;
 }
 
 .custom-menu-option-container {
@@ -316,12 +374,24 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  justify-content: center;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 10px;
 }
 
 .custom-menu-option-container:hover {
-  background: whitesmoke;
+  background: var(--menu-options-hover-background);
+  border-radius: 8px;
+  border: 1px solid var(--menu-options-hover-border-color);
 }
+
+.custom-menu-option-container:active {
+  background: var(--menu-options-hover-background);
+  border-radius: 8px;
+  border: 1px solid var(--menu-options-hover-border-color);
+}
+
 
 .custom-menu-option {
   color: var(--default-text-color);

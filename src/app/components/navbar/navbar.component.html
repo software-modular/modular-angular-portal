@@ -5,10 +5,10 @@
       <div class="row">
         <div class="col col-lg-4">
           <img [src]="configuration.srcLogo" [alt]="configuration.altLogo"
-            class="custom-navbar-logo d-inline-block align-text-top">
+            class="default-navbar-logo d-inline-block align-text-top">
         </div>
-        <div class="col col-lg-8">
-          <label class="custom-navbar-title">{{configuration.title}}</label>
+        <div class="col col-lg-8 default-container-title">
+          <label class="default-navbar-title">{{configuration.title}}</label>
         </div>
       </div>
     </a>
@@ -72,10 +72,8 @@
               <a class="custom-menu-option" href="#">
                 <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>&nbsp;
                 {{option.name}}
-                &nbsp;
-
               </a>
-              <i class="fa fa-arrow-right"></i>
+              <i class="fa fa-chevron-right"></i>
             </div>
           </ng-container>
         </div>
