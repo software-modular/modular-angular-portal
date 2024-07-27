@@ -311,8 +311,9 @@
   border-bottom-left-radius: 20px;
   z-index: 999 !important;
   margin-left: -35px;
-  margin-top: 45px;
+  margin-top: 46px;
   box-shadow: 0px 4px 8px rgba(220, 220, 220, 0.982);
+  background: white;
 }
 
 
