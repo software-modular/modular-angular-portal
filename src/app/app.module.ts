@@ -33,6 +33,7 @@ import { BodyComponent } from './layout/components/body/body.component';
 import { HeaderComponent } from './layout/components/header/header.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { RegisterComponent } from './components/authentication/components/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FooterComponent,
     BodyComponent,
     HeaderComponent,
-    LayoutComponent
+    LayoutComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
