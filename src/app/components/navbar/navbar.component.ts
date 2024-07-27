@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, HostListener, Input } from '@angular/core';
 import { NavbarConfiguration } from '../../core/domain/beans/navbarConfiguration';
 import { TypeNavbar } from '../../core/domain/enum/TypeNavbar';
 
@@ -24,9 +24,17 @@ export class NavbarComponent {
     typeNavbar: TypeNavbar.DEFAULT
   };
 
-  constructor() {
+  constructor(private elementRef: ElementRef) {
   }
 
+  @HostListener('document:click', ['$event.target'])
+  clickOutsideElement(targetElement: HTMLElement) {
+    const clickedInside = this.elementRef.nativeElement.contains(targetElement);
+    if (!clickedInside) {
+      this.showCustomUserprofileOption = false;
+      this.showCustomMenus = false;
+    }
+  }
 
   getEmailShort(): string {
     let shortUsername = this.getEmail();

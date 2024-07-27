@@ -1,6 +1,54 @@
+@media (min-width: 1025px) {}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .register-layout {
+    height: 77vh !important;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+  .register-layout {
+    height: 80vh !important;
+  }
+
+  .register-container {
+    width: 90vw !important;
+  }
+}
+
+@media (min-width: 520px) and (max-width: 600px) {
+  .register-layout {
+    height: 80vh !important;
+  }
+
+  .register-container {
+    width: 90vw !important;
+  }
+}
+
+@media (max-width: 478px) {
+  .register-layout {
+    height: 80vh !important;
+  }
+
+  .register-container {
+    width: 90vw !important;
+  }
+}
+
+@media (max-width: 460px) {
+  .register-layout {
+    height: 80vh !important;
+  }
+
+  .register-container {
+    width: 90vw !important;
+  }
+}
+
 .register-layout {
   display: flex;
-  height: 810px;
+  height: 800px;
   justify-content: space-around;
   align-items: center;
 }
