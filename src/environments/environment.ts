@@ -62,7 +62,7 @@ export const environment = {
         urlRedirect: "",
         icon: "fa-solid fa-right-from-bracket",
         type: "USER_PROFILE_MENU"
-      }
+      },
 
     ],
 
