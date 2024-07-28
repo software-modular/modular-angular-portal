@@ -35,6 +35,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/authentication/components/register/register.component';
 import { InputTextComponent } from './core/components/input-text/input-text.component';
+import { CardComponent } from './core/components/card/card.component';
+import { CarouselImgComponent } from './core/components/carousel-img/carousel-img.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,9 @@ import { InputTextComponent } from './core/components/input-text/input-text.comp
     HeaderComponent,
     LayoutComponent,
     RegisterComponent,
-    InputTextComponent
+    InputTextComponent,
+    CardComponent,
+    CarouselImgComponent
   ],
   imports: [
     BrowserModule,
