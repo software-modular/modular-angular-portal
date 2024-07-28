@@ -1,0 +1,66 @@
+.card:hover {
+  transform: scale(1.009);
+}
+
+.card-container {
+  padding: 10px;
+  width: 21vw;
+}
+
+.card-body-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 15px;
+}
+
+.card-body-title-label {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.card-body-img-carrousel {
+  padding-top: 30px;
+}
+
+.row {
+  width: 100% !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  color: #222;
+}
+
+.card-description-item {
+  padding-top: 20px;
+  font-family: Zilla Slab, Roboto !important;
+}
+
+.card-description-item-label {
+  padding-left: 10px;
+}
+
+.investment-label {
+  color: rgb(52 141 121);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+mat-slider {
+  width: 95%;
+}
+
+.funded-description-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.funded-description-header-label {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.funded-description-body-label {
+  font-size: 14px;
+}

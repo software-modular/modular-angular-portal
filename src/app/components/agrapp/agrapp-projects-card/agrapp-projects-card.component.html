@@ -1,0 +1,79 @@
+<div class="card-container">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-body-container">
+        <div class="row card-body-title-container">
+          <div class="col-md-12">
+            <label class="card-body-title-label">
+              {{data.nameCrop}}
+            </label>
+          </div>
+        </div>
+        <div class="row card-body-img-carrousel">
+          <div class="col-md-12">
+            <carousel-img *ngIf="data.imgs !== undefined" [imgs]="data.imgs"></carousel-img>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 card-description-item">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <label class="card-description-item-label">{{getOwnerName(data.ownerName)}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 card-description-item">
+            <i class="fa fa-map" aria-hidden="true"></i>
+            <label class="card-description-item-label">{{data.ubication}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12  card-description-item">
+            <i class="fa fa-credit-card-alt"></i>
+            <label class="card-description-item-label">
+              Invierte desde
+              <span class="investment-label">
+                {{data.minInvestment?.toLocaleString('es-CO')}} COP
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12  card-description-item">
+            <i class="fa fa-line-chart" aria-hidden="true"></i>
+            <label class="card-description-item-label">
+              {{data.percentageProfit}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12  card-description-item">
+            <i class="fa fa-university" aria-hidden="true"></i>
+            <label class="card-description-item-label">
+              Meta financiación ${{data.investmentTarget?.toLocaleString('es-CO')}} COP</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12  card-description-item">
+            <form [formGroup]="formCard">
+              <mat-slider min="0" max="100" discrete thumbLabel [displayWith]="formatLabel">
+                <input matSliderThumb formControlName="slider">
+              </mat-slider>
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 funded-description-container">
+            <label class="funded-description-header-label">{{funded}}%</label>
+            <label class="funded-description-body-label">Avance</label>
+          </div>
+          <div class="col-md-4 funded-description-container">
+            <label class="funded-description-header-label">$ {{data.funded}}</label>
+            <label class="funded-description-body-label">Financiado</label>
+          </div>
+          <div class="col-md-4 funded-description-container">
+            <label class="funded-description-header-label">{{data.partners}}</label>
+            <label class="funded-description-body-label">Inversores</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
