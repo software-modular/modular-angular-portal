@@ -42,7 +42,6 @@ export class AgrappProjectsCardComponent implements AfterViewInit {
   }
 
   getOwnerName(name?: string): string {
-    debugger
     if (name !== undefined && name.length > 15) {
       return `${name.slice(0, 25)}...`;
     }

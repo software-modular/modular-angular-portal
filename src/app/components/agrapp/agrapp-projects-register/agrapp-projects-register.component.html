@@ -1,1 +1,51 @@
-<p>agrapp-projects-register works!</p>
+<div class="projects-register-container">
+  <div class="projects-register-body-container">
+    <div class="projects-register-body-content">
+      <div class="row">
+        <div class="col-md-6 section-container-left">
+          <agrapp-projects-card [data]="cardData"></agrapp-projects-card>
+        </div>
+        <div class="col-md-6 section-container-right">
+          <div class="project-register-form-container">
+            <form [formGroup]="projectForm">
+              <div class="row">
+                <div class="col-md-12">
+                  <input-text formControlName="projectName" [label]="'Nombre proyecto'"
+                    [placeholder]="'Ingrese nombre del proyecto'" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <input-text formControlName="ownerName" [label]="'Nombre productor'"
+                    [placeholder]="'Ingrese nombre del productor'" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <input-text formControlName="location" [label]="'Ubicación'" [placeholder]="'Ingrese Ubicación'" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <input-text formControlName="minInvestment" [label]="'Inversion minima'"
+                    [placeholder]="'Ingrese valor'" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <input-text formControlName="percentageProfit" [label]="'Porcentaje retorno'"
+                    [placeholder]="'Ingrese porcentaje retorno'" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <input-text formControlName="target" [label]="'Meta de inversión'" [placeholder]="'Ingrese meta'" />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

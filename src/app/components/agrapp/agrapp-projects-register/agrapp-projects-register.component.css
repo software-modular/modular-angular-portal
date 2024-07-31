@@ -1,0 +1,38 @@
+.projects-register-container {
+  padding: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.projects-register-body-container {
+  width: 100%;
+  /*  box-shadow: 0px 4px 8px var(--navbar-shadow-color);*/
+  border-radius: 8px;
+}
+
+.projects-register-body-content {
+  padding: 20px;
+  width: 100%;
+}
+
+.section-container-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.section-container-right {
+  display: flex;
+}
+
+.project-register-form-container {
+  width: 700px;
+  box-shadow: 0px 4px 8px var(--navbar-shadow-color);
+  border-radius: 8px;
+  padding: 10px;
+  height: 68vh;
+  overflow: auto;
+}

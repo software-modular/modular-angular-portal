@@ -4,7 +4,8 @@
 
 .card-container {
   padding: 10px;
-  width: 21vw;
+  width: 450px;
+  background-color: white;
 }
 
 .card-body-container {
