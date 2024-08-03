@@ -1,0 +1,20 @@
+<div class="input-autocomplete-container">
+  <div class="card input-autocomplete-card-container">
+    <div class="input-autocomplete-header-container">
+      <div class="input-autocomplete-header-label-container">
+        <label class="input-autocomplete-header-label">{{label}}</label>
+      </div>
+    </div>
+    <div class="input-autocomplete-body-container">
+      <mat-form-field class="input-autocomplete-body-element-container">
+        <input type="text" [placeholder]="placeholder" matInput [matAutocomplete]="autoInput">
+        <mat-autocomplete #autoInput="matAutocomplete" [displayWith]="showOptionFormat"
+          (optionSelected)="onInputChange($event)">
+          <mat-option *ngFor="let option of options" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </div>
+</div>

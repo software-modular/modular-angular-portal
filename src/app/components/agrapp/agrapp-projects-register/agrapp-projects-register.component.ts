@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { AgrappCardInput } from '../../../core/domain/beans/agrappCardInput';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { UploadEvent } from 'primeng/fileupload';
+import { cities, countries, deparments } from '../../../core/domain/const/Colombia';
+import { typeGrounds } from '../../../core/domain/const/TypeGround';
 
 @Component({
   selector: 'agrapp-projects-register',
@@ -20,6 +21,10 @@ export class AgrappProjectsRegisterComponent {
   formStep: number = 1;
   projectForm: FormGroup;
   uploadedFiles: any[] = [];
+  countryList = countries;
+  deparmentList = deparments;
+  cityList = cities;
+  typeGround = typeGrounds.value;
 
   cardData: AgrappCardInput =
     {

@@ -4,6 +4,7 @@ import { AgrappProjectsRegisterComponent } from './components/agrapp/agrapp-proj
 import { LoginComponent } from './components/authentication/components/login/login.component';
 import { RegisterComponent } from './components/authentication/components/register/register.component';
 import { BodyComponent } from './layout/components/body/body.component';
+import { InputAutocompleteComponent } from './core/components/input-autocomplete/input-autocomplete.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'portal', pathMatch: 'full' },

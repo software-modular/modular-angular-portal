@@ -1,0 +1,21 @@
+export const typeGrounds = {
+  value: [
+    "ARE",
+    "ARC",
+    "LIM",
+    "CAL",
+    "ACI",
+    "ORG",
+    "SAL"
+  ],
+  description: [
+    "Suelos arenosos: Tienen partículas grandes y sueltas, lo que proporciona un buen drenaje pero baja retención de agua y nutrientes. Son adecuados para cultivos que no requieren mucha agua.",
+    "Suelos arcillosos: Tienen partículas muy pequeñas y compactas, lo que resulta en una buena retención de agua y nutrientes pero a menudo tienen problemas de drenaje y aireación. Son adecuados para cultivos que toleran el agua estancada.",
+    "Suelos limosos: Son una mezcla equilibrada de arena, arcilla y materia orgánica. Tienen una buena estructura que permite un buen drenaje y retención de agua, siendo adecuados para una amplia variedad de cultivos.",
+    "Suelos calcáreos: Tienen un alto contenido de carbonato de calcio. Pueden tener problemas de pH elevado, lo que afecta la disponibilidad de ciertos nutrientes para las plantas. Son adecuados para cultivos que toleran suelos alcalinos.",
+    "Suelos ácidos: Tienen un pH bajo debido a un bajo contenido de carbonato de calcio y pueden ser deficientes en ciertos nutrientes como calcio y magnesio. Son adecuados para cultivos que prefieren suelos ácidos, como arándanos y algunos tipos de frutales.",
+    "Suelos orgánicos: Son ricos en materia orgánica descompuesta y suelen tener una textura ligera y esponjosa. Proporcionan una buena retención de agua y nutrientes, así como una estructura favorable para el crecimiento de raíces. Son adecuados para una amplia gama de cultivos.",
+    "Suelos salinos: Contienen altas concentraciones de sales solubles que pueden ser perjudiciales para muchas plantas. Requieren prácticas especiales de manejo para ser adecuados para cultivos, como el uso de sistemas de drenaje y la aplicación de enmiendas."
+  ]
+};
+
