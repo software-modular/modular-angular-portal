@@ -4,12 +4,13 @@ import { LoginComponent } from './components/authentication/components/login/log
 import { RegisterComponent } from './components/authentication/components/register/register.component';
 import { InputMultiRadioCheckComponent } from './core/components/input-multi-radio-check/input-multi-radio-check.component';
 import { BodyComponent } from './layout/components/body/body.component';
+import { AgrappProjectsRegisterComponent } from './components/agrapp/agrapp-projects-register/agrapp-projects-register.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'portal', pathMatch: 'full' },
   {
     path: 'portal', component: BodyComponent, children: [
-      { path: '', component: InputMultiRadioCheckComponent },
+      { path: '', component: AgrappProjectsRegisterComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent }
     ]

@@ -36,36 +36,17 @@
   padding-top: 18px;
   background: white;
   height: 73.5vh;
-  overflow: auto;
 }
 
 .project-register-form {
-  height: calc(100% - 9%);
+  height: 51vh;
+  overflow: auto;
 }
 
-
-.project-register-form-step-1 {
-  display: block;
-  padding-left: 20px;
-}
-
-.project-register-form-step-1-hidden {
-  display: none;
-}
-
-
-.project-register-form-step-2 {
-  display: block;
-  padding-left: 20px;
-}
-
-.project-register-form-step-2-hidden {
-  display: none;
-}
 
 .project-register-buttons-container {
   padding-top: 10px !important;
-  padding-left: 30px !important;
+  padding-left: 0px !important;
   padding-right: 8px !important;
   width: 100% !important;
 }
@@ -74,4 +55,9 @@
   font-size: 18px;
   font-weight: 500;
   padding-left: 10px;
+}
+
+.project-register-step-container {
+  background: white !important;
+  background-color: white !important;
 }

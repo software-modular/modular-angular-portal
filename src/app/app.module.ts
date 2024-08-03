@@ -27,6 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatStepperModule } from '@angular/material/stepper';
 import { AgrappProjectsCardComponent } from './components/agrapp/agrapp-projects-card/agrapp-projects-card.component';
 import { AgrappProjectsListCardComponent } from './components/agrapp/agrapp-projects-list-card/agrapp-projects-list-card.component';
 import { AgrappProjectsRegisterComponent } from './components/agrapp/agrapp-projects-register/agrapp-projects-register.component';
@@ -45,6 +46,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { InputTextAreaComponent } from './core/components/input-text-area/input-text-area.component';
 import { InputMultiRadioCheckComponent } from './core/components/input-multi-radio-check/input-multi-radio-check.component';
 import { InputTextComponent } from './core/components/input-text/input-text.component';
+import { FileUploadModule } from 'primeng/fileupload';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,9 +100,14 @@ import { InputTextComponent } from './core/components/input-text/input-text.comp
     MatDialogModule,
     MatRadioModule,
     MatSnackBarModule,
-    MatSliderModule
+    MatSliderModule,
+    MatStepperModule,
+    FileUploadModule,
+    HttpClientModule
   ],
-  providers: [provideClientHydration(), provideAnimationsAsync(), DatePipe],
+  providers: [provideClientHydration(), provideAnimationsAsync(), DatePipe,
+  provideHttpClient(withFetch())
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

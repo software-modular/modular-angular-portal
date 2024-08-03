@@ -1,16 +1,25 @@
 import { Component } from '@angular/core';
 import { AgrappCardInput } from '../../../core/domain/beans/agrappCardInput';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { UploadEvent } from 'primeng/fileupload';
 
 @Component({
   selector: 'agrapp-projects-register',
   templateUrl: './agrapp-projects-register.component.html',
-  styleUrl: './agrapp-projects-register.component.css'
+  styleUrl: './agrapp-projects-register.component.css',
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { showError: true },
+    },
+  ],
 })
 export class AgrappProjectsRegisterComponent {
   maxFormSteps: number = 2
   formStep: number = 1;
   projectForm: FormGroup;
+  uploadedFiles: any[] = [];
 
   cardData: AgrappCardInput =
     {
@@ -33,7 +42,7 @@ export class AgrappProjectsRegisterComponent {
   constructor(private formBuilder: FormBuilder) {
     this.projectForm = formBuilder.group({
       projectName: ["", [Validators.required]],
-      ownerName: ["", [Validators.required]],
+      projectDescription: ["", [Validators.required]],
       location: ["", [Validators.required]],
       minInvestment: ["", [Validators.required]],
       percentageProfit: ["", [Validators.required]],
@@ -62,5 +71,11 @@ export class AgrappProjectsRegisterComponent {
     }
     this.formStep -= 1;
 
+  }
+
+  onUpload(event: any) {
+    for (let file of event.files) {
+      this.uploadedFiles.push(file);
+    }
   }
 }

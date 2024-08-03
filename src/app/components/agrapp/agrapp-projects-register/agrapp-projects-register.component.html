@@ -7,71 +7,91 @@
         </div>
         <div class="col-md-6 section-container-right">
           <div class="project-register-form-container">
-            <form [formGroup]="projectForm" class="project-register-form ">
-              <div [ngClass]="formStep === 1 ? 'project-register-form-step-1':'project-register-form-step-1-hidden'">
-                <div class="row">
-                  <div class="col-md-12">
-                    <mat-label class="title-form-register-project">Proyecto</mat-label>
+            <mat-stepper class="project-register-step-container" labelPosition="bottom" #stepper>
+              <mat-step [stepControl]="projectForm">
+                <form [formGroup]="projectForm" class="project-register-form">
+                  <ng-template matStepLabel>Proyecto</ng-template>
+                  <div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-text formControlName="projectName" [label]="'Nombre'" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-text-area formControlName="projectDescription" [label]="'Descripción'"></input-text-area>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-text formControlName="location" [label]="'Ubicación'"
+                          [placeholder]="'Ingrese Ubicación'" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-multi-radio-check [label]="'Pre-compra'"></input-multi-radio-check>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <mat-label>Fotos</mat-label>
+                        <p-fileUpload (onUpload)="onUpload($event)" [multiple]="true" accept="image/*"
+                          maxFileSize="1000000" [showUploadButton]="false" [showCancelButton]="false" [title]="'Fotos'">
+                          <ng-template pTemplate="content">
+                            <ul *ngIf="uploadedFiles.length">
+                              <li *ngFor="let file of uploadedFiles">
+                                {{ file.name }} - {{ file.size }} bytes
+                              </li>
+                            </ul>
+                          </ng-template>
+                        </p-fileUpload>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <div class="project-register-buttons-container" style="text-align: right;">
+                  <button mat-button matStepperNext>Siguiente</button>
+                </div>
+              </mat-step>
+              <mat-step [stepControl]="projectForm">
+                <form [formGroup]="projectForm" class="project-register-form">
+                  <ng-template matStepLabel>Cultivo</ng-template>
+                  <div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-text formControlName="percentageProfit" [label]="'Porcentaje retorno'"
+                          [placeholder]="'Ingrese porcentaje retorno'" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-text formControlName="target" [label]="'Meta de inversión'"
+                          [placeholder]="'Ingrese meta'" />
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <div class="project-register-buttons-container">
+                  <div class="row project-register-buttons-container">
+                    <div class="col-md-6">
+                      <button mat-button matStepperPrevious>Atras</button>
+                    </div>
+                    <div class="col-md-6" style="text-align: right;">
+                      <button mat-button matStepperNext>Siguiente</button>
+                    </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <input-text formControlName="projectName" [label]="'Nombre'" />
-                  </div>
+              </mat-step>
+              <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <p>You are now done.</p>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button (click)="stepper.reset()">Reset</button>
                 </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <input-text formControlName="ownerName" [label]="'Descripción'" />
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <input-text formControlName="location" [label]="'Ubicación'" [placeholder]="'Ingrese Ubicación'" />
-                  </div>
-                </div>
-                <div class="row">
-
-                  <div class="col-md-12">
-                    <mat-label>Pre-compra:</mat-label>
-                    <mat-radio-group>
-                      <mat-radio-button value="Si" [labelPosition]="'before'">Si</mat-radio-button>
-                      <mat-radio-button value="No" [labelPosition]="'before'">No</mat-radio-button>
-                    </mat-radio-group>
-                  </div>
-                </div>
-              </div>
-              <div [ngClass]="formStep === 2 ? 'project-register-form-step-2':'project-register-form-step-2-hidden'">
-                <div class="row">
-                  <div class="col-md-12">
-                    <input-text formControlName="percentageProfit" [label]="'Porcentaje retorno'"
-                      [placeholder]="'Ingrese porcentaje retorno'" />
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <input-text formControlName="target" [label]="'Meta de inversión'" [placeholder]="'Ingrese meta'" />
-                  </div>
-                </div>
-              </div>
-            </form>
-            <div class="">
-              <div class="row project-register-buttons-container">
-                <div class="col-md-6">
-                  <button mat-icon-button *ngIf="formStep > 1" (click)="changeStepForm(false)">
-                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                  </button>
-                </div>
-                <div class="col-md-6" style="text-align: right;">
-                  <button *ngIf="formStep < maxFormSteps" mat-icon-button (click)="changeStepForm(true)">
-                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                  </button>
-                  <button *ngIf="formStep == maxFormSteps" class="btn btn-primary" color="black"
-                    style="background-color: var(--btn-primary-background);">
-                    Guardar
-                  </button>
-                </div>
-              </div>
-            </div>
+              </mat-step>
+            </mat-stepper>
           </div>
         </div>
       </div>
