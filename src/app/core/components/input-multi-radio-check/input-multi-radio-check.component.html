@@ -1,1 +1,23 @@
-<p>input-multi-radio-check works!</p>
+<div class="input-radio-check-container">
+  <div class="card input-radio-check-card-container">
+    <div class="input-radio-check-header-container">
+      <div class="input-radio-check-header-label-container">
+        <label class="input-radio-check-header-label">{{label}}</label>
+      </div>
+    </div>
+    <div class="input-radio-check-body-container">
+      <div class="row">
+        <div class="col-md-12">
+          <mat-radio-group>
+            <mat-radio-button value="true" [labelPosition]="'before'" (input)="onInputChange($event)">
+              <label class="input-radio-check-label-options">Si</label>
+            </mat-radio-button>
+            <mat-radio-button value="false" [labelPosition]="'before'" (input)="onInputChange($event)">
+              <label class="input-radio-check-label-options">No</label>
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

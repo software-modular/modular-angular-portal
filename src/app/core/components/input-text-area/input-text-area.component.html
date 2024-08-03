@@ -1,14 +1,12 @@
 <div class="input-text-area-container">
-  <div class="card card-container">
+  <div class="card input-text-area-card-container">
     <div class="input-text-area-header-container">
       <div class="input-text-area-header-label-container">
         <label class="input-text-area-header-label">{{label}}</label>
       </div>
     </div>
-    <br>
     <div class="input-text-area-body-container">
       <mat-form-field class="input-text-area-body-element-container">
-        <mat-label>{{label}}</mat-label>
         <textarea matInput [placeholder]="placeholder" class="input-text-area-body-element"
           (input)="onInputChange($event)"></textarea>
       </mat-form-field>
