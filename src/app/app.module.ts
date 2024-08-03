@@ -48,6 +48,7 @@ import { InputMultiRadioCheckComponent } from './core/components/input-multi-rad
 import { InputTextComponent } from './core/components/input-text/input-text.component';
 import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { MultifileUploadComponent } from './core/components/multifile-upload/multifile-upload.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +68,8 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
     AgrappProjectsListCardComponent,
     AgrappHomeComponent,
     InputTextAreaComponent,
-    InputMultiRadioCheckComponent
+    InputMultiRadioCheckComponent,
+    MultifileUploadComponent
   ],
   imports: [
     BrowserModule,

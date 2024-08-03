@@ -1,0 +1,14 @@
+<div class="multifile-upload-container">
+  <div class="card multifile-upload-card-container">
+    <div class="multifile-upload-header-container">
+      <div class="multifile-upload-header-label-container">
+        <label class="multifile-upload-header-label">{{label}}</label>
+      </div>
+    </div>
+    <div class="multifile-upload-body-container">
+      <p-fileUpload (onSelect)="onInputChange($event)" [multiple]="true" accept="image/*" maxFileSize="1000000"
+        [showUploadButton]="false" [showCancelButton]="false" [title]="'Fotos'">
+      </p-fileUpload>
+    </div>
+  </div>
+</div>

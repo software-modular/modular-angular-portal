@@ -2,10 +2,10 @@
   <div class="projects-register-body-container">
     <div class="projects-register-body-content">
       <div class="row">
-        <div class="col-md-6 section-container-left">
+        <div class="col-md-4 section-container-left">
           <agrapp-projects-card [data]="cardData"></agrapp-projects-card>
         </div>
-        <div class="col-md-6 section-container-right">
+        <div class="col-md-8 section-container-right">
           <div class="project-register-form-container">
             <mat-stepper class="project-register-step-container" labelPosition="bottom" #stepper>
               <mat-step [stepControl]="projectForm">
@@ -24,28 +24,12 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-text formControlName="location" [label]="'Ubicación'"
-                          [placeholder]="'Ingrese Ubicación'" />
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
                         <input-multi-radio-check [label]="'Pre-compra'"></input-multi-radio-check>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <mat-label>Fotos</mat-label>
-                        <p-fileUpload (onUpload)="onUpload($event)" [multiple]="true" accept="image/*"
-                          maxFileSize="1000000" [showUploadButton]="false" [showCancelButton]="false" [title]="'Fotos'">
-                          <ng-template pTemplate="content">
-                            <ul *ngIf="uploadedFiles.length">
-                              <li *ngFor="let file of uploadedFiles">
-                                {{ file.name }} - {{ file.size }} bytes
-                              </li>
-                            </ul>
-                          </ng-template>
-                        </p-fileUpload>
+                        <multifile-upload [label]="'Fotos'"></multifile-upload>
                       </div>
                     </div>
                   </div>
