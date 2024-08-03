@@ -34,7 +34,6 @@ import { LoginComponent } from './components/authentication/components/login/log
 import { RegisterComponent } from './components/authentication/components/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CarouselImgComponent } from './core/components/carousel-img/carousel-img.component';
-import { InputTextComponent } from './core/components/input-text/input-text.component';
 import { BodyComponent } from './layout/components/body/body.component';
 import { FooterComponent } from './layout/components/footer/footer.component';
 import { HeaderComponent } from './layout/components/header/header.component';
@@ -43,6 +42,9 @@ import { AgrappHomeComponent } from './pages/agrapp-home/agrapp-home.component';
 import { AgrappInvestmentsComponent } from './pages/agrapp-investments/agrapp-investments.component';
 import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
 import { MatSliderModule } from '@angular/material/slider';
+import { InputTextAreaComponent } from './core/components/input-text-area/input-text-area.component';
+import { InputMultiRadioCheckComponent } from './core/components/input-multi-radio-check/input-multi-radio-check.component';
+import { InputTextComponent } from './core/components/input-text/input-text.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +63,8 @@ import { MatSliderModule } from '@angular/material/slider';
     AgrappProjectsCardComponent,
     AgrappProjectsListCardComponent,
     AgrappHomeComponent,
+    InputTextAreaComponent,
+    InputMultiRadioCheckComponent
   ],
   imports: [
     BrowserModule,
