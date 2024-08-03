@@ -1,0 +1,24 @@
+.input-autocomplete-container {
+  padding: 10px;
+  width: 100%;
+}
+
+.input-autocomplete-card-container {
+  padding: 20px;
+  width: 100%;
+  height: 115px;
+}
+
+.input-autocomplete-header-label {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.input-autocomplete-body-element-container {
+  width: 100% !important;
+  height: 60px !important;
+}
+
+.input-autocomplete-body-element {
+  width: 100%;
+}
