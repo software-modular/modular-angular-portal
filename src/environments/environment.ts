@@ -1,6 +1,21 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/api/v1',
+  api: {
+    host: 'http://localhost:8080/api',
+    endpoints: {
+      users: {
+        path: "/users",
+        login: "/login/",
+        loginRefresh: "/login/refresh-token",
+        logout: "/logout/",
+        delete: "/delete/",
+        changPassword: "/changepassword/",
+        inactivate: "/inactivate/",
+        client: "/client/",
+        createClient: "/client/create/",
+      }
+    }
+  },
   navbarConfiguration: {
     title: "Agro-Inversiones",
     srcLogo: "./assets/logo.png",

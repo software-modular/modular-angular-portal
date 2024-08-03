@@ -29,10 +29,49 @@
 }
 
 .project-register-form-container {
-  width: 700px;
+  width: 30vw;
   box-shadow: 0px 4px 8px var(--navbar-shadow-color);
   border-radius: 8px;
   padding: 10px;
-  height: 68vh;
+  padding-top: 18px;
+  background: white;
+  height: 73.5vh;
   overflow: auto;
+}
+
+.project-register-form {
+  height: calc(100% - 9%);
+}
+
+
+.project-register-form-step-1 {
+  display: block;
+  padding-left: 20px;
+}
+
+.project-register-form-step-1-hidden {
+  display: none;
+}
+
+
+.project-register-form-step-2 {
+  display: block;
+  padding-left: 20px;
+}
+
+.project-register-form-step-2-hidden {
+  display: none;
+}
+
+.project-register-buttons-container {
+  padding-top: 10px !important;
+  padding-left: 30px !important;
+  padding-right: 8px !important;
+  width: 100% !important;
+}
+
+.title-form-register-project {
+  font-size: 18px;
+  font-weight: 500;
+  padding-left: 10px;
 }

@@ -7,42 +7,71 @@
         </div>
         <div class="col-md-6 section-container-right">
           <div class="project-register-form-container">
-            <form [formGroup]="projectForm">
-              <div class="row">
-                <div class="col-md-12">
-                  <input-text formControlName="projectName" [label]="'Nombre proyecto'"
-                    [placeholder]="'Ingrese nombre del proyecto'" />
+            <form [formGroup]="projectForm" class="project-register-form ">
+              <div [ngClass]="formStep === 1 ? 'project-register-form-step-1':'project-register-form-step-1-hidden'">
+                <div class="row">
+                  <div class="col-md-12">
+                    <mat-label class="title-form-register-project">Proyecto</mat-label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <input-text formControlName="projectName" [label]="'Nombre'" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <input-text formControlName="ownerName" [label]="'Descripción'" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <input-text formControlName="location" [label]="'Ubicación'" [placeholder]="'Ingrese Ubicación'" />
+                  </div>
+                </div>
+                <div class="row">
+
+                  <div class="col-md-12">
+                    <mat-label>Pre-compra:</mat-label>
+                    <mat-radio-group>
+                      <mat-radio-button value="Si" [labelPosition]="'before'">Si</mat-radio-button>
+                      <mat-radio-button value="No" [labelPosition]="'before'">No</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <input-text formControlName="ownerName" [label]="'Nombre productor'"
-                    [placeholder]="'Ingrese nombre del productor'" />
+              <div [ngClass]="formStep === 2 ? 'project-register-form-step-2':'project-register-form-step-2-hidden'">
+                <div class="row">
+                  <div class="col-md-12">
+                    <input-text formControlName="percentageProfit" [label]="'Porcentaje retorno'"
+                      [placeholder]="'Ingrese porcentaje retorno'" />
+                  </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <input-text formControlName="location" [label]="'Ubicación'" [placeholder]="'Ingrese Ubicación'" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <input-text formControlName="minInvestment" [label]="'Inversion minima'"
-                    [placeholder]="'Ingrese valor'" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <input-text formControlName="percentageProfit" [label]="'Porcentaje retorno'"
-                    [placeholder]="'Ingrese porcentaje retorno'" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <input-text formControlName="target" [label]="'Meta de inversión'" [placeholder]="'Ingrese meta'" />
+                <div class="row">
+                  <div class="col-md-12">
+                    <input-text formControlName="target" [label]="'Meta de inversión'" [placeholder]="'Ingrese meta'" />
+                  </div>
                 </div>
               </div>
             </form>
+            <div class="">
+              <div class="row project-register-buttons-container">
+                <div class="col-md-6">
+                  <button mat-icon-button *ngIf="formStep > 1" (click)="changeStepForm(false)">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="col-md-6" style="text-align: right;">
+                  <button *ngIf="formStep < maxFormSteps" mat-icon-button (click)="changeStepForm(true)">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                  </button>
+                  <button *ngIf="formStep == maxFormSteps" class="btn btn-primary" color="black"
+                    style="background-color: var(--btn-primary-background);">
+                    Guardar
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

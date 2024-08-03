@@ -8,7 +8,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrl: './agrapp-projects-register.component.css'
 })
 export class AgrappProjectsRegisterComponent {
-
+  maxFormSteps: number = 2
+  formStep: number = 1;
   projectForm: FormGroup;
 
   cardData: AgrappCardInput =
@@ -52,5 +53,14 @@ export class AgrappProjectsRegisterComponent {
     this.cardData.minInvestment = this.projectForm.get("minInvestment")?.value;
     this.cardData.percentageProfit = this.projectForm.get("percentageProfit")?.value;
     this.cardData.investmentTarget = this.projectForm.get("target")?.value;
+  }
+
+  changeStepForm(increase: boolean) {
+    if (increase) {
+      this.formStep += 1;
+      return;
+    }
+    this.formStep -= 1;
+
   }
 }
