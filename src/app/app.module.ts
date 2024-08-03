@@ -48,6 +48,7 @@ import { InputTextComponent } from './core/components/input-text/input-text.comp
 import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { MultifileUploadComponent } from './core/components/multifile-upload/multifile-upload.component';
+import { InputDateComponent } from './core/components/input-date/input-date.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +69,8 @@ import { MultifileUploadComponent } from './core/components/multifile-upload/mul
     AgrappHomeComponent,
     InputTextAreaComponent,
     InputMultiRadioCheckComponent,
-    MultifileUploadComponent
+    MultifileUploadComponent,
+    InputDateComponent
   ],
   imports: [
     BrowserModule,
