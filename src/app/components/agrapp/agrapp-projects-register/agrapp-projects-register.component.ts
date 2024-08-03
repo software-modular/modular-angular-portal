@@ -43,10 +43,10 @@ export class AgrappProjectsRegisterComponent {
     this.projectForm = formBuilder.group({
       projectName: ["", [Validators.required]],
       projectDescription: ["", [Validators.required]],
-      location: ["", [Validators.required]],
-      minInvestment: ["", [Validators.required]],
-      percentageProfit: ["", [Validators.required]],
-      target: ["", [Validators.required]],
+      projectPrePurchase: [false, [Validators.required]],
+      projectStartDate: ["", [Validators.required]],
+      projectEndDate: ["", [Validators.required]],
+      imgs: ["", [Validators.required]],
     });
     this.projectForm.valueChanges.subscribe({
       next: (_) => {
@@ -56,12 +56,11 @@ export class AgrappProjectsRegisterComponent {
   }
 
   refreshCardData() {
-    this.cardData.ownerName = this.projectForm.get("ownerName")?.value;
+    this.cardData.ownerName = this.projectForm.get("projectName")?.value;
     this.cardData.nameCrop = this.projectForm.get("projectName")?.value
-    this.cardData.ubication = this.projectForm.get("location")?.value;
-    this.cardData.minInvestment = this.projectForm.get("minInvestment")?.value;
-    this.cardData.percentageProfit = this.projectForm.get("percentageProfit")?.value;
-    this.cardData.investmentTarget = this.projectForm.get("target")?.value;
+    this.cardData.imgs = this.getImgOfFiles(this.projectForm.get("imgs")?.value);
+    debugger
+
   }
 
   changeStepForm(increase: boolean) {
@@ -77,5 +76,13 @@ export class AgrappProjectsRegisterComponent {
     for (let file of event.files) {
       this.uploadedFiles.push(file);
     }
+  }
+
+  getImgOfFiles(files: any[]) {
+    let imgs: string[] = []
+    for (let file of files) {
+      imgs.push(file.objectURL.changingThisBreaksApplicationSecurity);
+    }
+    return imgs;
   }
 }

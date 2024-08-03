@@ -2,10 +2,10 @@
   <div class="projects-register-body-container">
     <div class="projects-register-body-content">
       <div class="row">
-        <div class="col-md-4 section-container-left">
+        <div class="col-md-5 section-container-left">
           <agrapp-projects-card [data]="cardData"></agrapp-projects-card>
         </div>
-        <div class="col-md-8 section-container-right">
+        <div class="col-md-7 section-container-right">
           <div class="project-register-form-container">
             <mat-stepper class="project-register-step-container" labelPosition="bottom" #stepper>
               <mat-step [stepControl]="projectForm">
@@ -24,12 +24,28 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-multi-radio-check [label]="'Pre-compra'"></input-multi-radio-check>
+                        <input-multi-radio-check formControlName="projectPrePurchase"
+                          [label]="'Pre-compra'"></input-multi-radio-check>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <multifile-upload [label]="'Fotos'"></multifile-upload>
+                        <input-date formControlName="projectStartDate" [label]="'Fecha inicio'"></input-date>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-date formControlName="projectEndDate" [label]="'Fecha fin'"></input-date>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <multifile-upload formControlName="imgs" [label]="'Fotos'"></multifile-upload>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-text [label]="'Url video'" />
                       </div>
                     </div>
                   </div>
@@ -44,14 +60,12 @@
                   <div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-text formControlName="percentageProfit" [label]="'Porcentaje retorno'"
-                          [placeholder]="'Ingrese porcentaje retorno'" />
+                        <input-text [label]="'Porcentaje retorno'" [placeholder]="'Ingrese porcentaje retorno'" />
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-text formControlName="target" [label]="'Meta de inversión'"
-                          [placeholder]="'Ingrese meta'" />
+                        <input-text [label]="'Meta de inversión'" [placeholder]="'Ingrese meta'" />
                       </div>
                     </div>
                   </div>

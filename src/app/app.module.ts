@@ -50,6 +50,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { MultifileUploadComponent } from './core/components/multifile-upload/multifile-upload.component';
 import { InputDateComponent } from './core/components/input-date/input-date.component';
+import { MultiSelectModule } from 'primeng/multiselect';
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,6 +108,7 @@ import { InputDateComponent } from './core/components/input-date/input-date.comp
     MatSliderModule,
     MatStepperModule,
     FileUploadModule,
+    MultiSelectModule,
     HttpClientModule
   ],
   providers: [provideClientHydration(), provideAnimationsAsync(), DatePipe,
