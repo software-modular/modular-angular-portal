@@ -1,5 +1,6 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
+
 :root {
   --default-text-color: #2c3e50;
   --primary-text-color: #3498db;
@@ -35,4 +36,10 @@ label {
 
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: white !important;
+}
+
+::ng-deep .p-button {
+  background-color: var(--btn-primary-background) !important;
+  border-color: var(--btn-primary-background) !important;
+  color: white !important;
 }

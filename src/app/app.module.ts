@@ -45,6 +45,9 @@ import { MatSliderModule } from '@angular/material/slider';
 import { InputTextAreaComponent } from './core/components/input-text-area/input-text-area.component';
 import { InputMultiRadioCheckComponent } from './core/components/input-multi-radio-check/input-multi-radio-check.component';
 import { InputTextComponent } from './core/components/input-text/input-text.component';
+import { FileUploadModule } from 'primeng/fileupload';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { MultifileUploadComponent } from './core/components/multifile-upload/multifile-upload.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +67,8 @@ import { InputTextComponent } from './core/components/input-text/input-text.comp
     AgrappProjectsListCardComponent,
     AgrappHomeComponent,
     InputTextAreaComponent,
-    InputMultiRadioCheckComponent
+    InputMultiRadioCheckComponent,
+    MultifileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -97,9 +101,13 @@ import { InputTextComponent } from './core/components/input-text/input-text.comp
     MatDialogModule,
     MatRadioModule,
     MatSnackBarModule,
-    MatSliderModule
+    MatSliderModule,
+    FileUploadModule,
+    HttpClientModule
   ],
-  providers: [provideClientHydration(), provideAnimationsAsync(), DatePipe],
+  providers: [provideClientHydration(), provideAnimationsAsync(), DatePipe,
+  provideHttpClient(withFetch())
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
