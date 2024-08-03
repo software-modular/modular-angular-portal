@@ -4,7 +4,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { formatServerDate } from '../../utils/Date';
 
 @Component({
-  selector: 'app-input-date',
+  selector: 'input-date',
   templateUrl: './input-date.component.html',
   styleUrl: './input-date.component.css',
   providers: [provideNativeDateAdapter(),
