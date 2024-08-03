@@ -1,0 +1,18 @@
+<div class="input-date-container">
+  <div class="card input-date-card-container">
+    <div class="input-date-header-container">
+      <div class="input-date-header-label-container">
+        <label class="input-date-header-label">{{label}}</label>
+      </div>
+    </div>
+    <div class="input-date-body-container">
+      <mat-form-field class="input-date-body-element-container">
+        <mat-label>DD/MM/YYYY</mat-label>
+        <input matInput [matDatepicker]="date" (dateChange)="onInputChange($event)">
+        <mat-datepicker-toggle matIconSuffix [for]="date">
+        </mat-datepicker-toggle>
+        <mat-datepicker #date></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
