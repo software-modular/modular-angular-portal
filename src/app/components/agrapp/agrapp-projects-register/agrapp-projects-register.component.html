@@ -85,7 +85,23 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <app-input-number [label]="'Numero de hectareas'"></app-input-number>
+                        <app-input-number [label]="'Numero de hectareas'" [sufix]="' Héctareas'"></app-input-number>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <app-input-number [label]="'Numero de plantas'" [sufix]="' plantas'"></app-input-number>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-date formControlName="projectStartDate"
+                          [label]="'Fecha inicio del cultivo'"></input-date>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-date formControlName="projectEndDate" [label]="'Fecha estimada cosecha'"></input-date>
                       </div>
                     </div>
                   </div>

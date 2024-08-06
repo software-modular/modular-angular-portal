@@ -17,6 +17,7 @@ export class InputNumberComponent implements ControlValueAccessor {
 
   @Input() label: string = "";
   @Input() placeholder: string = "";
+  @Input() sufix: string = "";
 
 
   value: number = 0;
@@ -39,8 +40,7 @@ export class InputNumberComponent implements ControlValueAccessor {
   }
 
   onInputChange(event: any) {
-    debugger
-    const value = event.target.value;
+    const value = event.value;
     this.value = value;
     this.onChange(value);
     this.onTouched();
