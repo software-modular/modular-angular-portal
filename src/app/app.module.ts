@@ -50,6 +50,7 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
 import { MultifileUploadComponent } from './core/components/multifile-upload/multifile-upload.component';
 import { InputDateComponent } from './core/components/input-date/input-date.component';
 import { InputAutocompleteComponent } from './core/components/input-autocomplete/input-autocomplete.component';
+import { InputListOptionComponent } from './core/components/input-list-option/input-list-option.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +73,8 @@ import { InputAutocompleteComponent } from './core/components/input-autocomplete
     InputMultiRadioCheckComponent,
     MultifileUploadComponent,
     InputDateComponent,
-    InputAutocompleteComponent
+    InputAutocompleteComponent,
+    InputListOptionComponent
   ],
   imports: [
     BrowserModule,

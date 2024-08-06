@@ -1,0 +1,18 @@
+<div class="input-list-option-container">
+  <div class="card input-list-option-card-container">
+    <div class="input-list-option-header-container">
+      <div class="input-list-option-header-label-container">
+        <label class="input-list-option-header-label">{{label}}</label>
+      </div>
+    </div>
+    <div class="input-list-option-body-container">
+      <mat-form-field class="input-list-option-body-element-container">
+        <mat-select (selectionChange)="onInputChange($event)">
+          <mat-option *ngFor="let option of options" [value]="option.value">
+            {{option.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</div>

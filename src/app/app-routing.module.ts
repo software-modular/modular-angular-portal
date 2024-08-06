@@ -5,12 +5,13 @@ import { RegisterComponent } from './components/authentication/components/regist
 import { InputDateComponent } from './core/components/input-date/input-date.component';
 import { BodyComponent } from './layout/components/body/body.component';
 import { InputAutocompleteComponent } from './core/components/input-autocomplete/input-autocomplete.component';
+import { InputListOptionComponent } from './core/components/input-list-option/input-list-option.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'portal', pathMatch: 'full' },
   {
     path: 'portal', component: BodyComponent, children: [
-      { path: '', component: InputAutocompleteComponent },
+      { path: '', component: InputListOptionComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent }
     ]
