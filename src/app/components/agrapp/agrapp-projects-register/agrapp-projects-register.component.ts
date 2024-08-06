@@ -24,7 +24,7 @@ export class AgrappProjectsRegisterComponent {
   countryList = countries;
   deparmentList = deparments;
   cityList = cities;
-  typeGround = typeGrounds.value;
+  typeGround = typeGrounds.description;
 
   cardData: AgrappCardInput =
     {
@@ -64,7 +64,6 @@ export class AgrappProjectsRegisterComponent {
     this.cardData.ownerName = this.projectForm.get("projectName")?.value;
     this.cardData.nameCrop = this.projectForm.get("projectName")?.value
     this.cardData.imgs = this.getImgOfFiles(this.projectForm.get("imgs")?.value);
-    debugger
 
   }
 
