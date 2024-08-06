@@ -1,30 +1,25 @@
 import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @Component({
-  selector: 'multifile-upload',
-  templateUrl: './multifile-upload.component.html',
-  styleUrl: './multifile-upload.component.css',
+  selector: 'app-input-number',
+  templateUrl: './input-number.component.html',
+  styleUrl: './input-number.component.css',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => MultifileUploadComponent),
+      useExisting: forwardRef(() => InputNumberComponent),
       multi: true
-    },
-    {
-      provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: { showError: true },
     }
   ]
 })
-export class MultifileUploadComponent implements ControlValueAccessor {
+export class InputNumberComponent implements ControlValueAccessor {
 
-  @Input() label: string = "Fotos";
+  @Input() label: string = "";
   @Input() placeholder: string = "";
 
 
-  value: any[] = [];
+  value: number = 0;
   onChange: any = () => { };
   onTouched: any = () => { };
 
@@ -44,7 +39,8 @@ export class MultifileUploadComponent implements ControlValueAccessor {
   }
 
   onInputChange(event: any) {
-    const value = event.currentFiles;
+    debugger
+    const value = event.target.value;
     this.value = value;
     this.onChange(value);
     this.onTouched();

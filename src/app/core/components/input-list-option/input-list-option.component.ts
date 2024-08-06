@@ -45,7 +45,6 @@ export class InputListOptionComponent implements ControlValueAccessor {
   }
 
   onInputChange(event: any) {
-    debugger
     const value = event.value;
     this.value = value;
     this.onChange(value);

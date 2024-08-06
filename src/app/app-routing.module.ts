@@ -6,12 +6,13 @@ import { InputDateComponent } from './core/components/input-date/input-date.comp
 import { BodyComponent } from './layout/components/body/body.component';
 import { InputAutocompleteComponent } from './core/components/input-autocomplete/input-autocomplete.component';
 import { InputListOptionComponent } from './core/components/input-list-option/input-list-option.component';
+import { InputNumberComponent } from './core/components/input-number/input-number.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'portal', pathMatch: 'full' },
   {
     path: 'portal', component: BodyComponent, children: [
-      { path: '', component: InputListOptionComponent },
+      { path: '', component: InputNumberComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent }
     ]
