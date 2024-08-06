@@ -52,6 +52,7 @@ import { MultifileUploadComponent } from './core/components/multifile-upload/mul
 import { InputDateComponent } from './core/components/input-date/input-date.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { InputAutocompleteComponent } from './core/components/input-autocomplete/input-autocomplete.component';
+import { InputListOptionComponent } from './core/components/input-list-option/input-list-option.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +75,8 @@ import { InputAutocompleteComponent } from './core/components/input-autocomplete
     InputMultiRadioCheckComponent,
     MultifileUploadComponent,
     InputDateComponent,
-    InputAutocompleteComponent
+    InputAutocompleteComponent,
+    InputListOptionComponent
   ],
   imports: [
     BrowserModule,

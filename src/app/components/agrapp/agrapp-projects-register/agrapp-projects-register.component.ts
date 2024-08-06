@@ -24,7 +24,7 @@ export class AgrappProjectsRegisterComponent {
   countryList = countries;
   deparmentList = deparments;
   cityList = cities;
-  typeGround = typeGrounds.description;
+  typeGround = typeGrounds;
 
   cardData: AgrappCardInput =
     {
