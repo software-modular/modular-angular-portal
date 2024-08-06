@@ -53,6 +53,7 @@ import { InputDateComponent } from './core/components/input-date/input-date.comp
 import { MultiSelectModule } from 'primeng/multiselect';
 import { InputAutocompleteComponent } from './core/components/input-autocomplete/input-autocomplete.component';
 import { InputListOptionComponent } from './core/components/input-list-option/input-list-option.component';
+import { InputNumberModule } from 'primeng/inputnumber';
 @NgModule({
   declarations: [
     AppComponent,
@@ -113,7 +114,8 @@ import { InputListOptionComponent } from './core/components/input-list-option/in
     MatStepperModule,
     FileUploadModule,
     MultiSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    InputNumberModule
   ],
   providers: [provideClientHydration(), provideAnimationsAsync(), DatePipe,
   provideHttpClient(withFetch())
