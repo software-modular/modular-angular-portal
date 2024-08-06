@@ -1,0 +1,28 @@
+.input-number-container {
+  padding: 10px;
+  width: 100%;
+}
+
+.input-number-card-container {
+  padding: 20px;
+  width: 100%;
+  height: 115px;
+}
+
+.input-number-header-label {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.input-number-body-element-container {
+  width: 100% !important;
+  height: 60px !important;
+}
+
+.input-number-body-element {
+  width: 100%;
+}
+
+::ng-deep .p-inputnumber {
+  width: 100% !important;
+}

@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/authentication/components/regist
 import { BodyComponent } from './layout/components/body/body.component';
 import { InputAutocompleteComponent } from './core/components/input-autocomplete/input-autocomplete.component';
 import { InputListOptionComponent } from './core/components/input-list-option/input-list-option.component';
+import { InputNumberComponent } from './core/components/input-number/input-number.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'portal', pathMatch: 'full' },

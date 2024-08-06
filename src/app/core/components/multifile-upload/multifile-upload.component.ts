@@ -44,7 +44,6 @@ export class MultifileUploadComponent implements ControlValueAccessor {
   }
 
   onInputChange(event: any) {
-    debugger
     const value = event.currentFiles;
     this.value = value;
     this.onChange(value);
