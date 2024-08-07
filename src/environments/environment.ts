@@ -1,5 +1,8 @@
 export const environment = {
   production: false,
+  configuration: {
+    typeAuthenticator: "0",
+  },
   api: {
     host: 'http://localhost:8080/api',
     endpoints: {

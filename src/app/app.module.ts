@@ -16,7 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { DatePipe } from '@angular/common';
-import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -53,6 +53,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { AgrappHomeComponent } from './pages/agrapp-home/agrapp-home.component';
 import { AgrappInvestmentsComponent } from './pages/agrapp-investments/agrapp-investments.component';
 import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
+import { authenticationInterceptor } from './core/interceptors/authentication.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,8 +116,11 @@ import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects
     HttpClientModule,
     InputNumberModule
   ],
-  providers: [provideClientHydration(), provideAnimationsAsync(), DatePipe,
-  provideHttpClient(withFetch())
+  providers: [
+    provideClientHydration(),
+    provideAnimationsAsync(),
+    DatePipe,
+    // provideHttpClient()withFetch()), withInterceptors([authenticationInterceptor])),
   ],
   bootstrap: [AppComponent]
 })
