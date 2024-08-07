@@ -8,8 +8,8 @@
         <div class="col-md-7 section-container-right">
           <div class="project-register-form-container">
             <mat-stepper class="project-register-step-container" labelPosition="bottom" #stepper>
-              <mat-step [stepControl]="projectForm">
-                <form [formGroup]="projectForm" class="project-register-form">
+              <mat-step [stepControl]="form">
+                <form [formGroup]="form" class="project-register-form">
                   <ng-template matStepLabel>Proyecto</ng-template>
                   <div>
                     <div class="row">
@@ -24,7 +24,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-multi-radio-check formControlName="projectPrePurchase"
+                        <input-multi-radio-check formControlName="projectHasPrePurchase"
                           [label]="'Pre-compra'"></input-multi-radio-check>
                       </div>
                     </div>
@@ -40,68 +40,73 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <multifile-upload formControlName="imgs" [label]="'Fotos'"></multifile-upload>
+                        <multifile-upload formControlName="projectImgs" [label]="'Fotos'"></multifile-upload>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-text [label]="'Url video'" />
+                        <input-text formControlName="projectVideoUrl" [label]="'Url video'" />
                       </div>
                     </div>
                   </div>
                 </form>
                 <div class="project-register-buttons-container" style="text-align: right;">
-                  <button mat-button matStepperNext>Siguiente</button>
+                  <button mat-button matStepperNext>Continuar</button>
                 </div>
               </mat-step>
-              <mat-step [stepControl]="projectForm">
-                <form [formGroup]="projectForm" class="project-register-form">
+              <mat-step [stepControl]="form">
+                <form [formGroup]="form" class="project-register-form">
                   <ng-template matStepLabel>Cultivo</ng-template>
                   <div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-autocomplete [label]="'Pais'" [options]="countryList"></input-autocomplete>
+                        <input-autocomplete formControlName="cropCountry" [label]="'Pais'"
+                          [options]="countryList"></input-autocomplete>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-autocomplete [label]="'Departamento'" [options]="deparmentList"></input-autocomplete>
+                        <input-autocomplete formControlName="cropDepartment" [label]="'Departamento'"
+                          [options]="deparmentList"></input-autocomplete>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-autocomplete [label]="'Ciudad'" [options]="cityList"></input-autocomplete>
+                        <input-autocomplete formControlName="cropCity" [label]="'Ciudad'"
+                          [options]="cityList"></input-autocomplete>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-text formControlName="projectName" [label]="'Direccion'" />
+                        <input-text formControlName="cropAddress" [label]="'Direccion'" />
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-list-option [label]="'Tipo de suelo'" [options]="typeGround"></input-list-option>
+                        <input-list-option formControlName="cropTypeGround" [label]="'Tipo de suelo'"
+                          [options]="listTypeGround"></input-list-option>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <app-input-number [label]="'Numero de hectareas'" [sufix]="' Héctareas'"></app-input-number>
+                        <app-input-number formControlName="cropHetares" [label]="'Numero de hectareas'"
+                          [sufix]="' Héctareas'"></app-input-number>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <app-input-number [label]="'Numero de plantas'" [sufix]="' plantas'"></app-input-number>
+                        <app-input-number formControlName="cropNumberPlants" [label]="'Numero de plantas'"
+                          [sufix]="' plantas'"></app-input-number>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-date formControlName="projectStartDate"
-                          [label]="'Fecha inicio del cultivo'"></input-date>
+                        <input-date formControlName="cropStartDate" [label]="'Fecha inicio del cultivo'"></input-date>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-date formControlName="projectEndDate" [label]="'Fecha estimada cosecha'"></input-date>
+                        <input-date formControlName="cropEndDate" [label]="'Fecha estimada cosecha'"></input-date>
                       </div>
                     </div>
                   </div>
@@ -112,17 +117,197 @@
                       <button mat-button matStepperPrevious>Atras</button>
                     </div>
                     <div class="col-md-6" style="text-align: right;">
-                      <button mat-button matStepperNext>Siguiente</button>
+                      <button mat-button matStepperNext>Continuar</button>
                     </div>
                   </div>
                 </div>
               </mat-step>
-              <mat-step>
-                <ng-template matStepLabel>Done</ng-template>
-                <p>You are now done.</p>
+              <mat-step [stepControl]="form">
+                <form [formGroup]="form" class="project-register-form">
+                  <ng-template matStepLabel>Productor</ng-template>
+                  <div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-list-option formControlName="producerTypeId" [label]="'Tipo identificación'"
+                          [options]="listTypeIdentification"></input-list-option>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-text formControlName="producerIdValue" [label]="'Identificación'" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-text formControlName="producerName" [label]="'Nombre'" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-text formControlName="producerMail" [label]="'Correo'" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-text formControlName="producerPhone" [label]="'Telefono'" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-text formControlName="producerAddress" [label]="'Dirección'" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-date formControlName="producerBirthday" [label]="'Fecha de nacimiento'"></input-date>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <multifile-upload formControlName="producerImgProfile"
+                          [label]="'Foto de perfil'"></multifile-upload>
+                      </div>
+                    </div>
+                  </div>
+                </form>
                 <div>
-                  <button mat-button matStepperPrevious>Back</button>
-                  <button mat-button (click)="stepper.reset()">Reset</button>
+                  <div class="project-register-buttons-container">
+                    <div class="row project-register-buttons-container">
+                      <div class="col-md-6">
+                        <button mat-button matStepperPrevious>Atras</button>
+                      </div>
+                      <div class="col-md-6" style="text-align: right;">
+                        <button mat-button matStepperNext>Continuar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-step>
+              <mat-step [stepControl]="form">
+                <form [formGroup]="form" class="project-register-form">
+                  <ng-template matStepLabel>Inversión</ng-template>
+                  <div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-text formControlName="investmentRate" [label]="'Rate estimado'" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-text formControlName="investmentTir" [label]="'TIR'" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <app-input-number formControlName="investmentMinAmount" [label]="'Minimo de inversion'"
+                          [sufix]="' COP'"></app-input-number>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <app-input-number formControlName="investmentMaxAmount" [label]="'Maximo de inversion'"
+                          [sufix]="' COP'"></app-input-number>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <app-input-number formControlName="investmentTargetAmount" [label]="'Meta de inversión'"
+                          [sufix]="' COP'"></app-input-number>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-date formControlName="investmentStartDate" [label]="'Fecha inicio'"></input-date>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-date formControlName="investmentEndDate" [label]="'Fecha fin'"></input-date>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <div class="project-register-buttons-container">
+                  <div class="row project-register-buttons-container">
+                    <div class="col-md-6">
+                      <button mat-button matStepperPrevious>Atras</button>
+                    </div>
+                    <div class="col-md-6" style="text-align: right;">
+                      <button mat-button matStepperNext>Continuar</button>
+                    </div>
+                  </div>
+                </div>
+              </mat-step>
+              <mat-step *ngIf="showPrePurchaseForm" [stepControl]="form">
+                <form [formGroup]="form" class="project-register-form">
+                  <ng-template matStepLabel>Pre-Orden</ng-template>
+                  <div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-list-option formControlName="prePurchaseUnit" [label]="'Unidad'"
+                          [options]="listTypePreOrders"></input-list-option>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <app-input-number formControlName="prePurchaseMinAmount" [label]="'Cantidad minima'"
+                          [sufix]="preOrderUnit"></app-input-number>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <app-input-number formControlName="prePurchaseMaxAmount" [label]="'Total pre-compra'"
+                          [sufix]="preOrderUnit"></app-input-number>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-date formControlName="prePurchaseStartDate" [label]="'Fecha inicio'"></input-date>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-date formControlName="prePurchaseEndDate" [label]="'Fecha fin'"></input-date>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <div class="project-register-buttons-container">
+                  <div class="row project-register-buttons-container">
+                    <div class="col-md-6">
+                      <button mat-button matStepperPrevious>Atras</button>
+                    </div>
+                    <div class="col-md-6" style="text-align: right;">
+                      <button mat-button matStepperNext>Continuar</button>
+                    </div>
+                  </div>
+                </div>
+              </mat-step>
+              <mat-step [stepControl]="form">
+                <form [formGroup]="form" class="project-register-form">
+                  <ng-template matStepLabel>Wompi</ng-template>
+                  <div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-text formControlName="wompiPublicKey" [label]="'Wompi llave publica'" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-text formControlName="wompiSecretKey" [label]="'Wompi llave privada'" />
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <div class="project-register-buttons-container">
+                  <div class="row project-register-buttons-container">
+                    <div class="col-md-6">
+                      <button mat-button matStepperPrevious>Atras</button>
+                    </div>
+                    <div class="col-md-6" style="text-align: right;">
+                      <button mat-button matStepperNext>Continuar</button>
+                    </div>
+                  </div>
                 </div>
               </mat-step>
             </mat-stepper>

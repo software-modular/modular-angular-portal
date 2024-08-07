@@ -4,6 +4,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { cities, countries, deparments } from '../../../core/domain/const/Colombia';
 import { typeGrounds } from '../../../core/domain/const/TypeGround';
+import { typeIdentifications } from '../../../core/domain/const/TypeIdentification';
+import { OptionInput } from '../../../core/components/dto/OptionInput';
+import { preOrderTypes } from '../../../core/domain/const/PreOrderTypes';
 
 @Component({
   selector: 'agrapp-projects-register',
@@ -17,14 +20,16 @@ import { typeGrounds } from '../../../core/domain/const/TypeGround';
   ],
 })
 export class AgrappProjectsRegisterComponent {
-  maxFormSteps: number = 2
-  formStep: number = 1;
-  projectForm: FormGroup;
+  form: FormGroup;
   uploadedFiles: any[] = [];
   countryList = countries;
   deparmentList = deparments;
   cityList = cities;
-  typeGround = typeGrounds;
+  listTypeGround: OptionInput[] = typeGrounds;
+  listTypeIdentification: OptionInput[] = typeIdentifications
+  listTypePreOrders: OptionInput[] = preOrderTypes
+  preOrderUnit: string = "KG"
+  showPrePurchaseForm: boolean = false;
 
   cardData: AgrappCardInput =
     {
@@ -45,36 +50,57 @@ export class AgrappProjectsRegisterComponent {
     }
 
   constructor(private formBuilder: FormBuilder) {
-    this.projectForm = formBuilder.group({
+    this.form = formBuilder.group({
       projectName: ["", [Validators.required]],
       projectDescription: ["", [Validators.required]],
-      projectPrePurchase: [false, [Validators.required]],
+      projectHasPrePurchase: [false, [Validators.required]],
       projectStartDate: ["", [Validators.required]],
       projectEndDate: ["", [Validators.required]],
-      imgs: ["", [Validators.required]],
+      projectImgs: ["", [Validators.required]],
+      projectVideoUrl: ["", [Validators.required]],
+      cropCountry: ["", [Validators.required]],
+      cropDepartment: ["", [Validators.required]],
+      cropCity: ["", [Validators.required]],
+      cropAddress: ["", [Validators.required]],
+      cropTypeGround: ["", [Validators.required]],
+      cropHetares: ["", [Validators.required]],
+      cropNumberPlants: ["", [Validators.required]],
+      cropStartDate: ["", [Validators.required]],
+      cropEndDate: ["", [Validators.required]],
+      producerTypeId: ["", [Validators.required]],
+      producerIdValue: ["", [Validators.required]],
+      producerName: ["", [Validators.required]],
+      producerMail: ["", [Validators.required]],
+      producerPhone: ["", [Validators.required]],
+      producerAddress: ["", [Validators.required]],
+      producerBirthday: ["", [Validators.required]],
+      producerImgProfile: ["", [Validators.required]],
+      investmentRate: ["", [Validators.required]],
+      investmentTir: ["", [Validators.required]],
+      investmentMinAmount: ["", [Validators.required]],
+      investmentMaxAmount: ["", [Validators.required]],
+      investmentTargetAmount: ["", [Validators.required]],
+      investmentStartDate: ["", [Validators.required]],
+      investmentEndDate: ["", [Validators.required]],
+      prePurchaseUnit: ["", [Validators.required]],
+      prePurchaseMinAmount: ["", [Validators.required]],
+      prePurchaseMaxAmount: ["", [Validators.required]],
+      prePurchaseStartDate: ["", [Validators.required]],
+      prePurchaseEndDate: ["", [Validators.required]],
+      wompiPublicKey: ["", [Validators.required]],
+      wompiSecretKey: ["", [Validators.required]],
     });
-    this.projectForm.valueChanges.subscribe({
-      next: (_) => {
-        this.refreshCardData();
-      }
-    })
+    this.onChangeFormValues();
   }
 
   refreshCardData() {
-    this.cardData.ownerName = this.projectForm.get("projectName")?.value;
-    this.cardData.nameCrop = this.projectForm.get("projectName")?.value
-    this.cardData.imgs = this.getImgOfFiles(this.projectForm.get("imgs")?.value);
-
+    this.cardData.ownerName = this.form.get("projectName")?.value;
+    this.cardData.nameCrop = this.form.get("projectName")?.value
+    this.cardData.imgs = this.getImgOfFiles(this.form.get("projectImgs")?.value);
+    let hasPrepurchase = this.form.get("projectHasPrePurchase")?.value
+    this.showPrePurchaseForm = hasPrepurchase === "true" ? true : false;
   }
 
-  changeStepForm(increase: boolean) {
-    if (increase) {
-      this.formStep += 1;
-      return;
-    }
-    this.formStep -= 1;
-
-  }
 
   onUpload(event: any) {
     for (let file of event.files) {
@@ -88,5 +114,13 @@ export class AgrappProjectsRegisterComponent {
       imgs.push(file.objectURL.changingThisBreaksApplicationSecurity);
     }
     return imgs;
+  }
+
+  onChangeFormValues() {
+    this.form.valueChanges.subscribe({
+      next: (_) => {
+        this.refreshCardData();
+      }
+    })
   }
 }
