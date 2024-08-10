@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AgrappProjectsRegisterComponent } from './components/agrapp/agrapp-projects-register/agrapp-projects-register.component';
-import { LoginComponent } from './components/authentication/components/login/login.component';
-import { RegisterComponent } from './components/authentication/components/register/register.component';
+import { LoginComponent } from './core/pages/login/login.component';
+import { RegisterComponent } from './core/pages/register/register.component';
+import { UserProfileComponent } from './core/pages/user-profile/user-profile.component';
 import { BodyComponent } from './layout/components/body/body.component';
-import { InputAutocompleteComponent } from './core/components/input-autocomplete/input-autocomplete.component';
-import { InputListOptionComponent } from './core/components/input-list-option/input-list-option.component';
-import { InputNumberComponent } from './core/components/input-number/input-number.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'portal', pathMatch: 'full' },
@@ -14,7 +12,8 @@ const routes: Routes = [
     path: 'portal', component: BodyComponent, children: [
       { path: '', component: AgrappProjectsRegisterComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'user-profile', component: UserProfileComponent },
     ]
   }
 

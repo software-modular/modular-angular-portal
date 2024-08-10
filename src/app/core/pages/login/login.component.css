@@ -1,89 +1,91 @@
 @media (min-width: 1025px) {}
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  .register-layout {
+  .login-layout {
     height: 77vh !important;
   }
 }
 
 @media (min-width: 601px) and (max-width: 768px) {
-  .register-layout {
-    height: 80vh !important;
+  .login-layout {
+    height: 77vh !important;
   }
 
-  .register-container {
+  .login-container {
     width: 90vw !important;
   }
 }
 
 @media (min-width: 520px) and (max-width: 600px) {
-  .register-layout {
-    height: 80vh !important;
+  .login-layout {
+    height: 77vh !important;
   }
 
-  .register-container {
+  .login-container {
     width: 90vw !important;
   }
 }
 
 @media (max-width: 478px) {
-  .register-layout {
-    height: 80vh !important;
+  .login-layout {
+    height: 77vh !important;
   }
 
-  .register-container {
+  .login-container {
     width: 90vw !important;
   }
 }
 
 @media (max-width: 460px) {
-  .register-layout {
-    height: 80vh !important;
+  .login-layout {
+    height: 77vh !important;
   }
 
-  .register-container {
+  .login-container {
     width: 90vw !important;
   }
+
 }
 
-.register-layout {
+.login-layout {
   display: flex;
-  height: 800px;
+  height: 790px;
   justify-content: space-around;
   align-items: center;
 }
 
-.register-container {
+.login-container {
   display: flex;
   position: absolute;
   width: 400px;
   border-radius: 10px;
-  height: 500px;
+  height: auto;
   box-shadow: 0px 4px 8px rgba(220, 220, 220, 0.982);
   flex-direction: column;
   align-items: center;
+  padding-bottom: 30px;
 }
 
-.register-header {
+.login-header {
   padding: 2.5rem;
 }
 
-.register-header-tittle {
+.login-header-tittle {
   font-weight: 600;
   font-size: 25px;
 }
 
-.register-body {
+.login-body {
   padding-left: 2rem;
   width: 100%;
   padding-right: 1rem;
 }
 
-.register-form-input {
+.login-form-input {
   width: 100% !important;
 }
 
-.register-footer {
+.login-footer {
   padding-left: 2rem;
   width: 100%;
   display: flex;
@@ -91,12 +93,16 @@
   flex-direction: column;
 }
 
-.register-footer-content {
+.login-footer-content {
   width: 100%;
   text-align: center;
 }
 
-.register-label-register {
+.login-label-register {
   text-decoration-color: #ab9f9f;
   color: black;
+}
+
+.label-forget-password {
+  font-size: 14px;
 }

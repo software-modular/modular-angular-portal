@@ -1,4 +1,4 @@
-import { OptionInput } from "../../components/dto/OptionInput"
+import { OptionInput } from "../beans/OptionInput";
 
 export const preOrderTypes: OptionInput[] = [
   {

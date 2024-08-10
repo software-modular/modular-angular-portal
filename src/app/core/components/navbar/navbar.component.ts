@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, Input } from '@angular/core';
-import { NavbarConfiguration } from '../../core/domain/beans/navbarConfiguration';
-import { TypeNavbar } from '../../core/domain/enum/TypeNavbar';
+import { NavbarConfiguration } from '../../domain/beans/navbarConfiguration';
+import { TypeNavbar } from '../../domain/enum/TypeNavbar';
 
 @Component({
   selector: 'app-navbar',

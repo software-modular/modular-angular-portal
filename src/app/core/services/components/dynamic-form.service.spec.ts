@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserClientService } from './user-client.service';
+import { DynamicFormService } from './dynamic-form.service';
 
-describe('UserClientService', () => {
-  let service: UserClientService;
+describe('DynamicFormService', () => {
+  let service: DynamicFormService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(UserClientService);
+    service = TestBed.inject(DynamicFormService);
   });
 
   it('should be created', () => {

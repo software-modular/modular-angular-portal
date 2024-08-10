@@ -1,6 +1,6 @@
 import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OptionInput } from '../dto/OptionInput';
+import { OptionInput } from '../../domain/beans/OptionInput';
 
 @Component({
   selector: 'input-list-option',

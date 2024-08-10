@@ -16,7 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { DatePipe } from '@angular/common';
-import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -32,9 +32,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AgrappProjectsCardComponent } from './components/agrapp/agrapp-projects-card/agrapp-projects-card.component';
 import { AgrappProjectsListCardComponent } from './components/agrapp/agrapp-projects-list-card/agrapp-projects-list-card.component';
 import { AgrappProjectsRegisterComponent } from './components/agrapp/agrapp-projects-register/agrapp-projects-register.component';
-import { LoginComponent } from './components/authentication/components/login/login.component';
-import { RegisterComponent } from './components/authentication/components/register/register.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { CarouselImgComponent } from './core/components/carousel-img/carousel-img.component';
 import { InputAutocompleteComponent } from './core/components/input-autocomplete/input-autocomplete.component';
 import { InputDateComponent } from './core/components/input-date/input-date.component';
@@ -55,6 +52,13 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MatStepperModule } from '@angular/material/stepper';
+import { authenticationInterceptor } from './core/interceptors/authentication.interceptor';
+import { UserProfileComponent } from './core/pages/user-profile/user-profile.component';
+import { EditUserComponent } from './core/section/edit-user/edit-user.component';
+import { LoginComponent } from './core/pages/login/login.component';
+import { RegisterComponent } from './core/pages/register/register.component';
+import { NavbarComponent } from './core/components/navbar/navbar.component';
+import { DynamicFormComponent } from './core/components/dynamic-form/dynamic-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +83,10 @@ import { MatStepperModule } from '@angular/material/stepper';
     InputDateComponent,
     InputAutocompleteComponent,
     InputListOptionComponent,
-    InputNumberComponent
+    InputNumberComponent,
+    UserProfileComponent,
+    EditUserComponent,
+    DynamicFormComponent
   ],
   imports: [
     BrowserModule,
@@ -119,8 +126,11 @@ import { MatStepperModule } from '@angular/material/stepper';
     HttpClientModule,
     InputNumberModule
   ],
-  providers: [provideClientHydration(), provideAnimationsAsync(), DatePipe,
-  provideHttpClient(withFetch())
+  providers: [
+    provideClientHydration(),
+    provideAnimationsAsync(),
+    DatePipe,
+    // provideHttpClient()withFetch()), withInterceptors([authenticationInterceptor])),
   ],
   bootstrap: [AppComponent]
 })

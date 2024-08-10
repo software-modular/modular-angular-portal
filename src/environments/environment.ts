@@ -1,11 +1,13 @@
 export const environment = {
   production: false,
+  configuration: {
+    typeAuthenticator: "0",
+  },
   api: {
-    host: 'http://localhost:8080/api',
+    host: 'http://127.0.0.1:8000/api',
     endpoints: {
       users: {
-        path: "/users",
-        login: "/login/",
+        login: "/users/login/",
         loginRefresh: "/login/refresh-token",
         logout: "/logout/",
         delete: "/delete/",

@@ -1,7 +1,7 @@
-import { OptionInput } from "../beans/OptionInput"
+import { OptionInput } from "../domain/beans/OptionInput";
 
-export const typeIdentifications: OptionInput[] = [
-  {
+export const typeIdentificationOptions: OptionInput[] =
+  [{
     label: "Tarjeta de identidad",
     value: "TI"
   },
@@ -16,5 +16,4 @@ export const typeIdentifications: OptionInput[] = [
   {
     label: "Pasaporte",
     value: "PS"
-  },
-]
+  }];

@@ -1,0 +1,28 @@
+.dynamic-form-container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.dynamic-form-header-title-container {
+  padding: 10px;
+}
+
+.dynamic-form-body-container {
+  padding: 10px;
+}
+
+.dynamic-form-footer-container {
+  padding: 10px;
+}
+
+.dynamic-form-header-title-label {
+  color: #7b7b7b;
+  font-size: 24px;
+  font-weight: 550;
+}
+
+.dynamic-form-field-container {
+  width: 100% !important;
+}

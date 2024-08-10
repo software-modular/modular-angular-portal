@@ -5,7 +5,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { cities, countries, deparments } from '../../../core/domain/const/Colombia';
 import { typeGrounds } from '../../../core/domain/const/TypeGround';
 import { typeIdentifications } from '../../../core/domain/const/TypeIdentification';
-import { OptionInput } from '../../../core/components/dto/OptionInput';
+import { OptionInput } from '../../../core/domain/beans/OptionInput';
 import { preOrderTypes } from '../../../core/domain/const/PreOrderTypes';
 
 @Component({
