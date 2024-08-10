@@ -39,7 +39,6 @@ export class InputNumberComponent implements ControlValueAccessor {
   }
 
   onInputChange(event: any) {
-    debugger
     const value = event.target.value;
     this.value = value;
     this.onChange(value);

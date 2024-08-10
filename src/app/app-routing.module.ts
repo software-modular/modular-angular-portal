@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/authentication/components/login/login.component';
-import { RegisterComponent } from './components/authentication/components/register/register.component';
-import { InputDateComponent } from './core/components/input-date/input-date.component';
-import { BodyComponent } from './layout/components/body/body.component';
-import { InputAutocompleteComponent } from './core/components/input-autocomplete/input-autocomplete.component';
-import { InputListOptionComponent } from './core/components/input-list-option/input-list-option.component';
 import { InputNumberComponent } from './core/components/input-number/input-number.component';
+import { LoginComponent } from './core/pages/login/login.component';
+import { RegisterComponent } from './core/pages/register/register.component';
+import { BodyComponent } from './layout/components/body/body.component';
+import { UserProfileComponent } from './core/pages/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'portal', pathMatch: 'full' },
@@ -14,7 +12,8 @@ const routes: Routes = [
     path: 'portal', component: BodyComponent, children: [
       { path: '', component: InputNumberComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'user-profile', component: UserProfileComponent },
     ]
   }
 

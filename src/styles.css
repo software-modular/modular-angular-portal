@@ -6,6 +6,7 @@
   --primary-text-color: #3498db;
   --secondary-text-color: #2ecc71;
   --accent-text-color: #e74c3c;
+  --white-text-color: #e3f1ff;
 
   --navbar-shadow-color: rgba(220, 220, 220, 0.982);
   --profile-shortname-color: #e3f1ff;
@@ -13,6 +14,7 @@
   --menu-options-hover-background: rgb(45 63 59 / 8%);
   --menu-options-hover-border-color: rgb(45, 63, 59);
   --btn-primary-background: rgb(58 105 94);
+  --btn-primary-background-hover: rgb(58 105 94);
 }
 
 html,
@@ -42,4 +44,30 @@ label {
   background-color: var(--btn-primary-background) !important;
   border-color: var(--btn-primary-background) !important;
   color: white !important;
+}
+
+.btn-primary {
+  background-color: var(--btn-primary-background);
+}
+
+.btn:hover {
+  color: var(--white-text-color);
+  background-color: var(--btn-primary-background-hover);
+  border-color: var(--btn-primary-background-hover);
+}
+
+
+.btn-primary:not(:disabled):not(.disabled):active,
+.show>.btn-primary.dropdown-toggle {
+  color: var(--white-text-color);
+  background-color: var(--btn-primary-background-hover);
+  border-color: var(--btn-primary-background-hover);
+}
+
+.btn-primary.focus,
+.btn-primary:focus {
+  color: var(--white-text-color);
+  background-color: var(--btn-primary-background-hover);
+  border-color: var(--btn-primary-background-hover);
+  box-shadow: 0 0 0 .2rem rgba(107, 108, 110, 0.5);
 }

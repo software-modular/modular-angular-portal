@@ -1,0 +1,39 @@
+<div class="login-layout">
+  <div class="login-container">
+    <div class="login-header">
+      <label class="login-header-tittle ">Iniciar sesion</label>
+    </div>
+    <div class="login-body">
+      <div class="login-form">
+        <dynamic-form [data]="dynamicFormInput"></dynamic-form>
+      </div>
+    </div>
+    <div class="login-footer">
+      <div class="login-footer-content">
+        <div class="row" *ngIf="false">
+          <div class="col-md-12">
+            <mat-error>Usuario o contraseña erroneos</mat-error>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn btn-primary" (click)="login()">Iniciar sesión</button>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-label class="label-forget-password"><a>Olvide mi contraseña</a></mat-label>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-label><a class="login-label-register" routerLink="/portal/register">Registrarse</a></mat-label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

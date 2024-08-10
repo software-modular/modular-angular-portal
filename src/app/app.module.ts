@@ -34,9 +34,6 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { AgrappProjectsCardComponent } from './components/agrapp/agrapp-projects-card/agrapp-projects-card.component';
 import { AgrappProjectsListCardComponent } from './components/agrapp/agrapp-projects-list-card/agrapp-projects-list-card.component';
 import { AgrappProjectsRegisterComponent } from './components/agrapp/agrapp-projects-register/agrapp-projects-register.component';
-import { LoginComponent } from './components/authentication/components/login/login.component';
-import { RegisterComponent } from './components/authentication/components/register/register.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { CarouselImgComponent } from './core/components/carousel-img/carousel-img.component';
 import { InputAutocompleteComponent } from './core/components/input-autocomplete/input-autocomplete.component';
 import { InputDateComponent } from './core/components/input-date/input-date.component';
@@ -54,6 +51,12 @@ import { AgrappHomeComponent } from './pages/agrapp-home/agrapp-home.component';
 import { AgrappInvestmentsComponent } from './pages/agrapp-investments/agrapp-investments.component';
 import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
 import { authenticationInterceptor } from './core/interceptors/authentication.interceptor';
+import { UserProfileComponent } from './core/pages/user-profile/user-profile.component';
+import { EditUserComponent } from './core/section/edit-user/edit-user.component';
+import { LoginComponent } from './core/pages/login/login.component';
+import { RegisterComponent } from './core/pages/register/register.component';
+import { NavbarComponent } from './core/components/navbar/navbar.component';
+import { DynamicFormComponent } from './core/components/dynamic-form/dynamic-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +81,10 @@ import { authenticationInterceptor } from './core/interceptors/authentication.in
     InputDateComponent,
     InputAutocompleteComponent,
     InputListOptionComponent,
-    InputNumberComponent
+    InputNumberComponent,
+    UserProfileComponent,
+    EditUserComponent,
+    DynamicFormComponent
   ],
   imports: [
     BrowserModule,
