@@ -23,10 +23,14 @@ export class LocalStorageTokenService implements ILocalStorageToken {
   }
 
   getToken(): string {
-    return `${localStorage.getItem(LocalStorageTokenNames.TOKEN_KEY)}`;
+    if (typeof window !== 'undefined') {
+      return `${localStorage.getItem(LocalStorageTokenNames.TOKEN_KEY)}`;
+    }
+    return '';
   }
 
-  validToken(token: string): Boolean {
+  validToken(): boolean {
+    let token = this.getToken();
     if (token !== null && token !== 'null'
       && token !== undefined && token !== '') {
       return true;

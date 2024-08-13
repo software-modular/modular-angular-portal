@@ -42,8 +42,7 @@ export class AuthenticationService {
   }
 
   userIsAuthenticated(): Boolean {
-    let token: string = this.localStorageTokenService.getToken();
-    return this.localStorageTokenService.validToken(token);
+    return this.localStorageTokenService.validToken();
   }
 
   getAuthenticationToken(): string {

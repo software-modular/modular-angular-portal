@@ -3,12 +3,10 @@ import { AuthenticationService } from '../services/authentication/authentication
 import { CanActivateFn, Router } from '@angular/router';
 import { LocalStorageTokenService } from '../services/storage/local-storage-token.service';
 
-export const authenticationGuard: CanActivateFn = (route, state) => {
-  let authenticationService = inject(LocalStorageTokenService);
-  const router: Router = inject(Router);
-
-  /*if (authenticationService.validToken()) {
-    return true;
-  }*/
-  return router.createUrlTree(['/login']);
+export function authenticationGuard(): CanActivateFn {
+  return () => {
+    let authenticationService = inject(LocalStorageTokenService);
+    const router: Router = inject(Router);
+    return authenticationService.validToken() || router.createUrlTree(['portal']);;
+  };
 };
