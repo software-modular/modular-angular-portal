@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DynamicFormInput } from '../../domain/beans/dynamicFormInput';
 import { InputForm } from '../../domain/beans/InputForm';
 import { TextFieldForm } from '../../domain/beans/textFieldForm';
-import { DynamicFormInput } from '../../domain/beans/dynamicFormInput';
-import { DynamicFormService } from '../../services/components/dynamic-form.service';
 import { TypeInputForm } from '../../domain/enum/TypeInputForm';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { DynamicFormService } from '../../services/components/dynamic-form.service';
+import { ListOptionFieldForm } from '../../domain/beans/ListOptioFieldForm';
+import { typeIdentificationOptions } from '../../utils/TypeIdentification';
 
 @Component({
   selector: 'app-register',
@@ -32,12 +33,18 @@ export class RegisterComponent {
 
   }
 
+
   private getFieldsForm(): InputForm<any>[] {
-    let fields: InputForm<any>[] = [
-      new TextFieldForm("Username", "Escribe tu identificacion", "identification", "", TypeInputForm.TEXT, true, ""),
-      new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, true, ""),
+    return [
+      new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, true, ""),
+      new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.TEXT, true, ""),
+      new ListOptionFieldForm("Tipo identificacion", "Escribe tipo identificacion", "typeId", "",
+        TypeInputForm.LIST_OPTION, true, typeIdentificationOptions),
+      new TextFieldForm("Identificación", "Escribe tu identificación", "identification", "", TypeInputForm.TEXT, true, ""),
+      new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.TEXT, true, ""),
+      new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, true, ""),
+      new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "birthday", "", TypeInputForm.DATE, true, ""),
     ];
-    return fields;
   }
 
 
