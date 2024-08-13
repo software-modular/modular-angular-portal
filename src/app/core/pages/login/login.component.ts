@@ -36,7 +36,7 @@ export class LoginComponent {
   private getFieldsForm(): InputForm<any>[] {
     let fields: InputForm<any>[] = [
       new TextFieldForm("Identificacion", "Escribe tu identificacion", "identification", "", TypeInputForm.TEXT, true, ""),
-      new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.TEXT, true, ""),
+      new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, true, ""),
     ];
     return fields;
   }

@@ -60,20 +60,18 @@ export class NavbarComponent {
     this.showCustomUserprofileOption = !(this.showCustomUserprofileOption);
   }
 
-  userIsLogin(): Boolean {
+  showtUserProfileMenu(): Boolean {
     return this.navbarService.getShowUserProfileMenu();
   }
 
   private getEmail(): string {
     let userInformation: NabvarUserInformation = this.navbarService.getUserInformation();
-    return userInformation.name;
-  }
-
-
-  private getUsername(): string {
-    let userInformation: NabvarUserInformation = this.navbarService.getUserInformation();
     return userInformation.username;
   }
 
+  private getUsername(): string {
+    let userInformation: NabvarUserInformation = this.navbarService.getUserInformation();
+    return userInformation.name;
+  }
 
 }

@@ -74,34 +74,37 @@ export class DynamicFormComponent implements OnInit {
         return TypeInputForm.TEXT;
       }
       case TypeInputForm.TEXT_AREA: {
-        return TypeInputForm.TEXT_AREA
+        return TypeInputForm.TEXT_AREA;
       }
       case TypeInputForm.LIST_OPTION: {
-        return TypeInputForm.LIST_OPTION
+        return TypeInputForm.LIST_OPTION;
       }
       case TypeInputForm.AUTO_COMPLETE_LIST_OPTION: {
-        return TypeInputForm.AUTO_COMPLETE_LIST_OPTION
+        return TypeInputForm.AUTO_COMPLETE_LIST_OPTION;
       }
       case TypeInputForm.CHECK: {
-        return TypeInputForm.CHECK
+        return TypeInputForm.CHECK;
       }
       case TypeInputForm.BI_MULTI_RADIO_CHECK: {
-        return TypeInputForm.BI_MULTI_RADIO_CHECK
+        return TypeInputForm.BI_MULTI_RADIO_CHECK;
       }
       case TypeInputForm.SINGLE_UPLOAD_FILE: {
-        return TypeInputForm.SINGLE_UPLOAD_FILE
+        return TypeInputForm.SINGLE_UPLOAD_FILE;
       }
       case TypeInputForm.MULTI_UPLOAD_FILE: {
-        return TypeInputForm.MULTI_UPLOAD_FILE
+        return TypeInputForm.MULTI_UPLOAD_FILE;
       }
       case TypeInputForm.DATE: {
-        return TypeInputForm.DATE
+        return TypeInputForm.DATE;
       }
       case TypeInputForm.NUMBER: {
-        return TypeInputForm.NUMBER
+        return TypeInputForm.NUMBER;
       }
       case TypeInputForm.EMAIL: {
-        return TypeInputForm.EMAIL
+        return TypeInputForm.EMAIL;
+      }
+      case TypeInputForm.PASSWORD: {
+        return TypeInputForm.PASSWORD;
       }
       default: {
         return TypeInputForm.TEXT;
