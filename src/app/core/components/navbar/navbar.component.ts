@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, Input } from '@angular/core';
 import { NavbarConfiguration } from '../../domain/beans/navbarConfiguration';
 import { TypeNavbar } from '../../domain/enum/TypeNavbar';
+import { NavbarService } from '../../services/components/navbar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -24,7 +25,10 @@ export class NavbarComponent {
     typeNavbar: TypeNavbar.DEFAULT
   };
 
-  constructor(private elementRef: ElementRef) {
+  constructor(
+    private elementRef: ElementRef,
+    private navbarService: NavbarService
+  ) {
   }
 
   @HostListener('document:click', ['$event.target'])
@@ -53,6 +57,10 @@ export class NavbarComponent {
 
   showCustomProfile() {
     this.showCustomUserprofileOption = !(this.showCustomUserprofileOption);
+  }
+
+  userIsLogin(): Boolean {
+    return this.navbarService.getShowUserProfileMenu();
   }
 
   private getEmail(): string {
