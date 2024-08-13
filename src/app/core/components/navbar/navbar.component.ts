@@ -63,7 +63,7 @@ export class NavbarComponent {
   }
 
   showUserProfileMenu(): Boolean {
-    return this.navbarService.getShowUserProfileMenu();
+    return this.navbarService.getShowUserProfileMenu() && this.navbarService.getUserIsLogin();
   }
 
   logout() {
