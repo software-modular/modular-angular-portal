@@ -80,7 +80,7 @@
         </div>
       </div>
     </div>
-    <button  class="btn btn-menu" (click)="showCustomMenu()">Menu
+    <button class="btn btn-menu" (click)="showCustomMenu()">Menu
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
         viewBox="0 0 16 16">
         <path fill-rule="evenodd"
@@ -88,7 +88,7 @@
       </svg>
     </button>
   </div>
-  <div *ngIf="true" class="custom-topbar-userprofile-container">
+  <div *ngIf="userIsLogin()" class="custom-topbar-userprofile-container">
     <!--UseProfileOptions-->
     <div class="custom-userprofile-dialog">
       <div *ngIf="showCustomUserprofileOption" class="custom-userprofile-options-container">
