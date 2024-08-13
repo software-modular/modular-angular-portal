@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { JwtContent } from '../../domain/beans/jwtContent';
+import { LocalStorageTokenNames } from '../../domain/enum/LocalStorageTokenNames';
+
 import { ILocalStorageToken } from '../contracts/ILocalStorageToken';
 
 @Injectable({
@@ -6,27 +9,48 @@ import { ILocalStorageToken } from '../contracts/ILocalStorageToken';
 })
 export class LocalStorageTokenService implements ILocalStorageToken {
 
-  private readonly TOKEN_KEY: string = "AUTHENTICATION_TOKE";
+
 
   constructor() { }
 
+
   setToken(token: string): void {
-    localStorage.setItem(this.TOKEN_KEY, token);
+    localStorage.setItem(LocalStorageTokenNames.TOKEN_KEY, token);
   }
 
   removeToken(): void {
-    localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(LocalStorageTokenNames.TOKEN_KEY);
   }
 
   getToken(): string {
-    return `${localStorage.getItem(this.TOKEN_KEY)}`;
+    return `${localStorage.getItem(LocalStorageTokenNames.TOKEN_KEY)}`;
   }
 
-  validToken(token: string): boolean {
+  validToken(token: string): Boolean {
     if (token !== null && token !== 'null'
       && token !== undefined && token !== '') {
       return true;
     }
     return false;
+  }
+
+  decodeToken(token: string): JwtContent {
+    debugger
+    try {
+      const payload = token.split('.')[1];
+      const decodedPayload = atob(payload);
+      return JSON.parse(decodedPayload);
+    } catch (error) {
+      console.error('Error al decodificar el payload:', error);
+      return {};
+    }
+  }
+
+  setRefreshToken(refreshToken: string): void {
+    localStorage.setItem(LocalStorageTokenNames.REFRESH_TOKEN_KEY, refreshToken);
+  }
+
+  removeRefreshToken(): void {
+    localStorage.removeItem(LocalStorageTokenNames.REFRESH_TOKEN_KEY);
   }
 }

@@ -1,0 +1,4 @@
+export enum LocalStorageTokenNames {
+  TOKEN_KEY = "AUTHENTICATION_TOKE",
+  REFRESH_TOKEN_KEY = "REFRESH_TOKEN_KEY"
+}
