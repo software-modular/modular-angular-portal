@@ -21,8 +21,8 @@ export class RegisterComponent {
     private authenticationService: AuthenticationService
   ) {
     this.dynamicFormInput = {
-      title: "dd",
-      titleAling: "left",
+      title: "Registro",
+      titleAling: "center",
       fields: this.getFieldsForm(),
       showFooter: false,
       showBorder: false
@@ -38,12 +38,13 @@ export class RegisterComponent {
     return [
       new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, true, ""),
       new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.TEXT, true, ""),
+      new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, true, ""),
       new ListOptionFieldForm("Tipo identificacion", "Escribe tipo identificacion", "typeId", "",
         TypeInputForm.LIST_OPTION, true, typeIdentificationOptions),
-      new TextFieldForm("Identificación", "Escribe tu identificación", "identification", "", TypeInputForm.TEXT, true, ""),
+      new TextFieldForm("Identificación", "Escribe tu identificación", "id", "", TypeInputForm.TEXT, true, ""),
       new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.TEXT, true, ""),
       new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, true, ""),
-      new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "birthday", "", TypeInputForm.DATE, true, ""),
+      new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, true, ""),
     ];
   }
 
