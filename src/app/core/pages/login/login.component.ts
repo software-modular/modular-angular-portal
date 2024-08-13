@@ -6,6 +6,9 @@ import { TextFieldForm } from '../../domain/beans/textFieldForm';
 import { TypeInputForm } from '../../domain/enum/TypeInputForm';
 import { DynamicFormService } from '../../services/components/dynamic-form.service';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { ResponseClientDto } from '../../domain/dto/responseClientDto';
+import { NavbarService } from '../../services/components/navbar.service';
+import { NabvarUserInformation } from '../../domain/beans/navbarUserInformation';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +22,8 @@ export class LoginComponent {
 
   constructor(
     private dynamicFormService: DynamicFormService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private nabvarService: NavbarService
   ) {
     this.dynamicFormInput = {
       title: "",
@@ -30,10 +34,20 @@ export class LoginComponent {
     }
   }
 
-  login() {
+  async login() {
     let identification = this.dynamicFormService.getValueByFieldName("identification");
     let password = this.dynamicFormService.getValueByFieldName("password");
-    this.authenticationService.authenticateUser(identification, password);
+    let userInformation: ResponseClientDto = await this.authenticationService
+      .authenticateUser(identification, password);
+    debugger
+    if (userInformation !== null) {
+      let userInformationNabvar: NabvarUserInformation = {
+        name: userInformation.user.name || '',
+        username: userInformation.user.email || ''
+      }
+      this.nabvarService.setUserInformation(userInformationNabvar);
+      this.nabvarService.showUserProfileMenu(true);
+    }
   }
 
   private getFieldsForm(): InputForm<any>[] {

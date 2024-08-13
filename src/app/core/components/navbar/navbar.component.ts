@@ -65,14 +65,16 @@ export class NavbarComponent {
   }
 
   private getEmail(): string {
+    debugger
     let userInformation: NabvarUserInformation = this.navbarService.getUserInformation();
-    return userInformation.name;
+    return userInformation.username;
   }
 
 
   private getUsername(): string {
+    debugger
     let userInformation: NabvarUserInformation = this.navbarService.getUserInformation();
-    return userInformation.username;
+    return userInformation.name;
   }
 
 

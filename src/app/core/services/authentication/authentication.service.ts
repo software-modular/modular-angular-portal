@@ -8,6 +8,8 @@ import { TypeAuthenticatorUtils } from '../../utils/TypeAuthenticatorUtils';
 import { Authenticator } from '../contracts/Authenticator';
 import { AuthenticatorFactory } from '../factory/AuthenticatorFactory';
 import { LocalStorageTokenService } from '../storage/local-storage-token.service';
+import { ResponseDataDto } from '../../domain/dto/responseDataDto';
+import { ResponseClientDto } from '../../domain/dto/responseClientDto';
 
 @Injectable({
   providedIn: 'root'
@@ -22,14 +24,21 @@ export class AuthenticationService {
     this.authenticator = authenticatorFactory.getAutenticator(typeAuthenticator);
   }
 
-  async authenticateUser(identification: string, password: string) {
+  async authenticateUser(identification: string, password: string): Promise<ResponseClientDto> {
     let urlLogin: string = `${environment.api.host}${environment.api.endpoints.users.login}`;
     let response: ResponseLoginDto = await firstValueFrom(this.authenticator.authenticate(
       this.getUserAuthenticateData(identification, password), urlLogin));
     if (response.code == 200) {
       this.localStorageTokenService.setToken(response.data?.access || '');
       this.localStorageTokenService.setRefreshToken(response.data?.refresh || '');
+
     }
+    return new Promise((resolve, reject) => {
+      if (response.data?.client !== undefined) {
+        resolve(response.data.client);
+      }
+      reject(null);
+    });
   }
 
   userIsAuthenticated(): Boolean {
