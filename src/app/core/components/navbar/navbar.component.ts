@@ -60,11 +60,10 @@ export class NavbarComponent {
   }
 
   showUserProfileMenu(): Boolean {
-    return false;//this.navbarService.getShowUserProfileMenu();
+    return this.navbarService.getShowUserProfileMenu();
   }
 
   private getEmail(): string {
-    debugger
     let userInformation: NabvarUserInformation = this.navbarService.getUserInformation();
     return userInformation.username;
   }
