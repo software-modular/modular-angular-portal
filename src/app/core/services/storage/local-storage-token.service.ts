@@ -39,7 +39,6 @@ export class LocalStorageTokenService implements ILocalStorageToken {
   }
 
   decodeToken(token: string): JwtContent {
-    debugger
     try {
       const payload = token.split('.')[1];
       const decodedPayload = atob(payload);

@@ -31,7 +31,6 @@ export class AuthenticationService {
     if (response.code == 200) {
       this.localStorageTokenService.setToken(response.data?.access || '');
       this.localStorageTokenService.setRefreshToken(response.data?.refresh || '');
-
     }
     return new Promise((resolve, reject) => {
       if (response.data?.client !== undefined) {

@@ -80,7 +80,6 @@ export class NavbarComponent {
   }
 
   private getUsername(): string {
-    debugger
     let userInformation: NabvarUserInformation = this.navbarService.getUserInformation();
     return userInformation.name;
   }

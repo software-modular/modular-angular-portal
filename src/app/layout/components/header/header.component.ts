@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    // private navbarService: NavbarService
+    private navbarService: NavbarService
   ) { }
 
   ngOnInit(): void {
@@ -65,7 +65,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    debugger
+    this.navbarService.setUserIsLogin(false);
+    this.navbarService.showUserProfileMenu(false);
     this.authenticationService.logoutUser();
     this.router.navigate(['/portal/login']);
   }
