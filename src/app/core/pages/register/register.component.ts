@@ -30,7 +30,13 @@ export class RegisterComponent {
   }
 
   register() {
+    debugger
+    let formValue = JSON.parse(this.dynamicFormService.getJsonOfForm());
+    formValue.is_active = true;
+    formValue.profile_picture = "";
+    formValue.is_staff = false;
 
+    let pp = "";
   }
 
 
@@ -39,9 +45,9 @@ export class RegisterComponent {
       new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, true, ""),
       new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.TEXT, true, ""),
       new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, true, ""),
-      new ListOptionFieldForm("Tipo identificacion", "Escribe tipo identificacion", "typeId", "",
+      new ListOptionFieldForm("Tipo identificacion", "Escribe tipo identificacion", "type_ide", "",
         TypeInputForm.LIST_OPTION, true, typeIdentificationOptions),
-      new TextFieldForm("Identificación", "Escribe tu identificación", "id", "", TypeInputForm.TEXT, true, ""),
+      new TextFieldForm("Identificación", "Escribe tu identificación", "document_id", "", TypeInputForm.TEXT, true, ""),
       new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.TEXT, true, ""),
       new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, true, ""),
       new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, true, ""),
