@@ -7,7 +7,10 @@ import { NabvarUserInformation } from '../../domain/beans/navbarUserInformation'
 export class NavbarService {
 
   private showUserInformationProfile: Boolean = false;
-  private userInformation!: NabvarUserInformation;
+  private userInformation: NabvarUserInformation = {
+    name: "Usuario test",
+    username: "UsuarioTest"
+  };
 
   constructor() { }
 
