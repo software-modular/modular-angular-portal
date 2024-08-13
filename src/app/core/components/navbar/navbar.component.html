@@ -63,7 +63,7 @@
         class="custom-navbar-logo d-inline-block align-text-top">
     </div>
   </div>
-  <div *ngIf="true" class="custom-topbar-menu-container">
+  <div class="custom-topbar-menu-container">
     <!--menu-->
     <div class="custom-menu-container-dialog">
       <div *ngIf="showCustomMenus" class="custom-menu-container-body">
@@ -80,7 +80,7 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-menu" (click)="showCustomMenu()">Menu
+    <button *ngIf="showUserProfileMenu()" class="btn btn-menu" (click)="showCustomMenu()">Menu
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
         viewBox="0 0 16 16">
         <path fill-rule="evenodd"
@@ -88,9 +88,9 @@
       </svg>
     </button>
   </div>
-  <div *ngIf="showtUserProfileMenu()" class="custom-topbar-userprofile-container">
+  <div class="custom-topbar-userprofile-container">
     <!--UseProfileOptions-->
-    <div class="custom-userprofile-dialog">
+    <div *ngIf="showUserProfileMenu()" class="custom-userprofile-dialog">
       <div *ngIf="showCustomUserprofileOption" class="custom-userprofile-options-container">
         <div class="custom-userprofile-elements-container">
           <div class="custom-userprofile-option-container">
@@ -105,23 +105,29 @@
         </div>
       </div>
     </div>
-    <div class="custom-topbar-userprofile-name-container">
+    <div *ngIf="showUserProfileMenu()" class="custom-topbar-userprofile-name-container">
       <label>
         {{getEmailShort()}}
       </label>
     </div>
-    <div class="custom-topbar-username-short-container">
+    <div *ngIf="showUserProfileMenu()" class="custom-topbar-username-short-container">
       <label class="custom-topbar-username-short-label">
         {{getInitialLettersName()}}
       </label>
     </div>
-    <div class="custom-topbar-userprofile-actions">
+    <div *ngIf="showUserProfileMenu()" class="custom-topbar-userprofile-actions">
       <button class="btn" (click)="showCustomProfile()">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
           viewBox="0 0 16 16">
           <path fill-rule="evenodd"
             d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
         </svg>
+      </button>
+    </div>
+    <div *ngIf="!showUserProfileMenu()" class="custom-topbar-userprofile-logion">
+      <button class="btn" [routerLink]="'portal/login'">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        &nbsp;&nbsp;&nbsp;Iniciar sesión
       </button>
     </div>
   </div>

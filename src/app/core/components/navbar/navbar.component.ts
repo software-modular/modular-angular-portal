@@ -10,7 +10,6 @@ import { NabvarUserInformation } from '../../domain/beans/navbarUserInformation'
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  userIsAuthenticate: boolean = false;
 
   readonly MENU_OPTION_TYPE = "MENU";
   readonly USERPROFILE_OPTION_TYPE = "USER_PROFILE_MENU";
@@ -60,8 +59,8 @@ export class NavbarComponent {
     this.showCustomUserprofileOption = !(this.showCustomUserprofileOption);
   }
 
-  showtUserProfileMenu(): Boolean {
-    return this.navbarService.getShowUserProfileMenu();
+  showUserProfileMenu(): Boolean {
+    return false;//this.navbarService.getShowUserProfileMenu();
   }
 
   private getEmail(): string {
