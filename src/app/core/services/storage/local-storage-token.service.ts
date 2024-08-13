@@ -22,7 +22,8 @@ export class LocalStorageTokenService implements ILocalStorageToken {
     return `${localStorage.getItem(this.TOKEN_KEY)}`;
   }
 
-  validToken(token: string): boolean {
+  validToken(): boolean {
+    let token = this.getToken();
     if (token !== null && token !== 'null'
       && token !== undefined && token !== '') {
       return true;
