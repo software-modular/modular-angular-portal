@@ -10,5 +10,6 @@ export enum TypeInputForm {
   DATE = "DATE",
   NUMBER = "NUMBER",
   EMAIL = "EMAIL",
-  PASSWORD = "PASSWORD"
+  PASSWORD = "PASSWORD",
+  HIDDEN = "HIDDE"
 }
