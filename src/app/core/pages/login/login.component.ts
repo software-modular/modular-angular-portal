@@ -15,7 +15,6 @@ import { DynamicFormService } from '../../services/components/dynamic-form.servi
 })
 export class LoginComponent {
 
-  @ViewChild(DynamicFormComponent) dynamicForm!: DynamicFormComponent;
   dynamicFormInput: DynamicFormInput;
 
   constructor(private dynamicFormService: DynamicFormService) {
