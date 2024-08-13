@@ -16,4 +16,12 @@ export class DynamicFormService {
   public getValueByFieldName(fieldName: string): string {
     return this.fields.get(fieldName) || '';
   }
+
+  public getJsonOfForm(): string {
+    let obj: any = {};
+    this.fields.forEach((valor, clave) => {
+      obj[clave] = valor;
+    });
+    return JSON.stringify(obj);
+  }
 }
