@@ -5,6 +5,7 @@ import { TextFieldForm } from '../../domain/beans/textFieldForm';
 import { DynamicFormInput } from '../../domain/beans/dynamicFormInput';
 import { DynamicFormService } from '../../services/components/dynamic-form.service';
 import { TypeInputForm } from '../../domain/enum/TypeInputForm';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -13,18 +14,11 @@ import { TypeInputForm } from '../../domain/enum/TypeInputForm';
 })
 export class RegisterComponent {
   dynamicFormInput: DynamicFormInput;
-  registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,
-    private dynamicFormService: DynamicFormService
+  constructor(
+    private dynamicFormService: DynamicFormService,
+    private authenticationService: AuthenticationService
   ) {
-    this.registerForm = formBuilder.group({
-      username: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required]],
-      confirmPassword: ["", [Validators.required]]
-    });
-
     this.dynamicFormInput = {
       title: "",
       titleAling: "left",
@@ -32,6 +26,10 @@ export class RegisterComponent {
       showFooter: false,
       showBorder: false
     }
+  }
+
+  register() {
+
   }
 
   private getFieldsForm(): InputForm<any>[] {
