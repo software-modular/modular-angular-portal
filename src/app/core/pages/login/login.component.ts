@@ -18,7 +18,6 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  @ViewChild(DynamicFormComponent) dynamicForm!: DynamicFormComponent;
   dynamicFormInput: DynamicFormInput;
 
   constructor(
