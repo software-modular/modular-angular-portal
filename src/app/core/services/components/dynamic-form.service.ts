@@ -7,7 +7,16 @@ export class DynamicFormService {
 
   constructor() { }
 
+  private valid: Boolean = false;
   private fields: Map<string, string> = new Map<string, string>;
+
+  public setValidForm(valid: Boolean) {
+    this.valid = valid;
+  }
+
+  public isValidForm(): Boolean {
+    return this.valid;
+  }
 
   public setValueByFieldName(fieldName: string, fieldValue: string) {
     this.fields.set(fieldName, fieldValue);

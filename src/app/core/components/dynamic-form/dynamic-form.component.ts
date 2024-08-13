@@ -45,7 +45,7 @@ export class DynamicFormComponent implements OnInit {
         if (field.type === TypeInputForm.EMAIL) {
           validators.push(Validators.email)
         }
-        this.formGroup.addControl(field.formControlName, new FormControl('', validators))
+        this.formGroup.addControl(field.formControlName, new FormControl(field.getValue(), validators))
       }
     }
     this.formFieldValueChangeEvent();
@@ -55,6 +55,7 @@ export class DynamicFormComponent implements OnInit {
     this.formGroup.valueChanges.subscribe({
       next: (event: any) => {
         this.updateFormValue();
+        this.setValidForm();
       }
     });
   }
@@ -66,6 +67,10 @@ export class DynamicFormComponent implements OnInit {
           this.formGroup.get(field.formControlName)?.value)
       }
     }
+  }
+
+  private setValidForm() {
+    this.dynamicFormService.setValidForm(this.formGroup.valid);
   }
 
   getTypeField(type: string): TypeInputForm {
