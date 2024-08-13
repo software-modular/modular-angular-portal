@@ -101,6 +101,10 @@
                 <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>
               </a>
             </ng-container>
+            <button class="btn" (click)="logout()">
+              <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+              &nbsp;&nbsp;&nbsp;Cerrar sesión
+            </button>
           </div>
         </div>
       </div>
@@ -125,7 +129,7 @@
       </button>
     </div>
     <div *ngIf="!showUserProfileMenu()" class="custom-topbar-userprofile-logion">
-      <button class="btn" [routerLink]="'portal/login'">
+      <button class="btn" (click)="login()">
         <i class="fa fa-user" aria-hidden="true"></i>
         &nbsp;&nbsp;&nbsp;Iniciar sesión
       </button>

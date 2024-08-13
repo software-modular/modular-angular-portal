@@ -68,19 +68,7 @@ export const environment = {
         urlRedirect: "",
         icon: "fa-solid fa-user-pen",
         type: "USER_PROFILE_MENU"
-      },
-      {
-        name: "Cerrar sesion",
-        redirect: false,
-        showOption: true,
-        disableOption: false,
-        cssClass: "",
-        cssStyle: "",
-        urlRedirect: "",
-        icon: "fa-solid fa-right-from-bracket",
-        type: "USER_PROFILE_MENU"
-      },
-
+      }
     ],
 
   }

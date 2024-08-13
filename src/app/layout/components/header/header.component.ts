@@ -3,6 +3,9 @@ import { NavbarConfiguration } from '../../../core/domain/beans/navbarConfigurat
 import { NavbarOption } from '../../../core/domain/beans/navbarOption';
 import { environment } from '../../../../environments/environment';
 import { getTypeNavbarByName } from '../../../core/domain/enum/TypeNavbar';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../../core/services/authentication/authentication.service';
+import { NavbarService } from '../../../core/services/components/navbar.service';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +14,12 @@ import { getTypeNavbarByName } from '../../../core/domain/enum/TypeNavbar';
 })
 export class HeaderComponent implements OnInit {
   navbarConfiguration: NavbarConfiguration = {}
+
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    // private navbarService: NavbarService
+  ) { }
 
   ngOnInit(): void {
     this.loadNavbarConfiguration()
@@ -51,4 +60,13 @@ export class HeaderComponent implements OnInit {
     return navbarOption;
   }
 
+  login() {
+    this.router.navigate(['/portal/login']);
+  }
+
+  logout() {
+    debugger
+    this.authenticationService.logoutUser();
+    this.router.navigate(['/portal/login']);
+  }
 }

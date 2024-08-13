@@ -41,6 +41,11 @@ export class AuthenticationService {
     });
   }
 
+  logoutUser() {
+    this.localStorageTokenService.removeToken();
+    this.localStorageTokenService.removeRefreshToken();
+  }
+
   userIsAuthenticated(): Boolean {
     return this.localStorageTokenService.validToken();
   }
