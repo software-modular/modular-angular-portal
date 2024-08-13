@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { NavbarConfiguration } from '../../domain/beans/navbarConfiguration';
 import { TypeNavbar } from '../../domain/enum/TypeNavbar';
 import { NavbarService } from '../../services/components/navbar.service';
@@ -24,6 +24,9 @@ export class NavbarComponent {
     srcLogo: "",
     typeNavbar: TypeNavbar.DEFAULT
   };
+
+  @Output() logoutEvent = new EventEmitter<string>();
+  @Output() loginEvent = new EventEmitter<string>();
 
   constructor(
     private elementRef: ElementRef,
@@ -60,7 +63,15 @@ export class NavbarComponent {
   }
 
   showUserProfileMenu(): Boolean {
-    return false;//this.navbarService.getShowUserProfileMenu();
+    return this.navbarService.getShowUserProfileMenu();
+  }
+
+  logout() {
+    this.logoutEvent.emit("Evento boton cerrar sesión");
+  }
+
+  login() {
+    this.loginEvent.emit("Evento boton login")
   }
 
   private getEmail(): string {
