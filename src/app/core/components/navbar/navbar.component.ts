@@ -2,6 +2,7 @@ import { Component, ElementRef, HostListener, Input } from '@angular/core';
 import { NavbarConfiguration } from '../../domain/beans/navbarConfiguration';
 import { TypeNavbar } from '../../domain/enum/TypeNavbar';
 import { NavbarService } from '../../services/components/navbar.service';
+import { NabvarUserInformation } from '../../domain/beans/navbarUserInformation';
 
 @Component({
   selector: 'app-navbar',
@@ -64,12 +65,14 @@ export class NavbarComponent {
   }
 
   private getEmail(): string {
-    return "Juan Camilo Aranda";
+    let userInformation: NabvarUserInformation = this.navbarService.getUserInformation();
+    return userInformation.name;
   }
 
 
   private getUsername(): string {
-    return "Juan Aranda";
+    let userInformation: NabvarUserInformation = this.navbarService.getUserInformation();
+    return userInformation.username;
   }
 
 

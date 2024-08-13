@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NabvarUserInformation } from '../../domain/beans/navbarUserInformation';
 
 @Injectable({
   providedIn: 'root'
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class NavbarService {
 
   private showUserInformationProfile: Boolean = false;
-  private userInformation: any;
+  private userInformation!: NabvarUserInformation;
 
   constructor() { }
 
@@ -18,11 +19,11 @@ export class NavbarService {
     return this.showUserInformationProfile;
   }
 
-  public setUserInformation(user: any) {
+  public setUserInformation(user: NabvarUserInformation) {
     this.userInformation = user;
   }
 
-  public getUserInformation() {
+  public getUserInformation(): NabvarUserInformation {
     return this.userInformation;
   }
 }
