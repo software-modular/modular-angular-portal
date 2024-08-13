@@ -29,6 +29,10 @@ export class RegisterComponent {
     }
   }
 
+  disableBtnRegister() {
+    return this.dynamicFormService.isValidForm();
+  }
+
   register() {
     debugger
     let formValue = JSON.parse(this.dynamicFormService.getJsonOfForm());
@@ -51,6 +55,9 @@ export class RegisterComponent {
       new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.TEXT, true, ""),
       new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, true, ""),
       new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, true, ""),
+      new TextFieldForm("", "", "is_active", "", TypeInputForm.HIDDEN, false, "true"),
+      new TextFieldForm("", "", "profile_picture", "", TypeInputForm.HIDDEN, false, ""),
+      new TextFieldForm("", "", "is_staff", "", TypeInputForm.HIDDEN, false, "false"),
     ];
   }
 
