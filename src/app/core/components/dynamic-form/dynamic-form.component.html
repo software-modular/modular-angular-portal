@@ -100,6 +100,9 @@
             </mat-error>
           </mat-form-field>
         </div>
+        <div *ngIf="field.type === getTypeField('HIDDEN')">
+          <input [formControlName]="field.formControlName" type="hidden">
+        </div>
       </div>
     </form>
   </div>

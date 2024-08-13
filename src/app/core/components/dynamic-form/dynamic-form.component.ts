@@ -106,6 +106,9 @@ export class DynamicFormComponent implements OnInit {
       case TypeInputForm.PASSWORD: {
         return TypeInputForm.PASSWORD;
       }
+      case TypeInputForm.HIDDEN: {
+        return TypeInputForm.HIDDEN;
+      }
       default: {
         return TypeInputForm.TEXT;
       }
