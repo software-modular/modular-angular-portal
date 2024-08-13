@@ -1,6 +1,6 @@
 <div class="dynamic-form-container" [ngClass]="data.showBorder ? 'card': ''">
   <div class="dynamic-form-header-container">
-    <div class="dynamic-form-header-title-container">
+    <div class="dynamic-form-header-title-container" [ngStyle]="{ 'text-align': data.titleAling}">
       <mat-label class="dynamic-form-header-title-label">
         {{data.title}}
       </mat-label>
