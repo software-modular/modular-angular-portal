@@ -60,7 +60,7 @@ export class NavbarComponent {
     this.showCustomUserprofileOption = !(this.showCustomUserprofileOption);
   }
 
-  userIsLogin(): Boolean {
+  showtUserProfileMenu(): Boolean {
     return this.navbarService.getShowUserProfileMenu();
   }
 
@@ -70,12 +70,10 @@ export class NavbarComponent {
     return userInformation.username;
   }
 
-
   private getUsername(): string {
     debugger
     let userInformation: NabvarUserInformation = this.navbarService.getUserInformation();
     return userInformation.name;
   }
-
 
 }

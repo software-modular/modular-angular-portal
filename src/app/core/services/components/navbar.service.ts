@@ -6,6 +6,7 @@ import { NabvarUserInformation } from '../../domain/beans/navbarUserInformation'
 })
 export class NavbarService {
 
+  private userIsLogin: Boolean = false;
   private showUserInformationProfile: Boolean = false;
   private userInformation: NabvarUserInformation = {
     name: "Usuario test",
@@ -28,5 +29,13 @@ export class NavbarService {
 
   public getUserInformation(): NabvarUserInformation {
     return this.userInformation;
+  }
+
+  public setUserIsLogin(isLogin: Boolean) {
+    this.userIsLogin = isLogin;
+  }
+
+  public getUserIsLogin(): Boolean {
+    return this.userIsLogin;
   }
 }

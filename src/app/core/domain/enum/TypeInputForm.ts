@@ -9,5 +9,6 @@ export enum TypeInputForm {
   MULTI_UPLOAD_FILE = "MULTI_UPLOAD_FILE",
   DATE = "DATE",
   NUMBER = "NUMBER",
-  EMAIL = "EMAIL"
+  EMAIL = "EMAIL",
+  PASSWORD = "PASSWORD"
 }
