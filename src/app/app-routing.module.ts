@@ -5,15 +5,16 @@ import { LoginComponent } from './core/pages/login/login.component';
 import { RegisterComponent } from './core/pages/register/register.component';
 import { UserProfileComponent } from './core/pages/user-profile/user-profile.component';
 import { BodyComponent } from './layout/components/body/body.component';
+import { authenticationGuard } from './core/guards/authentication.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'portal', pathMatch: 'full' },
   {
     path: 'portal', component: BodyComponent, children: [
       { path: '', component: AgrappProjectsRegisterComponent },
-      { path: 'login', component: LoginComponent },
+      { path: 'login', component: LoginComponent, pathMatch: 'full' },
       { path: 'register', component: RegisterComponent },
-      { path: 'user-profile', component: UserProfileComponent },
+      { path: 'user-profile', component: UserProfileComponent, canActivate: [authenticationGuard] },
     ]
   }
 
