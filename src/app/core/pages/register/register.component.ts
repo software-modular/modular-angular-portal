@@ -20,7 +20,7 @@ export class RegisterComponent {
     private authenticationService: AuthenticationService
   ) {
     this.dynamicFormInput = {
-      title: "",
+      title: "dd",
       titleAling: "left",
       fields: this.getFieldsForm(),
       showFooter: false,
