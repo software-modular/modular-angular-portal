@@ -67,7 +67,7 @@ export class RegisterComponent {
   private getFieldsForm(): InputForm<any>[] {
     return [
       new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, "", [Validators.required]),
-      new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.TEXT, "", [Validators.required, Validators.email]),
+      new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.EMAIL, "", [Validators.required, Validators.email]),
       new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, "", [Validators.required]),
       new ListOptionFieldForm("Tipo identificacion", "Escribe tipo identificacion", "type_ide", "",
         TypeInputForm.LIST_OPTION, typeIdentificationOptions, [Validators.required]),

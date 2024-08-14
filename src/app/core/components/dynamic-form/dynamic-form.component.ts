@@ -36,6 +36,7 @@ export class DynamicFormComponent implements OnInit {
   }
 
   fieldHasError(formControlName: string, errorName: string) {
+    debugger
     return this.formGroup.get(formControlName)?.hasError(errorName) ?? false;
   }
 
