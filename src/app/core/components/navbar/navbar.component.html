@@ -97,14 +97,14 @@
             <ng-container *ngFor="let option of configuration.options">
               <a *ngIf="option.type === USERPROFILE_OPTION_TYPE && option.showOption" class="custom-userprofile-option"
                 href="#">
-                {{option.name}}&nbsp;
                 <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>
+                {{option.name}}&nbsp;
               </a>
             </ng-container>
-            <button class="btn" (click)="logout()">
-              <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+            <a class="custom-userprofile-option" (click)="logout()">
+              <i class="fa-solid fa-right-from-bracket"></i>
               &nbsp;&nbsp;&nbsp;Cerrar sesión
-            </button>
+            </a>
           </div>
         </div>
       </div>
