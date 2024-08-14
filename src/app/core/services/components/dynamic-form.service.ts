@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,26 @@ export class DynamicFormService {
   private valid: Boolean = false;
   private fields: Map<string, string> = new Map<string, string>;
 
+  private fieldExternalValueChange = new BehaviorSubject<Map<string, any>>(new Map());
+  private fieldExternalValueChangeEvent = this.fieldExternalValueChange.asObservable();
+
   public setValidForm(valid: Boolean) {
     this.valid = valid;
   }
 
   public isValidForm(): Boolean {
     return this.valid;
+  }
+
+  public getFieldExternalValueChangeEvent(): Observable<Map<string, any>> {
+    return this.fieldExternalValueChangeEvent;
+  }
+
+  public setValueField(formControlName: string, value: any) {
+    debugger
+    let valueChange: Map<string, any> = new Map<string, any>();
+    valueChange.set(formControlName, value);
+    this.fieldExternalValueChange.next(valueChange)
   }
 
   public setValueByFieldName(fieldName: string, fieldValue: string) {
