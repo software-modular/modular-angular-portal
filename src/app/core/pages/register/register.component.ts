@@ -34,8 +34,8 @@ export class RegisterComponent {
 
   private getFieldsForm(): InputForm<any>[] {
     let fields: InputForm<any>[] = [
-      new TextFieldForm("Username", "Escribe tu identificacion", "identification", "", TypeInputForm.TEXT, true, ""),
-      new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, true, ""),
+      new TextFieldForm("Username", "Escribe tu identificacion", "identification", "", TypeInputForm.TEXT, "", []),
+      new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, "", []),
     ];
     return fields;
   }

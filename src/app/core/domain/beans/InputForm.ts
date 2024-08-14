@@ -1,4 +1,5 @@
-import { IInputForm } from "../contracts/IinputForm";
+import { ValidatorFn } from "@angular/forms";
+import { IInputForm } from "../contracts/IInputForm";
 import { TypeInputForm } from "../enum/TypeInputForm";
 
 export abstract class InputForm<V> implements IInputForm<V> {
@@ -7,18 +8,17 @@ export abstract class InputForm<V> implements IInputForm<V> {
   formControlName: string;
   customErrorMessage?: string;
   type: TypeInputForm;
-  required: Boolean;
 
   constructor(label: string, placeholder: string, formControlName: string,
-    customErrorMessage: string, type: TypeInputForm, required: Boolean) {
+    customErrorMessage: string, type: TypeInputForm,) {
     this.label = label;
     this.placeholder = placeholder;
     this.formControlName = formControlName;
     this.customErrorMessage = customErrorMessage;
     this.type = type;
-    this.required = required;
   }
 
   abstract getValue(): V;
 
+  abstract getValidators(): ValidatorFn[];
 }

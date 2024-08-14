@@ -16,9 +16,13 @@
             <mat-error *ngIf="formGroup.get(field.formControlName)?.invalid
             && (formGroup.get(field.formControlName)?.dirty
             || formGroup.get(field.formControlName)?.touched)">
-              <label *ngIf="field.customErrorMessage === ''">El campo {{field.label}} es
-                obligatorio.</label>
               <label *ngIf="field.customErrorMessage !== ''">{{field.customErrorMessage}}</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'required')">
+                El campo {{field.label}} es obligatorio</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'minlength')">
+                El campo {{field.label}} no supera el minimo de caracteres</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'maxlength')">
+                El campo {{field.label}} supera el maximo de caracteres</label>
             </mat-error>
           </mat-form-field>
         </div>
@@ -30,9 +34,13 @@
             <mat-error *ngIf="formGroup.get(field.formControlName)?.invalid
             && (formGroup.get(field.formControlName)?.dirty
             || formGroup.get(field.formControlName)?.touched)">
-              <label *ngIf="field.customErrorMessage === ''">El campo {{field.label}} es
-                obligatorio.</label>
               <label *ngIf="field.customErrorMessage !== ''">{{field.customErrorMessage}}</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'required')">
+                El campo {{field.label}} es obligatorio</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'minlength')">
+                El campo {{field.label}} no supera el minimo de caracteres</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'maxlength')">
+                El campo {{field.label}} supera el maximo de caracteres</label>
             </mat-error>
           </mat-form-field>
         </div>
@@ -47,9 +55,15 @@
             <mat-error *ngIf="formGroup.get(field.formControlName)?.invalid
             && (formGroup.get(field.formControlName)?.dirty
             || formGroup.get(field.formControlName)?.touched)">
-              <label *ngIf="field.customErrorMessage === ''">El campo {{field.label}} es
-                obligatorio.</label>
               <label *ngIf="field.customErrorMessage !== ''">{{field.customErrorMessage}}</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'required')">
+                El campo {{field.label}} es obligatorio</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'minlength')">
+                El campo {{field.label}} no supera el minimo de caracteres</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'maxlength')">
+                El campo {{field.label}} supera el maximo de caracteres</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'email')">
+                El correo no es valido</label>
             </mat-error>
           </mat-form-field>
         </div>
@@ -61,9 +75,13 @@
             <mat-error *ngIf="formGroup.get(field.formControlName)?.invalid
             && (formGroup.get(field.formControlName)?.dirty
             || formGroup.get(field.formControlName)?.touched)">
-              <label *ngIf="field.customErrorMessage === ''">El campo {{field.label}} es
-                obligatorio.</label>
               <label *ngIf="field.customErrorMessage !== ''">{{field.customErrorMessage}}</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'required')">
+                El campo {{field.label}} es obligatorio</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'minlength')">
+                El campo {{field.label}} no supera el minimo de caracteres</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'maxlength')">
+                El campo {{field.label}} supera el maximo de caracteres</label>
             </mat-error>
           </mat-form-field>
         </div>
@@ -77,9 +95,13 @@
             <mat-error *ngIf="formGroup.get(field.formControlName)?.invalid
             && (formGroup.get(field.formControlName)?.dirty
             || formGroup.get(field.formControlName)?.touched)">
-              <label *ngIf="field.customErrorMessage === ''">El campo {{field.label}} es
-                obligatorio.</label>
               <label *ngIf="field.customErrorMessage !== ''">{{field.customErrorMessage}}</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'required')">
+                El campo {{field.label}} es obligatorio</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'minlength')">
+                El campo {{field.label}} no supera el minimo de caracteres</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'maxlength')">
+                El campo {{field.label}} supera el maximo de caracteres</label>
             </mat-error>
           </mat-form-field>
         </div>
@@ -94,9 +116,9 @@
             <mat-error *ngIf="formGroup.get(field.formControlName)?.invalid
             && (formGroup.get(field.formControlName)?.dirty
             || formGroup.get(field.formControlName)?.touched)">
-              <label *ngIf="field.customErrorMessage === ''">El campo {{field.label}} es
-                obligatorio.</label>
               <label *ngIf="field.customErrorMessage !== ''">{{field.customErrorMessage}}</label>
+              <label *ngIf="fieldHasError(field.formControlName, 'required')">
+                El campo {{field.label}} es obligatorio</label>
             </mat-error>
           </mat-form-field>
         </div>

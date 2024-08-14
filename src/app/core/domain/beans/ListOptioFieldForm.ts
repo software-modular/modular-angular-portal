@@ -1,3 +1,4 @@
+import { ValidatorFn } from "@angular/forms";
 import { TypeInputForm } from "../enum/TypeInputForm";
 import { InputForm } from "./InputForm";
 import { OptionInput } from "./OptionInput";
@@ -5,12 +6,14 @@ import { OptionInput } from "./OptionInput";
 export class ListOptionFieldForm extends InputForm<OptionInput[]> {
 
   value: OptionInput[];
-
+  validators: ValidatorFn[];
 
   constructor(label: string, placeholder: string, formControlName: string,
-    customErrorMessage: string, type: TypeInputForm, required: Boolean, value: OptionInput[]) {
-    super(label, placeholder, formControlName, customErrorMessage, type, required);
+    customErrorMessage: string, type: TypeInputForm,
+    value: OptionInput[], validators: ValidatorFn[]) {
+    super(label, placeholder, formControlName, customErrorMessage, type);
     this.value = value;
+    this.validators = validators;
   }
 
   override getValue(): OptionInput[] {
@@ -18,5 +21,9 @@ export class ListOptionFieldForm extends InputForm<OptionInput[]> {
       return this.value;
     }
     return [];
+  }
+
+  override getValidators(): ValidatorFn[] {
+    return this.validators;
   }
 }

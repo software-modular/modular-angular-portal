@@ -6,8 +6,8 @@ export class HiddenFieldForm extends InputForm<any> {
   value: any;
 
   constructor(label: string, placeholder: string, formControlName: string,
-    customErrorMessage: string, type: TypeInputForm, required: boolean, value: any) {
-    super(label, placeholder, formControlName, customErrorMessage, type, required);
+    customErrorMessage: string, type: TypeInputForm, value: any) {
+    super(label, placeholder, formControlName, customErrorMessage, type,);
     this.value = value;
   }
 
@@ -18,4 +18,7 @@ export class HiddenFieldForm extends InputForm<any> {
     return null;
   }
 
+  override getValidators(): [] {
+    return [];
+  }
 }

@@ -34,8 +34,8 @@ export class LoginComponent {
 
   private getFieldsForm(): InputForm<any>[] {
     let fields: InputForm<any>[] = [
-      new TextFieldForm("Identificacion", "Escribe tu identificacion", "identification", "", TypeInputForm.TEXT, true, ""),
-      new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, true, ""),
+      new TextFieldForm("Identificacion", "Escribe tu identificacion", "identification", "", TypeInputForm.TEXT, "", [Validators.maxLength(5)]),
+      new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, "", []),
     ];
     return fields;
   }
