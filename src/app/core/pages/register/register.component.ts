@@ -13,6 +13,7 @@ import { AuthenticationService } from '../../services/authentication/authenticat
 import { DynamicFormService } from '../../services/components/dynamic-form.service';
 import { typeIdentificationOptions } from '../../utils/TypeIdentification';
 import { Router } from '@angular/router';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -65,19 +66,19 @@ export class RegisterComponent {
 
   private getFieldsForm(): InputForm<any>[] {
     return [
-      new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, true, ""),
-      new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.TEXT, true, ""),
-      new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, true, ""),
+      new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, "", [Validators.required]),
+      new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.TEXT, "", [Validators.required, Validators.email]),
+      new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, "", [Validators.required]),
       new ListOptionFieldForm("Tipo identificacion", "Escribe tipo identificacion", "type_ide", "",
-        TypeInputForm.LIST_OPTION, true, typeIdentificationOptions),
-      new TextFieldForm("Identificación", "Escribe tu identificación", "document_id", "", TypeInputForm.TEXT, true, ""),
-      new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.TEXT, true, ""),
-      new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, true, ""),
-      new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, true, ""),
-      new HiddenFieldForm("", "", "is_active", "", TypeInputForm.HIDDEN, false, true),
-      new TextFieldForm("", "", "profile_picture", "", TypeInputForm.HIDDEN, false, ""),
-      new HiddenFieldForm("", "", "is_staff", "", TypeInputForm.HIDDEN, false, false),
-      new TextFieldForm("", "", "type_user", "", TypeInputForm.HIDDEN, false, TypeClient.CLIENT),
+        TypeInputForm.LIST_OPTION, typeIdentificationOptions, [Validators.required]),
+      new TextFieldForm("Identificación", "Escribe tu identificación", "document_id", "", TypeInputForm.NUMBER, "", [Validators.required]),
+      new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.NUMBER, "", [Validators.required]),
+      new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, "", [Validators.required]),
+      new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, "", [Validators.required]),
+      new HiddenFieldForm("", "", "is_active", "", TypeInputForm.HIDDEN, true),
+      new TextFieldForm("", "", "profile_picture", "", TypeInputForm.HIDDEN, "", []),
+      new HiddenFieldForm("", "", "is_staff", "", TypeInputForm.HIDDEN, false),
+      new TextFieldForm("", "", "type_user", "", TypeInputForm.HIDDEN, TypeClient.CLIENT, []),
     ];
   }
 

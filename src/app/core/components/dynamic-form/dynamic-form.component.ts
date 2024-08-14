@@ -35,17 +35,15 @@ export class DynamicFormComponent implements OnInit {
     this.buildFormGroup();
   }
 
+  fieldHasError(formControlName: string, errorName: string) {
+    return this.formGroup.get(formControlName)?.hasError(errorName) ?? false;
+  }
+
+
   private buildFormGroup() {
     if (this.data.fields) {
       for (let field of this.data.fields) {
-        let validators = [];
-        if (field.required) {
-          validators.push(Validators.required)
-        }
-        if (field.type === TypeInputForm.EMAIL) {
-          validators.push(Validators.email)
-        }
-        this.formGroup.addControl(field.formControlName, new FormControl(field.getValue(), validators))
+        this.formGroup.addControl(field.formControlName, new FormControl(field.getValue(), field.getValidators()))
       }
     }
     this.formFieldValueChangeEvent();
