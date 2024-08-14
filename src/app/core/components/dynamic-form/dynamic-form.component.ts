@@ -4,6 +4,9 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { DynamicFormInput } from '../../domain/beans/dynamicFormInput';
 import { TypeInputForm } from '../../domain/enum/TypeInputForm';
 import { DynamicFormService } from '../../services/components/dynamic-form.service';
+import { DynamicFormExternalChange } from '../../domain/beans/dynamicFormExternalChange';
+import { DynamicTypeExternalChange } from '../../domain/enum/dynamicTypeExternalChange';
+import { DynamicTypeFieldProperty } from '../../domain/enum/dynamicTypeFieldProperty';
 
 @Component({
   selector: 'dynamic-form',
@@ -47,7 +50,7 @@ export class DynamicFormComponent implements OnInit {
       }
     }
     this.formFieldValueChangeEvent();
-    this.doExternalFieldValueChangeEvent();
+    this.doExternalFieldChangeEvent();
   }
 
 
@@ -69,14 +72,49 @@ export class DynamicFormComponent implements OnInit {
     }
   }
 
-  private doExternalFieldValueChangeEvent() {
+  private doExternalFieldChangeEvent() {
     this.dynamicFormService.getFieldExternalValueChangeEvent().subscribe({
       next: (data) => {
-        data.forEach((value, key) => {
-          this.formGroup.get(key)?.setValue(value);
+        data.forEach((value: DynamicFormExternalChange, formControlName: string) => {
+          this.doExternalFieldChangeProcess(value, formControlName);
         })
       }
     });
+  }
+
+  doExternalFieldChangeProcess(value: DynamicFormExternalChange, formControlName: string) {
+    switch (value.typeExternalChange) {
+      case DynamicTypeExternalChange.VALUE: {
+        this.setValueField(formControlName, value.value);
+        break;
+      }
+      case DynamicTypeExternalChange.PROPERTY: {
+        this.setPropertieField(formControlName, value.value);
+        break;
+      }
+      default:
+        break;
+    }
+  }
+
+  setValueField(formControlName: string, value: any) {
+    this.formGroup.get(formControlName)?.setValue(value);
+  }
+
+  setPropertieField(formControlName: string, value: DynamicTypeFieldProperty) {
+    switch (value) {
+      case DynamicTypeFieldProperty.DISABLE: {
+        this.formGroup.get(formControlName)?.disable()
+        break;
+      }
+      case DynamicTypeFieldProperty.ENABLE: {
+        this.formGroup.get(formControlName)?.enable()
+        break;
+      }
+      default: {
+        break
+      }
+    }
   }
 
   private setValidForm() {
