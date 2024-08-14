@@ -42,6 +42,7 @@ export class UserProfileComponent implements OnInit {
       fields: this.getFieldForm(this.userInfo),
       btnLabel: "Editar"
     }
+    this.dynamiFormService.setValueField("typeId", userInfo.user.type_ide);
   }
 
   private getUserInfo(): ResponseClientDto {
