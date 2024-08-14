@@ -5,11 +5,15 @@ import { UserLoginDto } from '../../../domain/dto/userLoginDto';
 import { UserAuthenticateData } from '../../../domain/entity/UserAuthenticate';
 import { Authenticator } from '../../contracts/Authenticator';
 import { HttpClientService } from '../../http/http-client.service';
+import { UserResgisterData } from '../../../domain/entity/UserRegister';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticatorDefaultService implements Authenticator {
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
 
   constructor(private httpClientService: HttpClientService
   ) { }
@@ -19,13 +23,11 @@ export class AuthenticatorDefaultService implements Authenticator {
       document_id: userData.properties?.get("IDENTIFICATION"),
       password: userData.password
     }
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-    return this.httpClientService.post(url, userLogin, headers)
+    return this.httpClientService.post(url, userLogin, this.headers)
   }
 
-  logout(userData: UserAuthenticateData): void {
-    throw new Error('Method not implemented.');
+  registerUser(userData: any, url: string): Observable<any> {
+    return this.httpClientService.post(url, userData, this.headers);
   }
+
 }

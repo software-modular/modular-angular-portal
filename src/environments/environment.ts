@@ -13,8 +13,8 @@ export const environment = {
         delete: "/delete/",
         changPassword: "/changepassword/",
         inactivate: "/inactivate/",
-        client: "/client/",
-        createClient: "/client/create/",
+        client: "/users/client/",
+        createClient: "/users/client/create/",
       }
     }
   },

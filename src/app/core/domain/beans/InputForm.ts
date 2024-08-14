@@ -1,4 +1,4 @@
-import { IInputForm } from "../contracts/IinputForm";
+import { IInputForm } from "../contracts/IInputForm";
 import { TypeInputForm } from "../enum/TypeInputForm";
 
 export abstract class InputForm<V> implements IInputForm<V> {

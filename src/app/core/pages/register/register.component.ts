@@ -7,6 +7,10 @@ import { AuthenticationService } from '../../services/authentication/authenticat
 import { DynamicFormService } from '../../services/components/dynamic-form.service';
 import { ListOptionFieldForm } from '../../domain/beans/ListOptioFieldForm';
 import { typeIdentificationOptions } from '../../utils/TypeIdentification';
+import { HiddenFieldForm } from '../../domain/beans/hiddenFieldForm';
+import { UserResgisterData } from '../../domain/entity/UserRegister';
+import { ClientRegisterData } from '../../domain/entity/ClientRegister';
+import { TypeClient } from '../../domain/enum/TypeClient';
 
 @Component({
   selector: 'app-register',
@@ -34,13 +38,11 @@ export class RegisterComponent {
   }
 
   register() {
-    debugger
-    let formValue = JSON.parse(this.dynamicFormService.getJsonOfForm());
-    formValue.is_active = true;
-    formValue.profile_picture = "";
-    formValue.is_staff = false;
-
-    let pp = "";
+    let formValue: UserResgisterData = JSON.parse(this.dynamicFormService.getJsonOfForm());
+    let clientRegister: ClientRegisterData = {
+      user: formValue
+    }
+    this.authenticationService.registerUser(clientRegister);
   }
 
 
@@ -55,9 +57,10 @@ export class RegisterComponent {
       new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.TEXT, true, ""),
       new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, true, ""),
       new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, true, ""),
-      new TextFieldForm("", "", "is_active", "", TypeInputForm.HIDDEN, false, "true"),
+      new HiddenFieldForm("", "", "is_active", "", TypeInputForm.HIDDEN, false, true),
       new TextFieldForm("", "", "profile_picture", "", TypeInputForm.HIDDEN, false, ""),
-      new TextFieldForm("", "", "is_staff", "", TypeInputForm.HIDDEN, false, "false"),
+      new HiddenFieldForm("", "", "is_staff", "", TypeInputForm.HIDDEN, false, false),
+      new TextFieldForm("", "", "type_user", "", TypeInputForm.HIDDEN, false, TypeClient.CLIENT),
     ];
   }
 
