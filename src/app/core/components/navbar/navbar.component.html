@@ -95,8 +95,13 @@
         <div class="custom-userprofile-elements-container">
           <div class="custom-userprofile-option-container">
             <ng-container *ngFor="let option of configuration.options">
-              <a *ngIf="option.type === USERPROFILE_OPTION_TYPE && option.showOption" class="custom-userprofile-option"
-                href="#">
+              <a *ngIf="option.type === USERPROFILE_OPTION_TYPE && option.showOption && !option.redirect"
+                class="custom-userprofile-option">
+                <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>
+                &nbsp;&nbsp;&nbsp;{{option.name}}
+              </a>
+              <a *ngIf="option.type === USERPROFILE_OPTION_TYPE && option.showOption && option.redirect "
+                class="custom-userprofile-option" [routerLink]="option.urlRedirect">
                 <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>
                 &nbsp;&nbsp;&nbsp;{{option.name}}
               </a>

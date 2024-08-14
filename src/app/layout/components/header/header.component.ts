@@ -35,12 +35,13 @@ export class HeaderComponent implements OnInit {
       let data: JwtContent = this.authenticationService.getTokenData();
       this.clienService.findClientById(data.user_document_id).subscribe({
         next: (data) => {
-          debugger
           this.navbarService.setUserIsLogin(true);
           this.navbarService.showUserProfileMenu(true)
         },
         error: (err) => {
-          debugger
+          this.navbarService.setUserIsLogin(false);
+          this.navbarService.showUserProfileMenu(false)
+          this.redirect('/portal/login');
         }
       })
 
@@ -83,13 +84,17 @@ export class HeaderComponent implements OnInit {
   }
 
   login() {
-    this.router.navigate(['/portal/login']);
+    this.redirect('/portal/login');
   }
 
   logout() {
     this.navbarService.setUserIsLogin(false);
     this.navbarService.showUserProfileMenu(false);
     this.authenticationService.logoutUser();
-    this.router.navigate(['/portal/login']);
+    this.redirect('/portal/login');
+  }
+
+  redirect(url: string) {
+    this.router.navigate([url]);
   }
 }

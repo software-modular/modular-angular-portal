@@ -42,7 +42,6 @@ export class LoginComponent {
     let password = this.dynamicFormService.getValueByFieldName("password");
     this.authenticationService.authenticateUser(identification, password)
       .then((data) => {
-        debugger
         let userInformation: ResponseClientDto = data
         if (userInformation !== null) {
           let userInformationNabvar: NabvarUserInformation = {
@@ -52,7 +51,7 @@ export class LoginComponent {
           this.nabvarService.setUserInformation(userInformationNabvar);
           this.nabvarService.showUserProfileMenu(true);
           this.nabvarService.setUserIsLogin(true);
-          this.router.navigate(['']);
+          this.router.navigate(['/portal']);
         }
       })
       .catch((err) => {

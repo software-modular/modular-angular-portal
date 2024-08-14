@@ -61,7 +61,7 @@ export const environment = {
         type: "MENU"
       }, {
         name: "Editar usuario",
-        redirect: false,
+        redirect: true,
         showOption: true,
         disableOption: false,
         cssClass: "",
