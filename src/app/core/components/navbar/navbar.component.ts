@@ -51,7 +51,10 @@ export class NavbarComponent {
   getInitialLettersName() {
     let username: string = this.getUsername();
     let names: string[] = username.split(" ");
-    return `${names[0][0]}${names[1][0]} `;
+    if (names.length > 0) {
+      return `${names[0]}${names[1]} `;
+    }
+    return `${names[0]} `;
   }
 
   showCustomMenu() {
