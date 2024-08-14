@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { ResponseClientDto } from '../../domain/dto/responseClientDto';
 import { ResponseLoginDto } from '../../domain/dto/responseLoginDto';
@@ -45,17 +45,9 @@ export class AuthenticationService {
     this.localStorageTokenService.removeRefreshToken();
   }
 
-  async registerUser(userRegister: ClientRegisterData): Promise<ResponseClientDto> {
-    debugger
+  registerUser(userRegister: ClientRegisterData): Observable<any> {
     let urlRegister: string = `${environment.api.host}${environment.api.endpoints.users.createClient}`;
-    let response = await firstValueFrom(this.authenticator.registerUser(userRegister, urlRegister));
-    let tt = "";
-    return new Promise((resolve, reject) => {
-      if (response.data?.client !== undefined) {
-        resolve(response.data.client);
-      }
-      reject(false);
-    });
+    return this.authenticator.registerUser(userRegister, urlRegister);
   }
 
   userIsAuthenticated(): Boolean {

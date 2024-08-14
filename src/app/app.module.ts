@@ -16,7 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { DatePipe } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -27,12 +27,17 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { FileUploadModule } from 'primeng/fileupload';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { AgrappProjectsCardComponent } from './components/agrapp/agrapp-projects-card/agrapp-projects-card.component';
 import { AgrappProjectsListCardComponent } from './components/agrapp/agrapp-projects-list-card/agrapp-projects-list-card.component';
 import { AgrappProjectsRegisterComponent } from './components/agrapp/agrapp-projects-register/agrapp-projects-register.component';
 import { CarouselImgComponent } from './core/components/carousel-img/carousel-img.component';
+import { DynamicFormComponent } from './core/components/dynamic-form/dynamic-form.component';
 import { InputAutocompleteComponent } from './core/components/input-autocomplete/input-autocomplete.component';
 import { InputDateComponent } from './core/components/input-date/input-date.component';
 import { InputListOptionComponent } from './core/components/input-list-option/input-list-option.component';
@@ -41,6 +46,11 @@ import { InputNumberComponent } from './core/components/input-number/input-numbe
 import { InputTextAreaComponent } from './core/components/input-text-area/input-text-area.component';
 import { InputTextComponent } from './core/components/input-text/input-text.component';
 import { MultifileUploadComponent } from './core/components/multifile-upload/multifile-upload.component';
+import { NavbarComponent } from './core/components/navbar/navbar.component';
+import { LoginComponent } from './core/pages/login/login.component';
+import { RegisterComponent } from './core/pages/register/register.component';
+import { UserProfileComponent } from './core/pages/user-profile/user-profile.component';
+import { EditUserComponent } from './core/section/edit-user/edit-user.component';
 import { BodyComponent } from './layout/components/body/body.component';
 import { FooterComponent } from './layout/components/footer/footer.component';
 import { HeaderComponent } from './layout/components/header/header.component';
@@ -48,17 +58,9 @@ import { LayoutComponent } from './layout/layout.component';
 import { AgrappHomeComponent } from './pages/agrapp-home/agrapp-home.component';
 import { AgrappInvestmentsComponent } from './pages/agrapp-investments/agrapp-investments.component';
 import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
-import { FileUploadModule } from 'primeng/fileupload';
-import { MultiSelectModule } from 'primeng/multiselect';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { MatStepperModule } from '@angular/material/stepper';
-import { authenticationInterceptor } from './core/interceptors/authentication.interceptor';
-import { UserProfileComponent } from './core/pages/user-profile/user-profile.component';
-import { EditUserComponent } from './core/section/edit-user/edit-user.component';
-import { LoginComponent } from './core/pages/login/login.component';
-import { RegisterComponent } from './core/pages/register/register.component';
-import { NavbarComponent } from './core/components/navbar/navbar.component';
-import { DynamicFormComponent } from './core/components/dynamic-form/dynamic-form.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
 @NgModule({
   declarations: [
     AppComponent,
@@ -124,12 +126,16 @@ import { DynamicFormComponent } from './core/components/dynamic-form/dynamic-for
     FileUploadModule,
     MultiSelectModule,
     HttpClientModule,
-    InputNumberModule
+    InputNumberModule,
+    ConfirmDialogModule,
+    ToastModule
   ],
   providers: [
     provideClientHydration(),
     provideAnimationsAsync(),
     DatePipe,
+    ConfirmationService,
+    MessageService
     // provideHttpClient()withFetch()), withInterceptors([authenticationInterceptor])),
   ],
   bootstrap: [AppComponent]

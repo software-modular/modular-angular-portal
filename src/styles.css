@@ -80,3 +80,15 @@ fieldset:disabled .btn {
   border-color: var(--btn-primary-background-hover);
   box-shadow: 0 0 0 .2rem rgba(107, 108, 110, 0.5);
 }
+
+
+.p-button {
+  color: #ffffff;
+  background: var(--btn-primary-background);
+  border: 1px solid var(--btn-primary-background);
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 12px;
+  outline-color: transparent;
+}

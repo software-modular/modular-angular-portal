@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
 import { DynamicFormInput } from '../../domain/beans/dynamicFormInput';
+import { HiddenFieldForm } from '../../domain/beans/hiddenFieldForm';
 import { InputForm } from '../../domain/beans/InputForm';
+import { ListOptionFieldForm } from '../../domain/beans/ListOptioFieldForm';
 import { TextFieldForm } from '../../domain/beans/textFieldForm';
+import { ClientRegisterData } from '../../domain/entity/ClientRegister';
+import { UserResgisterData } from '../../domain/entity/UserRegister';
+import { TypeClient } from '../../domain/enum/TypeClient';
 import { TypeInputForm } from '../../domain/enum/TypeInputForm';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { DynamicFormService } from '../../services/components/dynamic-form.service';
-import { ListOptionFieldForm } from '../../domain/beans/ListOptioFieldForm';
 import { typeIdentificationOptions } from '../../utils/TypeIdentification';
-import { HiddenFieldForm } from '../../domain/beans/hiddenFieldForm';
-import { UserResgisterData } from '../../domain/entity/UserRegister';
-import { ClientRegisterData } from '../../domain/entity/ClientRegister';
-import { TypeClient } from '../../domain/enum/TypeClient';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +24,9 @@ export class RegisterComponent {
 
   constructor(
     private dynamicFormService: DynamicFormService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private confirmationService: ConfirmationService,
+    private router: Router
   ) {
     this.dynamicFormInput = {
       title: "Registro",
@@ -38,11 +42,24 @@ export class RegisterComponent {
   }
 
   register() {
+    let showError = (title: string, message: string) => this.showMessageDialog(title, message);
+    let userData = this.getClientRegisterData();
+    this.authenticationService.registerUser(userData).subscribe({
+      next: (data) => {
+      }, error(err) {
+        showError("Registro usuario", `Ya existe un usuario con identificacion:${userData.user?.document_id}`);
+      }
+    });
+  }
+  showerr() { }
+
+  getClientRegisterData(): ClientRegisterData {
     let formValue: UserResgisterData = JSON.parse(this.dynamicFormService.getJsonOfForm());
+    formValue.date_of_birth = formValue.date_of_birth?.split("T")[0];
     let clientRegister: ClientRegisterData = {
       user: formValue
     }
-    this.authenticationService.registerUser(clientRegister);
+    return clientRegister;
   }
 
 
@@ -64,5 +81,19 @@ export class RegisterComponent {
     ];
   }
 
+  showMessageDialog(titleHeader: string, message: string) {
+    this.confirmationService.confirm({
+      message: message,
+      header: titleHeader,
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: "none",
+      acceptLabel: "Continuar",
+      rejectVisible: false
+    });
+  }
+
+  redirect(link: string) {
+    this.router.navigate(['/portal/login']);
+  }
 
 }
