@@ -20,6 +20,7 @@ import { Validators } from '@angular/forms';
 export class LoginComponent {
 
   dynamicFormInput: DynamicFormInput;
+  userOrPasswordInvalid: Boolean = false;
 
   constructor(
     private dynamicFormService: DynamicFormService,
@@ -36,26 +37,33 @@ export class LoginComponent {
     }
   }
 
-  async login() {
+  login() {
     let identification = this.dynamicFormService.getValueByFieldName("identification");
     let password = this.dynamicFormService.getValueByFieldName("password");
-    let userInformation: ResponseClientDto = await this.authenticationService
-      .authenticateUser(identification, password);
-    if (userInformation !== null) {
-      let userInformationNabvar: NabvarUserInformation = {
-        name: userInformation.user.name || '',
-        username: userInformation.user.email || ''
-      }
-      this.nabvarService.setUserInformation(userInformationNabvar);
-      this.nabvarService.showUserProfileMenu(true);
-      this.nabvarService.setUserIsLogin(true);
-      this.router.navigate(['']);
-    }
+    this.authenticationService.authenticateUser(identification, password)
+      .then((data) => {
+        debugger
+        let userInformation: ResponseClientDto = data
+        if (userInformation !== null) {
+          let userInformationNabvar: NabvarUserInformation = {
+            name: userInformation.user.name || '',
+            username: userInformation.user.email || ''
+          }
+          this.nabvarService.setUserInformation(userInformationNabvar);
+          this.nabvarService.showUserProfileMenu(true);
+          this.nabvarService.setUserIsLogin(true);
+          this.router.navigate(['']);
+        }
+      })
+      .catch((err) => {
+        this.userOrPasswordInvalid = true;
+      });
+
   }
 
   private getFieldsForm(): InputForm<any>[] {
     let fields: InputForm<any>[] = [
-      new TextFieldForm("Identificacion", "Escribe tu identificacion", "identification", "", TypeInputForm.TEXT, "", [Validators.required]),
+      new TextFieldForm("Identificacion", "Escribe tu identificacion", "identification", "", TypeInputForm.NUMBER, "", [Validators.required]),
       new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, "", [Validators.required]),
     ];
     return fields;

@@ -43,10 +43,11 @@ export class RegisterComponent {
   }
 
   register() {
-    let showError = (title: string, message: string) => this.showMessageDialog(title, message);
+    let showError = (title: string, message: string) => this.showMessageDialog(title, message, false);
     let userData = this.getClientRegisterData();
     this.authenticationService.registerUser(userData).subscribe({
       next: (data) => {
+        this.showMessageDialog("Registro usuario", "Usuario creado", true)
       }, error(err) {
         showError("Registro usuario", `Ya existe un usuario con identificacion:${userData.user?.document_id}`);
       }
@@ -71,7 +72,7 @@ export class RegisterComponent {
       new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, "", [Validators.required]),
       new ListOptionFieldForm("Tipo identificacion", "Escribe tipo identificacion", "type_ide", "",
         TypeInputForm.LIST_OPTION, typeIdentificationOptions, [Validators.required]),
-      new TextFieldForm("Identificación", "Escribe tu identificación", "document_id", "", TypeInputForm.NUMBER, "", [Validators.required]),
+      new TextFieldForm("Identificación", "Escribe tu identificación", "document_id", "", TypeInputForm.NUMBER, "", [Validators.required, Validators.minLength(7)]),
       new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.NUMBER, "", [Validators.required]),
       new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, "", [Validators.required]),
       new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, "", [Validators.required]),
@@ -82,19 +83,24 @@ export class RegisterComponent {
     ];
   }
 
-  showMessageDialog(titleHeader: string, message: string) {
+  showMessageDialog(titleHeader: string, message: string, redirect: Boolean) {
     this.confirmationService.confirm({
       message: message,
       header: titleHeader,
       icon: 'pi pi-exclamation-triangle',
       acceptIcon: "none",
       acceptLabel: "Continuar",
-      rejectVisible: false
+      rejectVisible: false,
+      accept: () => {
+        if (redirect) {
+          this.redirect('/portal/login')
+        }
+      }
     });
   }
 
   redirect(link: string) {
-    this.router.navigate(['/portal/login']);
+    this.router.navigate([link]);
   }
 
 }

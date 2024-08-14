@@ -36,7 +36,7 @@ export class AuthenticationService {
       if (response.data?.client !== undefined) {
         resolve(response.data.client);
       }
-      reject(null);
+      reject(response);
     });
   }
 
