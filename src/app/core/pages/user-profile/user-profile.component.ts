@@ -44,6 +44,10 @@ export class UserProfileComponent implements OnInit {
     this.dynamiFormService.setValueField("typeId", userInfo.user.type_ide);
   }
 
+  private disableFieldForm() {
+
+  }
+
   private getUserInfo(): ResponseClientDto {
     //se debe hacer peticion http para obtener la info del usuario{
     return {
