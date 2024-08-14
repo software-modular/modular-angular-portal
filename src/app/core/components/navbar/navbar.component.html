@@ -98,7 +98,7 @@
               <a *ngIf="option.type === USERPROFILE_OPTION_TYPE && option.showOption" class="custom-userprofile-option"
                 href="#">
                 <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>
-                {{option.name}}&nbsp;
+                &nbsp;&nbsp;&nbsp;{{option.name}}
               </a>
             </ng-container>
             <a class="custom-userprofile-option" (click)="logout()">
