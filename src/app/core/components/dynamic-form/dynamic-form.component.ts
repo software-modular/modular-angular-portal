@@ -47,11 +47,13 @@ export class DynamicFormComponent implements OnInit {
       }
     }
     this.formFieldValueChangeEvent();
+    this.doExternalFieldValueChangeEvent();
   }
+
 
   private formFieldValueChangeEvent() {
     this.formGroup.valueChanges.subscribe({
-      next: (event: any) => {
+      next: (_) => {
         this.updateFormValue();
         this.setValidForm();
       }
@@ -65,6 +67,16 @@ export class DynamicFormComponent implements OnInit {
           this.formGroup.get(field.formControlName)?.value)
       }
     }
+  }
+
+  private doExternalFieldValueChangeEvent() {
+    this.dynamicFormService.getFieldExternalValueChangeEvent().subscribe({
+      next: (data) => {
+        data.forEach((value, key) => {
+          this.formGroup.get(key)?.setValue(value);
+        })
+      }
+    });
   }
 
   private setValidForm() {
