@@ -46,17 +46,16 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
       btnLabel: "Editar"
     }
     this.dynamiFormService.setValueField("typeId", userInfo.user.type_ide);
-    //this.disableFieldForm(true);
   }
 
-  private disableFieldForm(disable: Boolean) {
+  disableFieldForm(disable: Boolean) {
     this.dynamiFormService.disableFieldByFormControlName("name", disable);
     this.dynamiFormService.disableFieldByFormControlName("email", disable);
     this.dynamiFormService.disableFieldByFormControlName("typeId", disable);
-    /*this.dynamiFormService.disableFieldByFormControlName("phone", disable);
+    this.dynamiFormService.disableFieldByFormControlName("phone", disable);
     this.dynamiFormService.disableFieldByFormControlName("address", disable);
     this.dynamiFormService.disableFieldByFormControlName("identification", disable);
-    this.dynamiFormService.disableFieldByFormControlName("birthday", disable);*/
+    this.dynamiFormService.disableFieldByFormControlName("date_of_birth", disable);
   }
 
   private getUserInfo(): ResponseClientDto {
