@@ -61,6 +61,10 @@ export class LoginComponent {
 
   }
 
+  enableBtnLogin(): Boolean {
+    return this.dynamicFormService.isValidForm();
+  }
+
   private getFieldsForm(): InputForm<any>[] {
     let fields: InputForm<any>[] = [
       new TextFieldForm("Identificacion", "Escribe tu identificacion", "identification", "", TypeInputForm.NUMBER, "", [Validators.required]),
@@ -68,5 +72,6 @@ export class LoginComponent {
     ];
     return fields;
   }
+
 
 }

@@ -6,6 +6,8 @@ import { getTypeNavbarByName } from '../../../core/domain/enum/TypeNavbar';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../../core/services/authentication/authentication.service';
 import { NavbarService } from '../../../core/services/components/navbar.service';
+import { ClientService } from '../../../core/services/client/client.service';
+import { JwtContent } from '../../../core/domain/beans/jwtContent';
 
 @Component({
   selector: 'app-header',
@@ -18,11 +20,31 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    private navbarService: NavbarService
+    private navbarService: NavbarService,
+    private clienService: ClientService,
   ) { }
 
   ngOnInit(): void {
-    this.loadNavbarConfiguration()
+    this.loadUserData();
+    this.loadNavbarConfiguration();
+
+  }
+
+  private loadUserData() {
+    if (this.authenticationService.userIsAuthenticated()) {
+      let data: JwtContent = this.authenticationService.getTokenData();
+      this.clienService.findClientById(data.user_document_id).subscribe({
+        next: (data) => {
+          debugger
+          this.navbarService.setUserIsLogin(true);
+          this.navbarService.showUserProfileMenu(true)
+        },
+        error: (err) => {
+          debugger
+        }
+      })
+
+    }
   }
 
   private loadNavbarConfiguration() {

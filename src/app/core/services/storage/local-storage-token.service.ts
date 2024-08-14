@@ -38,14 +38,17 @@ export class LocalStorageTokenService implements ILocalStorageToken {
     return false;
   }
 
-  decodeToken(token: string): JwtContent {
+  decodeToken(): JwtContent {
     try {
+      let token = this.getToken();
       const payload = token.split('.')[1];
       const decodedPayload = atob(payload);
       return JSON.parse(decodedPayload);
     } catch (error) {
       console.error('Error al decodificar el payload:', error);
-      return {};
+      return {
+        user_document_id: ""
+      };
     }
   }
 

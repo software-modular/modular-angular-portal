@@ -16,7 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { DatePipe } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -61,6 +61,7 @@ import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { authenticationInterceptor } from './core/interceptors/authentication.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -135,8 +136,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     provideAnimationsAsync(),
     DatePipe,
     ConfirmationService,
-    MessageService
-    // provideHttpClient()withFetch()), withInterceptors([authenticationInterceptor])),
+    MessageService,
+    provideHttpClient(withInterceptors([authenticationInterceptor])),
   ],
   bootstrap: [AppComponent]
 })

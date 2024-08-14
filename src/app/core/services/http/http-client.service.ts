@@ -13,7 +13,7 @@ export class HttpClientService {
     return this.httpClient.post(url, data, { headers: headers })
   }
 
-  get(url: string, headers: any, httpParams: HttpParams): Observable<any> {
+  get(url: string, headers: any, httpParams?: HttpParams): Observable<any> {
     return this.httpClient.get(url, { headers: headers, params: httpParams });
   }
 

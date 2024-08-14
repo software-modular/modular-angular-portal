@@ -15,6 +15,7 @@ export const environment = {
         inactivate: "/inactivate/",
         client: "/users/client/",
         createClient: "/users/client/create/",
+        getClientById: "/users/client/%s/"
       }
     }
   },
@@ -65,7 +66,7 @@ export const environment = {
         disableOption: false,
         cssClass: "",
         cssStyle: "",
-        urlRedirect: "",
+        urlRedirect: "/portal/user-profile",
         icon: "fa-solid fa-user-pen",
         type: "USER_PROFILE_MENU"
       }

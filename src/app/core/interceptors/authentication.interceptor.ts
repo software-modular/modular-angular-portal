@@ -4,6 +4,7 @@ import { inject } from '@angular/core';
 
 
 export const authenticationInterceptor: HttpInterceptorFn = (req, next) => {
+  debugger
   if (!req.url.includes('login') && !req.url.includes('register')) {
     let authenticationService: AuthenticationService = inject(AuthenticationService);
     let token = authenticationService.getAuthenticationToken();

@@ -18,7 +18,7 @@
         <br>
         <div class="row">
           <div class="col-md-12">
-            <button class="btn btn-primary" (click)="login()">Iniciar sesión</button>
+            <button class="btn btn-primary" (click)="login()" [disabled]="!enableBtnLogin()">Iniciar sesión</button>
           </div>
         </div>
         <br>

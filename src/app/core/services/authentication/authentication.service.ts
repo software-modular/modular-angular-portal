@@ -10,6 +10,7 @@ import { TypeAuthenticatorUtils } from '../../utils/TypeAuthenticatorUtils';
 import { Authenticator } from '../contracts/Authenticator';
 import { AuthenticatorFactory } from '../factory/AuthenticatorFactory';
 import { LocalStorageTokenService } from '../storage/local-storage-token.service';
+import { JwtContent } from '../../domain/beans/jwtContent';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,10 @@ export class AuthenticationService {
 
   getAuthenticationToken(): string {
     return this.localStorageTokenService.getToken();
+  }
+
+  getTokenData(): JwtContent {
+    return this.localStorageTokenService.decodeToken();
   }
 
 
