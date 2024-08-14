@@ -27,7 +27,6 @@ export class DynamicFormService {
   }
 
   public setValueField(formControlName: string, value: any) {
-    debugger
     let valueChange: Map<string, any> = new Map<string, any>();
     valueChange.set(formControlName, value);
     this.fieldExternalValueChange.next(valueChange)

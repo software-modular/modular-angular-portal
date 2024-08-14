@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { DynamicFormInput } from '../../domain/beans/dynamicFormInput';
 import { InputForm } from '../../domain/beans/InputForm';
 import { ListOptionFieldForm } from '../../domain/beans/ListOptioFieldForm';
 import { TextFieldForm } from '../../domain/beans/textFieldForm';
-import { TypeInputForm } from '../../domain/enum/TypeInputForm';
-import { typeIdentificationOptions } from '../../utils/TypeIdentification';
-import { DynamicFormService } from '../../services/components/dynamic-form.service';
-import { ClientService } from '../../services/client/client.service';
 import { ResponseClientDto } from '../../domain/dto/responseClientDto';
+import { TypeInputForm } from '../../domain/enum/TypeInputForm';
+import { ClientService } from '../../services/client/client.service';
+import { DynamicFormService } from '../../services/components/dynamic-form.service';
+import { typeIdentificationOptions } from '../../utils/TypeIdentification';
 
 @Component({
   selector: 'user-profile',
@@ -37,7 +36,7 @@ export class UserProfileComponent implements OnInit {
 
   private loadDynamicForm(userInfo: ResponseClientDto) {
     this.dynamicFormInput = {
-      title: "Perfil de usuario",
+      title: "",
       titleAling: "left",
       fields: this.getFieldForm(this.userInfo),
       btnLabel: "Editar"

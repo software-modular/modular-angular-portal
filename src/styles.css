@@ -16,6 +16,11 @@
   --btn-primary-background: rgb(58 105 94);
   --btn-primary-background-hover: rgb(58 105 94);
   --btn-primary-background-disable: rgb(98, 98, 98);
+
+  --btn-secundary-background: rgb(217, 219, 219);
+  --btn-secundary-background-hover: rgb(162, 162, 162);
+  --btn-secundary-background-disable: rgb(98, 98, 98);
+  --btn-secundary-border-color: rgb(231 229 229);
 }
 
 html,
@@ -51,18 +56,17 @@ label {
   background-color: var(--btn-primary-background);
 }
 
-.btn.disabled,
-.btn:disabled,
-fieldset:disabled .btn {
-  background-color: var(--btn-primary-background-disable);
-
-}
-
-
-.btn:hover {
+.btn-primary:hover {
   color: var(--white-text-color);
   background-color: var(--btn-primary-background-hover);
   border-color: var(--btn-primary-background-hover);
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled,
+fieldset:disabled .btn-primary {
+  background-color: var(--btn-primary-background-disable);
+
 }
 
 
@@ -80,6 +84,41 @@ fieldset:disabled .btn {
   border-color: var(--btn-primary-background-hover);
   box-shadow: 0 0 0 .2rem rgba(107, 108, 110, 0.5);
 }
+
+
+.btn-secundary {
+  background-color: var(--btn-secundary-background);
+}
+
+.btn-secundary:hover {
+  color: var(--white-text-color);
+  background-color: var(--btn-secundary-background-hover);
+  border-color: var(--btn-secundary-background-hover);
+}
+
+.btn-secundary.disabled,
+.btn-secundary:disabled,
+fieldset:disabled .btn {
+  background-color: var(--btn-secundary-background-disable);
+
+}
+
+
+.btn-secundary:not(:disabled):not(.disabled):active,
+.show>.btn-secundary.dropdown-toggle {
+  color: var(--white-text-color);
+  background-color: var(--btn-secundary-background-hover);
+  border-color: var(--btn-secundary-background-hover);
+}
+
+.btn-secundary.focus,
+.btn-secundary:focus {
+  color: var(--white-text-color);
+  background-color: var(--btn-secundary-background-hover);
+  border-color: var(--btn-secundary-background-hover);
+  box-shadow: 0 0 0 .2rem rgba(107, 108, 110, 0.5);
+}
+
 
 
 .p-button {
