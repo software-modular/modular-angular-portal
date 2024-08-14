@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { DynamicFormInput } from '../../domain/beans/dynamicFormInput';
 import { InputForm } from '../../domain/beans/InputForm';
 import { ListOptionFieldForm } from '../../domain/beans/ListOptioFieldForm';
@@ -14,7 +14,7 @@ import { typeIdentificationOptions } from '../../utils/TypeIdentification';
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit, AfterViewInit {
   dynamicFormInput!: DynamicFormInput;
   userInfo!: ResponseClientDto;
 
@@ -22,12 +22,16 @@ export class UserProfileComponent implements OnInit {
     private dynamiFormService: DynamicFormService,
     private clientService: ClientService
   ) {
-  }
-
-  ngOnInit(): void {
     this.loadUserInfo()
   }
 
+  ngOnInit(): void {
+
+  }
+
+  ngAfterViewInit(): void {
+    this.disableFieldForm(true);
+  }
 
   private loadUserInfo() {
     this.userInfo = this.getUserInfo();
@@ -42,10 +46,17 @@ export class UserProfileComponent implements OnInit {
       btnLabel: "Editar"
     }
     this.dynamiFormService.setValueField("typeId", userInfo.user.type_ide);
+    //this.disableFieldForm(true);
   }
 
-  private disableFieldForm() {
-
+  private disableFieldForm(disable: Boolean) {
+    this.dynamiFormService.disableFieldByFormControlName("name", disable);
+    this.dynamiFormService.disableFieldByFormControlName("email", disable);
+    this.dynamiFormService.disableFieldByFormControlName("typeId", disable);
+    /*this.dynamiFormService.disableFieldByFormControlName("phone", disable);
+    this.dynamiFormService.disableFieldByFormControlName("address", disable);
+    this.dynamiFormService.disableFieldByFormControlName("identification", disable);
+    this.dynamiFormService.disableFieldByFormControlName("birthday", disable);*/
   }
 
   private getUserInfo(): ResponseClientDto {
@@ -78,8 +89,9 @@ export class UserProfileComponent implements OnInit {
         userInfo.user.document_id ?? '', []),
       new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.TEXT, userInfo.user.phone ?? '', []),
       new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, userInfo.user.address ?? '', []),
-      new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "birthday", "", TypeInputForm.DATE,
+      new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE,
         userInfo.user.date_of_birth ?? '', []),
+      new TextFieldForm("", "", "profile_picture", "", TypeInputForm.HIDDEN, "", []),
     ];
     return fields;
   }
