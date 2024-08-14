@@ -52,9 +52,9 @@ export class NavbarComponent {
     let username: string = this.getUsername();
     let names: string[] = username.split(" ");
     if (names.length > 0) {
-      return `${names[0]}${names[1]} `;
+      return `${names[0][0]}${names[1][0]} `;
     }
-    return `${names[0]} `;
+    return `${names[0][0]} `;
   }
 
   showCustomMenu() {
