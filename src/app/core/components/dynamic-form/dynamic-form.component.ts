@@ -51,7 +51,7 @@ export class DynamicFormComponent implements OnInit {
 
   private formFieldValueChangeEvent() {
     this.formGroup.valueChanges.subscribe({
-      next: (event: any) => {
+      next: (_) => {
         this.updateFormValue();
         this.setValidForm();
       }
