@@ -101,10 +101,10 @@
                 <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>
               </a>
             </ng-container>
-            <button class="btn" (click)="logout()">
-              <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+            <a class="custom-userprofile-option" (click)="logout()">
+              <i class="fa-solid fa-right-from-bracket"></i>
               &nbsp;&nbsp;&nbsp;Cerrar sesión
-            </button>
+            </a>
           </div>
         </div>
       </div>
