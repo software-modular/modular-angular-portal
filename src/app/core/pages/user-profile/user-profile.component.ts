@@ -8,6 +8,7 @@ import { TypeInputForm } from '../../domain/enum/TypeInputForm';
 import { ClientService } from '../../services/client/client.service';
 import { DynamicFormService } from '../../services/components/dynamic-form.service';
 import { typeIdentificationOptions } from '../../utils/TypeIdentification';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'user-profile',
@@ -17,10 +18,12 @@ import { typeIdentificationOptions } from '../../utils/TypeIdentification';
 export class UserProfileComponent implements OnInit, AfterViewInit {
   dynamicFormInput!: DynamicFormInput;
   userInfo!: ResponseClientDto;
+  editForm: Boolean = false;
 
   constructor(
     private dynamiFormService: DynamicFormService,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private confirmationService: ConfirmationService,
   ) {
     this.loadUserInfo()
   }
@@ -46,6 +49,17 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
       btnLabel: "Editar"
     }
     this.dynamiFormService.setValueField("typeId", userInfo.user.type_ide);
+  }
+
+  editFormProcess() {
+    this.editForm = true;
+    this.disableFieldForm(false);
+  }
+
+  updateUserProfile() {
+    debugger
+    this.showMessageDialog("Actualizacion de perfil", "Perfil actualizado")
+    this.eventAfterUpdateProfile()
   }
 
   disableFieldForm(disable: Boolean) {
@@ -93,6 +107,23 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
       new TextFieldForm("", "", "profile_picture", "", TypeInputForm.HIDDEN, "", []),
     ];
     return fields;
+  }
+
+
+  private showMessageDialog(titleHeader: string, message: string) {
+    this.confirmationService.confirm({
+      message: message,
+      header: titleHeader,
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: "none",
+      acceptLabel: "Continuar",
+      rejectVisible: false,
+    });
+  }
+
+  private eventAfterUpdateProfile() {
+    this.editForm = false;
+    this.disableFieldForm(true);
   }
 
 }

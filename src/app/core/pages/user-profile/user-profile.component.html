@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <div class="user-profile-body-picture-container">
           <div class="user-profile-body-edit-container">
-            <button class="btn-edit btn" (click)="disableFieldForm(true)">
+            <button *ngIf="!editForm" class="btn-edit btn" (click)="editFormProcess()">
               <i class="fa fa-pencil" aria-hidden="true"></i>
             </button>
           </div>
@@ -19,10 +19,13 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="card user-profile-footer-container">
-    <div class="row">
-      <div></div>
+    <div *ngIf="editForm" class="row">
+      <div class="user-profile-actions-container">
+        <button class="btn btn-primary" (click)="updateUserProfile()">Guardar</button>
+      </div>
     </div>
   </div>
+</div>
+<div>
+  <p-confirmDialog />
 </div>

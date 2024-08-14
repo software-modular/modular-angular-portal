@@ -1,7 +1,7 @@
 .user-profile-container {
   display: flex;
   justify-content: center;
-  padding-top: 20px;
+  padding-top: 12px;
 }
 
 .user-profile-body-container {
@@ -33,4 +33,9 @@
 
 .btn-edit {
   border: 1px solid var(--btn-secundary-border-color);
+}
+
+.user-profile-actions-container {
+  display: flex;
+  justify-content: center;
 }

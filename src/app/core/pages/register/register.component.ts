@@ -53,9 +53,8 @@ export class RegisterComponent {
       }
     });
   }
-  showerr() { }
 
-  getClientRegisterData(): ClientRegisterData {
+  private getClientRegisterData(): ClientRegisterData {
     let formValue: UserResgisterData = JSON.parse(this.dynamicFormService.getJsonOfForm());
     formValue.date_of_birth = formValue.date_of_birth?.split("T")[0];
     let clientRegister: ClientRegisterData = {
@@ -83,7 +82,7 @@ export class RegisterComponent {
     ];
   }
 
-  showMessageDialog(titleHeader: string, message: string, redirect: Boolean) {
+  private showMessageDialog(titleHeader: string, message: string, redirect: Boolean) {
     this.confirmationService.confirm({
       message: message,
       header: titleHeader,
@@ -99,7 +98,7 @@ export class RegisterComponent {
     });
   }
 
-  redirect(link: string) {
+  private redirect(link: string) {
     this.router.navigate([link]);
   }
 
