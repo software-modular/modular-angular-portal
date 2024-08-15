@@ -1,0 +1,114 @@
+/* Estilos generales */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.background {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background-color: white;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background::before, .background::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,0,0,0.5) 20%, rgba(255,0,0,0) 80%),
+                radial-gradient(circle, rgba(0,255,0,0.5) 20%, rgba(0,255,0,0) 80%),
+                radial-gradient(circle, rgba(0,0,255,0.5) 20%, rgba(0,0,255,0) 80%);
+    background-blend-mode: screen;
+    width: 300px;
+    height: 300px;
+    top: 10%;
+    left: 20%;
+    z-index: 1;
+}
+
+.background::after {
+    width: 400px;
+    height: 400px;
+    top: 60%;
+    left: 50%;
+    background: radial-gradient(circle, rgba(255,255,0,0.5) 20%, rgba(255,255,0,0) 80%),
+                radial-gradient(circle, rgba(255,105,180,0.5) 20%, rgba(255,105,180,0) 80%),
+                radial-gradient(circle, rgba(0,255,255,0.5) 20%, rgba(0,255,255,0) 80%);
+}
+
+.content {
+    text-align: center;
+    z-index: 2;
+}
+
+h1 {
+    color: #333;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #333; /* Color negro */
+    font-family: Arial, sans-serif; /* Coincide con la tipografía del h1 */
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.cta span {
+    display: block;
+    font-size: 2rem;
+}
+
+.arrow {
+    font-size: 3rem !important;
+    margin-top: 3%;
+    transition: transform 0.3s ease;
+}
+
+/* Animación de la flecha */
+.cta:hover .arrow {
+    transform: translateY(3px);
+}
+
+
+/* Estilos para la sección de descripción */
+.description {
+    background: url('assets/img/home/leaves-pattern.jpeg') repeat; /* Estampado de hojas */
+    padding: 50px 20px; /* Espaciado en la sección */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background: #f9f9f9; /* Color suave para la tarjeta */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra sutil */
+    padding: 30px 40px; /* Espaciado interno de la tarjeta */
+    max-width: 600px; /* Ancho máximo */
+    text-align: center; /* Texto centrado */
+}
+
+.card h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 24px;
+}
+
+.card p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+}
