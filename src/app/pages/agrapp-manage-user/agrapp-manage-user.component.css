@@ -21,3 +21,26 @@
   font-size: 28px;
   font-weight: 700;
 }
+
+.agrapp-user-management-table-filter {
+  display: flex;
+  flex-direction: row;
+}
+
+.dynamic-form-field-container {
+  padding-right: 10px;
+}
+
+.button-action {
+  margin-left: 10px !important;
+}
+
+.button-create-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.button-create {
+  border: 1px solid var(--btn-secundary-border-color);
+}

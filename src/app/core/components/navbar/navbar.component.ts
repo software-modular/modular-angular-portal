@@ -14,7 +14,9 @@ export class NavbarComponent {
   readonly MENU_OPTION_TYPE = "MENU";
   readonly USERPROFILE_OPTION_TYPE = "USER_PROFILE_MENU";
   showCustomUserprofileOption: boolean = false;
-  showCustomMenus: boolean = false;
+  showCustomMenus: Boolean = false;
+  @Input() showCustomProfileMenu: Boolean = false;
+  @Input() showBtnLogin: Boolean = true;
 
 
   @Input() configuration: NavbarConfiguration = {
@@ -63,10 +65,6 @@ export class NavbarComponent {
 
   showCustomProfile() {
     this.showCustomUserprofileOption = !(this.showCustomUserprofileOption);
-  }
-
-  showUserProfileMenu(): Boolean {
-    return this.navbarService.getShowUserProfileMenu() && this.navbarService.getUserIsLogin();
   }
 
   logout() {

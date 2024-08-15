@@ -80,7 +80,7 @@
         </div>
       </div>
     </div>
-    <button *ngIf="showUserProfileMenu()" class="btn btn-menu" (click)="showCustomMenu()">Menu
+    <button *ngIf="showCustomProfileMenu" class="btn btn-menu" (click)="showCustomMenu()">Menu
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
         viewBox="0 0 16 16">
         <path fill-rule="evenodd"
@@ -90,7 +90,7 @@
   </div>
   <div class="custom-topbar-userprofile-container">
     <!--UseProfileOptions-->
-    <div *ngIf="showUserProfileMenu()" class="custom-userprofile-dialog">
+    <div *ngIf="showCustomProfileMenu" class="custom-userprofile-dialog">
       <div *ngIf="showCustomUserprofileOption" class="custom-userprofile-options-container">
         <div class="custom-userprofile-elements-container">
           <div class="custom-userprofile-option-container">
@@ -114,17 +114,17 @@
         </div>
       </div>
     </div>
-    <div *ngIf="showUserProfileMenu()" class="custom-topbar-userprofile-name-container">
+    <div *ngIf="showCustomProfileMenu" class="custom-topbar-userprofile-name-container">
       <label>
         {{getEmailShort()}}
       </label>
     </div>
-    <div *ngIf="showUserProfileMenu()" class="custom-topbar-username-short-container">
+    <div *ngIf="showCustomProfileMenu" class="custom-topbar-username-short-container">
       <label class="custom-topbar-username-short-label">
         {{getInitialLettersName()}}
       </label>
     </div>
-    <div *ngIf="showUserProfileMenu()" class="custom-topbar-userprofile-actions">
+    <div *ngIf="showCustomProfileMenu" class="custom-topbar-userprofile-actions">
       <button class="btn" (click)="showCustomProfile()">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
           viewBox="0 0 16 16">
@@ -133,7 +133,7 @@
         </svg>
       </button>
     </div>
-    <div *ngIf="!showUserProfileMenu()" class="custom-topbar-userprofile-logion">
+    <div *ngIf="showBtnLogin" class="custom-topbar-userprofile-logion">
       <button class="btn" (click)="login()">
         <i class="fa fa-user" aria-hidden="true"></i>
         &nbsp;&nbsp;&nbsp;Iniciar sesión

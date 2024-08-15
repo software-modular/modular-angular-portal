@@ -12,7 +12,6 @@ const routes: Routes = [
   { path: '', redirectTo: 'portal', pathMatch: 'full' },
   {
     path: 'portal', component: BodyComponent, children: [
-      { path: '', component: AgrappProjectsRegisterComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'user/profile', component: UserProfileComponent, canActivate: [authenticationGuard()] },

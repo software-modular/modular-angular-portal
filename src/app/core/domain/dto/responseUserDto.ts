@@ -8,5 +8,6 @@ export interface ResponseUserDto {
   phone?: string,
   address?: string,
   date_of_birth?: string,
-  is_active?: Boolean
+  is_active?: Boolean,
+  is_staff?: Boolean
 }

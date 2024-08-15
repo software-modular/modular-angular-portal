@@ -52,6 +52,15 @@ label {
   color: white !important;
 }
 
+.mat-mdc-table {
+  background-color: white !important;
+}
+
+.mat-mdc-paginator-container {
+  background-color: white !important;
+}
+
+
 .btn-primary {
   background-color: var(--btn-primary-background);
 }

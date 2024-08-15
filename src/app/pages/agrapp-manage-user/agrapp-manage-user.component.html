@@ -4,23 +4,99 @@
       <div class="row agrapp-user-management-table-header-container">
         <div class="col-md-12">
           <div class="agrapp-user-management-table-title">
-            <label>Titulo</label>
+            <label>Administración de usuarios</label>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="agrapp-user-management-table-filter">
+                <form [formGroup]="formGroup">
+                  <mat-form-field [ngClass]="'dynamic-form-field-container'">
+                    <mat-label>Tipo de usuario</mat-label>
+                    <mat-select formControlName="typeUser">
+                      <mat-option *ngFor="let option of typeUserOptions" [value]="option.value">
+                        {{option.label}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formGroup.get('typeUser')?.invalid
+                  && (formGroup.get('typeUser')?.dirty
+                  || formGroup.get('typeUser')?.touched)">
+                      <label>
+                        El campo tipo de usuario es obligatorio</label>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field [ngClass]="'dynamic-form-field-container'">
+                    <mat-label>Filtro..</mat-label>
+                    <input matInput placeholder="Filtro">
+                  </mat-form-field>
+                </form>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="button-create-container">
+                <button class="btn btn-primary">
+                  <i class="fa fa-plus-circle"></i>&nbsp;&nbsp; Usuario
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-md-12">
           <div class="card">
-            <p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
-              <ng-template pTemplate="header">
-                <tr>
-                  <th>Code</th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-product>
-                <tr>
-                  <td>{{ product }}</td>
-                </tr>
-              </ng-template>
-            </p-table>
+            <table mat-table [dataSource]="dataSourceUsers" class="mat-elevation-z8">
+              <ng-container matColumnDef="Nombre">
+                <th mat-header-cell *matHeaderCellDef class="table-content"> FileName </th>
+                <td mat-cell *matCellDef="let user" class="table-content">
+                  {{user.user.name}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="Correo">
+                <th mat-header-cell *matHeaderCellDef class="table-content"> Correo </th>
+                <td mat-cell *matCellDef="let user" class="table-content">
+                  {{user.user.email }} </td>
+              </ng-container>
+              <ng-container matColumnDef="Identificación">
+                <th mat-header-cell *matHeaderCellDef class="table-content"> Identificación </th>
+                <td mat-cell *matCellDef="let user" class="table-content">
+                  {{user.user.document_id }} </td>
+              </ng-container>
+              <ng-container matColumnDef="Telefono">
+                <th mat-header-cell *matHeaderCellDef class="table-content"> Telefono </th>
+                <td mat-cell *matCellDef="let user" class="table-content">
+                  {{user.user.phone }} </td>
+              </ng-container>
+              <ng-container matColumnDef="Dirección">
+                <th mat-header-cell *matHeaderCellDef class="table-content"> Dirección </th>
+                <td mat-cell *matCellDef="let user" class="table-content">
+                  {{user.user.address }} </td>
+              </ng-container>
+              <ng-container matColumnDef="Activo">
+                <th mat-header-cell *matHeaderCellDef class="table-content"> Activo </th>
+                <td mat-cell *matCellDef="let user" class="table-content">
+                  {{user.user.is_active ? 'SI':'NO' }} </td>
+              </ng-container>
+              <ng-container matColumnDef="Actions">
+                <th mat-header-cell *matHeaderCellDef class="table-content"> Acciones </th>
+                <td mat-cell *matCellDef="let user" class="table-content">
+                  <button mat-mini-fab type="button" class="btn button-action">
+                    <i class="fa fa-pencil-square" style="font-size: 20px;"></i>
+                  </button>
+                  <button mat-mini-fab color="warn" type="button" class="btn button-action">
+                    <i class="fa fa-trash" style="font-size: 20px;"></i>
+                  </button>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="columns"></tr>
+              <tr mat-row *matRowDef="let rowUser; columns: columns;"></tr>
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter
+                </td>
+              </tr>
+            </table>
+            <br>
+            <mat-paginator #paginatorUsers [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons
+              aria-label="Select page" [pageSize]="5" (page)="onPageTableOigChange($event)"></mat-paginator>
           </div>
         </div>
       </div>
