@@ -64,6 +64,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { authenticationInterceptor } from './core/interceptors/authentication.interceptor';
 import { AgrappManageUserComponent } from './pages/agrapp-manage-user/agrapp-manage-user.component';
 import { TableModule } from 'primeng/table';
+import { UserModalComponent } from './components/agrapp-modals/user-modal/user-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +93,8 @@ import { TableModule } from 'primeng/table';
     UserProfileComponent,
     EditUserComponent,
     DynamicFormComponent,
-    AgrappManageUserComponent
+    AgrappManageUserComponent,
+    UserModalComponent
   ],
   imports: [
     BrowserModule,

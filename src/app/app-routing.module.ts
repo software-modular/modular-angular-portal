@@ -16,6 +16,7 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'user/profile', component: UserProfileComponent, canActivate: [authenticationGuard()] },
       { path: 'user/management', component: AgrappManageUserComponent, canActivate: [authenticationGuard()] },
+      { path: 'home', component: AgrappProjectsRegisterComponent, canActivate: [authenticationGuard()] },
     ]
   }
 

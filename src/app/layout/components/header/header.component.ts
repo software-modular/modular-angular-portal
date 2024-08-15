@@ -18,8 +18,6 @@ import { ResponseClientDto } from '../../../core/domain/dto/responseClientDto';
 export class HeaderComponent implements OnInit {
   navbarConfiguration: NavbarConfiguration = {}
 
-  showCustomProfileMenu: Boolean = false;
-  showBtnLogin: Boolean = false;
 
   constructor(
     private router: Router,
@@ -37,13 +35,13 @@ export class HeaderComponent implements OnInit {
     if (this.authenticationService.userIsAuthenticated()) {
       let userData: ResponseClientDto = this.authenticationService.getUserAuthenticated();
       if (userData.user !== undefined) {
-        this.showCustomProfileMenu = true
-        this.showBtnLogin = false;
-      } else {
-        this.showCustomProfileMenu = false
-        this.showBtnLogin = true;
-        this.redirect('/portal/login');
+        this.navbarService.showUserProfileMenu(true);
+        this.navbarService.showLoginBtn(false);
       }
+    } else {
+      this.navbarService.showUserProfileMenu(false);
+      this.navbarService.showLoginBtn(true);
+      this.redirect('/portal/login');
     }
   }
 
@@ -87,8 +85,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.navbarService.setUserIsLogin(false);
     this.navbarService.showUserProfileMenu(false);
+    this.navbarService.showLoginBtn(true);
     this.authenticationService.logoutUser();
     this.redirect('/portal/login');
   }

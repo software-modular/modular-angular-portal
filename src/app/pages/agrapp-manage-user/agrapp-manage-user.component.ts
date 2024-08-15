@@ -26,7 +26,9 @@ export class AgrappManageUserComponent {
   @ViewChild('sortUsers') sortOig!: MatSort;
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder
+  ) {
     this.formGroup = this.formBuilder.group({
       typeUser: ["", [Validators.required]],
       filter: ["", []]

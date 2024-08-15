@@ -57,7 +57,6 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
   }
 
   updateUserProfile() {
-    debugger
     this.showMessageDialog("Actualizacion de perfil", "Perfil actualizado")
     this.eventAfterUpdateProfile()
   }

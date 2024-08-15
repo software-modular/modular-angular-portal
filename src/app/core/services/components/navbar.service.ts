@@ -8,6 +8,7 @@ export class NavbarService {
 
   private userIsLogin: Boolean = false;
   private showUserInformationProfile: Boolean = false;
+  private showBtnLogin: Boolean = true;
   private userInformation: NabvarUserInformation = {
     name: "Usuario test",
     username: "UsuarioTest"
@@ -37,5 +38,13 @@ export class NavbarService {
 
   public getUserIsLogin(): Boolean {
     return this.userIsLogin;
+  }
+
+  public showLoginBtn(show: Boolean) {
+    this.showBtnLogin = show;
+  }
+
+  public getShowBtnLogin() {
+    return this.showBtnLogin;
   }
 }

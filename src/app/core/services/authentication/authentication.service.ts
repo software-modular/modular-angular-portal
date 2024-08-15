@@ -35,10 +35,18 @@ export class AuthenticationService {
       if (response.data?.client !== undefined) {
         this.localStorageTokenService.setUserData(response.data?.client);
       }
+      if (response.data?.staff !== undefined) {
+        this.localStorageTokenService.setUserData(response.data?.staff);
+      }
     }
     return new Promise((resolve, reject) => {
       if (response.data?.client !== undefined) {
         resolve(response.data.client);
+        return;
+      }
+      if (response.data?.staff !== undefined) {
+        resolve(response.data.staff);
+        return;
       }
       reject(response);
     });

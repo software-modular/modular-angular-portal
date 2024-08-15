@@ -25,7 +25,7 @@ export class LoginComponent {
   constructor(
     private dynamicFormService: DynamicFormService,
     private authenticationService: AuthenticationService,
-    private nabvarService: NavbarService,
+    private navbarService: NavbarService,
     private router: Router
   ) {
     this.dynamicFormInput = {
@@ -48,10 +48,11 @@ export class LoginComponent {
             name: userInformation.user.name || '',
             username: userInformation.user.email || ''
           }
-          this.nabvarService.setUserInformation(userInformationNabvar);
-          this.nabvarService.showUserProfileMenu(true);
-          this.nabvarService.setUserIsLogin(true);
-          this.router.navigate(['/portal']);
+          this.navbarService.setUserInformation(userInformationNabvar);
+          this.navbarService.setUserIsLogin(true);
+          this.navbarService.showUserProfileMenu(true);
+          this.navbarService.showLoginBtn(false);
+          this.router.navigate(['/portal/home']);
         }
       })
       .catch((err) => {
