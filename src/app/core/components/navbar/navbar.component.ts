@@ -62,8 +62,6 @@ export class NavbarComponent {
   }
 
   showCustomProfile() {
-
-    debugger
     this.showCustomUserprofileOption = true;
   }
 
@@ -76,11 +74,16 @@ export class NavbarComponent {
   }
 
   logout() {
+    this.showCustomUserprofileOption = false;
     this.logoutEvent.emit("Evento boton cerrar sesión");
   }
 
   login() {
     this.loginEvent.emit("Evento boton login")
+  }
+
+  selectProfileOptionEvent(){
+    this.showCustomUserprofileOption = false;
   }
 
   private getEmail(): string {

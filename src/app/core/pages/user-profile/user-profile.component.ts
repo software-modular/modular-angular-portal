@@ -5,10 +5,11 @@ import { ListOptionFieldForm } from '../../domain/beans/ListOptioFieldForm';
 import { TextFieldForm } from '../../domain/beans/textFieldForm';
 import { ResponseClientDto } from '../../domain/dto/responseClientDto';
 import { TypeInputForm } from '../../domain/enum/TypeInputForm';
-import { ClientService } from '../../services/client/client.service';
+import { UserService } from '../../services/client/user.service';
 import { DynamicFormService } from '../../services/components/dynamic-form.service';
 import { typeIdentificationOptions } from '../../utils/TypeIdentification';
 import { ConfirmationService } from 'primeng/api';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
   selector: 'user-profile',
@@ -22,8 +23,8 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
 
   constructor(
     private dynamiFormService: DynamicFormService,
-    private clientService: ClientService,
     private confirmationService: ConfirmationService,
+    private authenticationService: AuthenticationService
   ) {
     this.loadUserInfo()
   }
@@ -72,22 +73,7 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
   }
 
   private getUserInfo(): ResponseClientDto {
-    //se debe hacer peticion http para obtener la info del usuario{
-    return {
-      code_client: 10,
-      user: {
-        document_id: "36985274",
-        type_ide: "CC",
-        type_user: "CL",
-        profile_picture: "",
-        name: "test",
-        email: "testt@gmail.com",
-        phone: "3182665741",
-        address: "carerras",
-        date_of_birth: "2024-08-15",
-        is_active: true
-      }
-    }
+    return this.authenticationService.getUserAuthenticated()
   }
 
 

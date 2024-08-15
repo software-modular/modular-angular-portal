@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ClientService {
+export class UserService {
   headers = new HttpHeaders({
     'Content-Type': 'application/json'
   });
@@ -16,6 +16,16 @@ export class ClientService {
 
   findClientById(id: string): Observable<any> {
     let url = `${environment.api.host}${environment.api.endpoints.users.getClientById.replace('%s', id)}`
+    return this.httpClientService.get(url, this.headers);
+  }
+
+  findAllStaffs() {
+    let url = `${environment.api.host}${environment.api.endpoints.users.getAllStaff}`
+    return this.httpClientService.get(url, this.headers);
+  }
+
+  findAllClients() {
+    let url = `${environment.api.host}${environment.api.endpoints.users.getAllClient}`
     return this.httpClientService.get(url, this.headers);
   }
 }

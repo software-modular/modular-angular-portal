@@ -1,7 +1,7 @@
-import { LocalStorageTokenService } from './../storage/local-storage-token.service';
 import { Injectable } from '@angular/core';
 import { firstValueFrom, Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
+import { JwtContent } from '../../domain/beans/jwtContent';
 import { ResponseClientDto } from '../../domain/dto/responseClientDto';
 import { ResponseLoginDto } from '../../domain/dto/responseLoginDto';
 import { ClientRegisterData } from '../../domain/entity/ClientRegister';
@@ -10,7 +10,7 @@ import { TypeAuthenticator } from '../../domain/enum/TypeAuthenticator';
 import { TypeAuthenticatorUtils } from '../../utils/TypeAuthenticatorUtils';
 import { Authenticator } from '../contracts/Authenticator';
 import { AuthenticatorFactory } from '../factory/AuthenticatorFactory';
-import { JwtContent } from '../../domain/beans/jwtContent';
+import { LocalStorageTokenService } from './../storage/local-storage-token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +69,10 @@ export class AuthenticationService {
 
   getAuthenticationToken(): string {
     return this.localStorageTokenService.getToken();
+  }
+
+  getRefreshToken(): string {
+    return this.localStorageTokenService.getRefreshToken();
   }
 
   getTokenData(): JwtContent {

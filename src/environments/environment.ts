@@ -15,7 +15,9 @@ export const environment = {
         inactivate: "/inactivate/",
         client: "/users/client/",
         createClient: "/users/client/create/",
-        getClientById: "/users/client/%s/"
+        getClientById: "/users/client/%s/",
+        getAllStaff: "/users/staff/?page=",
+        getAllClient: "/users/client/?page="
       }
     }
   },

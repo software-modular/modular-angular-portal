@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 import { NavbarConfiguration } from '../../../core/domain/beans/navbarConfiguration';
 import { NavbarOption } from '../../../core/domain/beans/navbarOption';
-import { environment } from '../../../../environments/environment';
+import { ResponseClientDto } from '../../../core/domain/dto/responseClientDto';
 import { getTypeNavbarByName } from '../../../core/domain/enum/TypeNavbar';
-import { Router } from '@angular/router';
 import { AuthenticationService } from '../../../core/services/authentication/authentication.service';
 import { NavbarService } from '../../../core/services/components/navbar.service';
-import { ClientService } from '../../../core/services/client/client.service';
-import { JwtContent } from '../../../core/domain/beans/jwtContent';
-import { ResponseClientDto } from '../../../core/domain/dto/responseClientDto';
+import { NabvarUserInformation } from '../../../core/domain/beans/navbarUserInformation';
 
 @Component({
   selector: 'app-header',
@@ -28,15 +27,20 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.loadUserData();
     this.loadNavbarConfiguration();
-
   }
 
   private loadUserData() {
     if (this.authenticationService.userIsAuthenticated()) {
       let userData: ResponseClientDto = this.authenticationService.getUserAuthenticated();
       if (userData.user !== undefined) {
+        let userInformationNabvar: NabvarUserInformation = {
+          name: userData.user.name || '',
+          username: userData.user.email || ''
+        }
+        this.navbarService.setUserInformation(userInformationNabvar);
         this.navbarService.showUserProfileMenu(true);
         this.navbarService.showLoginBtn(false);
+
       }
     } else {
       this.navbarService.showUserProfileMenu(false);

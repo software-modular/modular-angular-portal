@@ -58,6 +58,13 @@ export class LocalStorageTokenService implements ILocalStorageToken {
     localStorage.setItem(LocalStorageTokenNames.REFRESH_TOKEN_KEY, refreshToken);
   }
 
+  getRefreshToken(): string {
+    if (typeof window !== 'undefined') {
+      return `${localStorage.getItem(LocalStorageTokenNames.REFRESH_TOKEN_KEY)}`;
+    }
+    return '';
+  }
+
   removeRefreshToken(): void {
     localStorage.removeItem(LocalStorageTokenNames.REFRESH_TOKEN_KEY);
   }
@@ -70,7 +77,7 @@ export class LocalStorageTokenService implements ILocalStorageToken {
     return JSON.parse(localStorage.getItem(LocalStorageTokenNames.USER_INFO) ?? '{}');
   }
 
-  removeUserData(){
+  removeUserData() {
     localStorage.removeItem(LocalStorageTokenNames.USER_INFO);
   }
 }
