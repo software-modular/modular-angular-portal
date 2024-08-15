@@ -66,7 +66,7 @@ export const environment = {
         disableOption: false,
         cssClass: "",
         cssStyle: "",
-        urlRedirect: "/portal/user-profile",
+        urlRedirect: "/portal/user/profile",
         icon: "fa-solid fa-user-pen",
         type: "USER_PROFILE_MENU"
       }

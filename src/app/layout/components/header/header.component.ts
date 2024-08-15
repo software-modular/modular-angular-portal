@@ -8,6 +8,7 @@ import { AuthenticationService } from '../../../core/services/authentication/aut
 import { NavbarService } from '../../../core/services/components/navbar.service';
 import { ClientService } from '../../../core/services/client/client.service';
 import { JwtContent } from '../../../core/domain/beans/jwtContent';
+import { ResponseClientDto } from '../../../core/domain/dto/responseClientDto';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,6 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private navbarService: NavbarService,
-    private clienService: ClientService,
   ) { }
 
   ngOnInit(): void {
@@ -32,19 +32,15 @@ export class HeaderComponent implements OnInit {
 
   private loadUserData() {
     if (this.authenticationService.userIsAuthenticated()) {
-      let data: JwtContent = this.authenticationService.getTokenData();
-      this.clienService.findClientById(data.user_document_id).subscribe({
-        next: (data) => {
-          this.navbarService.setUserIsLogin(true);
-          this.navbarService.showUserProfileMenu(true)
-        },
-        error: (err) => {
-          this.navbarService.setUserIsLogin(false);
-          this.navbarService.showUserProfileMenu(false)
-          this.redirect('/portal/login');
-        }
-      })
-
+      let userData: ResponseClientDto = this.authenticationService.getUserAuthenticated();
+      if (userData.user !== undefined) {
+        this.navbarService.setUserIsLogin(true);
+        this.navbarService.showUserProfileMenu(true)
+      } else {
+        this.navbarService.setUserIsLogin(false);
+        this.navbarService.showUserProfileMenu(false)
+        this.redirect('/portal/login');
+      }
     }
   }
 

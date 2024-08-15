@@ -62,6 +62,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { authenticationInterceptor } from './core/interceptors/authentication.interceptor';
+import { AgrappManageUserComponent } from './pages/agrapp-manage-user/agrapp-manage-user.component';
+import { TableModule } from 'primeng/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,7 +91,8 @@ import { authenticationInterceptor } from './core/interceptors/authentication.in
     InputNumberComponent,
     UserProfileComponent,
     EditUserComponent,
-    DynamicFormComponent
+    DynamicFormComponent,
+    AgrappManageUserComponent
   ],
   imports: [
     BrowserModule,
@@ -129,7 +132,8 @@ import { authenticationInterceptor } from './core/interceptors/authentication.in
     HttpClientModule,
     InputNumberModule,
     ConfirmDialogModule,
-    ToastModule
+    ToastModule,
+    TableModule
   ],
   providers: [
     provideClientHydration(),

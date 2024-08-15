@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AgrappCardInput } from '../../core/domain/beans/agrappCardInput';
 
 @Component({
-  selector: 'app-agrapp-projects',
+  selector: 'agrapp-projects',
   templateUrl: './agrapp-projects.component.html',
   styleUrl: './agrapp-projects.component.css'
 })

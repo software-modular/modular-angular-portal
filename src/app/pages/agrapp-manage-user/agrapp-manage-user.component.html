@@ -1,0 +1,29 @@
+<div class="agrapp-user-management-container">
+  <div class="agrapp-user-management-body-container">
+    <div class="agrapp-user-management-table-container">
+      <div class="row agrapp-user-management-table-header-container">
+        <div class="col-md-12">
+          <div class="agrapp-user-management-table-title">
+            <label>Titulo</label>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="card">
+            <p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Code</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-product>
+                <tr>
+                  <td>{{ product }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

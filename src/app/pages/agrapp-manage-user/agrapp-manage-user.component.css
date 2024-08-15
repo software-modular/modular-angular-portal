@@ -1,0 +1,23 @@
+.agrapp-user-management-container {
+  display: flex;
+}
+
+.agrapp-user-management-body-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.agrapp-user-management-table-header-container {
+  padding: 50px;
+}
+
+.agrapp-user-management-table-container {
+  width: 100%;
+}
+
+.agrapp-user-management-table-title {
+  padding-bottom: 50px;
+  font-size: 28px;
+  font-weight: 700;
+}

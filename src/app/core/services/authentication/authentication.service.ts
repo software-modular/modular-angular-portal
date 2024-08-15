@@ -1,3 +1,4 @@
+import { LocalStorageTokenService } from './../storage/local-storage-token.service';
 import { Injectable } from '@angular/core';
 import { firstValueFrom, Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
@@ -9,7 +10,6 @@ import { TypeAuthenticator } from '../../domain/enum/TypeAuthenticator';
 import { TypeAuthenticatorUtils } from '../../utils/TypeAuthenticatorUtils';
 import { Authenticator } from '../contracts/Authenticator';
 import { AuthenticatorFactory } from '../factory/AuthenticatorFactory';
-import { LocalStorageTokenService } from '../storage/local-storage-token.service';
 import { JwtContent } from '../../domain/beans/jwtContent';
 
 @Injectable({
@@ -32,6 +32,9 @@ export class AuthenticationService {
     if (response.code == 200) {
       this.localStorageTokenService.setToken(response.data?.access || '');
       this.localStorageTokenService.setRefreshToken(response.data?.refresh || '');
+      if (response.data?.client !== undefined) {
+        this.localStorageTokenService.setUserData(response.data?.client);
+      }
     }
     return new Promise((resolve, reject) => {
       if (response.data?.client !== undefined) {
@@ -44,6 +47,7 @@ export class AuthenticationService {
   logoutUser() {
     this.localStorageTokenService.removeToken();
     this.localStorageTokenService.removeRefreshToken();
+    this.localStorageTokenService.removeUserData();
   }
 
   registerUser(userRegister: ClientRegisterData): Observable<any> {
@@ -63,6 +67,9 @@ export class AuthenticationService {
     return this.localStorageTokenService.decodeToken();
   }
 
+  getUserAuthenticated(): ResponseClientDto {
+    return this.localStorageTokenService.getUserData();
+  }
 
   private getAuthenticator(): Authenticator {
     return this.authenticator;

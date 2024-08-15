@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-agrapp-investments',
+  selector: 'agrapp-investments',
   templateUrl: './agrapp-investments.component.html',
   styleUrl: './agrapp-investments.component.css'
 })

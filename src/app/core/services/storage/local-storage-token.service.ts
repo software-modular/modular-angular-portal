@@ -3,6 +3,8 @@ import { JwtContent } from '../../domain/beans/jwtContent';
 import { LocalStorageTokenNames } from '../../domain/enum/LocalStorageTokenNames';
 
 import { ILocalStorageToken } from '../contracts/ILocalStorageToken';
+import { ResponseUserDto } from '../../domain/dto/responseUserDto';
+import { ResponseClientDto } from '../../domain/dto/responseClientDto';
 
 @Injectable({
   providedIn: 'root'
@@ -58,5 +60,17 @@ export class LocalStorageTokenService implements ILocalStorageToken {
 
   removeRefreshToken(): void {
     localStorage.removeItem(LocalStorageTokenNames.REFRESH_TOKEN_KEY);
+  }
+
+  setUserData(user: ResponseClientDto): void {
+    localStorage.setItem(LocalStorageTokenNames.USER_INFO, JSON.stringify(user));
+  }
+
+  getUserData(): ResponseClientDto {
+    return JSON.parse(localStorage.getItem(LocalStorageTokenNames.USER_INFO) ?? '{}');
+  }
+
+  removeUserData(){
+    localStorage.removeItem(LocalStorageTokenNames.USER_INFO);
   }
 }
