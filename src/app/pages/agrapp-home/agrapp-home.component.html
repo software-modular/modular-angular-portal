@@ -1,21 +1,35 @@
+<!-- Inicio -->
 <div class="background">
     <div class="content">
         <h1>¿Buscas donde hacer crecer tu dinero?</h1>
         <div class="cta">
             <span>Conoce Agrofin</span>
-            <span class="arrow">&#x2193;</span> <!-- Flecha hacia abajo -->
+            <a class="arrow" href="#description"><span class="arrow">&#x2193;</span> <!-- Flecha hacia abajo -->
+            </a>
         </div>
     </div>
 </div>
-
 <!-- Nueva sección para la descripción -->
-<section class="description">
+<section class="description" id="description">
     <div class="card">
+        <app-agrapp-home-animations style="text-align: center;" />
         <h2>Agrofin</h2>
-        <p>Es una Aplicación Web que permite a las personas rentabilizar una inversión
-           con un enfoque social, conectandolos con proyectos de agroinversión.</p>
-        <p>Puedes financiar proyectos de cultivo de consumo local o de expotación
-            de uno o varios agricultores.</p>
-        <p>Puedes precomprar la cosecha a un precio preferencial sobre la venta final.</p>
+        <p>Es una <strong>Aplicación Web</strong> que permite a las personas rentabilizar una inversión
+            con un enfoque social, conectandolos con proyectos del agro.</p>
+        <p>Puedes <strong>financiar proyectos</strong> de cultivo para consumo local o de expotación,
+            los cuales te ofrecen un <strong>%</strong> de rentabilidad <strong>E.A.</strong>
+            O <strong>precomprar</strong> la cosecha a un <strong>precio preferencial</strong> sobre la venta final.</p>
+        <div class="cta">
+            <a class="arrow" href="#calculator"><span class="arrow">&#x2193;</span> <!-- Flecha hacia abajo -->
+            </a>
+        </div>
     </div>
 </section>
+<!-- seccion para la calculadora de rendimientos -->
+<h4 id="calculator" style="margin-top: 7rem;">... Animate, financia un agricultar y particpa en proyectos rentables ...
+</h4>
+<agrapp-projects-register></agrapp-projects-register>
+<div class="cta">
+    <a class="arrow" href="#description"><span class="arrow">&#x2193;</span> <!-- Flecha hacia abajo -->
+    </a>
+</div>
