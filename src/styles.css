@@ -21,6 +21,8 @@
   --btn-secundary-background-hover: rgb(162, 162, 162);
   --btn-secundary-background-disable: rgb(98, 98, 98);
   --btn-secundary-border-color: rgb(231 229 229);
+
+  --mdc-dialog-container-color: white;
 }
 
 html,
@@ -50,6 +52,10 @@ label {
   background-color: var(--btn-primary-background) !important;
   border-color: var(--btn-primary-background) !important;
   color: white !important;
+}
+
+::ng-deep .mat-mdc-dialog-surface {
+  background-color: white I !important;
 }
 
 .mat-mdc-table {

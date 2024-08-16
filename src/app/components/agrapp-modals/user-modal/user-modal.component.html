@@ -1,21 +1,18 @@
-<h2 mat-dialog-title>Upload Oig</h2>
-<mat-dialog-content style="overflow: auto;">
-  <div class="row">
-    <div class="col-md-12">
-      <dynamic-form></dynamic-form>
+<div class="modal-container">
+  <mat-dialog-content style="overflow: auto;">
+    <div class="dynamic-user-form-container">
+      <dynamic-form [data]="dynamicFormInput"></dynamic-form>
     </div>
-  </div>
-</mat-dialog-content>
-<mat-dialog-actions [align]="'center'">
-  <div class="row">
-    <div class="col-md-6">
-      <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
+  </mat-dialog-content>
+  <mat-dialog-actions [align]="'center'" class="modal-action-container">
+    <div class="row">
+      <div class="col-md-12 modal-buttons-container">
+        <button type="button" class="btn-modal btn btn-secondary" (click)="closeModal()">Cancelar</button>
+        <button *ngIf="data === undefined" type="button" class="btn-modal btn btn-primary" (click)="save()"
+          [disabled]="disableSaveButton()">
+          Guardar
+        </button>
+      </div>
     </div>
-    <div class="col-md-6">
-      <button mat-raised-button color="primary" type="button" (click)="save()">
-        Guardar
-      </button>
-    </div>
-
-  </div>
-</mat-dialog-actions>
+  </mat-dialog-actions>
+</div>

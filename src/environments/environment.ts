@@ -17,7 +17,9 @@ export const environment = {
         createClient: "/users/client/create/",
         getClientById: "/users/client/%s/",
         getAllStaff: "/users/staff/?page=",
-        getAllClient: "/users/client/?page="
+        createStaff: "/users/staff/create/",
+        getAllClient: "/users/client/?page=",
+        deleteUser: "/users/client/delete/%s"
       }
     }
   },
@@ -30,13 +32,13 @@ export const environment = {
     typeNavbar: "CUSTOM",
     navbarOptions: [
       {
-        name: "Invierte",
-        redirect: false,
+        name: "Administrar usuarios",
+        redirect: true,
         showOption: true,
         disableOption: false,
         cssClass: "",
         cssStyle: "",
-        urlRedirect: "",
+        urlRedirect: "portal/user/management",
         icon: "fa fa-line-chart",
         type: "MENU"
       },

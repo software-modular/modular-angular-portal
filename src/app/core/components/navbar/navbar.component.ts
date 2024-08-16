@@ -82,8 +82,12 @@ export class NavbarComponent {
     this.loginEvent.emit("Evento boton login")
   }
 
-  selectProfileOptionEvent(){
+  selectProfileOptionEvent() {
     this.showCustomUserprofileOption = false;
+  }
+
+  selectMenuOptionEvent() {
+    this.showCustomMenus = false;
   }
 
   private getEmail(): string {

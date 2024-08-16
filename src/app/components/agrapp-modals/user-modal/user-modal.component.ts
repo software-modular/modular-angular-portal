@@ -1,21 +1,172 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { AfterViewInit, Component, Inject } from '@angular/core';
+import { Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { DynamicFormInput } from '../../../core/domain/beans/dynamicFormInput';
+import { HiddenFieldForm } from '../../../core/domain/beans/hiddenFieldForm';
+import { InputForm } from '../../../core/domain/beans/InputForm';
+import { InputUserModal } from '../../../core/domain/beans/inputUserModal';
+import { ListOptionFieldForm } from '../../../core/domain/beans/ListOptioFieldForm';
+import { TextFieldForm } from '../../../core/domain/beans/textFieldForm';
+import { TypeClient } from '../../../core/domain/enum/TypeClient';
+import { TypeInputForm } from '../../../core/domain/enum/TypeInputForm';
+import { TypeModalMode } from '../../../core/domain/enum/TypeModalMode';
+import { DynamicFormService } from '../../../core/services/components/dynamic-form.service';
+import { typeIdentifications } from '../../../core/domain/const/TypeIdentification';
+import { UserTypeOptions } from '../../../core/domain/const/UserTypeOptions';
+import { ConfirmationService } from 'primeng/api';
+import { UserResgisterData } from '../../../core/domain/entity/UserRegister';
+import { ClientRegisterData } from '../../../core/domain/entity/ClientRegister';
+import { OptionInput } from '../../../core/domain/beans/OptionInput';
+import { UserService } from '../../../core/services/client/user.service';
 
 @Component({
   selector: 'app-user-modal',
   templateUrl: './user-modal.component.html',
   styleUrl: './user-modal.component.css'
 })
-export class UserModalComponent {
+export class UserModalComponent implements AfterViewInit {
 
-  constructor(public dialogRef: MatDialogRef<UserModalComponent>) {
+  modalTitle: string = "Usuario"
+  dynamicFormInput!: DynamicFormInput;
 
+  constructor(
+    public dialogRef: MatDialogRef<UserModalComponent>,
+    private dynamicFormService: DynamicFormService,
+    private confirmationService: ConfirmationService,
+    private userService: UserService,
+    @Inject(MAT_DIALOG_DATA) public data: InputUserModal
+  ) {
+    this.loadForm();
+  }
+
+
+  ngAfterViewInit(): void {
+    this.loadFormData();
+    this.loadMode();
+  }
+
+
+  loadForm() {
+    this.dynamicFormInput = {
+      title: this.modalTitle,
+      titleAling: "center",
+      fields: this.getFieldsForm(),
+      showFooter: false,
+      showBorder: false
+    }
+  }
+
+  loadFormData() {
+    if (this.data != undefined) {
+      this.dynamicFormService.setValueField("name", this.data.data.name);
+      this.dynamicFormService.setValueField("email", this.data.data.email);
+      this.dynamicFormService.setValueField("type_ide", this.data.data.type_ide);
+      this.dynamicFormService.setValueField("document_id", this.data.data.document_id);
+      this.dynamicFormService.setValueField("phone", this.data.data.phone);
+      this.dynamicFormService.setValueField("address", this.data.data.address);
+      this.dynamicFormService.setValueField("date_of_birth", this.data.data.date_of_birth);
+      this.dynamicFormService.setValueField("type_user", this.data.data.type_user);
+    }
+  }
+
+  loadMode() {
+    if (this.data !== undefined && TypeModalMode.VIEW === this.data.mode) {
+      this.modalTitle = "Usuario"
+      this.disableFieldsForm(true);
+    } else {
+      this.modalTitle = "Crear usuario";
+      this.disableFieldsForm(false);
+    }
+
+  }
+
+  private getFieldsForm(): InputForm<any>[] {
+    let typeUsers: OptionInput[] = [
+      {
+        label: "Administrador",
+        value: "ST"
+      },
+    ];
+    return [
+      new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, '', [Validators.required]),
+      new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.EMAIL, '', [Validators.required, Validators.email]),
+      new ListOptionFieldForm("Tipo de usuario", "Seleccione", "type_user", "", TypeInputForm.LIST_OPTION, typeUsers, []),
+      new ListOptionFieldForm("Tipo identificacion", "Seleccione", "type_ide", "",
+        TypeInputForm.LIST_OPTION, typeIdentifications, [Validators.required]),
+      new TextFieldForm("Identificación", "Escribe tu identificación", "document_id", "", TypeInputForm.NUMBER, '',
+        [Validators.required, Validators.minLength(7)]),
+      new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.NUMBER, '', [Validators.required]),
+      new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, '', [Validators.required]),
+      new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, '', [Validators.required]),
+      new HiddenFieldForm("", "", "is_active", "", TypeInputForm.HIDDEN, true),
+      new TextFieldForm("", "", "profile_picture", "", TypeInputForm.HIDDEN, "", []),
+      new HiddenFieldForm("", "", "is_staff", "", TypeInputForm.HIDDEN, false),
+
+    ];
+  }
+
+
+  disableFieldsForm(disable: Boolean) {
+    this.dynamicFormService.disableFieldByFormControlName("name", disable);
+    this.dynamicFormService.disableFieldByFormControlName("email", disable);
+    this.dynamicFormService.disableFieldByFormControlName("type_ide", disable);
+    this.dynamicFormService.disableFieldByFormControlName("phone", disable);
+    this.dynamicFormService.disableFieldByFormControlName("address", disable);
+    this.dynamicFormService.disableFieldByFormControlName("document_id", disable);
+    this.dynamicFormService.disableFieldByFormControlName("date_of_birth", disable);
+    this.dynamicFormService.disableFieldByFormControlName("type_user", disable);
   }
 
   closeModal() {
     this.dialogRef.close()
   }
 
-  save() { }
+  disableSaveButton() {
+    return !this.dynamicFormService.isValidForm();
+  }
+
+  save() {
+    let showError = (title: string, message: string) => this.showMessageDialog(title, message, false);
+    let userData = this.getClientRegisterData();
+    this.userService.createStaff(userData).subscribe({
+      next: (data) => {
+        this.showMessageDialog("Registro usuario", "Usuario creado", true)
+      }, error(err) {
+        debugger
+        showError("Registro usuario", `Ya existe un usuario con identificacion:${userData.user?.document_id}`);
+      }
+    });
+
+  }
+
+
+
+  private getClientRegisterData(): ClientRegisterData {
+    let formValue: UserResgisterData = JSON.parse(this.dynamicFormService.getJsonOfForm());
+    formValue.date_of_birth = formValue.date_of_birth?.split("T")[0];
+    let clientRegister: ClientRegisterData = {
+      user: formValue
+    }
+    if (formValue.type_user === "ST") {
+      clientRegister.ocupation_staff = 1;
+    }
+
+    return clientRegister;
+  }
+
+
+  private showMessageDialog(titleHeader: string, message: string, redirect: Boolean) {
+    this.confirmationService.confirm({
+      message: message,
+      header: titleHeader,
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: "none",
+      acceptLabel: "Continuar",
+      rejectVisible: false,
+      accept: () => {
+        this.closeModal();
+      }
+    });
+  }
 
 }

@@ -11,7 +11,7 @@ import { TypeClient } from '../../domain/enum/TypeClient';
 import { TypeInputForm } from '../../domain/enum/TypeInputForm';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { DynamicFormService } from '../../services/components/dynamic-form.service';
-import { typeIdentificationOptions } from '../../utils/TypeIdentification';
+import { typeIdentifications } from '../../domain/const/TypeIdentification';
 import { Router } from '@angular/router';
 import { Validators } from '@angular/forms';
 
@@ -70,7 +70,7 @@ export class RegisterComponent {
       new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.EMAIL, "", [Validators.required, Validators.email]),
       new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, "", [Validators.required]),
       new ListOptionFieldForm("Tipo identificacion", "Escribe tipo identificacion", "type_ide", "",
-        TypeInputForm.LIST_OPTION, typeIdentificationOptions, [Validators.required]),
+        TypeInputForm.LIST_OPTION, typeIdentifications, [Validators.required]),
       new TextFieldForm("Identificación", "Escribe tu identificación", "document_id", "", TypeInputForm.NUMBER, "", [Validators.required, Validators.minLength(7)]),
       new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.NUMBER, "", [Validators.required]),
       new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, "", [Validators.required]),

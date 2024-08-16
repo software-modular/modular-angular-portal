@@ -21,7 +21,7 @@ export class HttpClientService {
     return this.httpClient.put(url, data, { headers: headers });
   }
 
-  delete(url: string, headers: HttpHeaders, params: HttpParams): Observable<any> {
+  delete(url: string, headers: HttpHeaders, params?: HttpParams): Observable<any> {
     return this.httpClient.delete(url, { headers: headers, params: params })
   }
 }

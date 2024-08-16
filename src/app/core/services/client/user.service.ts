@@ -19,13 +19,26 @@ export class UserService {
     return this.httpClientService.get(url, this.headers);
   }
 
+  findAllClients() {
+    let url = `${environment.api.host}${environment.api.endpoints.users.getAllClient}`
+    return this.httpClientService.get(url, this.headers);
+  }
+
+  deleteClient(id: Number) {
+    let url = `${environment.api.host}${environment.api.endpoints.users.deleteUser}`.replace('%s', `${id}`);
+    return this.httpClientService.delete(url, this.headers);
+  }
+
+
   findAllStaffs() {
     let url = `${environment.api.host}${environment.api.endpoints.users.getAllStaff}`
     return this.httpClientService.get(url, this.headers);
   }
 
-  findAllClients() {
-    let url = `${environment.api.host}${environment.api.endpoints.users.getAllClient}`
-    return this.httpClientService.get(url, this.headers);
+  createStaff(data: any) {
+    let url = `${environment.api.host}${environment.api.endpoints.users.createStaff}`
+    return this.httpClientService.post(url, data, this.headers);
   }
+
+
 }

@@ -7,7 +7,7 @@ import { ResponseClientDto } from '../../domain/dto/responseClientDto';
 import { TypeInputForm } from '../../domain/enum/TypeInputForm';
 import { UserService } from '../../services/client/user.service';
 import { DynamicFormService } from '../../services/components/dynamic-form.service';
-import { typeIdentificationOptions } from '../../utils/TypeIdentification';
+import { typeIdentifications } from '../../domain/const/TypeIdentification';
 import { ConfirmationService } from 'primeng/api';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 
@@ -82,7 +82,7 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
       new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, userInfo.user.name ?? '', []),
       new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.TEXT, userInfo.user.email ?? '', []),
       new ListOptionFieldForm("Tipo identificacion", "Escribe tipo identificacion", "typeId", "",
-        TypeInputForm.LIST_OPTION, typeIdentificationOptions, []),
+        TypeInputForm.LIST_OPTION, typeIdentifications, []),
       new TextFieldForm("Identificación", "Escribe tu identificación", "identification", "", TypeInputForm.TEXT,
         userInfo.user.document_id ?? '', []),
       new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.TEXT, userInfo.user.phone ?? '', []),

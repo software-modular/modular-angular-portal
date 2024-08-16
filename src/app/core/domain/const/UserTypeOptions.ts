@@ -8,8 +8,5 @@ export const UserTypeOptions: OptionInput[] = [
   {
     label: "Cliente",
     value: "CL"
-  }, {
-    label: "Productor",
-    value: "CO"
-  }
+  },
 ]

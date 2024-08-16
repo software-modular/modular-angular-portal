@@ -28,14 +28,15 @@
                   </mat-form-field>
                   <mat-form-field [ngClass]="'dynamic-form-field-container'">
                     <mat-label>Filtro..</mat-label>
-                    <input matInput placeholder="Filtro">
+                    <input formControlName="filter" matInput placeholder="Filtro" #input
+                      (keyup)="applyFilterUsersTable()">
                   </mat-form-field>
                 </form>
               </div>
             </div>
             <div class="col-md-6">
               <div class="button-create-container">
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" (click)="createUser()">
                   <i class="fa fa-plus-circle"></i>&nbsp;&nbsp; Usuario
                 </button>
               </div>
@@ -79,10 +80,11 @@
               <ng-container matColumnDef="Actions">
                 <th mat-header-cell *matHeaderCellDef class="table-content"> Acciones </th>
                 <td mat-cell *matCellDef="let user" class="table-content">
-                  <button mat-mini-fab type="button" class="btn button-action">
-                    <i class="fa fa-pencil-square" style="font-size: 20px;"></i>
+                  <button mat-mini-fab type="button" class="btn button-action" (click)="viewUser(user)">
+                    <i class="fa fa-eye" style="font-size: 20px;"></i>
                   </button>
-                  <button mat-mini-fab color="warn" type="button" class="btn button-action">
+                  <button mat-mini-fab color="warn" type="button" class="btn button-action"
+                    (click)="deleteClient(user)">
                     <i class="fa fa-trash" style="font-size: 20px;"></i>
                   </button>
                 </td>
@@ -90,7 +92,7 @@
               <tr mat-header-row *matHeaderRowDef="columns"></tr>
               <tr mat-row *matRowDef="let rowUser; columns: columns;"></tr>
               <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell" colspan="4">No data matching the filter
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"
                 </td>
               </tr>
             </table>
@@ -102,4 +104,7 @@
       </div>
     </div>
   </div>
+</div>
+<div class="card flex justify-content-center gap-2">
+  <p-confirmDialog />
 </div>

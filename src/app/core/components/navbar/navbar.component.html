@@ -70,7 +70,12 @@
         <div class="custom-menu-container-option">
           <ng-container *ngFor="let option of configuration.options">
             <div class="custom-menu-option-container" *ngIf="option.type === MENU_OPTION_TYPE && option.showOption">
-              <a class="custom-menu-option" href="#">
+              <a *ngIf="option.redirect" class="custom-menu-option" [routerLink]="option.urlRedirect"
+                (click)="selectMenuOptionEvent()">
+                <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>&nbsp;
+                {{option.name}}
+              </a>
+              <a *ngIf="!option.redirect" class="custom-menu-option">
                 <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>&nbsp;
                 {{option.name}}
               </a>
