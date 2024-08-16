@@ -1,5 +1,8 @@
 .agrapp-user-management-container {
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 800px;
 }
 
 .agrapp-user-management-body-container {
