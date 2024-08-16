@@ -4,6 +4,10 @@
   min-height: 100vh;
 }
 
+.header-container {
+  padding-bottom: 10px;
+}
+
 .body-container {
   flex: 1;
 }

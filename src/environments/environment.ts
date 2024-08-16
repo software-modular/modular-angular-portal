@@ -2,6 +2,7 @@ export const environment = {
   production: false,
   configuration: {
     typeAuthenticator: "0",
+    defaultUrlRedirect: "portal/login"
   },
   api: {
     host: 'http://127.0.0.1:8000/api',
@@ -19,7 +20,9 @@ export const environment = {
         getAllStaff: "/users/staff/?page=",
         createStaff: "/users/staff/create/",
         getAllClient: "/users/client/?page=",
-        deleteUser: "/users/client/delete/%s"
+        deleteUser: "/users/client/delete/%s",
+        findAllProjects: "/projects/",
+        createProject: "/projects/create/"
       }
     }
   },
@@ -27,7 +30,7 @@ export const environment = {
     title: "Agro-Inversiones",
     srcLogo: "./assets/logo.png",
     logoRedirect: false,
-    urlLogoRedirect: "#",
+    urlLogoRedirect: "/portal/home",
     altLogo: "Agro-Inversiones",
     typeNavbar: "CUSTOM",
     navbarOptions: [
@@ -43,13 +46,13 @@ export const environment = {
         type: "MENU"
       },
       {
-        name: "Proyectos",
-        redirect: false,
+        name: "Administrar proyectos",
+        redirect: true,
         showOption: true,
         disableOption: false,
         cssClass: "",
         cssStyle: "",
-        urlRedirect: "",
+        urlRedirect: "portal/project/management",
         icon: "fa fa-address-card",
         type: "MENU"
       },

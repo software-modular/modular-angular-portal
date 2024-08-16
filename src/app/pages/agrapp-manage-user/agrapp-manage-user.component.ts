@@ -9,7 +9,7 @@ import { UserModalComponent } from '../../components/agrapp-modals/user-modal/us
 import { OptionInput } from '../../core/domain/beans/OptionInput';
 import { UserTypeOptions } from '../../core/domain/const/UserTypeOptions';
 import { ResponseClientDto } from '../../core/domain/dto/responseClientDto';
-import { ReesponseUserTableDto } from '../../core/domain/dto/responseUserTableDto';
+import { ResponseUserTableDto } from '../../core/domain/dto/responseUserTableDto';
 import { TypeClient } from '../../core/domain/enum/TypeClient';
 import { TypeModalMode } from '../../core/domain/enum/TypeModalMode';
 import { UserService } from '../../core/services/client/user.service';
@@ -83,7 +83,7 @@ export class AgrappManageUserComponent {
 
   getListUserStaff() {
     this.userService.findAllStaffs().subscribe({
-      next: (data: ReesponseUserTableDto) => {
+      next: (data: ResponseUserTableDto) => {
         this.updateUserListTable(data.results)
       },
       error: (err) => {
@@ -94,7 +94,7 @@ export class AgrappManageUserComponent {
 
   getListUserClient() {
     this.userService.findAllClients().subscribe({
-      next: (data: ReesponseUserTableDto) => {
+      next: (data: ResponseUserTableDto) => {
         this.updateUserListTable(data.results)
       },
       error: (err) => {
@@ -111,8 +111,6 @@ export class AgrappManageUserComponent {
   }
 
 
-
-
   deleteClient(user: ResponseClientDto) {
     if (user.code_client !== undefined) {
       this.userService.deleteClient(user.code_client).subscribe({
@@ -125,7 +123,7 @@ export class AgrappManageUserComponent {
     }
   }
 
-  onPageTableOigChange(event: any) {
+  onPageTableUsersChange(event: any) {
     this.dataSourceUsers.paginator!.pageIndex = event.pageIndex;
     this.dataSourceUsers.paginator!.pageSize = event.pageSize;
   }

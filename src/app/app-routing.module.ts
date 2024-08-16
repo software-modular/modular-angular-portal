@@ -8,6 +8,9 @@ import { BodyComponent } from './layout/components/body/body.component';
 import { authenticationGuard } from './core/guards/authentication.guard';
 import { AgrappManageUserComponent } from './pages/agrapp-manage-user/agrapp-manage-user.component';
 import { AgrappHomeComponent } from './pages/agrapp-home/agrapp-home.component';
+import { AgrappProjectsManagerComponent } from './pages/agrapp-projects-manager/agrapp-projects-manager.component';
+import { AgrappProjectsRegisterComponent } from './components/agrapp/agrapp-projects-register/agrapp-projects-register.component';
+import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'portal', pathMatch: 'full' },
@@ -17,6 +20,8 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'user/profile', component: UserProfileComponent, canActivate: [authenticationGuard()] },
       { path: 'user/management', component: AgrappManageUserComponent, canActivate: [authenticationGuard()] },
+      { path: 'project/management', component: AgrappProjectsManagerComponent, canActivate: [authenticationGuard()] },
+      { path: 'project', component: AgrappProjectsComponent, canActivate: [authenticationGuard()] },
       { path: 'home', component: AgrappHomeComponent },
     ]
   }

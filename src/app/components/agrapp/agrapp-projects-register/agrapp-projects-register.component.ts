@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
-import { AgrappCardInput } from '../../../core/domain/beans/agrappCardInput';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AgrappCardInput } from '../../../core/domain/beans/agrappCardInput';
+import { OptionInput } from '../../../core/domain/beans/OptionInput';
 import { cities, countries, deparments } from '../../../core/domain/const/Colombia';
+import { preOrderTypes } from '../../../core/domain/const/PreOrderTypes';
 import { typeGrounds } from '../../../core/domain/const/TypeGround';
 import { typeIdentifications } from '../../../core/domain/const/TypeIdentification';
-import { OptionInput } from '../../../core/domain/beans/OptionInput';
-import { preOrderTypes } from '../../../core/domain/const/PreOrderTypes';
+import { ProjectDto } from '../../../core/domain/dto/projectDto';
 
 @Component({
   selector: 'agrapp-projects-register',
@@ -44,13 +45,15 @@ export class AgrappProjectsRegisterComponent {
       partners: 1,
       funded: 200000,
       imgs: [
-        "https://perfectdailygrind.com/es/wp-content/uploads/sites/2/2019/11/coffee-farm.jpg",
-        "https://agrocode.com/wp-content/uploads/sites/2/2019/10/cultivo-cafe.jpg"
+        "/assets/img/carousel/img-carousel-not-found.svg",
       ]
     }
 
+
+  @Output() saveProjectEvent = new EventEmitter<any>();
+
   constructor(private formBuilder: FormBuilder) {
-    this.form = formBuilder.group({
+    this.form = this.formBuilder.group({
       projectName: ["", [Validators.required]],
       projectDescription: ["", [Validators.required]],
       projectHasPrePurchase: [false, [Validators.required]],
@@ -122,5 +125,75 @@ export class AgrappProjectsRegisterComponent {
         this.refreshCardData();
       }
     })
+  }
+
+  eventSaveProject() {
+    let project: ProjectDto = this.getProjectData();
+    debugger
+    this.saveProjectEvent.emit(project);
+  }
+
+  getProjectData(): ProjectDto {
+    return {
+      name: this.form.get("projectName")?.value,
+      description: this.form.get("projectDescription")?.value,
+      allow_prepurcharse: this.form.get("projectHasPrePurchase")?.value,
+      crop: {
+        country: this.form.get("cropCountry")?.value,
+        department: this.form.get("cropDepartment")?.value,
+        municipality: this.form.get("cropCity")?.value,
+        address: this.form.get("cropAddress")?.value,
+        type_of_ground: this.form.get("cropTypeGround")?.value,
+        number_of_hectares: this.form.get("cropHetares")?.value,
+        number_of_plants: this.form.get("cropNumberPlants")?.value,
+        cultivation_start_date: this.getDateFormat(this.form.get("cropStartDate")?.value ?? ''),
+        estimated_harvest_date: this.getDateFormat(this.form.get("cropEndDate")?.value ?? ''),
+        owner: {
+          wompi_public_key: this.form.get("wompiPublicKey")?.value,
+          wompi_private_key: this.form.get("wompiSecretKey")?.value,
+          user: {
+            document_id: this.form.get("producerIdValue")?.value,
+            type_ide: this.form.get("producerTypeId")?.value,
+            type_user: this.form.get("producerTypeId")?.value,
+            profile_picture: this.form.get("producerImgProfile")?.value,
+            name: this.form.get("producerName")?.value,
+            email: this.form.get("producerMail")?.value,
+            phone: this.form.get("producerPhone")?.value,
+            address: this.form.get("producerAddress")?.value,
+            date_of_birth: this.getDateFormat(this.form.get("producerBirthday")?.value ?? ''),
+            is_active: true
+          }
+        }
+      },
+      invesment: {
+        estimated_rate: this.form.get("investmentRate")?.value,
+        tir: this.form.get("investmentTir")?.value,
+        minimum_investment_amount: this.form.get("investmentMinAmount")?.value,
+        maximum_investment_amount: this.form.get("investmentMaxAmount")?.value,
+        total_expected_investment: this.form.get("investmentTargetAmount")?.value,
+        start_date: this.getDateFormat(this.form.get("investmentStartDate")?.value ?? ''),
+        end_date: this.getDateFormat(this.form.get("investmentEndDate")?.value ?? ''),
+      },
+      pre_purcharse: {
+        units: this.form.get("prePurchaseUnit")?.value,
+        minimum_amount: this.form.get("prePurchaseMinAmount")?.value,
+        maximum_amount: this.form.get("prePurchaseMaxAmount")?.value,
+        start_date: this.getDateFormat(this.form.get("prePurchaseStartDate")?.value ?? ''),
+        end_date: this.getDateFormat(this.form.get("prePurchaseEndDate")?.value ?? ''),
+      },
+      video_url: this.form.get("projectVideoUrl")?.value,
+      photo_1: this.form.get("projectImgs")?.value, // Puedes ajustar estos valores según tus necesidades
+      state: "ACT", // Puedes ajustar este valor según corresponda
+      start_date: this.getDateFormat(this.form.get("projectStartDate")?.value ?? ''),
+      end_date: this.getDateFormat(this.form.get("projectEndDate")?.value ?? '')
+    }
+
+  }
+
+  private getDateFormat(date: string) {
+    if (date !== undefined && date !== "") {
+      return date.split("T")[0];
+    }
+    return "";
   }
 }

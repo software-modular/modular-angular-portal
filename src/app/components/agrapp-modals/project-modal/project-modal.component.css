@@ -1,0 +1,27 @@
+.modal-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75vw;
+  height: 97vh;
+}
+
+.dynamic-user-form-container {
+  width: 70vw;
+}
+
+.modal-action-container {
+  width: 100%;
+}
+
+.btn-modal {
+  margin-left: 10px;
+}
+
+.modal-buttons-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

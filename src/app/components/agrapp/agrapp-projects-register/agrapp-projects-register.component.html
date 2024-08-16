@@ -189,12 +189,12 @@
                   <div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-text formControlName="investmentRate" [label]="'Rate estimado'" />
+                        <app-input-number formControlName="investmentRate" [label]="'Rate estimado'"></app-input-number>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-text formControlName="investmentTir" [label]="'TIR'" />
+                        <app-input-number formControlName="investmentTir" [label]="'TIR'"></app-input-number>
                       </div>
                     </div>
                     <div class="row">
@@ -305,7 +305,7 @@
                       <button mat-button matStepperPrevious>Atras</button>
                     </div>
                     <div class="col-md-6" style="text-align: right;">
-                      <button mat-button matStepperNext>Continuar</button>
+                      <button mat-button (click)="eventSaveProject()">Crear</button>
                     </div>
                   </div>
                 </div>

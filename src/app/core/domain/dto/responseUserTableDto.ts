@@ -1,6 +1,6 @@
 import { ResponseClientDto } from "./responseClientDto";
 
-export interface ReesponseUserTableDto {
+export interface ResponseUserTableDto {
   count?: Number,
   next?: string,
   previous?: string,

@@ -59,8 +59,10 @@
 <div *ngIf="configuration.typeNavbar=== 'CUSTOM'" class="custom-topbar-container">
   <div class="custom-topbar-container-logo">
     <div>
-      <img [src]="configuration.srcLogo" [alt]="configuration.altLogo"
-        class="custom-navbar-logo d-inline-block align-text-top">
+      <a [routerLink]="configuration.urlLogoRedirect">
+        <img [src]="configuration.srcLogo" [alt]="configuration.altLogo"
+          class="custom-navbar-logo d-inline-block align-text-top">
+      </a>
     </div>
   </div>
   <div class="custom-topbar-menu-container">

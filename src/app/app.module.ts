@@ -66,6 +66,8 @@ import { AgrappManageUserComponent } from './pages/agrapp-manage-user/agrapp-man
 import { TableModule } from 'primeng/table';
 import { UserModalComponent } from './components/agrapp-modals/user-modal/user-modal.component';
 import { AgrappHomeAnimationsComponent } from './components/agrapp/agrapp-home-animations/agrapp-home-animations.component';
+import { AgrappProjectsManagerComponent } from './pages/agrapp-projects-manager/agrapp-projects-manager.component';
+import { ProjectModalComponent } from './components/agrapp-modals/project-modal/project-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,7 +98,9 @@ import { AgrappHomeAnimationsComponent } from './components/agrapp/agrapp-home-a
     DynamicFormComponent,
     AgrappManageUserComponent,
     UserModalComponent,
-    AgrappHomeAnimationsComponent
+    AgrappHomeAnimationsComponent,
+    AgrappProjectsManagerComponent,
+    ProjectModalComponent
   ],
   imports: [
     BrowserModule,

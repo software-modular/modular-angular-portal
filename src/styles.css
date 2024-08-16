@@ -23,6 +23,9 @@
   --btn-secundary-border-color: rgb(231 229 229);
 
   --mdc-dialog-container-color: white;
+
+  --mat-dialog-container-max-width: auto;
+  --mat-dialog-container-max-height: auto;
 }
 
 html,
@@ -145,4 +148,15 @@ fieldset:disabled .btn {
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   border-radius: 12px;
   outline-color: transparent;
+}
+
+
+
+::ng-deep .mat-mdc-dialog-content {
+  height: 100% !important;
+  max-height: 100vh !important;
+}
+
+.mat-mdc-dialog-content {
+  max-height: 100vh !important;
 }

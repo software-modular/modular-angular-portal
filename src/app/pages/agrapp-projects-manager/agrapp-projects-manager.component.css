@@ -1,0 +1,62 @@
+.agrapp-projects-management-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 800px;
+}
+
+.agrapp-projects-management-body-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.agrapp-projects-management-table-header-container {
+  padding: 50px;
+}
+
+.agrapp-projects-management-table-container {
+  width: 100%;
+}
+
+.agrapp-projects-management-table-title {
+  padding-bottom: 50px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.agrapp-projects-management-table-filter {
+  display: flex;
+  flex-direction: row;
+}
+
+.dynamic-form-field-container {
+  padding-right: 10px;
+}
+
+.button-action {
+  font-size: 25px;
+  margin-left: 10px !important;
+}
+
+.button-create-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.button-create {
+  border: 1px solid var(--btn-secundary-border-color);
+}
+
+.card-table-container {
+  padding: 20px;
+  overflow: auto;
+}
+
+.agraap-table {}
+
+.field-filter {
+  width: 100% !important;
+}
+

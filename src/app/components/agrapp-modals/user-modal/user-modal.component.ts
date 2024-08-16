@@ -1,23 +1,21 @@
 import { AfterViewInit, Component, Inject } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ConfirmationService } from 'primeng/api';
 import { DynamicFormInput } from '../../../core/domain/beans/dynamicFormInput';
 import { HiddenFieldForm } from '../../../core/domain/beans/hiddenFieldForm';
 import { InputForm } from '../../../core/domain/beans/InputForm';
-import { InputUserModal } from '../../../core/domain/beans/inputUserModal';
 import { ListOptionFieldForm } from '../../../core/domain/beans/ListOptioFieldForm';
+import { OptionInput } from '../../../core/domain/beans/OptionInput';
 import { TextFieldForm } from '../../../core/domain/beans/textFieldForm';
-import { TypeClient } from '../../../core/domain/enum/TypeClient';
+import { typeIdentifications } from '../../../core/domain/const/TypeIdentification';
+import { ClientRegisterData } from '../../../core/domain/entity/ClientRegister';
+import { UserResgisterData } from '../../../core/domain/entity/UserRegister';
 import { TypeInputForm } from '../../../core/domain/enum/TypeInputForm';
 import { TypeModalMode } from '../../../core/domain/enum/TypeModalMode';
-import { DynamicFormService } from '../../../core/services/components/dynamic-form.service';
-import { typeIdentifications } from '../../../core/domain/const/TypeIdentification';
-import { UserTypeOptions } from '../../../core/domain/const/UserTypeOptions';
-import { ConfirmationService } from 'primeng/api';
-import { UserResgisterData } from '../../../core/domain/entity/UserRegister';
-import { ClientRegisterData } from '../../../core/domain/entity/ClientRegister';
-import { OptionInput } from '../../../core/domain/beans/OptionInput';
 import { UserService } from '../../../core/services/client/user.service';
+import { DynamicFormService } from '../../../core/services/components/dynamic-form.service';
+import { InputUserModal } from '../../../core/domain/beans/inputUserModal';
 
 @Component({
   selector: 'app-user-modal',
