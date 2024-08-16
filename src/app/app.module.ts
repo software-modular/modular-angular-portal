@@ -65,6 +65,7 @@ import { authenticationInterceptor } from './core/interceptors/authentication.in
 import { AgrappManageUserComponent } from './pages/agrapp-manage-user/agrapp-manage-user.component';
 import { TableModule } from 'primeng/table';
 import { UserModalComponent } from './components/agrapp-modals/user-modal/user-modal.component';
+import { AgrappHomeAnimationsComponent } from './components/agrapp/agrapp-home-animations/agrapp-home-animations.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,7 +95,8 @@ import { UserModalComponent } from './components/agrapp-modals/user-modal/user-m
     EditUserComponent,
     DynamicFormComponent,
     AgrappManageUserComponent,
-    UserModalComponent
+    UserModalComponent,
+    AgrappHomeAnimationsComponent
   ],
   imports: [
     BrowserModule,
