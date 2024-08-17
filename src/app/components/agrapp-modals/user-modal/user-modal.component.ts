@@ -130,7 +130,6 @@ export class UserModalComponent implements AfterViewInit {
       next: (data) => {
         this.showMessageDialog("Registro usuario", "Usuario creado", true)
       }, error(err) {
-        debugger
         showError("Registro usuario", `Ya existe un usuario con identificacion:${userData.user?.document_id}`);
       }
     });

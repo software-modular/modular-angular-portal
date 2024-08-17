@@ -1,5 +1,5 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AgrappCardInput } from '../../../core/domain/beans/agrappCardInput';
 import { OptionInput } from '../../../core/domain/beans/OptionInput';
@@ -8,6 +8,8 @@ import { preOrderTypes } from '../../../core/domain/const/PreOrderTypes';
 import { typeGrounds } from '../../../core/domain/const/TypeGround';
 import { typeIdentifications } from '../../../core/domain/const/TypeIdentification';
 import { ProjectDto } from '../../../core/domain/dto/projectDto';
+import { formatServerDate, stringDateToFormatServerDate } from '../../../core/utils/Date';
+import { statesProject } from '../../../core/domain/const/StateProject';
 
 @Component({
   selector: 'agrapp-projects-register',
@@ -20,17 +22,23 @@ import { ProjectDto } from '../../../core/domain/dto/projectDto';
     },
   ],
 })
-export class AgrappProjectsRegisterComponent {
+export class AgrappProjectsRegisterComponent implements AfterViewInit {
   form: FormGroup;
   uploadedFiles: any[] = [];
-  countryList = countries;
-  deparmentList = deparments;
-  cityList = cities;
+  stateProjectList: OptionInput[] = statesProject;
+  countryList: OptionInput[] = countries;
+  deparmentList: OptionInput[] = deparments;
+  cityList: OptionInput[] = cities;
   listTypeGround: OptionInput[] = typeGrounds;
   listTypeIdentification: OptionInput[] = typeIdentifications
   listTypePreOrders: OptionInput[] = preOrderTypes
   preOrderUnit: string = "KG"
   showPrePurchaseForm: boolean = false;
+
+  @Input() isEdit: Boolean = false;
+  @Input() projectData: ProjectDto = {}
+  @Output() saveProjectEvent = new EventEmitter<any>();
+
 
   cardData: AgrappCardInput =
     {
@@ -49,9 +57,6 @@ export class AgrappProjectsRegisterComponent {
       ]
     }
 
-
-  @Output() saveProjectEvent = new EventEmitter<any>();
-
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       projectName: ["", [Validators.required]],
@@ -59,8 +64,9 @@ export class AgrappProjectsRegisterComponent {
       projectHasPrePurchase: [false, [Validators.required]],
       projectStartDate: ["", [Validators.required]],
       projectEndDate: ["", [Validators.required]],
-      projectImgs: ["", [Validators.required]],
-      projectVideoUrl: ["", [Validators.required]],
+      projectImgs: ["", []],
+      projectVideoUrl: ["", []],
+      projectState: ["", [Validators.required]],
       cropCountry: ["", [Validators.required]],
       cropDepartment: ["", [Validators.required]],
       cropCity: ["", [Validators.required]],
@@ -71,13 +77,13 @@ export class AgrappProjectsRegisterComponent {
       cropStartDate: ["", [Validators.required]],
       cropEndDate: ["", [Validators.required]],
       producerTypeId: ["", [Validators.required]],
-      producerIdValue: ["", [Validators.required]],
+      producerIdValue: ["", [Validators.required, Validators.minLength(7)]],
       producerName: ["", [Validators.required]],
       producerMail: ["", [Validators.required]],
-      producerPhone: ["", [Validators.required]],
+      producerPhone: ["", [Validators.required, Validators.minLength(10)]],
       producerAddress: ["", [Validators.required]],
       producerBirthday: ["", [Validators.required]],
-      producerImgProfile: ["", [Validators.required]],
+      producerImgProfile: ["", []],
       investmentRate: ["", [Validators.required]],
       investmentTir: ["", [Validators.required]],
       investmentMinAmount: ["", [Validators.required]],
@@ -96,6 +102,54 @@ export class AgrappProjectsRegisterComponent {
     this.onChangeFormValues();
   }
 
+
+  ngAfterViewInit(): void {
+    if (this.isEdit) {
+      this.loadFormEdit(this.projectData);
+    }
+  }
+
+  loadFormEdit(projectDto: ProjectDto) {
+    this.form.get("projectName")?.setValue(projectDto.name ?? '');
+    this.form.get("projectDescription")?.setValue(projectDto.description ?? '');
+    this.form.get("projectHasPrePurchase")?.setValue(projectDto.allow_prepurcharse ?? false);
+    this.form.get("projectStartDate")?.setValue(projectDto.start_date ?? '');
+    this.form.get("projectEndDate")?.setValue(projectDto.end_date ?? '');
+    this.form.get("projectImgs")?.setValue("");// convertir a lista de imagenes
+    this.form.get("projectVideoUrl")?.setValue(projectDto.video_url ?? '');
+    this.form.get("projectState")?.setValue(projectDto.state ?? '');
+    this.form.get("cropCountry")?.setValue(projectDto.crop?.country ?? '');
+    this.form.get("cropDepartment")?.setValue(projectDto.crop?.department ?? '');
+    this.form.get("cropCity")?.setValue(projectDto.crop?.municipality ?? '');
+    this.form.get("cropAddress")?.setValue(projectDto.crop?.address ?? '');
+    this.form.get("cropTypeGround")?.setValue(projectDto.crop?.type_of_ground ?? '');
+    this.form.get("cropHetares")?.setValue(projectDto.crop?.number_of_hectares ?? '');
+    this.form.get("cropNumberPlants")?.setValue(projectDto.crop?.number_of_plants ?? '');
+    this.form.get("cropStartDate")?.setValue(projectDto.crop?.cultivation_start_date ?? '');
+    this.form.get("cropEndDate")?.setValue(projectDto.crop?.estimated_harvest_date ?? '');
+    this.form.get("producerTypeId")?.setValue(projectDto.crop?.owner?.user?.type_ide ?? '');
+    this.form.get("producerIdValue")?.setValue(projectDto.crop?.owner?.user?.document_id ?? '');
+    this.form.get("producerName")?.setValue(projectDto.crop?.owner?.user?.name ?? '');
+    this.form.get("producerMail")?.setValue(projectDto.crop?.owner?.user?.email ?? '');
+    this.form.get("producerPhone")?.setValue(projectDto.crop?.owner?.user?.phone ?? '');
+    this.form.get("producerAddress")?.setValue(projectDto.crop?.owner?.user?.address ?? '');
+    this.form.get("producerBirthday")?.setValue(projectDto.crop?.owner?.user?.date_of_birth ?? '');
+    this.form.get("investmentRate")?.setValue(projectDto.invesment?.estimated_rate ?? '');
+    this.form.get("investmentTir")?.setValue(projectDto.invesment?.estimated_rate ?? '');
+    this.form.get("investmentMinAmount")?.setValue(projectDto.invesment?.minimum_investment_amount ?? '');
+    this.form.get("investmentMaxAmount")?.setValue(projectDto.invesment?.maximum_investment_amount ?? '');
+    this.form.get("investmentTargetAmount")?.setValue(projectDto.invesment?.total_expected_investment ?? '');
+    this.form.get("investmentStartDate")?.setValue(projectDto.invesment?.start_date ?? '');
+    this.form.get("investmentEndDate")?.setValue(projectDto.invesment?.end_date ?? '');
+    this.form.get("prePurchaseUnit")?.setValue(projectDto.pre_purcharse?.units ?? '');
+    this.form.get("prePurchaseMinAmount")?.setValue(projectDto.pre_purcharse?.minimum_amount ?? '');
+    this.form.get("prePurchaseMaxAmount")?.setValue(projectDto.pre_purcharse?.maximum_amount ?? '');
+    this.form.get("prePurchaseStartDate")?.setValue(projectDto.pre_purcharse?.start_date ?? '');
+    this.form.get("prePurchaseEndDate")?.setValue(projectDto.pre_purcharse?.end_date ?? '');
+    this.form.get("wompiPublicKey")?.setValue(projectDto.crop?.owner?.wompi_public_key ?? '');
+    this.form.get("wompiSecretKey")?.setValue(projectDto.crop?.owner?.wompi_private_key ?? '');
+  }
+
   refreshCardData() {
     this.cardData.ownerName = this.form.get("projectName")?.value;
     this.cardData.nameCrop = this.form.get("projectName")?.value
@@ -103,7 +157,6 @@ export class AgrappProjectsRegisterComponent {
     let hasPrepurchase = this.form.get("projectHasPrePurchase")?.value
     this.showPrePurchaseForm = hasPrepurchase === "true" ? true : false;
   }
-
 
   onUpload(event: any) {
     for (let file of event.files) {
@@ -127,14 +180,13 @@ export class AgrappProjectsRegisterComponent {
     })
   }
 
-  eventSaveProject() {
-    let project: ProjectDto = this.getProjectData();
-    debugger
+  async eventSaveProject() {
+    let project: ProjectDto = await this.getProjectData();
     this.saveProjectEvent.emit(project);
   }
 
-  getProjectData(): ProjectDto {
-    return {
+  async getProjectData() {
+    let formData: ProjectDto = {
       name: this.form.get("projectName")?.value,
       description: this.form.get("projectDescription")?.value,
       allow_prepurcharse: this.form.get("projectHasPrePurchase")?.value,
@@ -154,7 +206,7 @@ export class AgrappProjectsRegisterComponent {
           user: {
             document_id: this.form.get("producerIdValue")?.value,
             type_ide: this.form.get("producerTypeId")?.value,
-            type_user: this.form.get("producerTypeId")?.value,
+            type_user: "CO",
             profile_picture: this.form.get("producerImgProfile")?.value,
             name: this.form.get("producerName")?.value,
             email: this.form.get("producerMail")?.value,
@@ -174,26 +226,79 @@ export class AgrappProjectsRegisterComponent {
         start_date: this.getDateFormat(this.form.get("investmentStartDate")?.value ?? ''),
         end_date: this.getDateFormat(this.form.get("investmentEndDate")?.value ?? ''),
       },
-      pre_purcharse: {
-        units: this.form.get("prePurchaseUnit")?.value,
-        minimum_amount: this.form.get("prePurchaseMinAmount")?.value,
-        maximum_amount: this.form.get("prePurchaseMaxAmount")?.value,
-        start_date: this.getDateFormat(this.form.get("prePurchaseStartDate")?.value ?? ''),
-        end_date: this.getDateFormat(this.form.get("prePurchaseEndDate")?.value ?? ''),
-      },
       video_url: this.form.get("projectVideoUrl")?.value,
-      photo_1: this.form.get("projectImgs")?.value, // Puedes ajustar estos valores según tus necesidades
-      state: "ACT", // Puedes ajustar este valor según corresponda
+      state: this.form.get("projectState")?.value,
       start_date: this.getDateFormat(this.form.get("projectStartDate")?.value ?? ''),
       end_date: this.getDateFormat(this.form.get("projectEndDate")?.value ?? '')
     }
+    let projectImgs: File[] = this.form.get("projectImgs")?.value;
+    if (projectImgs !== undefined && projectImgs.length > 0) {
+      for (let i = 0; i < projectImgs.length; i++) {
+        if (i == 0) {
+          formData.photo_1 = await this.convertImgToBase64(projectImgs[i]);
+        }
+        if (i == 1) {
+          formData.photo_2 = await this.convertImgToBase64(projectImgs[i]);
+        }
+        if (i == 2) {
+          formData.photo_3 = await this.convertImgToBase64(projectImgs[i]);
+        }
+        if (i == 3) {
+          formData.photo_4 = await this.convertImgToBase64(projectImgs[i]);
+        }
+        if (i == 4) {
+          formData.photo_5 = await this.convertImgToBase64(projectImgs[i]);
+        }
+      }
+    }
+    formData.photo_1 = formData.photo_1 !== undefined && formData.photo_1 !== '' ? formData.photo_1 : '';
+    formData.photo_2 = formData.photo_2 !== undefined && formData.photo_2 !== '' ? formData.photo_2 : '';
+    formData.photo_3 = formData.photo_3 !== undefined && formData.photo_3 !== '' ? formData.photo_3 : '';
+    formData.photo_4 = formData.photo_4 !== undefined && formData.photo_4 !== '' ? formData.photo_4 : '';
+    formData.photo_5 = formData.photo_5 !== undefined && formData.photo_5 !== '' ? formData.photo_5 : '';
 
+    let imgProducer: File[] = this.form.get("producerImgProfile")?.value;
+    if (imgProducer !== undefined && imgProducer.length > 0) {
+      if (formData.crop !== undefined && formData.crop.owner !== undefined
+        && formData.crop.owner?.user !== undefined) {
+        if (formData.crop.owner.user.profile_picture !== undefined) {
+          formData.crop.owner.user.profile_picture = await this.convertImgToBase64(imgProducer[0]);
+        } else {
+          formData.crop.owner.user.profile_picture = "";
+        }
+      }
+    }
+    /*formData.pre_purcharse = {
+      units: this.form.get("prePurchaseUnit")?.value ?? 0,
+      minimum_amount: this.form.get("prePurchaseMinAmount")?.value ?? 0,
+      maximum_amount: this.form.get("prePurchaseMaxAmount")?.value ?? 0,
+      start_date: this.getDateFormat(this.form.get("prePurchaseStartDate")?.value ?? '') ?? formatServerDate(new Date()).split("T")[0],
+      end_date: this.getDateFormat(this.form.get("prePurchaseEndDate")?.value ?? formatServerDate(new Date()).split("T")[0]),
+    }*/
+    return formData
   }
 
   private getDateFormat(date: string) {
     if (date !== undefined && date !== "") {
-      return date.split("T")[0];
+      return stringDateToFormatServerDate(date).split("T")[0];
     }
     return "";
   }
+
+  convertImgToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        resolve(reader.result as string);
+      };
+
+      reader.onerror = (error) => {
+        reject(error);
+      };
+
+      reader.readAsDataURL(file);
+    });
+  }
+
 }

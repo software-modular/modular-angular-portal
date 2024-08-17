@@ -1,7 +1,8 @@
 <div class="modal-container">
   <mat-dialog-content style="overflow: auto;">
     <div class="dynamic-user-form-container">
-      <agrapp-projects-register (saveProjectEvent)="saveProject($event)"></agrapp-projects-register>
+      <agrapp-projects-register (saveProjectEvent)="saveProject($event)" [isEdit]="isEdit"
+        [projectData]="projectData"></agrapp-projects-register>
     </div>
   </mat-dialog-content>
   <mat-dialog-actions [align]="'center'" class="modal-action-container">

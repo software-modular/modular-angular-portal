@@ -20,8 +20,10 @@ export class InputTextComponent implements ControlValueAccessor {
 
 
   value: string = '';
-  onChange: any = () => { };
-  onTouched: any = () => { };
+  onChange: any = () => {
+  };
+  onTouched: any = () => {
+  };
 
   writeValue(value: any): void {
     this.value = value;

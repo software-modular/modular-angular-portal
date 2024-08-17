@@ -1,3 +1,41 @@
+@media (min-width: 1025px) {}
+
+@media (min-width: 769px) and (max-width: 1024px) {}
+
+@media (min-width: 601px) and (max-width: 768px) {
+  ::ng-deep .mat-mdc-dialog-container-with-actions .mat-mdc-dialog-content {
+    overflow-y: auto !important;
+  }
+}
+
+@media (max-width: 600px) {
+  ::ng-deep .mat-mdc-dialog-container-with-actions .mat-mdc-dialog-content {
+    overflow-y: auto !important;
+  }
+
+}
+
+@media (max-width: 520px) {
+  ::ng-deep .mat-mdc-dialog-container-with-actions .mat-mdc-dialog-content {
+    overflow-y: auto !important;
+  }
+
+}
+
+@media (max-width: 478px) {
+  ::ng-deep .mat-mdc-dialog-container-with-actions .mat-mdc-dialog-content {
+    overflow-y: auto !important;
+  }
+
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 460px) {
+  ::ng-deep .mat-mdc-dialog-container-with-actions .mat-mdc-dialog-content {
+    overflow-y: auto !important;
+  }
+}
+
 .projects-register-container {
   padding: 20px;
   display: flex;
@@ -29,13 +67,13 @@
 }
 
 .project-register-form-container {
-  width: 55vw;
   box-shadow: 0px 4px 8px var(--navbar-shadow-color);
   border-radius: 8px;
   padding: 10px;
   padding-top: 18px;
   background: white;
-  height: 73.5vh;
+  height: 76.5vh;
+  width: 650px;
 }
 
 .project-register-form {
@@ -60,4 +98,16 @@
 .project-register-step-container {
   background: white !important;
   background-color: white !important;
+}
+
+.error-field {
+  padding-left: 15px;
+  margin-top: -20px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+::ng-deep .mat-mdc-dialog-container-with-actions .mat-mdc-dialog-content {
+  overflow-y: hidden !important;
 }

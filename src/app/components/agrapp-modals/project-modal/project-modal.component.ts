@@ -4,6 +4,8 @@ import { InputUserModal } from '../../../core/domain/beans/inputUserModal';
 import { UserModalComponent } from '../user-modal/user-modal.component';
 import { ProjectDto } from '../../../core/domain/dto/projectDto';
 import { ProjectService } from '../../../core/services/project/project.service';
+import { InputProjectModal } from '../../../core/domain/beans/InputProjectModal';
+import { TypeModalMode } from '../../../core/domain/enum/TypeModalMode';
 
 @Component({
   selector: 'app-project-modal',
@@ -12,21 +14,24 @@ import { ProjectService } from '../../../core/services/project/project.service';
 })
 export class ProjectModalComponent {
 
+  isEdit: Boolean = false;
+  projectData: ProjectDto = {};
   constructor(
     public dialogRef: MatDialogRef<UserModalComponent>,
     private projectService: ProjectService,
-    @Inject(MAT_DIALOG_DATA) public data: InputUserModal
+    @Inject(MAT_DIALOG_DATA) public data: InputProjectModal
   ) {
+    if (data !== undefined && data.mode === TypeModalMode.EDIT) {
+      this.isEdit = true;
+      this.projectData = data.data;
+    }
   }
 
   saveProject(data: ProjectDto) {
-    debugger
     this.projectService.createProject(data).subscribe({
       next: (response) => {
-        debugger
       },
       error: (err) => {
-        debugger
       }
     })
   }

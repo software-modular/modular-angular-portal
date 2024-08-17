@@ -68,6 +68,7 @@ import { UserModalComponent } from './components/agrapp-modals/user-modal/user-m
 import { AgrappHomeAnimationsComponent } from './components/agrapp/agrapp-home-animations/agrapp-home-animations.component';
 import { AgrappProjectsManagerComponent } from './pages/agrapp-projects-manager/agrapp-projects-manager.component';
 import { ProjectModalComponent } from './components/agrapp-modals/project-modal/project-modal.component';
+import { CustomMultifileUploadComponent } from './core/components/custom-multifile-upload/custom-multifile-upload.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,7 +101,8 @@ import { ProjectModalComponent } from './components/agrapp-modals/project-modal/
     UserModalComponent,
     AgrappHomeAnimationsComponent,
     AgrappProjectsManagerComponent,
-    ProjectModalComponent
+    ProjectModalComponent,
+    CustomMultifileUploadComponent
   ],
   imports: [
     BrowserModule,

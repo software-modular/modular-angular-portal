@@ -6,14 +6,10 @@
       </div>
     </div>
     <div class="multifile-upload-body-container">
-      <p-fileUpload (onSelect)="onInputChange($event)" [multiple]="true" accept="image/*" maxFileSize="1000000"
-        [showUploadButton]="false" [showCancelButton]="false" [title]="'Fotos'">
-      </p-fileUpload>
-      <div *ngIf="validMaxFields()">
-        <mat-error>
-          <label>Maximo de archivos: {{maxFiles}}</label>
-        </mat-error>
-      </div>
+      <button class="btn btn-primary" onclick="document.getElementById('fileInput').click();">
+        <i class="bi bi-cloud-upload"></i>Upload
+      </button>
+      <input id="fileInput" type="file" style="display: none;" lang="en" (change)="onFileSelected($event)">
     </div>
   </div>
 </div>

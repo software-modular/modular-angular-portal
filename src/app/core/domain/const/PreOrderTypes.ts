@@ -6,20 +6,12 @@ export const preOrderTypes: OptionInput[] = [
     value: "KG"
   },
   {
-    label: "Metros",
-    value: "M"
+    label: "Gramos",
+    value: "GR"
   },
   {
-    label: "Metros cuadrados",
-    value: "M2"
-  },
-  {
-    label: "Metros cúbicos",
-    value: "M3"
-  },
-  {
-    label: "Hectáreas",
-    value: "HA"
+    label: "Libras",
+    value: "LI"
   },
   {
     label: "Unidades",

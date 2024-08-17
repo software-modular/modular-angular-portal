@@ -2,27 +2,27 @@ import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'input-autocomplete',
-  templateUrl: './input-autocomplete.component.html',
-  styleUrl: './input-autocomplete.component.css',
+  selector: 'app-custom-multifile-upload',
+  templateUrl: './custom-multifile-upload.component.html',
+  styleUrl: './custom-multifile-upload.component.css',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputAutocompleteComponent),
+      useExisting: forwardRef(() => CustomMultifileUploadComponent),
       multi: true
     }
   ]
 })
-export class InputAutocompleteComponent implements ControlValueAccessor {
+export class CustomMultifileUploadComponent implements ControlValueAccessor {
 
-  @Input() label: string = "";
+  @Input() label: string = "Fotos";
   @Input() placeholder: string = "";
-  @Input() options: string[] = [];
+  fileUpload: File[] = [];
 
-
-  value: string = '';
+  value: any[] = [];
   onChange: any = () => { };
   onTouched: any = () => { };
+  files: File[] = [];
 
   writeValue(value: any): void {
     this.value = value;
@@ -39,14 +39,14 @@ export class InputAutocompleteComponent implements ControlValueAccessor {
   setDisabledState?(isDisabled: boolean): void {
   }
 
-  onInputChange(event: any) {
-    const value = event.option.value;
-    this.value = value;
-    this.onChange(value);
-    this.onTouched();
+  onInputChange() {
   }
 
-  showOptionFormat(option: string): string {
-    return option || '';
+  uploadFiles(event: any) {
+  }
+
+  onFileSelected(event: any) {
+    this.fileUpload.push(event.target.files[0]);
+
   }
 }

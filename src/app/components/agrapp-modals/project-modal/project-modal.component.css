@@ -3,12 +3,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 75vw;
-  height: 97vh;
+  width: 77vw;
+  height: 910px;
 }
 
 .dynamic-user-form-container {
-  width: 70vw;
+  width: 1300px;
 }
 
 .modal-action-container {

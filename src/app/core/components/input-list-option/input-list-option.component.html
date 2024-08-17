@@ -7,7 +7,7 @@
     </div>
     <div class="input-list-option-body-container">
       <mat-form-field class="input-list-option-body-element-container">
-        <mat-select (selectionChange)="onInputChange($event)">
+        <mat-select (selectionChange)="onInputChange($event)" [value]="value">
           <mat-option *ngFor="let option of options" [value]="option.value">
             {{option.label}}
           </mat-option>

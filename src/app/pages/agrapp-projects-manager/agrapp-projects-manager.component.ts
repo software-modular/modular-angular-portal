@@ -16,6 +16,8 @@ import { ConfirmationService } from 'primeng/api';
 import { UserService } from '../../core/services/client/user.service';
 import { ProjectService } from '../../core/services/project/project.service';
 import { ProjectModalComponent } from '../../components/agrapp-modals/project-modal/project-modal.component';
+import { ProjectDto } from '../../core/domain/dto/projectDto';
+import { projectList } from '../../core/domain/const/Mocks';
 
 @Component({
   selector: 'app-agrapp-projects-manager',
@@ -23,20 +25,19 @@ import { ProjectModalComponent } from '../../components/agrapp-modals/project-mo
   styleUrl: './agrapp-projects-manager.component.css'
 })
 export class AgrappProjectsManagerComponent {
-  users: ResponseClientDto[] = []
+  projects: ProjectDto[] = []
   formGroup: FormGroup;
-  typeUserOptions: OptionInput[] = UserTypeOptions;
-  dataSourceProjects = new MatTableDataSource(this.users);
+  dataSourceProjects = new MatTableDataSource(this.projects);
   typeClientSelect: string = "";
 
-  columns: string[] = ['Nombre', 'Correo', 'Identificación', 'Telefono', "Dirección", "Activo", 'Actions'];
+  columns: string[] = ['Nombre proyecto', 'Estado', 'Fecha inicio', 'Fecha fin', 'Departamento', "Ciudad", "Nombre productor",
+    "Correo productor", "Telefono productor", 'Dirección productor', "Acciones"];
 
-  @ViewChild('paginatorUsers') paginatorUsers!: MatPaginator;
-  @ViewChild('sortUsers') sortOig!: MatSort;
+  @ViewChild('paginatorProjects') paginatorProjects!: MatPaginator;
+  @ViewChild('sortProject') sortProject!: MatSort;
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService,
     private projectService: ProjectService,
     private confirmationService: ConfirmationService,
     public dialog: MatDialog
@@ -44,8 +45,25 @@ export class AgrappProjectsManagerComponent {
     this.formGroup = this.formBuilder.group({
       filter: ["", []]
     });
+
+    this.fillTableProjects();
+    this.doTypeUserValueChangeEvent();
   }
 
+  doTypeUserValueChangeEvent() {
+    this.formGroup.get("filter")?.valueChanges.subscribe({
+      next: (data: string) => {
+      }
+    });
+  }
+
+  fillTableProjects() {
+    this.projects = projectList;
+    //hace peticion
+    this.dataSourceProjects = new MatTableDataSource(this.projects);
+    this.dataSourceProjects.paginator = this.paginatorProjects;
+    this.applyFilterProjectsTable();
+  }
 
   applyFilterProjectsTable() {
     this.applyFilter(this.formGroup.get('filter')?.value)
@@ -55,30 +73,15 @@ export class AgrappProjectsManagerComponent {
     this.dataSourceProjects.filter = value.trim().toLowerCase();
   }
 
-  getListProjects(data: string) {
-
-    return [];
-  }
-
-
-  updateProjectListTable(data: ResponseClientDto[]) {
-    this.users = data;
-    this.dataSourceProjects = new MatTableDataSource(this.users);
-    this.dataSourceProjects.paginator = this.paginatorUsers;
+  updateProjectListTable(data: ProjectDto[]) {
+    this.projects = data;
+    this.dataSourceProjects = new MatTableDataSource(this.projects);
+    this.dataSourceProjects.paginator = this.paginatorProjects;
     this.loadDataSourceFilter()
   }
 
 
-  deleteProject(user: ResponseClientDto) {
-    if (user.code_client !== undefined) {
-      this.userService.deleteClient(user.code_client).subscribe({
-        next: (_) => {
-          this.showNotification("Eliminar usuario", "Usuario eliminado", "pi pi-exclamation-triangle")
-        }, error: (_) => {
-          this.showNotification("Eliminar usuario", "No fue posible eliminar el usuario", "pi pi-exclamation-triangle")
-        }
-      });
-    }
+  deleteProject(user: ProjectDto) {
   }
 
   onPageProjectChange(event: any) {
@@ -99,12 +102,12 @@ export class AgrappProjectsManagerComponent {
 
 
   loadDataSourceFilter() {
-    this.dataSourceProjects.filterPredicate = (data: ResponseClientDto, filter: string) => {
+    this.dataSourceProjects.filterPredicate = (data: ProjectDto, filter: string) => {
       return this.customFilter(data, filter);
     }
   }
 
-  customFilter(data: ResponseClientDto, filter: string): boolean {
+  customFilter(data: ProjectDto, filter: string): boolean {
     const filterValue = filter.trim().toLowerCase();
     const dataStr = JSON.stringify(data).toLowerCase();
     if (filter === '') {
@@ -118,10 +121,10 @@ export class AgrappProjectsManagerComponent {
     this.openModal(ProjectModalComponent);
   }
 
-  viewProject(user: ResponseClientDto) {
+  viewProject(project: ProjectDto) {
     let data: InputUserModal = {
-      mode: TypeModalMode.VIEW,
-      data: user.user
+      mode: TypeModalMode.EDIT,
+      data: project
     }
     this.openModal(ProjectModalComponent, data);
   }
@@ -131,7 +134,6 @@ export class AgrappProjectsManagerComponent {
       data: data
     });
     dialogRef.afterClosed().subscribe((_) => {
-      this.getListProjects(this.typeClientSelect);
     });
   }
 }

@@ -8,7 +8,7 @@
     <div class="input-date-body-container">
       <mat-form-field class="input-date-body-element-container">
         <mat-label>DD/MM/YYYY</mat-label>
-        <input matInput [matDatepicker]="date" (dateChange)="onInputChange($event)">
+        <input matInput [matDatepicker]="date" (dateChange)="onInputChange($event)" [value]="value">
         <mat-datepicker-toggle matIconSuffix [for]="date">
         </mat-datepicker-toggle>
         <mat-datepicker #date></mat-datepicker>

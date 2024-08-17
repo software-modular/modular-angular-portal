@@ -15,27 +15,56 @@
                     <div class="row">
                       <div class="col-md-12">
                         <input-text formControlName="projectName" [label]="'Nombre'" />
+                        <mat-error class="error-field" *ngIf="form.get('projectName')?.invalid
+                        && (form.get('projectName')?.dirty
+                        || form.get('projectName')?.touched)">
+                          <label *ngIf="form.get('projectName')?.hasError('required')">El campo es obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <input-text-area formControlName="projectDescription" [label]="'Descripción'"></input-text-area>
+                        <mat-error class="error-field" *ngIf="form.get('projectDescription')?.invalid
+                        && (form.get('projectDescription')?.dirty
+                        || form.get('projectDescription')?.touched)">
+                          <label *ngIf="form.get('projectDescription')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <input-multi-radio-check formControlName="projectHasPrePurchase"
                           [label]="'Pre-compra'"></input-multi-radio-check>
+                        <mat-error class="error-field" *ngIf="form.get('projectHasPrePurchase')?.invalid
+                          && (form.get('projectHasPrePurchase')?.dirty
+                          || form.get('projectHasPrePurchase')?.touched)">
+                          <label *ngIf="form.get('projectHasPrePurchase')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <input-date formControlName="projectStartDate" [label]="'Fecha inicio'"></input-date>
+                        <mat-error class="error-field" *ngIf="form.get('projectStartDate')?.invalid
+                        && (form.get('projectStartDate')?.dirty
+                        || form.get('projectStartDate')?.touched)">
+                          <label *ngIf="form.get('projectStartDate')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <input-date formControlName="projectEndDate" [label]="'Fecha fin'"></input-date>
+                        <mat-error class="error-field" *ngIf="form.get('projectDescription')?.invalid
+                        && (form.get('projectEndDate')?.dirty
+                        || form.get('projectEndDate')?.touched)">
+                          <label *ngIf="form.get('projectEndDate')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
@@ -46,6 +75,18 @@
                     <div class="row">
                       <div class="col-md-12">
                         <input-text formControlName="projectVideoUrl" [label]="'Url video'" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-list-option formControlName="projectState" [label]="'Estado'"
+                          [options]="stateProjectList"></input-list-option>
+                        <mat-error class="error-field" *ngIf="form.get('projectState')?.invalid
+                          && (form.get('projectState')?.dirty
+                          || form.get('projectState')?.touched)">
+                          <label *ngIf="form.get('projectState')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                   </div>
@@ -60,53 +101,107 @@
                   <div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-autocomplete formControlName="cropCountry" [label]="'Pais'"
-                          [options]="countryList"></input-autocomplete>
+                        <input-list-option formControlName="cropCountry" [label]="'País'"
+                          [options]="countryList"></input-list-option>
+                        <mat-error class="error-field" *ngIf="form.get('cropCountry')?.invalid
+                          && (form.get('cropCountry')?.dirty
+                          || form.get('cropCountry')?.touched)">
+                          <label *ngIf="form.get('cropCountry')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-autocomplete formControlName="cropDepartment" [label]="'Departamento'"
-                          [options]="deparmentList"></input-autocomplete>
+                        <input-list-option formControlName="cropDepartment" [label]="'Departamento'"
+                          [options]="deparmentList"></input-list-option>
+                        <mat-error class="error-field" *ngIf="form.get('cropDepartment')?.invalid
+                          && (form.get('cropDepartment')?.dirty
+                          || form.get('cropDepartment')?.touched)">
+                          <label *ngIf="form.get('cropDepartment')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <input-autocomplete formControlName="cropCity" [label]="'Ciudad'"
-                          [options]="cityList"></input-autocomplete>
+                        <input-list-option formControlName="cropCity" [label]="'Ciudad'"
+                          [options]="cityList"></input-list-option>
+                        <mat-error class="error-field" *ngIf="form.get('cropCity')?.invalid
+                          && (form.get('cropCity')?.dirty
+                          || form.get('cropCity')?.touched)">
+                          <label *ngIf="form.get('cropCity')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <input-text formControlName="cropAddress" [label]="'Direccion'" />
+                        <mat-error class="error-field" *ngIf="form.get('cropCity')?.invalid
+                        && (form.get('cropAddress')?.dirty
+                        || form.get('cropAddress')?.touched)">
+                          <label *ngIf="form.get('cropAddress')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <input-list-option formControlName="cropTypeGround" [label]="'Tipo de suelo'"
                           [options]="listTypeGround"></input-list-option>
+                        <mat-error class="error-field" *ngIf="form.get('cropCity')?.invalid
+                          && (form.get('cropTypeGround')?.dirty
+                          || form.get('cropTypeGround')?.touched)">
+                          <label *ngIf="form.get('cropTypeGround')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <app-input-number formControlName="cropHetares" [label]="'Numero de hectareas'"
                           [sufix]="' Héctareas'"></app-input-number>
+                        <mat-error class="error-field" *ngIf="form.get('cropHetares')?.invalid
+                          && (form.get('cropHetares')?.dirty
+                          || form.get('cropHetares')?.touched)">
+                          <label *ngIf="form.get('cropHetares')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <app-input-number formControlName="cropNumberPlants" [label]="'Numero de plantas'"
                           [sufix]="' plantas'"></app-input-number>
+                        <mat-error class="error-field" *ngIf="form.get('cropNumberPlants')?.invalid
+                          && (form.get('cropNumberPlants')?.dirty
+                          || form.get('cropNumberPlants')?.touched)">
+                          <label *ngIf="form.get('cropNumberPlants')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <input-date formControlName="cropStartDate" [label]="'Fecha inicio del cultivo'"></input-date>
+                        <mat-error class="error-field" *ngIf="form.get('cropStartDate')?.invalid
+                        && (form.get('cropStartDate')?.dirty
+                        || form.get('cropStartDate')?.touched)">
+                          <label *ngIf="form.get('cropStartDate')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <input-date formControlName="cropEndDate" [label]="'Fecha estimada cosecha'"></input-date>
+                        <mat-error class="error-field" *ngIf="form.get('cropEndDate')?.invalid
+                        && (form.get('cropEndDate')?.dirty
+                        || form.get('cropEndDate')?.touched)">
+                          <label *ngIf="form.get('cropEndDate')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                   </div>
@@ -130,36 +225,84 @@
                       <div class="col-md-12">
                         <input-list-option formControlName="producerTypeId" [label]="'Tipo identificación'"
                           [options]="listTypeIdentification"></input-list-option>
+                        <mat-error class="error-field" *ngIf="form.get('producerTypeId')?.invalid
+                          && (form.get('producerTypeId')?.dirty
+                          || form.get('producerTypeId')?.touched)">
+                          <label *ngIf="form.get('producerTypeId')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <input-text formControlName="producerIdValue" [label]="'Identificación'" />
+                        <mat-error class="error-field" *ngIf="form.get('producerIdValue')?.invalid
+                        && (form.get('producerIdValue')?.dirty
+                        || form.get('producerIdValue')?.touched)">
+                          <label *ngIf="form.get('producerIdValue')?.hasError('required')">El campo es
+                            obligatorio</label>
+                          <label *ngIf="form.get('producerIdValue')?.hasError('minlength')">El campo tiene menos de 7
+                            numeros</label>
+                        </mat-error>
+
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <input-text formControlName="producerName" [label]="'Nombre'" />
+                        <mat-error class="error-field" *ngIf="form.get('producerName')?.invalid
+                        && (form.get('producerName')?.dirty
+                        || form.get('producerName')?.touched)">
+                          <label *ngIf="form.get('producerName')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <input-text formControlName="producerMail" [label]="'Correo'" />
+                        <mat-error class="error-field" *ngIf="form.get('producerMail')?.invalid
+                        && (form.get('producerMail')?.dirty
+                        || form.get('producerMail')?.touched)">
+                          <label *ngIf="form.get('producerMail')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <input-text formControlName="producerPhone" [label]="'Telefono'" />
+                        <mat-error class="error-field" *ngIf="form.get('producerPhone')?.invalid
+                        && (form.get('producerPhone')?.dirty
+                        || form.get('producerPhone')?.touched)">
+                          <label>El campo es obligatorio</label>
+                          <label *ngIf="form.get('producerPhone')?.hasError('minlength')">El campo tiene menos de 10
+                            caracteres</label>
+                          <label *ngIf="form.get('producerPhone')?.hasError('minlength')">El campo tiene mas de 10
+                            caracteres</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <input-text formControlName="producerAddress" [label]="'Dirección'" />
+                        <mat-error class="error-field" *ngIf="form.get('producerAddress')?.invalid
+                        && (form.get('producerAddress')?.dirty
+                        || form.get('producerAddress')?.touched)">
+                          <label *ngIf="form.get('producerAddress')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <input-date formControlName="producerBirthday" [label]="'Fecha de nacimiento'"></input-date>
+                        <mat-error class="error-field" *ngIf="form.get('producerBirthday')?.invalid
+                        && (form.get('producerBirthday')?.dirty
+                        || form.get('producerBirthday')?.touched)">
+                          <label *ngIf="form.get('producerBirthday')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
@@ -190,29 +333,59 @@
                     <div class="row">
                       <div class="col-md-12">
                         <app-input-number formControlName="investmentRate" [label]="'Rate estimado'"></app-input-number>
+                        <mat-error class="error-field" *ngIf="form.get('investmentRate')?.invalid
+                        && (form.get('producerMail')?.dirty
+                        || form.get('producerMail')?.touched)">
+                          <label *ngIf="form.get('producerMail')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <app-input-number formControlName="investmentTir" [label]="'TIR'"></app-input-number>
+                        <mat-error class="error-field" *ngIf="form.get('investmentTir')?.invalid
+                        && (form.get('investmentTir')?.dirty
+                        || form.get('investmentTir')?.touched)">
+                          <label *ngIf="form.get('investmentTir')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <app-input-number formControlName="investmentMinAmount" [label]="'Minimo de inversion'"
                           [sufix]="' COP'"></app-input-number>
+                        <mat-error class="error-field" *ngIf="form.get('investmentMinAmount')?.invalid
+                          && (form.get('investmentMinAmount')?.dirty
+                          || form.get('investmentMinAmount')?.touched)">
+                          <label *ngIf="form.get('investmentMinAmount')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <app-input-number formControlName="investmentMaxAmount" [label]="'Maximo de inversion'"
                           [sufix]="' COP'"></app-input-number>
+                        <mat-error class="error-field" *ngIf="form.get('investmentMaxAmount')?.invalid
+                          && (form.get('investmentMaxAmount')?.dirty
+                          || form.get('investmentMaxAmount')?.touched)">
+                          <label *ngIf="form.get('investmentMaxAmount')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <app-input-number formControlName="investmentTargetAmount" [label]="'Meta de inversión'"
                           [sufix]="' COP'"></app-input-number>
+                        <mat-error class="error-field" *ngIf="form.get('investmentTargetAmount')?.invalid
+                          && (form.get('investmentTargetAmount')?.dirty
+                          || form.get('investmentTargetAmount')?.touched)">
+                          <label *ngIf="form.get('investmentTargetAmount')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
@@ -246,28 +419,58 @@
                       <div class="col-md-12">
                         <input-list-option formControlName="prePurchaseUnit" [label]="'Unidad'"
                           [options]="listTypePreOrders"></input-list-option>
+                        <mat-error class="error-field" *ngIf="form.get('prePurchaseUnit')?.invalid
+                          && (form.get('prePurchaseUnit')?.dirty
+                          || form.get('prePurchaseUnit')?.touched)">
+                          <label *ngIf="form.get('prePurchaseUnit')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <app-input-number formControlName="prePurchaseMinAmount" [label]="'Cantidad minima'"
                           [sufix]="preOrderUnit"></app-input-number>
+                        <mat-error class="error-field" *ngIf="form.get('prePurchaseMinAmount')?.invalid
+                          && (form.get('prePurchaseMinAmount')?.dirty
+                          || form.get('prePurchaseMinAmount')?.touched)">
+                          <label *ngIf="form.get('prePurchaseMinAmount')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <app-input-number formControlName="prePurchaseMaxAmount" [label]="'Total pre-compra'"
                           [sufix]="preOrderUnit"></app-input-number>
+                        <mat-error class="error-field" *ngIf="form.get('prePurchaseMaxAmount')?.invalid
+                          && (form.get('prePurchaseMaxAmount')?.dirty
+                          || form.get('prePurchaseMaxAmount')?.touched)">
+                          <label *ngIf="form.get('prePurchaseMaxAmount')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <input-date formControlName="prePurchaseStartDate" [label]="'Fecha inicio'"></input-date>
+                        <mat-error class="error-field" *ngIf="form.get('prePurchaseStartDate')?.invalid
+                        && (form.get('prePurchaseStartDate')?.dirty
+                        || form.get('prePurchaseStartDate')?.touched)">
+                          <label *ngIf="form.get('prePurchaseStartDate')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <input-date formControlName="prePurchaseEndDate" [label]="'Fecha fin'"></input-date>
+                        <mat-error class="error-field" *ngIf="form.get('prePurchaseEndDate')?.invalid
+                        && (form.get('prePurchaseEndDate')?.dirty
+                        || form.get('prePurchaseEndDate')?.touched)">
+                          <label *ngIf="form.get('prePurchaseEndDate')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
                       </div>
                     </div>
                   </div>
