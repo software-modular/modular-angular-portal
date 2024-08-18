@@ -11,6 +11,7 @@ import { NavbarService } from '../../services/components/navbar.service';
 import { NabvarUserInformation } from '../../domain/beans/navbarUserInformation';
 import { Router } from '@angular/router';
 import { Validators } from '@angular/forms';
+import { TypeClient } from '../../domain/enum/TypeClient';
 
 @Component({
   selector: 'app-login',
@@ -46,7 +47,8 @@ export class LoginComponent {
         if (userInformation !== null) {
           let userInformationNabvar: NabvarUserInformation = {
             name: userInformation.user.name || '',
-            username: userInformation.user.email || ''
+            username: userInformation.user.email || '',
+            roleUser: this.getUserRole(userInformation)
           }
           this.navbarService.setUserInformation(userInformationNabvar);
           this.navbarService.setUserIsLogin(true);
@@ -71,6 +73,20 @@ export class LoginComponent {
       new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, "", [Validators.required]),
     ];
     return fields;
+  }
+
+  private getUserRole(userData: ResponseClientDto) {
+    switch (userData.user.type_user) {
+      case TypeClient.CLIENT: {
+        return "USER"
+      }
+      case TypeClient.STAFF: {
+        return "ADMIN"
+      }
+      default: {
+        return "ALL"
+      }
+    }
   }
 
 

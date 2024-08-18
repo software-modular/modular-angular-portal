@@ -2,6 +2,8 @@ import { ValidatorFn } from "@angular/forms";
 import { TypeInputForm } from "../enum/TypeInputForm";
 import { InputForm } from "./InputForm";
 import { OptionInput } from "./OptionInput";
+import { InputText } from "primeng/inputtext";
+import { InputNumberComponent } from "../../components/input-number/input-number.component";
 
 export class ListOptionFieldForm extends InputForm<OptionInput[]> {
 
@@ -25,5 +27,9 @@ export class ListOptionFieldForm extends InputForm<OptionInput[]> {
 
   override getValidators(): ValidatorFn[] {
     return this.validators;
+  }
+
+  getComponentRenderize(): any {
+    return InputNumberComponent;
   }
 }

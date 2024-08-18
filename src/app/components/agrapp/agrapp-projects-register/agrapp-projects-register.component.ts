@@ -1,15 +1,19 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AgrappCardInput } from '../../../core/domain/beans/agrappCardInput';
 import { OptionInput } from '../../../core/domain/beans/OptionInput';
-import { cities, countries, deparments } from '../../../core/domain/const/Colombia';
+import { cities, countries, deparments, getCityByCode, getDepartmentByCode } from '../../../core/domain/const/Colombia';
 import { preOrderTypes } from '../../../core/domain/const/PreOrderTypes';
 import { typeGrounds } from '../../../core/domain/const/TypeGround';
 import { typeIdentifications } from '../../../core/domain/const/TypeIdentification';
 import { ProjectDto } from '../../../core/domain/dto/projectDto';
 import { formatServerDate, stringDateToFormatServerDate } from '../../../core/utils/Date';
 import { statesProject } from '../../../core/domain/const/StateProject';
+import { ActivatedRoute } from '@angular/router';
+import { projectList } from '../../../core/domain/const/Mocks';
+import { ProjectService } from '../../../core/services/project/project.service';
+import { base64ToFile } from '../../../core/utils/FileUtils';
 
 @Component({
   selector: 'agrapp-projects-register',
@@ -22,7 +26,7 @@ import { statesProject } from '../../../core/domain/const/StateProject';
     },
   ],
 })
-export class AgrappProjectsRegisterComponent implements AfterViewInit {
+export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
   form: FormGroup;
   uploadedFiles: any[] = [];
   stateProjectList: OptionInput[] = statesProject;
@@ -35,9 +39,9 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit {
   preOrderUnit: string = "KG"
   showPrePurchaseForm: boolean = false;
 
-  @Input() isEdit: Boolean = false;
-  @Input() projectData: ProjectDto = {}
-  @Output() saveProjectEvent = new EventEmitter<any>();
+  idProject: Number = 0;
+  isEdit: Boolean = false;
+  projectData: ProjectDto = {}
 
 
   cardData: AgrappCardInput =
@@ -57,7 +61,11 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit {
       ]
     }
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private projectService: ProjectService,) {
+    this.idProject = Number(this.route.snapshot.paramMap.get('id'));
     this.form = this.formBuilder.group({
       projectName: ["", [Validators.required]],
       projectDescription: ["", [Validators.required]],
@@ -91,23 +99,28 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit {
       investmentTargetAmount: ["", [Validators.required]],
       investmentStartDate: ["", [Validators.required]],
       investmentEndDate: ["", [Validators.required]],
-      prePurchaseUnit: ["", [Validators.required]],
-      prePurchaseMinAmount: ["", [Validators.required]],
-      prePurchaseMaxAmount: ["", [Validators.required]],
-      prePurchaseStartDate: ["", [Validators.required]],
-      prePurchaseEndDate: ["", [Validators.required]],
-      wompiPublicKey: ["", [Validators.required]],
-      wompiSecretKey: ["", [Validators.required]],
+      prePurchaseUnit: ["", []],
+      prePurchaseMinAmount: ["", []],
+      prePurchaseMaxAmount: ["", []],
+      prePurchaseStartDate: ["", []],
+      prePurchaseEndDate: ["", []],
+      wompiPublicKey: ["", []],
+      wompiSecretKey: ["", []],
     });
     this.onChangeFormValues();
   }
-
+  ngOnInit(): void {
+  }
 
   ngAfterViewInit(): void {
-    if (this.isEdit) {
+    if (this.idProject) {
+      this.isEdit = true; //peticion http para pedir la info del proyecto
+      this.projectData = projectList.find(project => project.code_project === this.idProject) ?? {};
       this.loadFormEdit(this.projectData);
     }
   }
+
+
 
   loadFormEdit(projectDto: ProjectDto) {
     this.form.get("projectName")?.setValue(projectDto.name ?? '');
@@ -151,11 +164,29 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit {
   }
 
   refreshCardData() {
-    this.cardData.ownerName = this.form.get("projectName")?.value;
-    this.cardData.nameCrop = this.form.get("projectName")?.value
+    this.cardData.nameCrop = this.form.get("projectName")?.value;
+    this.cardData.ownerName = this.form.get("producerName")?.value;
     this.cardData.imgs = this.getImgOfFiles(this.form.get("projectImgs")?.value);
+    this.cardData.ubication = `${getCityByCode(this.form.get("cropCity")?.value)} - ${getDepartmentByCode(this.form.get("cropDepartment")?.value)}`
+    this.cardData.investmentTarget = this.form.get("investmentTargetAmount")?.value;
+    this.cardData.minInvestment = this.form.get("investmentMinAmount")?.value;
+    this.cardData.percentageProfit = this.form.get("investmentRate")?.value;
+    if (this.isEdit) {
+      this.cardData.imgs = this.getCardImgs();
+
+    }
     let hasPrepurchase = this.form.get("projectHasPrePurchase")?.value
     this.showPrePurchaseForm = hasPrepurchase === "true" ? true : false;
+  }
+
+  getCardImgs(): string[] {
+    let cardFiles: string[] = [];
+    cardFiles.push(this.projectData.photo_1 ?? '')
+    cardFiles.push(this.projectData.photo_2 ?? '')
+    cardFiles.push(this.projectData.photo_3 ?? '')
+    cardFiles.push(this.projectData.photo_4 ?? '')
+    cardFiles.push(this.projectData.photo_5 ?? '')
+    return cardFiles;
   }
 
   onUpload(event: any) {
@@ -180,10 +211,22 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit {
     })
   }
 
+  saveProject() {
+    this.eventSaveProject();
+  }
+
   async eventSaveProject() {
     let project: ProjectDto = await this.getProjectData();
-    this.saveProjectEvent.emit(project);
+    let tt = "";
+    /*
+    this.projectService.createProject(project).subscribe({
+      next: (response) => {
+      },
+      error: (err) => {
+      }
+    })*/
   }
+
 
   async getProjectData() {
     let formData: ProjectDto = {

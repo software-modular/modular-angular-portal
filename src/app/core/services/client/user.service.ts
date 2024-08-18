@@ -1,8 +1,9 @@
-import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClientService } from '../http/http-client.service';
-import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
+import { ResponseUserDto } from '../../domain/dto/responseUserDto';
+import { HttpClientService } from '../http/http-client.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,11 @@ export class UserService {
   findAllClients() {
     let url = `${environment.api.host}${environment.api.endpoints.users.getAllClient}`
     return this.httpClientService.get(url, this.headers);
+  }
+
+  updateUser(user: ResponseUserDto, id: string) {
+    let url = `${environment.api.host}${environment.api.endpoints.users.updateClient.replace("%s", id)}`
+    return this.httpClientService.patch(url, user, this.headers);
   }
 
   deleteClient(id: Number) {

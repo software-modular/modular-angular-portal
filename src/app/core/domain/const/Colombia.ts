@@ -100,3 +100,14 @@ export const cities: OptionInput[] = [
   { value: 'MIT', label: 'Mitú' },
   { value: 'PUC', label: 'Puerto Carreño' },
 ];
+
+
+export function getCityByCode(code: string) {
+  let city = cities.find(city => city.value === code);
+  return city?.label ?? '';
+}
+
+export function getDepartmentByCode(code: string) {
+  let deparment = deparments.find(deparment => deparment.value === code);
+  return deparment?.label ?? '';
+}

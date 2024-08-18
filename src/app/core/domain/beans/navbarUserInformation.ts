@@ -1,4 +1,5 @@
 export interface NabvarUserInformation {
-  name:string,
+  name: string,
   username: string,
+  roleUser: string,
 }

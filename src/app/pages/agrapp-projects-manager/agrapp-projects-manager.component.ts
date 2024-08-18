@@ -1,23 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
-import { ResponseClientDto } from '../../core/domain/dto/responseClientDto';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { OptionInput } from '../../core/domain/beans/OptionInput';
-import { MatTableDataSource } from '@angular/material/table';
-import { UserTypeOptions } from '../../core/domain/const/UserTypeOptions';
-import { MatSort } from '@angular/material/sort';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { UserModalComponent } from '../../components/agrapp-modals/user-modal/user-modal.component';
-import { TypeModalMode } from '../../core/domain/enum/TypeModalMode';
-import { InputUserModal } from '../../core/domain/beans/inputUserModal';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ResponseUserTableDto } from '../../core/domain/dto/responseUserTableDto';
-import { TypeClient } from '../../core/domain/enum/TypeClient';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
-import { UserService } from '../../core/services/client/user.service';
-import { ProjectService } from '../../core/services/project/project.service';
-import { ProjectModalComponent } from '../../components/agrapp-modals/project-modal/project-modal.component';
-import { ProjectDto } from '../../core/domain/dto/projectDto';
 import { projectList } from '../../core/domain/const/Mocks';
+import { ProjectDto } from '../../core/domain/dto/projectDto';
+import { ProjectService } from '../../core/services/project/project.service';
 
 @Component({
   selector: 'app-agrapp-projects-manager',
@@ -40,7 +31,8 @@ export class AgrappProjectsManagerComponent {
     private formBuilder: FormBuilder,
     private projectService: ProjectService,
     private confirmationService: ConfirmationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {
     this.formGroup = this.formBuilder.group({
       filter: ["", []]
@@ -116,24 +108,12 @@ export class AgrappProjectsManagerComponent {
     return dataStr.includes(filterValue);
   }
 
-
-  createProject() {
-    this.openModal(ProjectModalComponent);
+  redirectToRegisterProject(project: ProjectDto) {
+    this.router.navigate(["/portal/project/register", project.code_project]);
   }
 
-  viewProject(project: ProjectDto) {
-    let data: InputUserModal = {
-      mode: TypeModalMode.EDIT,
-      data: project
-    }
-    this.openModal(ProjectModalComponent, data);
-  }
 
-  openModal(component: any, data?: any) {
-    const dialogRef: MatDialogRef<any> = this.dialog.open(component, {
-      data: data
-    });
-    dialogRef.afterClosed().subscribe((_) => {
-    });
-  }
+
+
+
 }

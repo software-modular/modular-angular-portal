@@ -20,6 +20,7 @@ export const environment = {
         getAllStaff: "/users/staff/?page=",
         createStaff: "/users/staff/create/",
         getAllClient: "/users/client/?page=",
+        updateClient: "/users/client/update/%s",
         deleteUser: "/users/client/delete/%s",
         findAllProjects: "/projects/",
         createProject: "/projects/create/"
@@ -32,8 +33,48 @@ export const environment = {
     logoRedirect: false,
     urlLogoRedirect: "/portal/home",
     altLogo: "Agro-Inversiones",
-    typeNavbar: "CUSTOM",
+    typeNavbar: "CUSTOM_2",
     navbarOptions: [
+      {
+        name: "Inicio",
+        redirect: true,
+        showOption: true,
+        disableOption: false,
+        cssClass: "",
+        cssStyle: "",
+        urlRedirect: "portal/home",
+        icon: "",
+        type: "MENU",
+        roleView: "ALL",
+        items: []
+      },
+      {
+        name: "Invierte",
+        redirect: true,
+        showOption: true,
+        disableOption: false,
+        cssClass: "",
+        cssStyle: "",
+        urlRedirect: "portal/home",
+        icon: "",
+        type: "MENU",
+        roleView: "ALL",
+        items: []
+      },
+      ,
+      {
+        name: "Proyectos",
+        redirect: true,
+        showOption: true,
+        disableOption: false,
+        cssClass: "",
+        cssStyle: "",
+        urlRedirect: "portal/home",
+        icon: "",
+        type: "MENU",
+        roleView: "ALL",
+        items: []
+      },
       {
         name: "Administrar usuarios",
         redirect: true,
@@ -42,8 +83,10 @@ export const environment = {
         cssClass: "",
         cssStyle: "",
         urlRedirect: "portal/user/management",
-        icon: "fa fa-line-chart",
-        type: "MENU"
+        icon: "",
+        type: "MENU",
+        roleView: "ADMIN",
+        items: []
       },
       {
         name: "Administrar proyectos",
@@ -53,21 +96,11 @@ export const environment = {
         cssClass: "",
         cssStyle: "",
         urlRedirect: "portal/project/management",
-        icon: "fa fa-address-card",
-        type: "MENU"
-      },
-      {
-        name: "Nosotros",
-        redirect: false,
-        showOption: true,
-        disableOption: false,
-        cssClass: "",
-        cssStyle: "",
-        urlRedirect: "",
-        icon: "fa fa-users",
-        type: "MENU"
+        icon: "",
+        roleView: "ADMIN",
+        type: "MENU",
       }, {
-        name: "Editar usuario",
+        name: "Perfil de usuario",
         redirect: true,
         showOption: true,
         disableOption: false,
@@ -75,7 +108,8 @@ export const environment = {
         cssStyle: "",
         urlRedirect: "/portal/user/profile",
         icon: "fa-solid fa-user-pen",
-        type: "USER_PROFILE_MENU"
+        type: "USER_PROFILE_MENU",
+        roleView: "ALL",
       }
     ],
 

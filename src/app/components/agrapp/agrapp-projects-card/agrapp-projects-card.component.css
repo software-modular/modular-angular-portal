@@ -1,3 +1,43 @@
+@media (min-width: 1101px) {}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .card-container {
+    width: 48vw !important;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+  .card-container {
+    width: 85vw !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .card-container {
+    width: 85vw !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .card-container {
+    width: 85vw !important;
+  }
+}
+
+@media (max-width: 478px) {
+  .card-container {
+    width: 85vw !important;
+  }
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 460px) {
+  .card-container {
+    width: 93vw !important;
+  }
+}
+
+
 .card:hover {
   transform: scale(1.009);
 }

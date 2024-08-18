@@ -12,6 +12,10 @@
     width: 30% !important;
   }
 
+  .custom-topbar-2-userprofile-container {
+    width: 30% !important;
+  }
+
 
   .custom-menu-container-body {
     margin-top: 67px !important;
@@ -316,6 +320,20 @@
   background: white;
 }
 
+.custom-userprofile-2-options-container {
+  position: absolute;
+  width: 300px;
+  max-width: 20vw;
+  height: auto;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  z-index: 999 !important;
+  margin-left: 40px;
+  margin-top: 46px;
+  box-shadow: 0px 4px 8px rgba(220, 220, 220, 0.982);
+  background: white;
+}
+
 
 .custom-userprofile-option-container {
   display: flex;
@@ -325,7 +343,27 @@
   flex-direction: column;
 }
 
+
+.custom-userprofile-2-option-container {
+  display: flex;
+  padding: 15px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .custom-userprofile-option {
+  color: var(--default-text-color);
+  font-weight: 450;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  width: 100%;
+  justify-content: center;
+}
+
+.custom-userprofile-2-option {
   color: var(--default-text-color);
   font-weight: 450;
   height: 40px;
@@ -420,4 +458,49 @@
 
 .default-profile-options {
   justify-content: space-around !important;
+}
+
+.custom-menu-2-options-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.custom-profile-2-option-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  padding: 5px;
+  width: 10vw;
+  align-items: center;
+}
+
+.custom-profile-2-option-container:hover {
+  border-radius: 10px;
+  color: #334155;
+  background: #f1f5f9;
+}
+
+
+.custom-menu-2-option-container:hover {
+  border-radius: 10px;
+  color: #334155;
+  background: #f1f5f9;
+}
+
+.btn-menu-2-option {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.btn.focus,
+.btn:focus {
+  box-shadow: none !important
+}
+
+.btn.active,
+.btn:active {
+  color: var(--bs-btn-active-color);
+  background-color: var(--bs-btn-active-bg);
+  border-color: #f1f5f9 !important;
 }

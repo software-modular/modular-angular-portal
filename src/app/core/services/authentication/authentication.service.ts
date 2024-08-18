@@ -83,6 +83,10 @@ export class AuthenticationService {
     return this.localStorageTokenService.getUserData();
   }
 
+  updateUserAuthenticated(user: ResponseClientDto) {
+    this.localStorageTokenService.setUserData(user);
+  }
+
   private getAuthenticator(): Authenticator {
     return this.authenticator;
   }

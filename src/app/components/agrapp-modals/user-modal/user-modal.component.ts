@@ -46,7 +46,7 @@ export class UserModalComponent implements AfterViewInit {
 
   loadForm() {
     this.dynamicFormInput = {
-      title: this.modalTitle,
+      title: "TITULO NICOLAS",
       titleAling: "center",
       fields: this.getFieldsForm(),
       showFooter: false,
@@ -63,6 +63,7 @@ export class UserModalComponent implements AfterViewInit {
       this.dynamicFormService.setValueField("phone", this.data.data.phone);
       this.dynamicFormService.setValueField("address", this.data.data.address);
       this.dynamicFormService.setValueField("date_of_birth", this.data.data.date_of_birth);
+      debugger
       this.dynamicFormService.setValueField("type_user", this.data.data.type_user);
     }
   }
@@ -84,6 +85,10 @@ export class UserModalComponent implements AfterViewInit {
         label: "Administrador",
         value: "ST"
       },
+      {
+        label: "Cliente",
+        value: "CL"
+      },
     ];
     return [
       new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, '', [Validators.required]),
@@ -98,6 +103,7 @@ export class UserModalComponent implements AfterViewInit {
       new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, '', [Validators.required]),
       new HiddenFieldForm("", "", "is_active", "", TypeInputForm.HIDDEN, true),
       new TextFieldForm("", "", "profile_picture", "", TypeInputForm.HIDDEN, "", []),
+
       new HiddenFieldForm("", "", "is_staff", "", TypeInputForm.HIDDEN, false),
 
     ];

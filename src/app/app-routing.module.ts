@@ -23,6 +23,8 @@ const routes: Routes = [
       { path: 'user/management', component: AgrappManageUserComponent, canActivate: [authenticationGuard()] },
       { path: 'project/management', component: AgrappProjectsManagerComponent, canActivate: [authenticationGuard()] },
       { path: 'project', component: AgrappProjectsComponent, canActivate: [authenticationGuard()] },
+      { path: 'project/register/:id', component: AgrappProjectsRegisterComponent, canActivate: [authenticationGuard()] },
+      { path: 'project/register', component: AgrappProjectsRegisterComponent, canActivate: [authenticationGuard()] },
       { path: 'home', component: AgrappHomeComponent },
     ]
   }

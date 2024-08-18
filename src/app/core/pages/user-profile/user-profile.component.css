@@ -2,12 +2,14 @@
   display: flex;
   justify-content: center;
   padding-top: 12px;
+  height: 83.2vh;
 }
 
 .user-profile-body-container {
   padding-top: 30px;
   padding-bottom: 20px;
   width: 700px;
+  margin-bottom: 15px;
 }
 
 .user-profile-body-form-container {
@@ -21,14 +23,19 @@
 }
 
 .picture-container {
-  border-radius: 100%;
   height: 100px;
   display: inline-flex;
 }
 
+.img-profile {
+  border-radius: 100%;
+}
+
 .user-profile-body-edit-container {
-  position: fixed;
-  margin-left: 520px;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .btn-edit {
@@ -38,4 +45,55 @@
 .user-profile-actions-container {
   display: flex;
   justify-content: center;
+}
+
+.user-profile-viewer {
+  padding-top: 25px;
+  padding-left: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-field-container {
+  padding: 20px;
+}
+
+.profile-name-container {
+  font-size: 18px;
+  font-weight: 550;
+}
+
+.btn-profile-actions {
+  margin-left: 10px;
+}
+
+.profile-name-user-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  font-size: 18px;
+  font-weight: 550;
+}
+
+.edit-form-container {
+  overflow: auto;
+  height: 525px;
+}
+
+.edit-img-profile {
+  padding: 5px;
+  position: fixed;
+  margin-left: 95px;
+  color: black;
+  margin-top: 75px;
+
+}
+
+.edit-img-profile:hover {
+  margin-top: 75px;
+  border: 1px solid #d0d0d0;
+  border-radius: 5px;
 }

@@ -8,5 +8,7 @@ export interface NavbarOption {
   showOption?: boolean,
   disableOption?: boolean,
   type?: string,
-  icon?: string
+  icon?: string,
+  roleView?: string,
+  items?: NavbarOption[]
 }

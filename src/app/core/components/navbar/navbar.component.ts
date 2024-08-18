@@ -32,6 +32,7 @@ export class NavbarComponent {
     private elementRef: ElementRef,
     private navbarService: NavbarService
   ) {
+
   }
 
   @HostListener('document:click', ['$event.target'])
@@ -62,7 +63,7 @@ export class NavbarComponent {
   }
 
   showCustomProfile() {
-    this.showCustomUserprofileOption = true;
+    this.showCustomUserprofileOption = !this.showCustomUserprofileOption;
   }
 
   showCustomProfileInformation() {
@@ -71,6 +72,11 @@ export class NavbarComponent {
 
   showLoginBtn() {
     return this.navbarService.getShowBtnLogin();
+  }
+
+  getTypeUser(): string {
+    let userInformation: NabvarUserInformation = this.navbarService.getUserInformation();
+    return userInformation.roleUser;
   }
 
   logout() {
@@ -88,6 +94,14 @@ export class NavbarComponent {
 
   selectMenuOptionEvent() {
     this.showCustomMenus = false;
+  }
+
+  showOptionByRole(roleView?: string): Boolean {
+    if (roleView === undefined && roleView === "ALL") {
+      return true;
+    } else {
+      return roleView === this.getTypeUser()
+    }
   }
 
   private getEmail(): string {

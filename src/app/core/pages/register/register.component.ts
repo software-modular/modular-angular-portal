@@ -72,7 +72,7 @@ export class RegisterComponent {
       new ListOptionFieldForm("Tipo identificacion", "Escribe tipo identificacion", "type_ide", "",
         TypeInputForm.LIST_OPTION, typeIdentifications, [Validators.required]),
       new TextFieldForm("Identificación", "Escribe tu identificación", "document_id", "", TypeInputForm.NUMBER, "", [Validators.required, Validators.minLength(7)]),
-      new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.NUMBER, "", [Validators.required]),
+      new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.NUMBER, "", [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
       new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, "", [Validators.required]),
       new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, "", [Validators.required]),
       new HiddenFieldForm("", "", "is_active", "", TypeInputForm.HIDDEN, true),

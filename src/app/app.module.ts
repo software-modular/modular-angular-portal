@@ -16,7 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClientModule, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -30,13 +30,20 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { UserModalComponent } from './components/agrapp-modals/user-modal/user-modal.component';
+import { AgrappHomeAnimationsComponent } from './components/agrapp/agrapp-home-animations/agrapp-home-animations.component';
 import { AgrappProjectsCardComponent } from './components/agrapp/agrapp-projects-card/agrapp-projects-card.component';
 import { AgrappProjectsListCardComponent } from './components/agrapp/agrapp-projects-list-card/agrapp-projects-list-card.component';
 import { AgrappProjectsRegisterComponent } from './components/agrapp/agrapp-projects-register/agrapp-projects-register.component';
 import { CarouselImgComponent } from './core/components/carousel-img/carousel-img.component';
+import { CustomMultifileUploadComponent } from './core/components/custom-multifile-upload/custom-multifile-upload.component';
 import { DynamicFormComponent } from './core/components/dynamic-form/dynamic-form.component';
 import { InputAutocompleteComponent } from './core/components/input-autocomplete/input-autocomplete.component';
 import { InputDateComponent } from './core/components/input-date/input-date.component';
@@ -47,6 +54,7 @@ import { InputTextAreaComponent } from './core/components/input-text-area/input-
 import { InputTextComponent } from './core/components/input-text/input-text.component';
 import { MultifileUploadComponent } from './core/components/multifile-upload/multifile-upload.component';
 import { NavbarComponent } from './core/components/navbar/navbar.component';
+import { authenticationInterceptor } from './core/interceptors/authentication.interceptor';
 import { LoginComponent } from './core/pages/login/login.component';
 import { RegisterComponent } from './core/pages/register/register.component';
 import { UserProfileComponent } from './core/pages/user-profile/user-profile.component';
@@ -57,18 +65,9 @@ import { HeaderComponent } from './layout/components/header/header.component';
 import { LayoutComponent } from './layout/layout.component';
 import { AgrappHomeComponent } from './pages/agrapp-home/agrapp-home.component';
 import { AgrappInvestmentsComponent } from './pages/agrapp-investments/agrapp-investments.component';
-import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ToastModule } from 'primeng/toast';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { authenticationInterceptor } from './core/interceptors/authentication.interceptor';
 import { AgrappManageUserComponent } from './pages/agrapp-manage-user/agrapp-manage-user.component';
-import { TableModule } from 'primeng/table';
-import { UserModalComponent } from './components/agrapp-modals/user-modal/user-modal.component';
-import { AgrappHomeAnimationsComponent } from './components/agrapp/agrapp-home-animations/agrapp-home-animations.component';
 import { AgrappProjectsManagerComponent } from './pages/agrapp-projects-manager/agrapp-projects-manager.component';
-import { ProjectModalComponent } from './components/agrapp-modals/project-modal/project-modal.component';
-import { CustomMultifileUploadComponent } from './core/components/custom-multifile-upload/custom-multifile-upload.component';
+import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,8 +100,7 @@ import { CustomMultifileUploadComponent } from './core/components/custom-multifi
     UserModalComponent,
     AgrappHomeAnimationsComponent,
     AgrappProjectsManagerComponent,
-    ProjectModalComponent,
-    CustomMultifileUploadComponent
+    CustomMultifileUploadComponent,
   ],
   imports: [
     BrowserModule,

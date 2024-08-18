@@ -2,10 +2,20 @@
   <div class="projects-register-body-container">
     <div class="projects-register-body-content">
       <div class="row">
-        <div class="col-md-5 section-container-left">
+        <div class="col-md-12">
+          <span class="back-button">
+            <button class="btn btn-secundary" [routerLink]="'/portal/project/management'">
+              <i class="fa fa-chevron-left" aria-hidden="true"> </i>
+              &nbsp;&nbsp;Atras
+            </button>
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 section-container-left">
           <agrapp-projects-card [data]="cardData"></agrapp-projects-card>
         </div>
-        <div class="col-md-7 section-container-right">
+        <div class="col-md-6 section-container-right">
           <div class="project-register-form-container">
             <mat-stepper class="project-register-step-container" labelPosition="bottom" #stepper>
               <mat-step [stepControl]="form">
@@ -508,7 +518,8 @@
                       <button mat-button matStepperPrevious>Atras</button>
                     </div>
                     <div class="col-md-6" style="text-align: right;">
-                      <button mat-button (click)="eventSaveProject()">Crear</button>
+                      <button mat-button [disabled]="form.invalid" (click)="saveProject()">{{isEdit ?
+                        'Actualizar':'Crear'}}</button>
                     </div>
                   </div>
                 </div>

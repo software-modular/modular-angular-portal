@@ -8,6 +8,8 @@ import { getTypeNavbarByName } from '../../../core/domain/enum/TypeNavbar';
 import { AuthenticationService } from '../../../core/services/authentication/authentication.service';
 import { NavbarService } from '../../../core/services/components/navbar.service';
 import { NabvarUserInformation } from '../../../core/domain/beans/navbarUserInformation';
+import { UserTypeOptions } from '../../../core/domain/const/UserTypeOptions';
+import { TypeClient } from '../../../core/domain/enum/TypeClient';
 
 @Component({
   selector: 'app-header',
@@ -35,8 +37,10 @@ export class HeaderComponent implements OnInit {
       if (userData.user !== undefined) {
         let userInformationNabvar: NabvarUserInformation = {
           name: userData.user.name || '',
-          username: userData.user.email || ''
+          username: userData.user.email || '',
+          roleUser: this.getUserRole(userData)
         }
+
         this.navbarService.setUserInformation(userInformationNabvar);
         this.navbarService.showUserProfileMenu(true);
         this.navbarService.showLoginBtn(false);
@@ -79,7 +83,8 @@ export class HeaderComponent implements OnInit {
       showOption: option.showOption,
       urlRedirect: option.urlRedirect,
       type: option.type,
-      icon: option.icon
+      icon: option.icon,
+      roleView: option.roleView
     }
     return navbarOption;
   }
@@ -97,5 +102,19 @@ export class HeaderComponent implements OnInit {
 
   redirect(url: string) {
     this.router.navigate([url]);
+  }
+
+  private getUserRole(userData: ResponseClientDto) {
+    switch (userData.user.type_user) {
+      case TypeClient.CLIENT: {
+        return "USER"
+      }
+      case TypeClient.STAFF: {
+        return "ADMIN"
+      }
+      default: {
+        return "ALL"
+      }
+    }
   }
 }

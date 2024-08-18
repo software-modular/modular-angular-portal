@@ -11,7 +11,8 @@ export class NavbarService {
   private showBtnLogin: Boolean = true;
   private userInformation: NabvarUserInformation = {
     name: "Usuario test",
-    username: "UsuarioTest"
+    username: "UsuarioTest",
+    roleUser: "ALL"
   };
 
   constructor() { }
