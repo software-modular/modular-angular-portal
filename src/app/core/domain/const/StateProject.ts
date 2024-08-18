@@ -18,3 +18,9 @@ export const statesProject: OptionInput[] = [
     value: "CAN"
   },
 ];
+
+export function getStateProjectByCode(code: string) {
+  let state = statesProject.find(state => state.value === code);
+  return state?.label ?? '';
+}
+

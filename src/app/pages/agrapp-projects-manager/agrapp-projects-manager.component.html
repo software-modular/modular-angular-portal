@@ -41,7 +41,7 @@
               <ng-container matColumnDef="Estado">
                 <th mat-header-cell *matHeaderCellDef class="table-content"> Estado </th>
                 <td mat-cell *matCellDef="let project" class="table-content">
-                  {{project.state }} </td>
+                  {{getStateByCode(project.state) }} </td>
               </ng-container>
               <ng-container matColumnDef="Fecha inicio">
                 <th mat-header-cell *matHeaderCellDef class="table-content"> Fecha inicio </th>
@@ -56,12 +56,12 @@
               <ng-container matColumnDef="Departamento">
                 <th mat-header-cell *matHeaderCellDef class="table-content"> Departamento </th>
                 <td mat-cell *matCellDef="let project" class="table-content">
-                  {{project.crop.department }} </td>
+                  {{getDeparmentByCodeHtml(project.crop.department) }} </td>
               </ng-container>
               <ng-container matColumnDef="Ciudad">
                 <th mat-header-cell *matHeaderCellDef class="table-content"> Ciudad </th>
                 <td mat-cell *matCellDef="let project" class="table-content">
-                  {{project.crop.municipality}} </td>
+                  {{getCityByCodeHtml(project.crop.municipality)}} </td>
               </ng-container>
               <ng-container matColumnDef="Nombre productor">
                 <th mat-header-cell *matHeaderCellDef class="table-content"> Nombre productor </th>

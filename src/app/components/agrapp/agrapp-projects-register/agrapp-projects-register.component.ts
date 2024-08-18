@@ -58,7 +58,8 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
       funded: 200000,
       imgs: [
         "/assets/img/carousel/img-carousel-not-found.svg",
-      ]
+      ],
+      id: "carousel"
     }
 
   constructor(

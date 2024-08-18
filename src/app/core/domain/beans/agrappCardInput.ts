@@ -9,5 +9,6 @@ export interface AgrappCardInput {
   investmentTarget?: number,
   partners?: number,
   funded?: number,
-  imgs?: string[]
+  imgs?: string[],
+  id: string,
 }

@@ -8,7 +8,21 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrl: './agrapp-projects-card.component.css'
 })
 export class AgrappProjectsCardComponent implements AfterViewInit {
-  @Input() data: AgrappCardInput = {};
+  imgsDefault: string[] = ["/assets/img/carousel/img-carousel-not-found.svg"];
+
+  @Input() data: AgrappCardInput = {
+    ownerName: "Luis alberto gomez",
+    imgs: this.imgsDefault,
+    ubication: "Cali - Valle del cauca",
+    minInvestment: 5000000,
+    funded: 1000000,
+    nameCrop: "Cultivo de yuca",
+    partners: 2,
+    investmentTarget: 10000000,
+    percentageProfit: "13%",
+    redirect: true,
+    id: "carousel"
+  };
 
   formCard: FormGroup;
   funded: number = 0;
@@ -29,8 +43,8 @@ export class AgrappProjectsCardComponent implements AfterViewInit {
   setSliderValue() {
     if (this.data.funded !== undefined
       && this.data.investmentTarget !== undefined) {
-      this.funded = (100 / this.data.investmentTarget) * this.data.funded;
-      this.formCard.get("slider")?.setValue(this.funded, { emitEvent: false });
+      this.funded = Number(((100 / this.data.investmentTarget) * this.data.funded).toFixed(1));
+      this.formCard.get("slider")?.setValue(this.funded.toFixed(1), { emitEvent: false });
       return;
     }
     this.funded = 0;

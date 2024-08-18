@@ -6,5 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './carousel-img.component.css'
 })
 export class CarouselImgComponent {
+  imgDefault: string = "/assets/img/carousel/img-carousel-not-found.svg";
   @Input() imgs: string[] = [];
+  @Input() carouselId: string = "carousel";
 }

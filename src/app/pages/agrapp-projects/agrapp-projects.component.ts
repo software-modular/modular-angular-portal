@@ -21,6 +21,7 @@ export class AgrappProjectsComponent {
     imgs: [
       "https://perfectdailygrind.com/es/wp-content/uploads/sites/2/2019/11/coffee-farm.jpg",
       "https://agrocode.com/wp-content/uploads/sites/2/2019/10/cultivo-cafe.jpg"
-    ]
+    ],
+    id: "carousel"
   }]
 }

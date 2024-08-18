@@ -11,6 +11,7 @@ import { AgrappHomeComponent } from './pages/agrapp-home/agrapp-home.component';
 import { AgrappProjectsManagerComponent } from './pages/agrapp-projects-manager/agrapp-projects-manager.component';
 import { AgrappProjectsRegisterComponent } from './components/agrapp/agrapp-projects-register/agrapp-projects-register.component';
 import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
+import { AgrappInvestmentsComponent } from './pages/agrapp-investments/agrapp-investments.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'portal/home', pathMatch: 'full' },
@@ -22,7 +23,7 @@ const routes: Routes = [
       { path: 'user/profile', component: UserProfileComponent, canActivate: [authenticationGuard()] },
       { path: 'user/management', component: AgrappManageUserComponent, canActivate: [authenticationGuard()] },
       { path: 'project/management', component: AgrappProjectsManagerComponent, canActivate: [authenticationGuard()] },
-      { path: 'project', component: AgrappProjectsComponent, canActivate: [authenticationGuard()] },
+      { path: 'project', component: AgrappInvestmentsComponent, canActivate: [authenticationGuard()] },
       { path: 'project/register/:id', component: AgrappProjectsRegisterComponent, canActivate: [authenticationGuard()] },
       { path: 'project/register', component: AgrappProjectsRegisterComponent, canActivate: [authenticationGuard()] },
       { path: 'home', component: AgrappHomeComponent },
@@ -30,7 +31,6 @@ const routes: Routes = [
   }
 
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

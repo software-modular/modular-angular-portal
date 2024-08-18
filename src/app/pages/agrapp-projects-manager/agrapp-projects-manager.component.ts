@@ -9,6 +9,8 @@ import { ConfirmationService } from 'primeng/api';
 import { projectList } from '../../core/domain/const/Mocks';
 import { ProjectDto } from '../../core/domain/dto/projectDto';
 import { ProjectService } from '../../core/services/project/project.service';
+import { getCityByCode, getDepartmentByCode } from '../../core/domain/const/Colombia';
+import { getStateProjectByCode } from '../../core/domain/const/StateProject';
 
 @Component({
   selector: 'app-agrapp-projects-manager',
@@ -112,8 +114,16 @@ export class AgrappProjectsManagerComponent {
     this.router.navigate(["/portal/project/register", project.code_project]);
   }
 
+  getCityByCodeHtml(code: string): string {
+    return getCityByCode(code);
+  }
 
+  getDeparmentByCodeHtml(code: string): string {
+    return getDepartmentByCode(code);
+  }
 
-
+  getStateByCode(code: string): string {
+    return getStateProjectByCode(code);
+  }
 
 }

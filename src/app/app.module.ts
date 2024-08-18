@@ -68,6 +68,8 @@ import { AgrappInvestmentsComponent } from './pages/agrapp-investments/agrapp-in
 import { AgrappManageUserComponent } from './pages/agrapp-manage-user/agrapp-manage-user.component';
 import { AgrappProjectsManagerComponent } from './pages/agrapp-projects-manager/agrapp-projects-manager.component';
 import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
+import { AgrappProjectCarouselComponent } from './components/agrapp/agrapp-project-carousel/agrapp-project-carousel.component';
+import { CarouselModule } from 'primeng/carousel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,6 +103,7 @@ import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects
     AgrappHomeAnimationsComponent,
     AgrappProjectsManagerComponent,
     CustomMultifileUploadComponent,
+    AgrappProjectCarouselComponent,
   ],
   imports: [
     BrowserModule,
@@ -141,7 +144,8 @@ import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects
     InputNumberModule,
     ConfirmDialogModule,
     ToastModule,
-    TableModule
+    TableModule,
+    CarouselModule
   ],
   providers: [
     provideClientHydration(),

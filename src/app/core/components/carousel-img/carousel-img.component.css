@@ -8,3 +8,8 @@
   height: 250px;
   border-radius: 0.5rem;
 }
+
+.carousel-control-icon-custom {
+  font-size: 35px;
+  color: #928a8a;
+}

@@ -63,7 +63,6 @@ export class UserModalComponent implements AfterViewInit {
       this.dynamicFormService.setValueField("phone", this.data.data.phone);
       this.dynamicFormService.setValueField("address", this.data.data.address);
       this.dynamicFormService.setValueField("date_of_birth", this.data.data.date_of_birth);
-      debugger
       this.dynamicFormService.setValueField("type_user", this.data.data.type_user);
     }
   }

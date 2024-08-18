@@ -2,7 +2,7 @@ export const environment = {
   production: false,
   configuration: {
     typeAuthenticator: "0",
-    defaultUrlRedirect: "portal/login"
+    defaultUrlRedirect: "portal/home"
   },
   api: {
     host: 'http://127.0.0.1:8000/api',
@@ -49,27 +49,13 @@ export const environment = {
         items: []
       },
       {
-        name: "Invierte",
-        redirect: true,
-        showOption: true,
-        disableOption: false,
-        cssClass: "",
-        cssStyle: "",
-        urlRedirect: "portal/home",
-        icon: "",
-        type: "MENU",
-        roleView: "ALL",
-        items: []
-      },
-      ,
-      {
         name: "Proyectos",
         redirect: true,
         showOption: true,
         disableOption: false,
         cssClass: "",
         cssStyle: "",
-        urlRedirect: "portal/home",
+        urlRedirect: "portal/project",
         icon: "",
         type: "MENU",
         roleView: "ALL",
