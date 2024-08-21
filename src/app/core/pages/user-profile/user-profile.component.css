@@ -1,15 +1,19 @@
 .user-profile-container {
   display: flex;
-  justify-content: center;
-  padding-top: 12px;
-  height: 83.2vh;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.user-profile-header-container {
+  padding: 20px;
 }
 
 .user-profile-body-container {
-  padding-top: 30px;
-  padding-bottom: 20px;
   width: 700px;
-  margin-bottom: 15px;
+  margin-top: 25px;
 }
 
 .user-profile-body-form-container {
@@ -23,12 +27,13 @@
 }
 
 .picture-container {
-  height: 100px;
   display: inline-flex;
 }
 
 .img-profile {
   border-radius: 100%;
+  height: 100px;
+  width: 100px;
 }
 
 .user-profile-body-edit-container {
@@ -45,6 +50,8 @@
 .user-profile-actions-container {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .user-profile-viewer {
@@ -68,24 +75,31 @@
   margin-left: 10px;
 }
 
-.profile-name-user-container {
+.profile-info-user-container {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding-top: 20px;
-  font-size: 18px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 30px;
+}
+
+.profile-info-name {
+  font-size: 24px;
   font-weight: 550;
+}
+
+.profile-info-email {
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .edit-form-container {
   overflow: auto;
-  height: 525px;
+  height: auto;
 }
 
 .edit-img-profile {
   padding: 5px;
-  position: fixed;
+  position: absolute;
   margin-left: 95px;
   color: black;
   margin-top: 75px;
@@ -96,4 +110,15 @@
   margin-top: 75px;
   border: 1px solid #d0d0d0;
   border-radius: 5px;
+}
+
+
+.user-profile-detail-label-container {
+  padding-top: 20px;
+  padding-left: 40px;
+}
+
+.user-profile-detail-label {
+  font-size: 28px;
+  font-weight: 600;
 }

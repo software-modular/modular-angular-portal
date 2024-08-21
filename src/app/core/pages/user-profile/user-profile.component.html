@@ -1,91 +1,43 @@
 <div class="user-profile-container">
-  <div class="card user-profile-body-container">
+  <div class="card user-profile-header-container">
     <div class="row">
       <div class="col-md-12">
         <div class="user-profile-body-picture-container">
           <div class="picture-container">
             <img class="img-profile" [src]="imgProfileSource">
-            <span *ngIf="editForm" class="edit-img-profile" onclick="document.getElementById('fileInput').click();">
+            <span class="edit-img-profile" onclick="document.getElementById('fileInput').click();">
               <i class="fa fa-edit"></i>
               <input id="fileInput" type="file" style="display: none;" lang="en" formControlName="file"
                 (change)="onFileSelected($event)">
             </span>
           </div>
+          <div class="profile-info-user-container">
+            <label class="profile-info-name">{{userInfo.user.name}}</label>
+            <label class="profile-info-email">{{userInfo.user.email}}</label>
+          </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="profile-name-user-container">
-          <label>{{userInfo.user.name}}</label>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div *ngIf="!editForm" class="col-md-12">
-        <div class="user-profile-viewer">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="row profile-field-container">
-                <div class="col-md-6 profile-name-container">Correo:</div>
-                <div class="col-md-6 profile-value-container">{{userInfo.user.email}}</div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="row profile-field-container">
-                <div class="col-md-6 profile-name-container">Telefono:</div>
-                <div class="col-md-6 profile-value-container">{{userInfo.user.phone}}</div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="row profile-field-container">
-                <div class="col-md-6 profile-name-container">Fecha nacimiento:</div>
-                <div class="col-md-6 profile-value-container">{{userInfo.user.date_of_birth}}</div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="row profile-field-container">
-                <div class="col-md-6 profile-name-container">Tipo identificación:</div>
-                <div class="col-md-6 profile-value-container">{{userInfo.user.type_ide}}</div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="row profile-field-container">
-                <div class="col-md-6 profile-name-container">Identificación:</div>
-                <div class="col-md-6 profile-value-container">{{userInfo.user.document_id}}</div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="user-profile-body-edit-container">
-                <button *ngIf="!editForm" class="btn-edit btn" (click)="editFormProcess()">
-                  Editar
-                </button>
-              </div>
-            </div>
-          </div>
+  </div>
 
-        </div>
+  <div class="card user-profile-body-container">
+    <div class="row">
+      <div class="col-md-12 user-profile-detail-label-container">
+        <label class="user-profile-detail-label">Detalles del perfil</label>
       </div>
-      <div *ngIf="editForm" class="col-md-12 edit-form-container">
+    </div>
+    <div class="div-separator"></div>
+    <div class="row">
+      <div class="col-md-12 edit-form-container">
         <div class="user-profile-body-form-container">
           <dynamic-form [data]="dynamicFormInput"></dynamic-form>
         </div>
       </div>
     </div>
-    <div *ngIf="editForm" class="row">
+    <div class="row">
       <div class="user-profile-actions-container">
-        <button class="btn btn-secundary btn-profile-actions" (click)="cancel()">Cancelar</button>
-        <button class="btn btn-primary btn-profile-actions" (click)="updateUserProfile()">Guardar</button>
+        <button class="btn btn-primary btn-profile-actions" [disabled]="!isValidForm()"
+          (click)="updateUserProfile()">Actualizar</button>
       </div>
     </div>
   </div>

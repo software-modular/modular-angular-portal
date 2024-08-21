@@ -29,11 +29,11 @@ export const environment = {
   },
   navbarConfiguration: {
     title: "Agro-Inversiones",
-    srcLogo: "./assets/logo.png",
+    srcLogo: "./assets/img/logo.png",
     logoRedirect: false,
     urlLogoRedirect: "/portal/home",
     altLogo: "Agro-Inversiones",
-    typeNavbar: "CUSTOM_2",
+    typeNavbar: "CUSTOM",
     navbarOptions: [
       {
         name: "Inicio",
@@ -86,7 +86,7 @@ export const environment = {
         roleView: "ADMIN",
         type: "MENU",
       }, {
-        name: "Perfil de usuario",
+        name: "Informacion de perfil",
         redirect: true,
         showOption: true,
         disableOption: false,

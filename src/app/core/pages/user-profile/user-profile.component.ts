@@ -34,7 +34,6 @@ export class UserProfileComponent implements OnInit {
 
   ) {
     this.loadUserInfo()
-
   }
 
   ngOnInit(): void {
@@ -93,8 +92,20 @@ export class UserProfileComponent implements OnInit {
     };
   }
 
-  cancel() {
-    this.editForm = false;
+
+  isValidForm() {
+    debugger
+    return this.dynamiFormService.isValidForm();
+  }
+
+
+  async onFileSelected(event: any) {
+    this.fileUpload = event.target.files[0];
+    this.convertImageProfile();
+  }
+
+  async convertImageProfile() {
+    this.imgProfileSource = await convertImgToBase64(this.fileUpload);
   }
 
   private getUserInfo(): ResponseClientDto {
@@ -132,16 +143,6 @@ export class UserProfileComponent implements OnInit {
 
   private eventAfterUpdateProfile() {
     this.editForm = false;
-  }
-
-
-  async onFileSelected(event: any) {
-    this.fileUpload = event.target.files[0];
-    this.convertImageProfile();
-  }
-
-  async convertImageProfile() {
-    this.imgProfileSource = await convertImgToBase64(this.fileUpload);
   }
 
 }

@@ -104,12 +104,12 @@ export class NavbarComponent {
     }
   }
 
-  private getEmail(): string {
+  getEmail(): string {
     let userInformation: NabvarUserInformation = this.navbarService.getUserInformation();
     return userInformation.username;
   }
 
-  private getUsername(): string {
+  getUsername(): string {
     let userInformation: NabvarUserInformation = this.navbarService.getUserInformation();
     return userInformation.name;
   }
