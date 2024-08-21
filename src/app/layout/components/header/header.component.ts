@@ -97,7 +97,7 @@ export class HeaderComponent implements OnInit {
     this.navbarService.showUserProfileMenu(false);
     this.navbarService.showLoginBtn(true);
     this.authenticationService.logoutUser();
-    this.redirect('/portal/login');
+    this.redirect(environment.navbarConfiguration.urlRedirectCloseSession);
   }
 
   redirect(url: string) {

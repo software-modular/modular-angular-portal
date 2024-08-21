@@ -34,6 +34,7 @@ export const environment = {
     urlLogoRedirect: "/portal/home",
     altLogo: "Agro-Inversiones",
     typeNavbar: "CUSTOM",
+    urlRedirectCloseSession: "/portal/home",
     navbarOptions: [
       {
         name: "Inicio",
