@@ -18,8 +18,6 @@ export interface ProjectDto {
     estimated_harvest_date?: string,
     owner?: {
       code_crop_owner?: Number,
-      wompi_public_key?: string,
-      wompi_private_key?: string,
       user?: {
         document_id?: string,
         type_ide?: string,

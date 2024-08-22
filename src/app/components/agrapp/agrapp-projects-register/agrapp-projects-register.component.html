@@ -194,6 +194,30 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
+                        <app-input-number formControlName="vegetativePeriod" [label]="'Periodo vegetativo'"
+                          [sufix]="' Meses'"></app-input-number>
+                        <mat-error class="error-field" *ngIf="form.get('vegetativePeriod')?.invalid
+                          && (form.get('vegetativePeriod')?.dirty
+                          || form.get('vegetativePeriod')?.touched)">
+                          <label *ngIf="form.get('vegetativePeriod')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <app-input-number formControlName="productivePeriod" [label]="'Periodo productivo'"
+                          [sufix]="' Meses'"></app-input-number>
+                        <mat-error class="error-field" *ngIf="form.get('productivePeriod')?.invalid
+                          && (form.get('productivePeriod')?.dirty
+                          || form.get('productivePeriod')?.touched)">
+                          <label *ngIf="form.get('productivePeriod')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
                         <input-date formControlName="cropStartDate" [label]="'Fecha inicio del cultivo'"></input-date>
                         <mat-error class="error-field" *ngIf="form.get('cropStartDate')?.invalid
                         && (form.get('cropStartDate')?.dirty
@@ -439,7 +463,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <app-input-number formControlName="prePurchaseMinAmount" [label]="'Cantidad minima'"
+                        <app-input-number formControlName="prePurchaseMinAmount" [label]="'Pre-compra minima'"
                           [sufix]="preOrderUnit"></app-input-number>
                         <mat-error class="error-field" *ngIf="form.get('prePurchaseMinAmount')?.invalid
                           && (form.get('prePurchaseMinAmount')?.dirty
@@ -451,12 +475,24 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <app-input-number formControlName="prePurchaseMaxAmount" [label]="'Total pre-compra'"
+                        <app-input-number formControlName="prePurchaseMaxAmount" [label]="'Pre-compra maxima'"
                           [sufix]="preOrderUnit"></app-input-number>
                         <mat-error class="error-field" *ngIf="form.get('prePurchaseMaxAmount')?.invalid
                           && (form.get('prePurchaseMaxAmount')?.dirty
                           || form.get('prePurchaseMaxAmount')?.touched)">
                           <label *ngIf="form.get('prePurchaseMaxAmount')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <app-input-number formControlName="totalPrePurcharse" [label]="'Total pre-compra'"
+                          [sufix]="preOrderUnit"></app-input-number>
+                        <mat-error class="error-field" *ngIf="form.get('totalPrePurcharse')?.invalid
+                          && (form.get('totalPrePurcharse')?.dirty
+                          || form.get('totalPrePurcharse')?.touched)">
+                          <label *ngIf="form.get('totalPrePurcharse')?.hasError('required')">El campo es
                             obligatorio</label>
                         </mat-error>
                       </div>
@@ -481,33 +517,6 @@
                           <label *ngIf="form.get('prePurchaseEndDate')?.hasError('required')">El campo es
                             obligatorio</label>
                         </mat-error>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-                <div class="project-register-buttons-container">
-                  <div class="row project-register-buttons-container">
-                    <div class="col-md-6">
-                      <button mat-button matStepperPrevious>Atras</button>
-                    </div>
-                    <div class="col-md-6" style="text-align: right;">
-                      <button mat-button matStepperNext>Continuar</button>
-                    </div>
-                  </div>
-                </div>
-              </mat-step>
-              <mat-step [stepControl]="form">
-                <form [formGroup]="form" class="project-register-form">
-                  <ng-template matStepLabel>Wompi</ng-template>
-                  <div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <input-text formControlName="wompiPublicKey" [label]="'Wompi llave publica'" />
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <input-text formControlName="wompiSecretKey" [label]="'Wompi llave privada'" />
                       </div>
                     </div>
                   </div>

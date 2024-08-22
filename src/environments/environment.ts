@@ -25,7 +25,15 @@ export const environment = {
         deleteStaff: "/users/staff/delete/%s",
         deleteClient: "/users/client/delete/%s",
         findAllProjects: "/projects/",
-        createProject: "/projects/create/"
+        findProjectById: "/projects/",
+        createProject: "/projects/create/",
+        updateProjectInformation: "/projects/update/%s/",
+        updateProjectCrop: "/projects/crops/update/",
+        updateProjectOwner: "/users/owner/update/",
+        updateProjectInvestment: "/projects/investments/update/",
+        updateProjectPrepurcharse: "/projects/prepurcharses/update/",
+
+
       }
     }
   },

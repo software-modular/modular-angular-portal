@@ -21,8 +21,6 @@ export const projectList: ProjectDto[] = [
       estimated_harvest_date: "2025-01-01",
       owner: {
         code_crop_owner: 6,
-        wompi_public_key: "xxxx",
-        wompi_private_key: "xxxx",
         user: {
           document_id: "125432735",
           type_ide: "CC",
@@ -78,8 +76,6 @@ export const projectList: ProjectDto[] = [
       estimated_harvest_date: "2025-01-01",
       owner: {
         code_crop_owner: 6,
-        wompi_public_key: "xxxx",
-        wompi_private_key: "xxxx",
         user: {
           document_id: "125432735",
           type_ide: "CC",
@@ -135,8 +131,6 @@ export const projectList: ProjectDto[] = [
       estimated_harvest_date: "2025-01-01",
       owner: {
         code_crop_owner: 6,
-        wompi_public_key: "xxxx",
-        wompi_private_key: "xxxx",
         user: {
           document_id: "125432735",
           type_ide: "CC",
@@ -192,8 +186,6 @@ export const projectList: ProjectDto[] = [
       estimated_harvest_date: "2025-01-01",
       owner: {
         code_crop_owner: 6,
-        wompi_public_key: "xxxx",
-        wompi_private_key: "xxxx",
         user: {
           document_id: "125432735",
           type_ide: "CC",
@@ -249,8 +241,6 @@ export const projectList: ProjectDto[] = [
       estimated_harvest_date: "2025-01-01",
       owner: {
         code_crop_owner: 6,
-        wompi_public_key: "xxxx",
-        wompi_private_key: "xxxx",
         user: {
           document_id: "125432735",
           type_ide: "CC",
@@ -306,8 +296,6 @@ export const projectList: ProjectDto[] = [
       estimated_harvest_date: "2025-01-01",
       owner: {
         code_crop_owner: 6,
-        wompi_public_key: "xxxx",
-        wompi_private_key: "xxxx",
         user: {
           document_id: "125432735",
           type_ide: "CC",

@@ -53,10 +53,14 @@ export class AgrappProjectsManagerComponent {
 
   fillTableProjects() {
     this.projects = projectList;
-    //hace peticion
-    this.dataSourceProjects = new MatTableDataSource(this.projects);
-    this.dataSourceProjects.paginator = this.paginatorProjects;
-    this.applyFilterProjectsTable();
+    this.projectService.findAllProjects().subscribe({
+      next: (data) => {
+        this.projects = data.results;
+        this.dataSourceProjects = new MatTableDataSource(this.projects);
+        this.dataSourceProjects.paginator = this.paginatorProjects;
+        this.applyFilterProjectsTable();
+      }
+    });
   }
 
   applyFilterProjectsTable() {

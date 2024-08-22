@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 import { projectList } from '../../../core/domain/const/Mocks';
 import { ProjectService } from '../../../core/services/project/project.service';
 import { base64ToFile } from '../../../core/utils/FileUtils';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'agrapp-projects-register',
@@ -65,7 +66,9 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private projectService: ProjectService,) {
+    private projectService: ProjectService,
+    private confirmationService: ConfirmationService,
+  ) {
     this.idProject = Number(this.route.snapshot.paramMap.get('id'));
     this.form = this.formBuilder.group({
       projectName: ["", [Validators.required]],
@@ -82,6 +85,8 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
       cropAddress: ["", [Validators.required]],
       cropTypeGround: ["", [Validators.required]],
       cropHetares: ["", [Validators.required]],
+      vegetativePeriod: ["", [Validators.required]],
+      productivePeriod: ["", [Validators.required]],
       cropNumberPlants: ["", [Validators.required]],
       cropStartDate: ["", [Validators.required]],
       cropEndDate: ["", [Validators.required]],
@@ -103,10 +108,9 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
       prePurchaseUnit: ["", []],
       prePurchaseMinAmount: ["", []],
       prePurchaseMaxAmount: ["", []],
+      totalPrePurcharse: ["", []],
       prePurchaseStartDate: ["", []],
       prePurchaseEndDate: ["", []],
-      wompiPublicKey: ["", []],
-      wompiSecretKey: ["", []],
     });
     this.onChangeFormValues();
   }
@@ -115,13 +119,15 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit(): void {
     if (this.idProject) {
-      this.isEdit = true; //peticion http para pedir la info del proyecto
-      this.projectData = projectList.find(project => project.code_project === this.idProject) ?? {};
-      this.loadFormEdit(this.projectData);
+      this.isEdit = true;
+      this.projectService.findProjectById(`${this.idProject}`).subscribe({
+        next: (data) => {
+          this.projectData = data;
+          this.loadFormEdit(this.projectData);
+        }
+      });
     }
   }
-
-
 
   loadFormEdit(projectDto: ProjectDto) {
     this.form.get("projectName")?.setValue(projectDto.name ?? '');
@@ -139,6 +145,8 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
     this.form.get("cropTypeGround")?.setValue(projectDto.crop?.type_of_ground ?? '');
     this.form.get("cropHetares")?.setValue(projectDto.crop?.number_of_hectares ?? '');
     this.form.get("cropNumberPlants")?.setValue(projectDto.crop?.number_of_plants ?? '');
+    this.form.get("vegetativePeriod")?.setValue(projectDto.crop?.number_of_plants ?? '');
+    this.form.get("productivePeriod")?.setValue(projectDto.crop?.number_of_plants ?? '');
     this.form.get("cropStartDate")?.setValue(projectDto.crop?.cultivation_start_date ?? '');
     this.form.get("cropEndDate")?.setValue(projectDto.crop?.estimated_harvest_date ?? '');
     this.form.get("producerTypeId")?.setValue(projectDto.crop?.owner?.user?.type_ide ?? '');
@@ -158,10 +166,13 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
     this.form.get("prePurchaseUnit")?.setValue(projectDto.pre_purcharse?.units ?? '');
     this.form.get("prePurchaseMinAmount")?.setValue(projectDto.pre_purcharse?.minimum_amount ?? '');
     this.form.get("prePurchaseMaxAmount")?.setValue(projectDto.pre_purcharse?.maximum_amount ?? '');
+    this.form.get("totalPrePurcharse")?.setValue(projectDto.pre_purcharse?.total_pre_purcharse ?? '');
     this.form.get("prePurchaseStartDate")?.setValue(projectDto.pre_purcharse?.start_date ?? '');
     this.form.get("prePurchaseEndDate")?.setValue(projectDto.pre_purcharse?.end_date ?? '');
-    this.form.get("wompiPublicKey")?.setValue(projectDto.crop?.owner?.wompi_public_key ?? '');
-    this.form.get("wompiSecretKey")?.setValue(projectDto.crop?.owner?.wompi_private_key ?? '');
+    debugger
+    if (projectDto.allow_prepurcharse) {
+      this.showPrePurchaseForm = true;
+    }
   }
 
   refreshCardData() {
@@ -174,10 +185,9 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
     this.cardData.percentageProfit = this.form.get("investmentRate")?.value;
     if (this.isEdit) {
       this.cardData.imgs = this.getCardImgs();
-
     }
     let hasPrepurchase = this.form.get("projectHasPrePurchase")?.value
-    this.showPrePurchaseForm = hasPrepurchase === "true" ? true : false;
+    this.showPrePurchaseForm = hasPrepurchase;
   }
 
   getCardImgs(): string[] {
@@ -218,15 +228,28 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
 
   async eventSaveProject() {
     debugger
-    let project: ProjectDto = await this.getProjectData();
-    this.projectService.createProject(project).subscribe({
-      next: (response) => {
-        let pp = "";
-      },
-      error: (err) => {
-        let pp = "";
+    if (this.form.valid) {
+      let project: ProjectDto = await this.getProjectData();
+      if (!this.isEdit) {
+        this.projectService.createProject(project).subscribe({
+          next: (response) => {
+            this.showMessageDialog("Creación proyecto", "Proyecto creado")
+          },
+          error: (err) => {
+            this.showMessageDialog("Creación de proyecto", "No fue posible crear el proyecto, intente en unos minutos")
+          }
+        })
+      } else {
+        this.projectService.updateProject(project).subscribe({
+          next: (response) => {
+            this.showMessageDialog("Actualizacion proyecto", "Proyecto actualizado")
+          },
+          error: (err) => {
+            this.showMessageDialog("Actualizacion de proyecto", "No fue posible actualizar el proyecto, intente en unos minutos")
+          }
+        })
       }
-    })
+    }
   }
 
 
@@ -243,6 +266,8 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
         type_of_ground: this.form.get("cropTypeGround")?.value,
         number_of_hectares: this.form.get("cropHetares")?.value,
         number_of_plants: this.form.get("cropNumberPlants")?.value,
+        vegetative_period: this.form.get("vegetativePeriod")?.value,
+        productive_period: this.form.get("productivePeriod")?.value,
         cultivation_start_date: this.getDateFormat(this.form.get("cropStartDate")?.value ?? ''),
         estimated_harvest_date: this.getDateFormat(this.form.get("cropEndDate")?.value ?? ''),
         owner: {
@@ -299,7 +324,6 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
     formData.photo_3 = formData.photo_3 !== undefined && formData.photo_3 !== '' ? formData.photo_3 : '';
     formData.photo_4 = formData.photo_4 !== undefined && formData.photo_4 !== '' ? formData.photo_4 : '';
     formData.photo_5 = formData.photo_5 !== undefined && formData.photo_5 !== '' ? formData.photo_5 : '';
-
     let imgProducer: File[] = this.form.get("producerImgProfile")?.value;
     if (imgProducer !== undefined && imgProducer.length > 0) {
       if (formData.crop !== undefined && formData.crop.owner !== undefined
@@ -311,13 +335,17 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
         }
       }
     }
-    /*formData.pre_purcharse = {
-      units: this.form.get("prePurchaseUnit")?.value ?? 0,
-      minimum_amount: this.form.get("prePurchaseMinAmount")?.value ?? 0,
-      maximum_amount: this.form.get("prePurchaseMaxAmount")?.value ?? 0,
-      start_date: this.getDateFormat(this.form.get("prePurchaseStartDate")?.value ?? '') ?? formatServerDate(new Date()).split("T")[0],
-      end_date: this.getDateFormat(this.form.get("prePurchaseEndDate")?.value ?? formatServerDate(new Date()).split("T")[0]),
-    }*/
+
+    if (formData.allow_prepurcharse) {
+      formData.pre_purcharse = {
+        units: this.form.get("prePurchaseUnit")?.value ?? '',
+        minimum_amount: this.form.get("prePurchaseMinAmount")?.value ?? 0,
+        maximum_amount: this.form.get("prePurchaseMaxAmount")?.value ?? 0,
+        total_pre_purcharse: this.form.get("totalPrePurcharse")?.value ?? 0,
+        start_date: this.getDateFormat(this.form.get("prePurchaseStartDate")?.value ?? '') ?? formatServerDate(new Date()).split("T")[0],
+        end_date: this.getDateFormat(this.form.get("prePurchaseEndDate")?.value ?? formatServerDate(new Date()).split("T")[0]),
+      }
+    }
     return formData
   }
 
@@ -343,5 +371,17 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
       reader.readAsDataURL(file);
     });
   }
+
+  private showMessageDialog(titleHeader: string, message: string) {
+    this.confirmationService.confirm({
+      message: message,
+      header: titleHeader,
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: "none",
+      acceptLabel: "Continuar",
+      rejectVisible: false,
+    });
+  }
+
 
 }
