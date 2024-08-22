@@ -46,7 +46,7 @@ export class UserModalComponent implements AfterViewInit {
 
   loadForm() {
     this.dynamicFormInput = {
-      title: "TITULO NICOLAS",
+      title: "Datos usuario",
       titleAling: "center",
       fields: this.getFieldsForm(),
       showFooter: false,

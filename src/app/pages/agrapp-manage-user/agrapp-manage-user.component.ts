@@ -112,10 +112,21 @@ export class AgrappManageUserComponent {
 
 
   deleteClient(user: ResponseClientDto) {
-    if (user.code_client !== undefined) {
+    debugger
+    if (user.user.is_staff) {
+      this.userService.deleteStaff(user.code_staff).subscribe({
+        next: (_) => {
+          this.showNotification("Eliminar usuario", "Usuario eliminado", "pi pi-exclamation-triangle")
+          this.getListUserByType(this.typeClientSelect);
+        }, error: (_) => {
+          this.showNotification("Eliminar usuario", "No fue posible eliminar el usuario", "pi pi-exclamation-triangle")
+        }
+      });
+    } else {
       this.userService.deleteClient(user.code_client).subscribe({
         next: (_) => {
           this.showNotification("Eliminar usuario", "Usuario eliminado", "pi pi-exclamation-triangle")
+          this.getListUserByType(this.typeClientSelect);
         }, error: (_) => {
           this.showNotification("Eliminar usuario", "No fue posible eliminar el usuario", "pi pi-exclamation-triangle")
         }

@@ -25,13 +25,30 @@ export class UserService {
     return this.httpClientService.get(url, this.headers);
   }
 
-  updateUser(user: ResponseUserDto, id: string) {
+  updateClient(user: ResponseUserDto, id: string) {
     let url = `${environment.api.host}${environment.api.endpoints.users.updateClient.replace("%s", id)}`
-    return this.httpClientService.patch(url, user, this.headers);
+    let data = {
+      user: user
+    };
+    return this.httpClientService.patch(url, data, this.headers);
   }
 
-  deleteClient(id: Number) {
-    let url = `${environment.api.host}${environment.api.endpoints.users.deleteUser}`.replace('%s', `${id}`);
+  updateStaff(user: ResponseUserDto, id: string) {
+    let url = `${environment.api.host}${environment.api.endpoints.users.updateStaff.replace("%s", id)}`
+    let data = {
+      user: user
+    };
+    return this.httpClientService.patch(url, data, this.headers);
+  }
+
+  deleteClient(id?: Number) {
+    let url = `${environment.api.host}${environment.api.endpoints.users.deleteClient}`.replace('%s', `${id}`);
+    return this.httpClientService.delete(url, this.headers);
+  }
+
+
+  deleteStaff(id?: Number) {
+    let url = `${environment.api.host}${environment.api.endpoints.users.deleteStaff}`.replace('%s', `${id}`);
     return this.httpClientService.delete(url, this.headers);
   }
 

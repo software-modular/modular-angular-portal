@@ -4,7 +4,7 @@ import { inject } from '@angular/core';
 
 
 export const authenticationInterceptor: HttpInterceptorFn = (req, next) => {
-  if (!req.url.includes('login') && !req.url.includes('create')) {
+  if (!req.url.includes('login') && !req.url.includes('client/create')) {
     let authenticationService: AuthenticationService = inject(AuthenticationService);
     let token = authenticationService.getAuthenticationToken();
     if (!token) {

@@ -21,7 +21,9 @@ export const environment = {
         createStaff: "/users/staff/create/",
         getAllClient: "/users/client/?page=",
         updateClient: "/users/client/update/%s",
-        deleteUser: "/users/client/delete/%s",
+        updateStaff: "/users/staff/update/%s/",
+        deleteStaff: "/users/staff/delete/%s",
+        deleteClient: "/users/client/delete/%s",
         findAllProjects: "/projects/",
         createProject: "/projects/create/"
       }

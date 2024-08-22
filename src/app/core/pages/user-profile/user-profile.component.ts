@@ -62,24 +62,46 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateUserProfile() {
-    if (this.userInfo.user.document_id !== undefined) {
-      let userId = this.userInfo.user.document_id;
-      let userUpdate: ResponseUserDto = this.getUserDataForm();
-      this.userService.updateUser(this.getUserDataForm(), userId).subscribe({
-        next: (_) => {
-          this.showMessageDialog("Actualizacion de perfil", "Perfil actualizado")
-          this.userInfo.user.name = userUpdate.name;
-          this.userInfo.user.email = userUpdate.email;
-          this.userInfo.user.date_of_birth = userUpdate.date_of_birth;
-          this.userInfo.user.profile_picture = userUpdate.profile_picture;
-          this.authenticationService.updateUserAuthenticated(this.userInfo);
-          this.eventAfterUpdateProfile()
-        },
-        error: (_) => {
-          this.showMessageDialog("Actualizacion de perfil", "No fue posible actualizar el perfil, intente mas tarde")
-        }
-      })
+    debugger//cuando actualiza no borra el valor anterior
+    if (this.userInfo.user.type_user === "ST") {
+      if (this.userInfo.code_staff !== undefined) {
+        let userId = this.userInfo.code_staff;
+        let userUpdate: ResponseUserDto = this.getUserDataForm();
+        this.userService.updateStaff(this.getUserDataForm(), `${userId}`).subscribe({
+          next: (_) => {
+            this.updateUserInfo(userUpdate);
+            this.showMessageDialog("Actualizacion de perfil", "Perfil actualizado")
+            this.eventAfterUpdateProfile()
+          },
+          error: (_) => {
+            this.showMessageDialog("Actualizacion de perfil", "No fue posible actualizar el perfil, intente mas tarde")
+          }
+        })
+      }
+    } else {
+      if (this.userInfo.code_client !== undefined) {
+        let userId = this.userInfo.code_client;
+        let userUpdate: ResponseUserDto = this.getUserDataForm();
+        this.userService.updateClient(this.getUserDataForm(), `${userId}`).subscribe({
+          next: (_) => {
+            this.updateUserInfo(userUpdate);
+            this.showMessageDialog("Actualizacion de perfil", "Perfil actualizado")
+            this.eventAfterUpdateProfile()
+          },
+          error: (_) => {
+            this.showMessageDialog("Actualizacion de perfil", "No fue posible actualizar el perfil, intente mas tarde")
+          }
+        })
+      }
     }
+  }
+
+  updateUserInfo(userUpdate: ResponseUserDto) {
+    this.userInfo.user.name = userUpdate.name;
+    this.userInfo.user.email = userUpdate.email;
+    this.userInfo.user.date_of_birth = userUpdate.date_of_birth;
+    this.userInfo.user.profile_picture = userUpdate.profile_picture;
+    this.authenticationService.updateUserAuthenticated(this.userInfo);
   }
 
   getUserDataForm(): ResponseUserDto {
@@ -88,13 +110,13 @@ export class UserProfileComponent implements OnInit {
       email: this.dynamiFormService.getValueByFieldName("email"),
       profile_picture: this.imgProfileSource,
       address: this.dynamiFormService.getValueByFieldName("address"),
-      date_of_birth: this.dynamiFormService.getValueByFieldName("date_of_birth")
+      date_of_birth: this.dynamiFormService.getValueByFieldName("date_of_birth"),
+      phone: this.dynamiFormService.getValueByFieldName("phone")
     };
   }
 
 
   isValidForm() {
-    debugger
     return this.dynamiFormService.isValidForm();
   }
 

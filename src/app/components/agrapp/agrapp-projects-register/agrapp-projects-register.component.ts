@@ -217,15 +217,16 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
   }
 
   async eventSaveProject() {
+    debugger
     let project: ProjectDto = await this.getProjectData();
-    let tt = "";
-    /*
     this.projectService.createProject(project).subscribe({
       next: (response) => {
+        let pp = "";
       },
       error: (err) => {
+        let pp = "";
       }
-    })*/
+    })
   }
 
 
@@ -245,8 +246,6 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
         cultivation_start_date: this.getDateFormat(this.form.get("cropStartDate")?.value ?? ''),
         estimated_harvest_date: this.getDateFormat(this.form.get("cropEndDate")?.value ?? ''),
         owner: {
-          wompi_public_key: this.form.get("wompiPublicKey")?.value,
-          wompi_private_key: this.form.get("wompiSecretKey")?.value,
           user: {
             document_id: this.form.get("producerIdValue")?.value,
             type_ide: this.form.get("producerTypeId")?.value,
