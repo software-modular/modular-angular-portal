@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-import { AgrappCardInput } from '../../core/domain/beans/agrappCardInput';
+import { Component, OnInit } from '@angular/core';
+import { ProjectService } from '../../core/services/project/project.service';
+import { ProjectDto } from '../../core/domain/dto/projectDto';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'agrapp-projects',
@@ -7,21 +11,82 @@ import { AgrappCardInput } from '../../core/domain/beans/agrappCardInput';
   styleUrl: './agrapp-projects.component.css'
 })
 export class AgrappProjectsComponent {
-  cards: AgrappCardInput[] = [{
-    ownerName: "Juan Camilo Aranda",
-    redirect: true,
-    urlRedirect: "portal/login",
-    nameCrop: "Cultivo Café",
-    ubication: "Palmira - Valle",
-    minInvestment: 200000,
-    percentageProfit: "13% de retorno efetivo anual",
-    investmentTarget: 5000000,
-    partners: 1,
-    funded: 200000,
-    imgs: [
-      "https://perfectdailygrind.com/es/wp-content/uploads/sites/2/2019/11/coffee-farm.jpg",
-      "https://agrocode.com/wp-content/uploads/sites/2/2019/10/cultivo-cafe.jpg"
-    ],
-    id: "carousel"
-  }]
+  projectInfo: ProjectDto = {};
+  carouselId: string = "project_info";
+  imgs: string[] = [];
+  projectId!: string;
+  urlVideo!: SafeResourceUrl;
+
+  constructor(
+    private projectService: ProjectService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private confirmationService: ConfirmationService,
+    private sanitizer: DomSanitizer
+  ) {
+    this.projectId = this.route.snapshot.paramMap.get('id') || '';
+    if (this.projectId !== '') {
+      this.projectService.findProjectById(this.projectId).subscribe({
+        next: (data) => {
+          this.projectInfo = data;
+          this.loadInformation();
+        },
+        error: (_) => {
+          this.redirect("portal/home");
+        }
+      });
+    } else {
+      this.redirect("portal/home");
+    }
+  }
+
+  loadInformation() {
+    this.loadImgs();
+    this.urlVideo = this.sanitizer.bypassSecurityTrustResourceUrl(this.getUrlVideo());
+  }
+
+  loadImgs() {
+    if (this.validImgValue(this.projectInfo.photo_1)) {
+      this.imgs.push(this.projectInfo.photo_1 ?? '');
+    }
+    if (this.validImgValue(this.projectInfo.photo_2)) {
+      this.imgs.push(this.projectInfo.photo_2 ?? '');
+    }
+    if (this.validImgValue(this.projectInfo.photo_3)) {
+      this.imgs.push(this.projectInfo.photo_3 ?? '');
+    }
+    if (this.validImgValue(this.projectInfo.photo_4)) {
+      this.imgs.push(this.projectInfo.photo_4 ?? '');
+    }
+  }
+
+  formatMoney(value?: Number) {
+    if (value !== undefined && value !== null) {
+      return value.toLocaleString('es-CO');
+    }
+    return Number(0).toLocaleString('es-CO');
+  }
+
+  getUrlVideo() {
+    return `https://www.youtube-nocookie.com/embed/tfAveT1Hjcw?si=${this.projectInfo.video_url}`;
+  }
+
+  private validImgValue(value?: string): boolean {
+    return value !== undefined && value !== '';
+  }
+  private redirect(url: string) {
+    this.router.navigate([url]);
+  }
+
+  private showMessageDialog(titleHeader: string, message: string) {
+    this.confirmationService.confirm({
+      message: message,
+      header: titleHeader,
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: "none",
+      acceptLabel: "Continuar",
+      rejectVisible: false,
+
+    });
+  }
 }

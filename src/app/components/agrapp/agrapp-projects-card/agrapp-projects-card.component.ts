@@ -19,7 +19,7 @@ export class AgrappProjectsCardComponent implements AfterViewInit {
     nameCrop: "Cultivo de yuca",
     partners: 2,
     investmentTarget: 10000000,
-    percentageProfit: "13%",
+    percentageProfit: "13",
     redirect: true,
     id: "carousel"
   };

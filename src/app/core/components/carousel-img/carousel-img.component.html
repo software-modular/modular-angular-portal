@@ -5,12 +5,14 @@
         <div *ngIf="imgs.length > 0">
           <div *ngFor="let img of imgs; index as i">
             <div class="carousel-item" [ngClass]="i === 0 ? 'active': ''">
-              <img [src]="img !== undefined && img !== '' ? img : imgDefault" class="carousel-img">
+              <img [src]="img !== undefined && img !== '' ? img : imgDefault" class="carousel-img"
+                [ngStyle]="{'height': heightImg}">
             </div>
           </div>
         </div>
         <div *ngIf="imgs.length === 0">
-          <img class="carousel-img" src='assets/img/carousel/img-carousel-not-found.svg'>
+          <img class="carousel-img" [ngStyle]="{'height': heightImg}"
+            src='assets/img/carousel/img-carousel-not-found.svg'>
         </div>
       </div>
       <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#' + carouselId" data-bs-slide="prev">

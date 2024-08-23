@@ -1,3 +1,159 @@
-<!--<agrapp-projects-list-card [projects]="cards"></agrapp-projects-list-card>-->
-
-<agrapp-projects-register></agrapp-projects-register>
+<div class="project-info-container">
+  <div class="project-info-detail">
+    <div class="row">
+      <div class="img-carousel-container col-md-6">
+        <div class="project-info-detail-pictures">
+          <carousel-img [carouselId]="carouselId" [imgs]="imgs" [heightImg]="'40vh'"></carousel-img>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="project-info-detail-information">
+          <div class="project-info-detail-information-title-container">
+            <label class="project-info-detail-information-title">
+              {{projectInfo.name}}
+            </label>
+          </div>
+          <div class="div-separator"></div>
+          <div class="project-info-detail-information-description">
+            <label>{{projectInfo.description}}</label>
+          </div>
+          <br>
+          <div class="div-separator"></div>
+          <div class="project-info-detail-information-details">
+            <div class="row separator">
+              <div class="col-md-6">
+                <div class="especific_detail">
+                  <div class="especific_detail-name">
+                    <label>
+                      Inicio proyecto
+                    </label>
+                  </div>
+                  <div class="especific_detail-value">
+                    <label> {{projectInfo.start_date}}
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="especific_detail">
+                  <div class="especific_detail-name">Fin proyecto</div>
+                  <div class="especific_detail-value">{{projectInfo.end_date}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="div-separator"></div>
+            <div class="row separator">
+              <div class="col-md-6">
+                <div class="especific_detail">
+                  <div class="especific_detail-name">
+                    <label>
+                      Hectáreas
+                    </label>
+                  </div>
+                  <div class="especific_detail-value">
+                    <label> {{projectInfo.crop?.number_of_hectares}}
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="especific_detail">
+                  <div class="especific_detail-name">Arbustos</div>
+                  <div class="especific_detail-value">{{projectInfo.crop?.number_of_plants}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="row separator">
+              <div class="col-md-6">
+                <div class="especific_detail">
+                  <div class="especific_detail-name">Periodo vegetativo</div>
+                  <div class="especific_detail-value">{{projectInfo.crop?.productive_period}} Meses</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="especific_detail">
+                  <div class="especific_detail-name">Periodo producción</div>
+                  <div class="especific_detail-value">{{projectInfo.crop?.productive_period}} Meses</div>
+                </div>
+              </div>
+            </div>
+            <div class="row separator">
+              <div class="col-md-6">
+                <div class="especific_detail">
+                  <div class="especific_detail-name">Fecha siembra</div>
+                  <div class="especific_detail-value">{{projectInfo.crop?.cultivation_start_date}}</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="especific_detail">
+                  <div class="especific_detail-name">Fecha cosecha</div>
+                  <div class="especific_detail-value">{{projectInfo.crop?.estimated_harvest_date}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="project-info-detail-information-title-container">
+        <label class="project-info-detail-information-title">
+          Financiamiento
+        </label>
+      </div>
+      <div class="div-separator"></div>
+      <div class="row separator">
+        <div class="col-md-6">
+          <div class="especific_detail_center">
+            <div class="especific_detail-name">Inversion minima</div>
+            <div class="especific_detail-value">{{formatMoney(projectInfo.invesment?.minimum_investment_amount) }}
+              COP</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="especific_detail_center">
+            <div class="especific_detail-name">Inversion maxima</div>
+            <div class="especific_detail-value">{{formatMoney(projectInfo.invesment?.maximum_investment_amount)}}
+              COP</div>
+          </div>
+        </div>
+      </div>
+      <div class="row separator">
+        <div class="col-md-6">
+          <div class="especific_detail_center">
+            <div class="especific_detail-name">TIR</div>
+            <div class="especific_detail-value">{{projectInfo.invesment?.tir}}%</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="especific_detail_center">
+            <div class="especific_detail-name">Rentabilidad estimada</div>
+            <div class="especific_detail-value">{{projectInfo.invesment?.estimated_rate}}% efectivo anual</div>
+          </div>
+        </div>
+      </div>
+      <div class="row separator">
+        <div class="col-md-12">
+          <div class="especific_detail_center">
+            <div class=" card financial_target_container">
+              <div class="especific_detail-name">Meta financiación</div>
+              <div class="especific_detail-value-financial">
+                {{formatMoney(projectInfo.invesment?.total_expected_investment)}}
+                COP</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="div-separator"></div>
+    <div class="row">
+      <div class="video-container">
+        <iframe class="video-iframe" [src]="urlVideo" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>

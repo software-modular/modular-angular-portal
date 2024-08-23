@@ -9,4 +9,5 @@ export class CarouselImgComponent {
   imgDefault: string = "/assets/img/carousel/img-carousel-not-found.svg";
   @Input() imgs: string[] = [];
   @Input() carouselId: string = "carousel";
+  @Input() heightImg: string = "250px";
 }
