@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
 import { DynamicFormInput } from '../../domain/beans/dynamicFormInput';
 import { InputForm } from '../../domain/beans/InputForm';
@@ -6,13 +7,12 @@ import { ListOptionFieldForm } from '../../domain/beans/ListOptioFieldForm';
 import { TextFieldForm } from '../../domain/beans/textFieldForm';
 import { typeIdentifications } from '../../domain/const/TypeIdentification';
 import { ResponseClientDto } from '../../domain/dto/responseClientDto';
+import { ResponseUserDto } from '../../domain/dto/responseUserDto';
 import { TypeInputForm } from '../../domain/enum/TypeInputForm';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
-import { DynamicFormService } from '../../services/components/dynamic-form.service';
 import { UserService } from '../../services/client/user.service';
-import { ResponseUserDto } from '../../domain/dto/responseUserDto';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { base64ToFile, convertImgToBase64 } from '../../utils/FileUtils';
+import { DynamicFormService } from '../../services/components/dynamic-form.service';
+import { convertImgToBase64 } from '../../utils/FileUtils';
 
 @Component({
   selector: 'user-profile',

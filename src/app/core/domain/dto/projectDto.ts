@@ -48,7 +48,8 @@ export interface ProjectDto {
     maximum_amount?: Number,
     total_pre_purcharse?: Number,
     start_date?: string,
-    end_date?: string
+    end_date?: string,
+    unit_price?: Number
   },
   video_url?: string,
   photo_1?: string,

@@ -1,20 +1,18 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
 import { AgrappCardInput } from '../../../core/domain/beans/agrappCardInput';
 import { OptionInput } from '../../../core/domain/beans/OptionInput';
 import { cities, countries, deparments, getCityByCode, getDepartmentByCode } from '../../../core/domain/const/Colombia';
 import { preOrderTypes } from '../../../core/domain/const/PreOrderTypes';
+import { statesProject } from '../../../core/domain/const/StateProject';
 import { typeGrounds } from '../../../core/domain/const/TypeGround';
 import { typeIdentifications } from '../../../core/domain/const/TypeIdentification';
 import { ProjectDto } from '../../../core/domain/dto/projectDto';
-import { formatServerDate, stringDateToFormatServerDate } from '../../../core/utils/Date';
-import { statesProject } from '../../../core/domain/const/StateProject';
-import { ActivatedRoute } from '@angular/router';
-import { projectList } from '../../../core/domain/const/Mocks';
 import { ProjectService } from '../../../core/services/project/project.service';
-import { base64ToFile } from '../../../core/utils/FileUtils';
-import { ConfirmationService } from 'primeng/api';
+import { formatServerDate, stringDateToFormatServerDate } from '../../../core/utils/Date';
 
 @Component({
   selector: 'agrapp-projects-register',
@@ -39,6 +37,7 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
   listTypePreOrders: OptionInput[] = preOrderTypes
   preOrderUnit: string = "KG"
   showPrePurchaseForm: boolean = false;
+  prepurchaseIsNull: boolean = true;
 
   idProject: Number = 0;
   isEdit: Boolean = false;
@@ -68,6 +67,7 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
     private route: ActivatedRoute,
     private projectService: ProjectService,
     private confirmationService: ConfirmationService,
+    private router: Router
   ) {
     this.idProject = Number(this.route.snapshot.paramMap.get('id'));
     this.form = this.formBuilder.group({
@@ -109,8 +109,10 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
       prePurchaseMinAmount: ["", []],
       prePurchaseMaxAmount: ["", []],
       totalPrePurcharse: ["", []],
+      prepurchaseUnitPrice: ["", []],
       prePurchaseStartDate: ["", []],
       prePurchaseEndDate: ["", []],
+
     });
     this.onChangeFormValues();
   }
@@ -170,6 +172,10 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
     this.form.get("prePurchaseStartDate")?.setValue(projectDto.pre_purcharse?.start_date ?? '');
     this.form.get("prePurchaseEndDate")?.setValue(projectDto.pre_purcharse?.end_date ?? '');
     debugger
+    this.form.get("prepurchaseUnitPrice")?.setValue(projectDto.pre_purcharse?.unit_price);
+    if (projectDto.pre_purcharse !== null && projectDto.pre_purcharse !== undefined) {
+      this.prepurchaseIsNull = false;
+    }
     if (projectDto.allow_prepurcharse) {
       this.showPrePurchaseForm = true;
     }
@@ -233,21 +239,18 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
       if (!this.isEdit) {
         this.projectService.createProject(project).subscribe({
           next: (response) => {
-            this.showMessageDialog("Creación proyecto", "Proyecto creado")
+            this.showMessageDialog("Creación proyecto", "Proyecto creado", true)
           },
           error: (err) => {
-            this.showMessageDialog("Creación de proyecto", "No fue posible crear el proyecto, intente en unos minutos")
+            this.showMessageDialog("Creación de proyecto", "No fue posible crear el proyecto, intente en unos minutos", false)
           }
         })
       } else {
-        this.projectService.updateProject(project).subscribe({
-          next: (response) => {
-            this.showMessageDialog("Actualizacion proyecto", "Proyecto actualizado")
-          },
-          error: (err) => {
-            this.showMessageDialog("Actualizacion de proyecto", "No fue posible actualizar el proyecto, intente en unos minutos")
-          }
-        })
+        this.projectService.updateProject(project, this.prepurchaseIsNull).then((data) => {
+          this.showMessageDialog("Actualizacion proyecto", "Proyecto actualizado", true)
+        }).catch((err) => {
+          this.showMessageDialog("Actualizacion de proyecto", "No fue posible actualizar el proyecto, intente en unos minutos", false)
+        });
       }
     }
   }
@@ -335,15 +338,24 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
         }
       }
     }
-
     if (formData.allow_prepurcharse) {
       formData.pre_purcharse = {
         units: this.form.get("prePurchaseUnit")?.value ?? '',
         minimum_amount: this.form.get("prePurchaseMinAmount")?.value ?? 0,
         maximum_amount: this.form.get("prePurchaseMaxAmount")?.value ?? 0,
         total_pre_purcharse: this.form.get("totalPrePurcharse")?.value ?? 0,
+        unit_price: this.form.get("prepurchaseUnitPrice")?.value ?? 0,
         start_date: this.getDateFormat(this.form.get("prePurchaseStartDate")?.value ?? '') ?? formatServerDate(new Date()).split("T")[0],
         end_date: this.getDateFormat(this.form.get("prePurchaseEndDate")?.value ?? formatServerDate(new Date()).split("T")[0]),
+      }
+    }
+    if (this.isEdit) {
+
+      if (formData.crop?.owner !== undefined) {
+        formData.code_project = this.projectData.code_project;
+        formData.crop.owner.code_crop_owner = this.projectData.crop?.owner?.code_crop_owner;
+        formData.crop.code_crop = this.projectData.crop?.code_crop;
+        formData.invesment = this.projectData.invesment;
       }
     }
     return formData
@@ -372,7 +384,7 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
     });
   }
 
-  private showMessageDialog(titleHeader: string, message: string) {
+  private showMessageDialog(titleHeader: string, message: string, redirect: boolean) {
     this.confirmationService.confirm({
       message: message,
       header: titleHeader,
@@ -380,6 +392,11 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
       acceptIcon: "none",
       acceptLabel: "Continuar",
       rejectVisible: false,
+      accept: () => {
+        if (redirect) {
+          this.router.navigate(['/portal/project/management'])
+        }
+      }
     });
   }
 

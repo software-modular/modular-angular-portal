@@ -440,7 +440,10 @@
                       <button mat-button matStepperPrevious>Atras</button>
                     </div>
                     <div class="col-md-6" style="text-align: right;">
-                      <button mat-button matStepperNext>Continuar</button>
+                      <button *ngIf="showPrePurchaseForm" mat-button matStepperNext>Continuar</button>
+                      <button *ngIf="!showPrePurchaseForm" mat-button [disabled]="form.invalid"
+                        (click)="saveProject()">{{isEdit ?
+                        'Actualizar':'Crear'}}</button>
                     </div>
                   </div>
                 </div>
@@ -499,6 +502,18 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
+                        <app-input-number formControlName="prepurchaseUnitPrice" [label]="'Precio unidad'"
+                          [sufix]="'COP'"></app-input-number>
+                        <mat-error class="error-field" *ngIf="form.get('prepurchaseUnitPrice')?.invalid
+                          && (form.get('prepurchaseUnitPrice')?.dirty
+                          || form.get('prepurchaseUnitPrice')?.touched)">
+                          <label *ngIf="form.get('prepurchaseUnitPrice')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
                         <input-date formControlName="prePurchaseStartDate" [label]="'Fecha inicio'"></input-date>
                         <mat-error class="error-field" *ngIf="form.get('prePurchaseStartDate')?.invalid
                         && (form.get('prePurchaseStartDate')?.dirty
@@ -540,3 +555,4 @@
     </div>
   </div>
 </div>
+<p-confirmDialog [visible]="false" />

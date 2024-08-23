@@ -3,6 +3,7 @@ import { HttpClientService } from '../http/http-client.service';
 import { HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { ProjectDto } from '../../domain/dto/projectDto';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,23 +31,45 @@ export class ProjectService {
     return this.httpClientService.post(url, project, this.headers);
   }
 
-  updateProject(project: ProjectDto) {
+  async updateProject(project: ProjectDto, prepurcharseIsNull: Boolean): Promise<any> {
     debugger
     let urlUpdateInformation = `${environment.api.host}${environment.api.endpoints.users.updateProjectInformation}`.replace('%s', `${project.code_project}`)
     let urlUpdateCrop = `${environment.api.host}${environment.api.endpoints.users.updateProjectCrop}${project.crop?.code_crop}`;
     let urlUpdateOwner = `${environment.api.host}${environment.api.endpoints.users.updateProjectOwner}${project.crop?.owner?.code_crop_owner}`;
     let urlUpdateInvestment = `${environment.api.host}${environment.api.endpoints.users.updateProjectInvestment}${project.invesment?.code_investment}`;
     let urlUpdatePrepurcharses = `${environment.api.host}${environment.api.endpoints.users.updateProjectPrepurcharse}${project.code_project}`;
-    this.httpClientService.post(urlUpdateInformation, this.getProyectInformation(project), this.headers);
-    this.httpClientService.post(urlUpdateCrop, this.getCrop(project), this.headers);
-    this.httpClientService.post(urlUpdateOwner, this.getOwner(project), this.headers);
-    if (project.allow_prepurcharse) {
-      this.httpClientService.post(urlUpdatePrepurcharses, this.getPrePurcharse(project), this.headers);
+    let urlCreatePrepurcharses = `${environment.api.host}${environment.api.endpoints.users.createProjectPrepurcharse}`;
+    let prepurcharse: any;
+    if (prepurcharseIsNull) {
+      prepurcharse = await firstValueFrom(this.httpClientService.post(urlCreatePrepurcharses, this.getPrePurcharse(project), this.headers))
+    } else {
+      prepurcharse = await firstValueFrom(this.httpClientService.patch(urlUpdatePrepurcharses, this.getPrePurcharse(project), this.headers))
     }
-    return this.httpClientService.post(urlUpdateInvestment, this.getInvesment(project), this.headers);
+    let infoProject = this.getProyectInformation(project, prepurcharse.code_pre_purcharse);
+    let responseInformation = await firstValueFrom(this.httpClientService.patch(urlUpdateInformation, infoProject, this.headers));
+    let responseInvestment = await firstValueFrom(this.httpClientService.patch(urlUpdateInvestment, this.getInvesment(project), this.headers));
+    let responseOwner = await firstValueFrom(this.httpClientService.patch(urlUpdateOwner, this.getOwner(project), this.headers));
+    let responseCrop = await firstValueFrom(this.httpClientService.patch(urlUpdateCrop, this.getCrop(project), this.headers));
+    return new Promise((resolve, reject) => {
+      if (!this.validResponse(prepurcharse) || this.validResponse(responseInformation)
+        || this.validResponse(responseInvestment) || this.validResponse(responseOwner)
+        || this.validResponse(responseCrop)) {
+        resolve("Proyecto actualizado");
+        return;
+      } else {
+        reject("Error actualizando proyecto");
+      }
+    });
   }
 
-  private getProyectInformation(project: ProjectDto) {
+  private validResponse(response: any): Boolean {
+    if (response.code !== 200) {
+      return false;
+    }
+    return true;
+  }
+
+  private getProyectInformation(project: ProjectDto, code_prepurcharse: Number) {
     return {
       code_project: project.code_project,
       name: project.name,
@@ -60,7 +83,8 @@ export class ProjectService {
       photo_5: project.photo_5,
       state: project.state,
       start_date: project.start_date,
-      end_date: project.end_date
+      end_date: project.end_date,
+      pre_purchase: code_prepurcharse
     }
   }
 
@@ -120,7 +144,8 @@ export class ProjectService {
       maximum_amount: project.pre_purcharse?.maximum_amount,
       total_pre_purcharse: project.pre_purcharse?.total_pre_purcharse,
       start_date: project.pre_purcharse?.start_date,
-      end_date: project.pre_purcharse?.end_date
+      end_date: project.pre_purcharse?.end_date,
+      unit_price: project.pre_purcharse?.unit_price
     }
   }
 }

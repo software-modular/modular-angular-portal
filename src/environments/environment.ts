@@ -32,7 +32,7 @@ export const environment = {
         updateProjectOwner: "/users/owner/update/",
         updateProjectInvestment: "/projects/investments/update/",
         updateProjectPrepurcharse: "/projects/prepurcharses/update/",
-
+        createProjectPrepurcharse: "/projects/prepurcharses/create/"
 
       }
     }
