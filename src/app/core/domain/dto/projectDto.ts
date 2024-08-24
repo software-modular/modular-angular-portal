@@ -16,6 +16,7 @@ export interface ProjectDto {
     productive_period?: Number,
     cultivation_start_date?: string,
     estimated_harvest_date?: string,
+    google_maps_ubication?: string,
     owner?: {
       code_crop_owner?: Number,
       user?: {

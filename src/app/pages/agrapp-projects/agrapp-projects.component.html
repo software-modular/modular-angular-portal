@@ -91,6 +91,81 @@
                 </div>
               </div>
             </div>
+            <div class="row separator">
+              <div class="col-md-12">
+                <div class="button-information-container">
+                  <button class="btn btn-primary">
+                    <label class="label-investment">Mas información</label>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="project-info-detail-information-title-container">
+        <label class="project-info-detail-information-title">
+          Ubicación del cultivo
+        </label>
+      </div>
+      <div class="div-separator"></div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row separator">
+            <div class="col-md-12">
+              <div class="especific_ubication_descrption">
+                <div class="ubication-detail-description">El proyecto se encuentra ubicado en el departamento de
+                  {{getDeparmentByCodeHtml(projectInfo.crop?.department)}}, Municipio de
+                  {{getCityByCodeHtml(projectInfo.crop?.municipality)}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="div-separator"></div>
+          <div class="row separator">
+            <div class="col-md-12">
+              <div class="especific_ubication_detail">
+                <div class="ubication-detail-name-right">Departamento:</div>
+                <div class="ubication-detail-value-right">{{getDeparmentByCodeHtml(projectInfo.crop?.department)}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="div-separator"></div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="especific_ubication_detail">
+                <div class="ubication-detail-name-right">Ciudad:</div>
+                <div class="ubication-detail-value-right">{{getCityByCodeHtml(projectInfo.crop?.municipality)}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="div-separator"></div>
+          <div class="row separator">
+            <div class="col-md-12">
+              <div class="especific_ubication_detail">
+                <div class="ubication-detail-name-right">Dirección</div>
+                <div class="ubication-detail-value-right">{{projectInfo.crop?.address}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="div-separator"></div>
+          <div class="row separator">
+            <div class="col-md-12">
+              <div class="especific_ubication_detail">
+                <div class="ubication-detail-name-right">Tipo de suelo</div>
+                <div class="ubication-detail-value-right">{{getTypeGroundLabel(projectInfo.crop?.type_of_ground)}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="ubication-frame-container">
+            <iframe #iframeMap
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8160782.285075704!2d-74.51557709638507!3d2.8862900446443116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e15a43aae1594a3%3A0x9a0d9a04eff2a340!2sColombia!5e0!3m2!1ses-419!2sco!4v1724518995107!5m2!1ses-419!2sco"
+              class="iframe-ubication" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </div>
@@ -146,8 +221,8 @@
         </div>
       </div>
     </div>
-    <div class="div-separator"></div>
-    <div class="row">
+    <div *ngIf="urlVideo !== null && urlVideo !== undefined" class="div-separator"></div>
+    <div *ngIf="urlVideo !== null && urlVideo !== undefined" class="row">
       <div class="video-container">
         <iframe class="video-iframe" [src]="urlVideo" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

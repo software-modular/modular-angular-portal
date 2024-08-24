@@ -33,3 +33,9 @@ export const typeGrounds: OptionInput[] = [
     value: "SAL"
   }
 ];
+
+
+export function getTypeGroundByCode(code: string) {
+  let ground = typeGrounds.find(ground => ground.value === code);
+  return ground?.label ?? '';
+}

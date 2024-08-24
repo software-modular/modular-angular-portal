@@ -1,11 +1,11 @@
 .footer-container {
   width: 100%;
-  height: 60px;
   background: var(--footer-background-color);
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
 }
 
 .footer-content {}
@@ -13,4 +13,37 @@
 .footer-label {
   color: white;
   font-weight: 500;
+}
+
+.information-footer {
+  display: flex;
+  font-size: 20px;
+  color: white;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-agrofin {
+  padding: 10px;
+}
+
+.agrofin-footer-label {
+  font-size: 1.9vw;
+  font-weight: 700;
+  font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+}
+
+.agrofin-footer-description {
+  font-size: 1.4vw;
+  text-align: center;
+  font-weight: 500;
+  font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+}
+
+.agrofin-footer-contacts {
+  margin-left: 10px;
+  font-size: 1.4vw;
+  text-align: justify;
+  font-weight: 500;
+  font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
 }

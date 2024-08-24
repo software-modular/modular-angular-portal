@@ -43,7 +43,7 @@
 }
 
 .especific_detail {
-  padding: 10px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
 }
@@ -101,4 +101,57 @@
 .video-iframe {
   width: 100%;
   height: 600px;
+}
+
+.iframe-ubication {
+  width: 100%;
+  height: 300px;
+  border: 0;
+}
+
+.ubication-detail-description {
+  text-align: justify;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+}
+
+.ubication-detail-name-right {
+  font-weight: 700;
+  font-size: 1.5vw;
+  font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+}
+
+.ubication-detail-value-right {
+  margin-left: 10px;
+  font-size: 1.2vw;
+  color: var(--agrapp-text-color);
+  font-weight: 700;
+  font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+}
+
+.especific_ubication_detail {
+  padding: 10px;
+  display: flex;
+}
+
+
+.especific_ubication_descrption {
+  display: flex;
+}
+
+.project-info-detail-information-title-container {
+  margin-top: 15px;
+}
+
+.button-information-container {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-around;
+}
+
+.label-investment {
+  font-size: 1.2vw;
+  font-weight: 700;
+  font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
 }

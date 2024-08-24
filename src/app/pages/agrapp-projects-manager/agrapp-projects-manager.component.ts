@@ -130,4 +130,7 @@ export class AgrappProjectsManagerComponent {
     return getStateProjectByCode(code);
   }
 
+  redirectDetailProyect(project: ProjectDto) {
+    this.router.navigate([`portal/project/info/${project.code_project}`])
+  }
 }

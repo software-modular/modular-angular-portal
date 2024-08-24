@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ProjectService } from '../../core/services/project/project.service';
 import { ProjectDto } from '../../core/domain/dto/projectDto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { getCityByCode, getDepartmentByCode } from '../../core/domain/const/Colombia';
+import { getStateProjectByCode } from '../../core/domain/const/StateProject';
+import { getTypeGroundByCode } from '../../core/domain/const/TypeGround';
 
 @Component({
   selector: 'agrapp-projects',
   templateUrl: './agrapp-projects.component.html',
   styleUrl: './agrapp-projects.component.css'
 })
-export class AgrappProjectsComponent {
+export class AgrappProjectsComponent implements AfterViewInit {
   projectInfo: ProjectDto = {};
   carouselId: string = "project_info";
   imgs: string[] = [];
   projectId!: string;
   urlVideo!: SafeResourceUrl;
+  @ViewChild('iframeMap') iframeMap!: ElementRef<HTMLIFrameElement>;
 
   constructor(
     private projectService: ProjectService,
@@ -37,6 +41,15 @@ export class AgrappProjectsComponent {
       });
     } else {
       this.redirect("portal/home");
+    }
+  }
+
+  ngAfterViewInit(): void {
+    if (this.projectInfo.crop?.google_maps_ubication !== null
+      && this.projectInfo.crop?.google_maps_ubication !== undefined) {
+      if (this.iframeMap && this.iframeMap.nativeElement) {
+        this.iframeMap.nativeElement.src = `${this.projectInfo.crop?.google_maps_ubication}`;
+      }
     }
   }
 
@@ -67,9 +80,39 @@ export class AgrappProjectsComponent {
     return Number(0).toLocaleString('es-CO');
   }
 
-  getUrlVideo() {
+  private getUrlVideo() {
     return `https://www.youtube-nocookie.com/embed/tfAveT1Hjcw?si=${this.projectInfo.video_url}`;
   }
+
+
+  getCityByCodeHtml(code?: string): string {
+    if (code !== null && code !== undefined) {
+      return getCityByCode(code);
+    }
+    return "";
+  }
+
+  getDeparmentByCodeHtml(code?: string): string {
+    if (code !== null && code !== undefined) {
+      return getDepartmentByCode(code);
+    }
+    return "";
+  }
+
+  getStateByCode(code?: string): string {
+    if (code !== null && code !== undefined) {
+      return getStateProjectByCode(code);
+    }
+    return "";
+  }
+
+  getTypeGroundLabel(code?: string): string {
+    if (code !== null && code !== undefined) {
+      return getTypeGroundByCode(code).split(":")[0];
+    }
+    return "";
+  }
+
 
   private validImgValue(value?: string): boolean {
     return value !== undefined && value !== '';
