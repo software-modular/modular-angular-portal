@@ -32,7 +32,6 @@ export class NavbarComponent {
     private elementRef: ElementRef,
     private navbarService: NavbarService
   ) {
-
   }
 
   @HostListener('document:click', ['$event.target'])

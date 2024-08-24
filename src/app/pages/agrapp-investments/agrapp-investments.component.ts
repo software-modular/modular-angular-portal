@@ -11,6 +11,7 @@ import { getCityByCode, getDepartmentByCode } from '../../core/domain/const/Colo
   styleUrl: './agrapp-investments.component.css'
 })
 export class AgrappInvestmentsComponent {
-
+  constructor() {
+  }
 
 }

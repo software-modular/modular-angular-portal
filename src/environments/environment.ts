@@ -27,7 +27,7 @@ export const environment = {
         findAllProjects: "/projects/",
         findAllPublicProjects: "/projects/view/",
         findProjectById: "/projects/",
-        findPublicProjectById: "/projects/view",
+        findPublicProjectById: "/projects/view/",
         createProject: "/projects/create/",
         updateProjectInformation: "/projects/update/%s/",
         updateProjectCrop: "/projects/crops/update/",

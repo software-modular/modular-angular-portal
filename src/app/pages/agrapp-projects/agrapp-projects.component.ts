@@ -7,6 +7,10 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { getCityByCode, getDepartmentByCode } from '../../core/domain/const/Colombia';
 import { getStateProjectByCode } from '../../core/domain/const/StateProject';
 import { getTypeGroundByCode } from '../../core/domain/const/TypeGround';
+import { AuthenticationService } from '../../core/services/authentication/authentication.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { InvestmentModalComponent } from '../../components/agrapp-modals/investment-modal/investment-modal.component';
+import { InputInvestmentModal } from '../../core/domain/beans/inputInvestmentModal';
 
 @Component({
   selector: 'agrapp-projects',
@@ -19,6 +23,7 @@ export class AgrappProjectsComponent implements AfterViewInit {
   imgs: string[] = [];
   projectId!: string;
   urlVideo!: SafeResourceUrl;
+  userIsAuthenticated: Boolean = false;
   @ViewChild('iframeMap') iframeMap!: ElementRef<HTMLIFrameElement>;
 
   constructor(
@@ -26,9 +31,10 @@ export class AgrappProjectsComponent implements AfterViewInit {
     private route: ActivatedRoute,
     private router: Router,
     private confirmationService: ConfirmationService,
-    private sanitizer: DomSanitizer
+    private authenticationService: AuthenticationService,
+    private sanitizer: DomSanitizer,
+    public dialog: MatDialog
   ) {
-    debugger
     this.projectId = this.route.snapshot.paramMap.get('id') || '';
     if (this.projectId !== '') {
       this.projectService.findPublicProjectById(this.projectId).subscribe({
@@ -46,6 +52,7 @@ export class AgrappProjectsComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.userIsAuthenticated = this.authenticationService.userIsAuthenticated();
     if (this.projectInfo.crop?.google_maps_ubication !== null
       && this.projectInfo.crop?.google_maps_ubication !== undefined) {
       if (this.iframeMap && this.iframeMap.nativeElement) {
@@ -85,6 +92,23 @@ export class AgrappProjectsComponent implements AfterViewInit {
     return `https://www.youtube-nocookie.com/embed/${this.projectInfo.video_url}`;
   }
 
+  doInvestment() {
+    let data = this.getInputInvestmentModal("INV");
+    this.openModal(InvestmentModalComponent, data);
+  }
+
+  doPrecompra() {
+    let data = this.getInputInvestmentModal("PRP");
+    this.openModal(InvestmentModalComponent, data);
+  }
+
+  getInputInvestmentModal(typeTransaction: string): InputInvestmentModal {
+    return {
+      money: "CO",
+      projectId: this.projectInfo.code_project,
+      paymentType: typeTransaction,
+    }
+  }
 
   getCityByCodeHtml(code?: string): string {
     if (code !== null && code !== undefined) {
@@ -131,6 +155,14 @@ export class AgrappProjectsComponent implements AfterViewInit {
       acceptLabel: "Continuar",
       rejectVisible: false,
 
+    });
+  }
+
+  private openModal(component: any, data?: any) {
+    const dialogRef: MatDialogRef<any> = this.dialog.open(component, {
+      data: data
+    });
+    dialogRef.afterClosed().subscribe(() => {
     });
   }
 }

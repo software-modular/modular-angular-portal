@@ -49,6 +49,7 @@ export class ProjectService {
     let urlUpdatePrepurcharses = `${environment.api.host}${environment.api.endpoints.users.updateProjectPrepurcharse}${project.code_project}`;
     let urlCreatePrepurcharses = `${environment.api.host}${environment.api.endpoints.users.createProjectPrepurcharse}`;
     let prepurcharse: any;
+
     if (prepurcharseIsNull) {
       prepurcharse = await firstValueFrom(this.httpClientService.post(urlCreatePrepurcharses, this.getPrePurcharse(project), this.headers))
     } else {

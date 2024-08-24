@@ -1,4 +1,4 @@
-<div class="card-container" (click)="eventTouchCard()">
+<div class="card-container">
   <div class="card">
     <div class="card-body">
       <div class="card-body-container">
@@ -14,64 +14,66 @@
             <carousel-img *ngIf="data.imgs !== undefined" [imgs]="data.imgs" [carouselId]="data.id"></carousel-img>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12 card-description-item">
-            <i class="fa fa-user" aria-hidden="true"></i>
-            <label class="card-description-item-label">{{getOwnerName(data.ownerName)}}</label>
+        <div (click)="eventTouchCard()">
+          <div class="row">
+            <div class="col-md-12 card-description-item">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <label class="card-description-item-label">{{getOwnerName(data.ownerName)}}</label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 card-description-item">
-            <i class="fa fa-map" aria-hidden="true"></i>
-            <label class="card-description-item-label">{{data.ubication}}</label>
+          <div class="row">
+            <div class="col-md-12 card-description-item">
+              <i class="fa fa-map" aria-hidden="true"></i>
+              <label class="card-description-item-label">{{data.ubication}}</label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12  card-description-item">
-            <i class="fa fa-credit-card-alt"></i>
-            <label class="card-description-item-label">
-              Invierte desde
-              <span class="investment-label">
-                {{data.minInvestment?.toLocaleString('es-CO')}} COP
-              </span>
-            </label>
+          <div class="row">
+            <div class="col-md-12  card-description-item">
+              <i class="fa fa-credit-card-alt"></i>
+              <label class="card-description-item-label">
+                Invierte desde
+                <span class="investment-label">
+                  {{data.minInvestment?.toLocaleString('es-CO')}} COP
+                </span>
+              </label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12  card-description-item">
-            <i class="fa fa-line-chart" aria-hidden="true"></i>
-            <label class="card-description-item-label">
-              {{data.percentageProfit}}% de retorno efetivo anual</label>
+          <div class="row">
+            <div class="col-md-12  card-description-item">
+              <i class="fa fa-line-chart" aria-hidden="true"></i>
+              <label class="card-description-item-label">
+                {{data.percentageProfit}}% de retorno efetivo anual</label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12  card-description-item">
-            <i class="fa fa-university" aria-hidden="true"></i>
-            <label class="card-description-item-label">
-              Meta financiación ${{data.investmentTarget?.toLocaleString('es-CO')}} COP</label>
+          <div class="row">
+            <div class="col-md-12  card-description-item">
+              <i class="fa fa-university" aria-hidden="true"></i>
+              <label class="card-description-item-label">
+                Meta financiación ${{data.investmentTarget?.toLocaleString('es-CO')}} COP</label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12  card-description-item">
-            <form [formGroup]="formCard">
-              <mat-slider min="0" max="100" discrete thumbLabel [displayWith]="formatLabel">
-                <input matSliderThumb formControlName="slider">
-              </mat-slider>
-            </form>
+          <div class="row">
+            <div class="col-md-12  card-description-item">
+              <form [formGroup]="formCard">
+                <mat-slider min="0" max="100" discrete thumbLabel [displayWith]="formatLabel">
+                  <input matSliderThumb formControlName="slider">
+                </mat-slider>
+              </form>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 funded-description-container">
-            <label class="funded-description-header-label">{{funded}}%</label>
-            <label class="funded-description-body-label">Avance</label>
-          </div>
-          <div class="col-md-4 funded-description-container">
-            <label class="funded-description-header-label">${{data.funded?.toLocaleString('es-CO')}}</label>
-            <label class="funded-description-body-label">Financiado</label>
-          </div>
-          <div class="col-md-4 funded-description-container">
-            <label class="funded-description-header-label">{{data.partners}}</label>
-            <label class="funded-description-body-label">Inversores</label>
+          <div class="row">
+            <div class="col-md-4 funded-description-container">
+              <label class="funded-description-header-label">{{funded}}%</label>
+              <label class="funded-description-body-label">Avance</label>
+            </div>
+            <div class="col-md-4 funded-description-container">
+              <label class="funded-description-header-label">${{data.funded?.toLocaleString('es-CO')}}</label>
+              <label class="funded-description-body-label">Financiado</label>
+            </div>
+            <div class="col-md-4 funded-description-container">
+              <label class="funded-description-header-label">{{data.partners}}</label>
+              <label class="funded-description-body-label">Inversores</label>
+            </div>
           </div>
         </div>
       </div>

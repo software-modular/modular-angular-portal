@@ -23,10 +23,10 @@ const routes: Routes = [
       { path: 'user/profile', component: UserProfileComponent, canActivate: [authenticationGuard()] },
       { path: 'user/management', component: AgrappManageUserComponent, canActivate: [authenticationGuard()] },
       { path: 'project/management', component: AgrappProjectsManagerComponent, canActivate: [authenticationGuard()] },
-      { path: 'project', component: AgrappInvestmentsComponent, canActivate: [authenticationGuard()] },
+      { path: 'project', component: AgrappInvestmentsComponent },
       { path: 'project/register/:id', component: AgrappProjectsRegisterComponent, canActivate: [authenticationGuard()] },
       { path: 'project/register', component: AgrappProjectsRegisterComponent, canActivate: [authenticationGuard()] },
-      { path: 'project/info/:id', component: AgrappProjectsComponent, canActivate: [authenticationGuard()] },
+      { path: 'project/info/:id', component: AgrappProjectsComponent },
       { path: 'home', component: AgrappHomeComponent },
     ]
   }

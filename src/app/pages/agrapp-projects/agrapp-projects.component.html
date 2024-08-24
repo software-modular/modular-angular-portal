@@ -1,4 +1,4 @@
-<div class="project-info-container">
+<div class="card project-info-container">
   <div class="project-info-detail">
     <div class="row">
       <div class="img-carousel-container col-md-6">
@@ -94,8 +94,8 @@
             <div class="row separator">
               <div class="col-md-12">
                 <div class="button-information-container">
-                  <button class="btn btn-primary">
-                    <label class="label-investment">Mas información</label>
+                  <button class="btn btn-primary" (click)="doInvestment()">
+                    <label class="label-investment">{{userIsAuthenticated ? 'Invertir' : 'Mas información'}}</label>
                   </button>
                 </div>
               </div>
@@ -174,7 +174,7 @@
     <div class="row">
       <div class="project-info-detail-information-title-container">
         <label class="project-info-detail-information-title">
-          Financiamiento
+          Financiación
         </label>
       </div>
       <div class="div-separator"></div>
@@ -221,14 +221,72 @@
         </div>
       </div>
     </div>
-    <div *ngIf="urlVideo !== null && urlVideo !== undefined" class="div-separator"></div>
-    <div *ngIf="urlVideo !== null && urlVideo !== undefined" class="row">
-      <div class="video-container">
-        <iframe class="video-iframe" [src]="urlVideo" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
+    <br>
+    <div class="row">
+      <div class="project-info-detail-information-title-container">
+        <label class="project-info-detail-information-title">
+          Precompra
+        </label>
+      </div>
+      <div class="div-separator"></div>
+      <div class="row separator">
+        <div class="col-md-4">
+          <div class="especific_detail_center">
+            <div class="especific_detail-name">Precompra minima</div>
+            <div class="especific_detail-value">{{formatMoney(projectInfo.pre_purcharse?.minimum_amount) }}
+              COP</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="especific_detail_center">
+            <div class="especific_detail-name">Precompra maxima</div>
+            <div class="especific_detail-value">{{formatMoney(projectInfo.pre_purcharse?.maximum_amount)}}
+              COP</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="especific_detail_center">
+            <div class="especific_detail-name">Meta precompra</div>
+            <div class="especific_detail-value">{{formatMoney(projectInfo.pre_purcharse?.total_pre_purcharse)}}
+              COP</div>
+          </div>
+        </div>
+      </div>
+      <div class="row separator">
+        <div class="col-md-6">
+          <div class="especific_detail_center">
+            <div class="especific_detail-name">Precio {{projectInfo.pre_purcharse?.units}}</div>
+            <div class="especific_detail-value">{{formatMoney(projectInfo.pre_purcharse?.unit_price)}}
+              COP</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="especific_detail_center">
+            <div class="especific_detail-name">Disponibilidad</div>
+            <div class="especific_detail-value">{{projectInfo.pre_purcharse?.start_date + ' - '+
+              projectInfo.pre_purcharse?.end_date }}</div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row separator">
+        <div class="col-md-12">
+          <div class="precompra-container">
+            <button class="btn btn-primary" (click)="doInvestment()">
+              <label class="label-investment">{{userIsAuthenticated ? 'Precomprar' : 'Mas información'}}</label>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div *ngIf="urlVideo !== null && urlVideo !== undefined" class="div-separator"></div>
+      <div *ngIf="urlVideo !== null && urlVideo !== undefined" class="row">
+        <div class="video-container">
+          <iframe class="video-iframe" [src]="urlVideo" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
       </div>
     </div>
   </div>
-</div>

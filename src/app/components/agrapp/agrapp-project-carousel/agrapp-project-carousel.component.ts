@@ -47,7 +47,6 @@ export class AgrappProjectCarouselComponent {
   }
 
   getListProjects() {
-    debugger
     this.projectService.findAllPublicProjects().subscribe({
       next: (data) => {
         let projects: ProjectDto[] = data.results;

@@ -45,7 +45,7 @@
 .card-container {
   padding: 10px;
   width: 450px;
-  background-color: white;
+  background-color: transparent;
 }
 
 .card-body-container {

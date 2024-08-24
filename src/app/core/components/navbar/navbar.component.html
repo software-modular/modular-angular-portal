@@ -69,7 +69,7 @@
   <div class="custom-topbar-menu-container">
     <!--menu-->
     <div class="custom-menu-2-options-container">
-      <div class="custom-menu-2-options-container" *ngIf="showCustomProfileInformation()">
+      <div class="custom-menu-2-options-container">
         <div class="custom-menu-2-option" *ngFor="let option of configuration.options">
           <div class="custom-menu-2-option-container" *ngIf="option.type === MENU_OPTION_TYPE && option.showOption
            && (option.roleView==='ALL' || option.roleView === getTypeUser())">

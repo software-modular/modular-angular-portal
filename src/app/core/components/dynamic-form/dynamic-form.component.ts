@@ -22,6 +22,7 @@ export class DynamicFormComponent implements OnInit {
     titleAling: "left",
     fields: [],
     btnLabel: "Presione",
+    showBorder: true
   };
 
   constructor(

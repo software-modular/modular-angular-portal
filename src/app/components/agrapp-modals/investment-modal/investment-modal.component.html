@@ -1,0 +1,17 @@
+<div class="modal-container">
+  <mat-dialog-content style="overflow: auto;">
+    <div class="dynamic-investment-form-container">
+      <dynamic-form [data]="dynamicFormInput"></dynamic-form>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions [align]="'center'" class="modal-action-container">
+    <div class="row">
+      <div class="col-md-12 modal-buttons-container">
+        <button type="button" class="btn-modal btn btn-secondary" (click)="closeModal()">Cancelar</button>
+        <button *ngIf="data === undefined" type="button" class="btn-modal btn btn-primary">
+          Guardar
+        </button>
+      </div>
+    </div>
+  </mat-dialog-actions>
+</div>
