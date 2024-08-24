@@ -12,7 +12,11 @@ import { projectList } from '../../core/domain/const/Mocks';
 })
 export class AgrappHomeComponent {
   projectsCard: AgrappCardInput[] = []
-
+  videoUrls: string[] = [
+    'https://youtu.be/MWuMRivcres',
+    'https://youtu.be/MWuMRivcres?si=-dPTd98UIiZlgpyc'
+    // Add more URLs as needed
+  ];
   constructor(private projectService: ProjectService) {
     this.getListProjects()
   }

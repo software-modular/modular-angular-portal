@@ -21,28 +21,37 @@ html {
 
 .background::before,
 .background::after {
-  content: '';
+  content: "";
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 0, 0, 0.5) 20%, rgba(255, 0, 0, 0) 80%),
-    radial-gradient(circle, rgba(0, 255, 0, 0.5) 20%, rgba(0, 255, 0, 0) 80%),
-    radial-gradient(circle, rgba(0, 0, 255, 0.5) 20%, rgba(0, 0, 255, 0) 80%);
   background-blend-mode: screen;
+  z-index: 1;
+}
+
+/* Primer bola (Naranja) */
+.background::before {
   width: 300px;
   height: 300px;
   top: 10%;
   left: 20%;
-  z-index: 1;
+  background: radial-gradient(
+      circle,
+      rgba(255, 165, 0, 0.5) 20%, /* Naranja con opacidad */
+      rgba(255, 165, 0, 0) 80%    /* Naranja transparente */
+    );
 }
 
+/* Segunda bola (Verde) */
 .background::after {
   width: 400px;
   height: 400px;
   top: 60%;
   left: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 0, 0.5) 20%, rgba(255, 255, 0, 0) 80%),
-    radial-gradient(circle, rgba(255, 105, 180, 0.5) 20%, rgba(255, 105, 180, 0) 80%),
-    radial-gradient(circle, rgba(0, 255, 255, 0.5) 20%, rgba(0, 255, 255, 0) 80%);
+  background: radial-gradient(
+      circle,
+      rgba(0, 255, 0, 0.5) 20%, /* Verde con opacidad */
+      rgba(0, 255, 0, 0) 80%    /* Verde transparente */
+    );
 }
 
 .content {
@@ -88,10 +97,9 @@ h1 {
   transform: translateY(1rem);
 }
 
-
 /* Estilos para la sección de descripción */
 .description {
-  background: url('/assets/img/home/leaves-pattern.jpeg') repeat;
+  background: url("/assets/img/home/leaves-pattern.jpeg") repeat;
   /* Estampado de hojas */
   padding: 50px 20px;
   /* Espaciado en la sección */
@@ -130,11 +138,46 @@ h1 {
 }
 
 strong {
-    color: var(--footer-background-color);
+  color: var(--footer-background-color);
 }
 
-h4{
-    margin: 2rem;
-    text-align: center;
-    font-weight: bold;
+h4 {
+  margin: 2rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Sponsors*/
+.sponsors {
+  width: 100%; /* Ajusta el ancho según tus necesidades */
+  overflow: hidden; /* Oculta el contenido que desborda */
+  position: relative; /* Posición relativa para el contenedor de desplazamiento */
+}
+
+.sponsors-inner {
+  display: flex; /* Flexbox para alinear los elementos en fila */
+  width: 100%; /* Asegura que el contenedor interior tenga el ancho completo */
+  /* Usa un ancho mayor si quieres que el contenido se desplace más allá del contenedor */
+  animation: scroll 20s linear infinite; /* Ajusta el tiempo según la velocidad deseada */
+}
+
+.sponsors-item {
+  flex: 0 0 auto; /* Flex item no se redimensiona */
+  width: 25%; /* Ancho de cada item, ajusta según el número de elementos que quieres mostrar */
+}
+
+.sponsors-item img {
+  display: block;
+  width: 100%; /* Hace que la imagen ocupe el ancho completo del contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+}
+
+/* Animación del carrusel */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%); /* Desplaza completamente el contenido */
+  }
 }

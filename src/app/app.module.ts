@@ -70,6 +70,7 @@ import { AgrappProjectsManagerComponent } from './pages/agrapp-projects-manager/
 import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
 import { AgrappProjectCarouselComponent } from './components/agrapp/agrapp-project-carousel/agrapp-project-carousel.component';
 import { CarouselModule } from 'primeng/carousel';
+import { AgrappVideoPlayerComponent } from './components/agrapp/agrapp-video-player/agrapp-video-player.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,6 +105,7 @@ import { CarouselModule } from 'primeng/carousel';
     AgrappProjectsManagerComponent,
     CustomMultifileUploadComponent,
     AgrappProjectCarouselComponent,
+    AgrappVideoPlayerComponent
   ],
   imports: [
     BrowserModule,
