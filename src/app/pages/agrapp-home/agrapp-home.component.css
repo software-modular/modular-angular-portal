@@ -34,10 +34,11 @@ html {
   height: 300px;
   top: 10%;
   left: 20%;
-  background: radial-gradient(
-      circle,
-      rgba(255, 165, 0, 0.5) 20%, /* Naranja con opacidad */
-      rgba(255, 165, 0, 0) 80%    /* Naranja transparente */
+  background: radial-gradient(circle,
+      rgba(255, 165, 0, 0.5) 20%,
+      /* Naranja con opacidad */
+      rgba(255, 165, 0, 0) 80%
+      /* Naranja transparente */
     );
 }
 
@@ -47,10 +48,11 @@ html {
   height: 400px;
   top: 60%;
   left: 50%;
-  background: radial-gradient(
-      circle,
-      rgba(0, 255, 0, 0.5) 20%, /* Verde con opacidad */
-      rgba(0, 255, 0, 0) 80%    /* Verde transparente */
+  background: radial-gradient(circle,
+      rgba(0, 255, 0, 0.5) 20%,
+      /* Verde con opacidad */
+      rgba(0, 255, 0, 0) 80%
+      /* Verde transparente */
     );
 }
 
@@ -149,27 +151,37 @@ h4 {
 
 /* Sponsors*/
 .sponsors {
-  width: 100%; /* Ajusta el ancho según tus necesidades */
-  overflow: hidden; /* Oculta el contenido que desborda */
-  position: relative; /* Posición relativa para el contenedor de desplazamiento */
+  width: 100%;
+  /* Ajusta el ancho según tus necesidades */
+  overflow: hidden;
+  /* Oculta el contenido que desborda */
+  position: relative;
+  /* Posición relativa para el contenedor de desplazamiento */
 }
 
 .sponsors-inner {
-  display: flex; /* Flexbox para alinear los elementos en fila */
-  width: 100%; /* Asegura que el contenedor interior tenga el ancho completo */
+  display: flex;
+  /* Flexbox para alinear los elementos en fila */
+  width: 100%;
+  /* Asegura que el contenedor interior tenga el ancho completo */
   /* Usa un ancho mayor si quieres que el contenido se desplace más allá del contenedor */
-  animation: scroll 20s linear infinite; /* Ajusta el tiempo según la velocidad deseada */
+  animation: scroll 20s linear infinite;
+  /* Ajusta el tiempo según la velocidad deseada */
 }
 
 .sponsors-item {
-  flex: 0 0 auto; /* Flex item no se redimensiona */
-  width: 25%; /* Ancho de cada item, ajusta según el número de elementos que quieres mostrar */
+  flex: 0 0 auto;
+  /* Flex item no se redimensiona */
+  width: 25%;
+  /* Ancho de cada item, ajusta según el número de elementos que quieres mostrar */
 }
 
 .sponsors-item img {
   display: block;
-  width: 100%; /* Hace que la imagen ocupe el ancho completo del contenedor */
-  height: auto; /* Mantiene la proporción de la imagen */
+  width: 100%;
+  /* Hace que la imagen ocupe el ancho completo del contenedor */
+  height: auto;
+  /* Mantiene la proporción de la imagen */
 }
 
 /* Animación del carrusel */
@@ -177,7 +189,15 @@ h4 {
   from {
     transform: translateX(0);
   }
+
   to {
-    transform: translateX(-100%); /* Desplaza completamente el contenido */
+    transform: translateX(-100%);
+    /* Desplaza completamente el contenido */
   }
+}
+
+.home-carousel-home-container {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
 }

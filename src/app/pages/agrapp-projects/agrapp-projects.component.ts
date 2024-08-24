@@ -28,9 +28,10 @@ export class AgrappProjectsComponent implements AfterViewInit {
     private confirmationService: ConfirmationService,
     private sanitizer: DomSanitizer
   ) {
+    debugger
     this.projectId = this.route.snapshot.paramMap.get('id') || '';
     if (this.projectId !== '') {
-      this.projectService.findProjectById(this.projectId).subscribe({
+      this.projectService.findPublicProjectById(this.projectId).subscribe({
         next: (data) => {
           this.projectInfo = data;
           this.loadInformation();
@@ -81,7 +82,7 @@ export class AgrappProjectsComponent implements AfterViewInit {
   }
 
   private getUrlVideo() {
-    return `https://www.youtube-nocookie.com/embed/tfAveT1Hjcw?si=${this.projectInfo.video_url}`;
+    return `https://www.youtube-nocookie.com/embed/${this.projectInfo.video_url}`;
   }
 
 

@@ -21,8 +21,18 @@ export class ProjectService {
     return this.httpClientService.get(url, this.headers);
   }
 
+  findAllPublicProjects() {
+    let url = `${environment.api.host}${environment.api.endpoints.users.findAllPublicProjects}`
+    return this.httpClientService.get(url, this.headers);
+  }
+
   findProjectById(id: string) {
     let url = `${environment.api.host}${environment.api.endpoints.users.findProjectById}${id}`
+    return this.httpClientService.get(url, this.headers);
+  }
+
+  findPublicProjectById(id: string) {
+    let url = `${environment.api.host}${environment.api.endpoints.users.findPublicProjectById}${id}`
     return this.httpClientService.get(url, this.headers);
   }
 
@@ -32,7 +42,6 @@ export class ProjectService {
   }
 
   async updateProject(project: ProjectDto, prepurcharseIsNull: Boolean): Promise<any> {
-    debugger
     let urlUpdateInformation = `${environment.api.host}${environment.api.endpoints.users.updateProjectInformation}`.replace('%s', `${project.code_project}`)
     let urlUpdateCrop = `${environment.api.host}${environment.api.endpoints.users.updateProjectCrop}${project.crop?.code_crop}`;
     let urlUpdateOwner = `${environment.api.host}${environment.api.endpoints.users.updateProjectOwner}${project.crop?.owner?.code_crop_owner}`;

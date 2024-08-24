@@ -1,10 +1,10 @@
 <div class="project-carousel-container">
   <div id="projectCarousel" class="project-carousel">
-    <div>
-      <p-carousel [value]="projects" [numVisible]="3" [numScroll]="3" [circular]="false"
+    <div *ngIf="projectsCard.length > 0">
+      <p-carousel [value]="projectsCard" [numVisible]="3" [numScroll]="3" [circular]="false"
         [responsiveOptions]="responsiveOptions">
         <ng-template let-project pTemplate="item">
-          <agrapp-projects-card [data]="project"></agrapp-projects-card>
+          <agrapp-projects-card [data]="project" (clickCard)="cardEvent(project.id)"></agrapp-projects-card>
         </ng-template>
       </p-carousel>
     </div>

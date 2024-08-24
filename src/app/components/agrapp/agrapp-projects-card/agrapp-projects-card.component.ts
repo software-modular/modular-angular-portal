@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { AgrappCardInput } from '../../../core/domain/beans/agrappCardInput';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -23,6 +23,8 @@ export class AgrappProjectsCardComponent implements AfterViewInit {
     redirect: true,
     id: "carousel"
   };
+
+  @Output() clickCard = new EventEmitter<string>();
 
   formCard: FormGroup;
   funded: number = 0;
@@ -60,5 +62,9 @@ export class AgrappProjectsCardComponent implements AfterViewInit {
       return `${name.slice(0, name.length - 1)}...`;
     }
     return "";
+  }
+
+  eventTouchCard() {
+    this.clickCard.emit("Card seleccionada");
   }
 }

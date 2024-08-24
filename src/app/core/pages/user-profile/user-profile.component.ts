@@ -62,7 +62,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateUserProfile() {
-    debugger//cuando actualiza no borra el valor anterior
     if (this.userInfo.user.type_user === "ST") {
       if (this.userInfo.code_staff !== undefined) {
         let userId = this.userInfo.code_staff;

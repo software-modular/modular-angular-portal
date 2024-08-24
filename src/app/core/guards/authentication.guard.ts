@@ -1,8 +1,7 @@
 import { inject } from '@angular/core';
-import { AuthenticationService } from '../services/authentication/authentication.service';
 import { CanActivateFn, Router } from '@angular/router';
-import { LocalStorageTokenService } from '../services/storage/local-storage-token.service';
 import { environment } from '../../../environments/environment';
+import { LocalStorageTokenService } from '../services/storage/local-storage-token.service';
 
 export function authenticationGuard(): CanActivateFn {
   return () => {

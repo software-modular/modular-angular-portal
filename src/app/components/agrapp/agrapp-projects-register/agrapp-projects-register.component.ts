@@ -171,7 +171,6 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
     this.form.get("totalPrePurcharse")?.setValue(projectDto.pre_purcharse?.total_pre_purcharse ?? '');
     this.form.get("prePurchaseStartDate")?.setValue(projectDto.pre_purcharse?.start_date ?? '');
     this.form.get("prePurchaseEndDate")?.setValue(projectDto.pre_purcharse?.end_date ?? '');
-    debugger
     this.form.get("prepurchaseUnitPrice")?.setValue(projectDto.pre_purcharse?.unit_price);
     if (projectDto.pre_purcharse !== null && projectDto.pre_purcharse !== undefined) {
       this.prepurchaseIsNull = false;
@@ -233,7 +232,6 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
   }
 
   async eventSaveProject() {
-    debugger
     if (this.form.valid) {
       let project: ProjectDto = await this.getProjectData();
       if (!this.isEdit) {

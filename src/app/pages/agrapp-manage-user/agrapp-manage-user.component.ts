@@ -112,7 +112,6 @@ export class AgrappManageUserComponent {
 
 
   deleteClient(user: ResponseClientDto) {
-    debugger
     if (user.user.is_staff) {
       this.userService.deleteStaff(user.code_staff).subscribe({
         next: (_) => {
