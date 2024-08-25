@@ -12,6 +12,8 @@ import { HiddenFieldForm } from '../../../core/domain/beans/hiddenFieldForm';
 import { InputForm } from '../../../core/domain/beans/InputForm';
 import { OptionInput } from '../../../core/domain/beans/OptionInput';
 import { DynamicFormService } from '../../../core/services/components/dynamic-form.service';
+import { TransactionDto } from '../../../core/domain/dto/transactions';
+import { TransactionService } from '../../../core/services/transaction/transaction.service';
 
 @Component({
   selector: 'app-investment-modal',
@@ -27,6 +29,7 @@ export class InvestmentModalComponent implements AfterViewInit {
     public dialogRef: MatDialogRef<InvestmentModalComponent>,
     private confirmationService: ConfirmationService,
     private dynamicFormService: DynamicFormService,
+    private transactionService: TransactionService,
     @Inject(MAT_DIALOG_DATA) public data: InputInvestmentModal
   ) {
     if (data.paymentType == "INV") {
@@ -59,7 +62,7 @@ export class InvestmentModalComponent implements AfterViewInit {
   loadFormData() {
     if (this.data != undefined) {
       this.dynamicFormService.setValueField("payment_type", this.data.paymentType);
-      this.dynamicFormService.setValueField("money", "CO");
+      this.dynamicFormService.setValueField("money", "COP");
     }
   }
 
@@ -68,6 +71,38 @@ export class InvestmentModalComponent implements AfterViewInit {
     this.dynamicFormService.disableFieldByFormControlName("money", true);
   }
 
+  isValidForm(): Boolean {
+    return this.dynamicFormService.isValidForm();
+  }
+
+  createTransacion() {
+    debugger
+    let transaction: TransactionDto = this.getTransaction();
+    this.transactionService.createTransaction(transaction).subscribe({
+      next: (data) => {
+        this.showMessageDialog("Transacción", "Transaccion creada con exito <br> Haga click en el siguiente enlace para realizar el pago; <br> Una vez hecho el pago su estado se visualizara en el visor transacciones");
+      }, error: (_) => {
+        this.showMessageDialog("Transacción", "Error: no es posible realizar la compra, intente mas tarde");
+      }
+    });
+
+  }
+
+  getTransaction(): TransactionDto {
+    debugger
+    let transaction: TransactionDto = {
+      client: this.data.clientId,
+      payment_type: this.data.paymentType,
+      project: this.data.projectId,
+      money: "COP",
+    }
+    if (this.data.paymentType === "INV") {
+      transaction.amount_in_cents = Number(this.dynamicFormService.getValueByFieldName("amount_in_cents"));
+    } else {
+      transaction.product_amount = Number(this.dynamicFormService.getValueByFieldName("product_amount"));
+    }
+    return transaction;
+  }
 
   private getFieldsForm(): InputForm<any>[] {
     let typeInvestment: OptionInput[] = [
@@ -86,8 +121,6 @@ export class InvestmentModalComponent implements AfterViewInit {
         value: "COP"
       }
     ];
-    let nameAmount = this.data.paymentType === "INV" ? 'Monto inversión' : 'Monto';
-
     let fields: InputForm<any>[] = [
       new ListOptionFieldForm("Tipo de inversión", "Seleccione", "payment_type", "",
         TypeInputForm.LIST_OPTION, typeInvestment, [Validators.required]),
@@ -100,9 +133,23 @@ export class InvestmentModalComponent implements AfterViewInit {
 
     } else {
       fields.push(
-        new TextFieldForm("Cantidad inversión", "Ingresa el monto", "product_amount", "", TypeInputForm.NUMBER, '', [Validators.required]));
+        new TextFieldForm("Cantidad inversión", `Ingrese cantidad (${this.data.unit})`, "product_amount", "", TypeInputForm.NUMBER, '', [Validators.required]));
     }
     return fields;
+  }
+
+  private showMessageDialog(titleHeader: string, message: string) {
+    this.confirmationService.confirm({
+      message: message,
+      header: titleHeader,
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: "none",
+      acceptLabel: "Continuar",
+      rejectVisible: false,
+      accept: () => {
+        this.closeModal();
+      }
+    });
   }
 
 

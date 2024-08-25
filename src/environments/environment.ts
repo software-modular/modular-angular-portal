@@ -34,7 +34,10 @@ export const environment = {
         updateProjectOwner: "/users/owner/update/",
         updateProjectInvestment: "/projects/investments/update/",
         updateProjectPrepurcharse: "/projects/prepurcharses/update/",
-        createProjectPrepurcharse: "/projects/prepurcharses/create/"
+        createProjectPrepurcharse: "/projects/prepurcharses/create/",
+        createTransaction: "/transactions/create/",
+        findTrasactionById: "/transactions/",
+        findAllTrasactions: "/transactions/"
 
       }
     }

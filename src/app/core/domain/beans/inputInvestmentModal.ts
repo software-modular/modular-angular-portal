@@ -3,4 +3,5 @@ export interface InputInvestmentModal {
   money?: string,
   clientId?: Number,
   projectId?: Number,
+  unit?: string,
 }

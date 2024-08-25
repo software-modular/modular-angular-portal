@@ -103,10 +103,14 @@ export class AgrappProjectsComponent implements AfterViewInit {
   }
 
   getInputInvestmentModal(typeTransaction: string): InputInvestmentModal {
+    debugger
+    let userInfo = this.authenticationService.getUserAuthenticated();
     return {
       money: "CO",
       projectId: this.projectInfo.code_project,
       paymentType: typeTransaction,
+      unit: this.projectInfo.pre_purcharse?.units,
+      clientId: userInfo.code_client
     }
   }
 

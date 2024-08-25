@@ -129,11 +129,11 @@ export class UserModalComponent implements AfterViewInit {
   }
 
   save() {
-    let showError = (title: string, message: string) => this.showMessageDialog(title, message, false);
+    let showError = (title: string, message: string) => this.showMessageDialog(title, message);
     let userData = this.getClientRegisterData();
     this.userService.createStaff(userData).subscribe({
       next: (data) => {
-        this.showMessageDialog("Registro usuario", "Usuario creado", true)
+        this.showMessageDialog("Registro usuario", "Usuario creado")
       }, error(err) {
         showError("Registro usuario", `Ya existe un usuario con identificacion:${userData.user?.document_id}`);
       }
@@ -157,7 +157,7 @@ export class UserModalComponent implements AfterViewInit {
   }
 
 
-  private showMessageDialog(titleHeader: string, message: string, redirect: Boolean) {
+  private showMessageDialog(titleHeader: string, message: string) {
     this.confirmationService.confirm({
       message: message,
       header: titleHeader,
