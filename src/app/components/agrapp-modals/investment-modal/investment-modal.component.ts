@@ -14,6 +14,7 @@ import { OptionInput } from '../../../core/domain/beans/OptionInput';
 import { DynamicFormService } from '../../../core/services/components/dynamic-form.service';
 import { TransactionDto } from '../../../core/domain/dto/transactions';
 import { TransactionService } from '../../../core/services/transaction/transaction.service';
+import { TransactionResponseDto } from '../../../core/domain/dto/transactionResponseDto';
 
 @Component({
   selector: 'app-investment-modal',
@@ -76,11 +77,10 @@ export class InvestmentModalComponent implements AfterViewInit {
   }
 
   createTransacion() {
-    debugger
     let transaction: TransactionDto = this.getTransaction();
     this.transactionService.createTransaction(transaction).subscribe({
-      next: (data) => {
-        this.showMessageDialog("Transacción", "Transaccion creada con exito <br> Haga click en el siguiente enlace para realizar el pago; <br> Una vez hecho el pago su estado se visualizara en el visor transacciones");
+      next: (data: TransactionResponseDto) => {
+        this.showMessageDialog("Transacción", `Transaccion creada con exito; Haga click en el siguiente enlace para realizar el pago <a href='${data.payment_url}' target='_blank'>${data.payment_url}</a>; <br> Una vez hecho el pago su estado se visualizara en el visor transacciones`);
       }, error: (_) => {
         this.showMessageDialog("Transacción", "Error: no es posible realizar la compra, intente mas tarde");
       }
@@ -89,7 +89,6 @@ export class InvestmentModalComponent implements AfterViewInit {
   }
 
   getTransaction(): TransactionDto {
-    debugger
     let transaction: TransactionDto = {
       client: this.data.clientId,
       payment_type: this.data.paymentType,
@@ -98,7 +97,9 @@ export class InvestmentModalComponent implements AfterViewInit {
     }
     if (this.data.paymentType === "INV") {
       transaction.amount_in_cents = Number(this.dynamicFormService.getValueByFieldName("amount_in_cents"));
+      transaction.product_amount = 0;
     } else {
+      transaction.amount_in_cents = 0;
       transaction.product_amount = Number(this.dynamicFormService.getValueByFieldName("product_amount"));
     }
     return transaction;

@@ -79,7 +79,8 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <multifile-upload formControlName="projectImgs" [label]="'Fotos'"></multifile-upload>
+                        <multifile-upload formControlName="projectImgs" [label]="'Fotos'"
+                          [maxFiles]="5"></multifile-upload>
                       </div>
                     </div>
                     <div class="row">
@@ -341,8 +342,8 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <multifile-upload formControlName="producerImgProfile"
-                          [label]="'Foto de perfil'"></multifile-upload>
+                        <multifile-upload formControlName="producerImgProfile" [label]="'Foto de perfil'"
+                          [maxFiles]="1"></multifile-upload>
                       </div>
                     </div>
                   </div>

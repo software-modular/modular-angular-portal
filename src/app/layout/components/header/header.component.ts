@@ -94,9 +94,11 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+    this.navbarService.setUserInformation({});
     this.navbarService.showUserProfileMenu(false);
     this.navbarService.showLoginBtn(true);
     this.authenticationService.logoutUser();
+    this.loadNavbarConfiguration();
     this.redirect(environment.navbarConfiguration.urlRedirectCloseSession);
   }
 

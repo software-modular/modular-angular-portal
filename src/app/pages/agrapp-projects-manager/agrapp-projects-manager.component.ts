@@ -87,18 +87,6 @@ export class AgrappProjectsManagerComponent {
     this.dataSourceProjects.paginator!.pageSize = event.pageSize;
   }
 
-  showNotification(titleHeader: string, message: string, icon: string) {
-    this.confirmationService.confirm({
-      message: message,
-      header: titleHeader,
-      icon: icon,
-      acceptIcon: "none",
-      acceptLabel: "Continuar",
-      rejectVisible: false,
-    });
-  }
-
-
   loadDataSourceFilter() {
     this.dataSourceProjects.filterPredicate = (data: ProjectDto, filter: string) => {
       return this.customFilter(data, filter);
@@ -133,4 +121,28 @@ export class AgrappProjectsManagerComponent {
   redirectDetailProyect(project: ProjectDto) {
     this.router.navigate([`portal/project/info/${project.code_project}`])
   }
+
+  deletProject(project: ProjectDto) {
+    this.projectService.deleteProject(project).subscribe({
+      next: (_) => {
+        this.showNotification("Proyecto", "Proyecto eliminado exitosamente.");
+      },
+      error: (_) => {
+        this.showNotification("Proyecto", "No fue posible eliminar el proyecto, intente mas tarde.")
+      }
+    });
+  }
+
+
+  showNotification(titleHeader: string, message: string,) {
+    this.confirmationService.confirm({
+      message: message,
+      header: titleHeader,
+      acceptIcon: "none",
+      acceptLabel: "Aceptar",
+      rejectVisible: false,
+    });
+  }
+
+
 }

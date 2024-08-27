@@ -27,8 +27,8 @@ export class TransactionService {
   }
 
 
-  findAllTransaction(id: string) {
-    let url = `${environment.api.host}${environment.api.endpoints.users.findTrasactionById}`
+  findAllTransaction() {
+    let url = `${environment.api.host}${environment.api.endpoints.users.findAllTrasactions}`
     return this.httpClientService.get(url, this.headers);
   }
 

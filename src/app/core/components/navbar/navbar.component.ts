@@ -75,7 +75,7 @@ export class NavbarComponent {
 
   getTypeUser(): string {
     let userInformation: NabvarUserInformation = this.navbarService.getUserInformation();
-    return userInformation.roleUser;
+    return userInformation.roleUser ?? '';
   }
 
   logout() {
@@ -105,12 +105,12 @@ export class NavbarComponent {
 
   getEmail(): string {
     let userInformation: NabvarUserInformation = this.navbarService.getUserInformation();
-    return userInformation.username;
+    return userInformation.username ?? '';
   }
 
   getUsername(): string {
     let userInformation: NabvarUserInformation = this.navbarService.getUserInformation();
-    return userInformation.name;
+    return userInformation.name ?? '';
   }
 
 }

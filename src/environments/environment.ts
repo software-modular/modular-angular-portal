@@ -29,6 +29,7 @@ export const environment = {
         findProjectById: "/projects/",
         findPublicProjectById: "/projects/view/",
         createProject: "/projects/create/",
+        deleteProject: "/projects/delete/",
         updateProjectInformation: "/projects/update/%s/",
         updateProjectCrop: "/projects/crops/update/",
         updateProjectOwner: "/users/owner/update/",
@@ -75,6 +76,32 @@ export const environment = {
         icon: "",
         type: "MENU",
         roleView: "ALL",
+        items: []
+      },
+      {
+        name: "Mis inversiones",
+        redirect: true,
+        showOption: true,
+        disableOption: false,
+        cssClass: "",
+        cssStyle: "",
+        urlRedirect: "portal/project/investment",
+        icon: "",
+        type: "MENU",
+        roleView: "USER",
+        items: []
+      },
+      {
+        name: "Inversiones",
+        redirect: true,
+        showOption: true,
+        disableOption: false,
+        cssClass: "",
+        cssStyle: "",
+        urlRedirect: "portal/project/investment",
+        icon: "",
+        type: "MENU",
+        roleView: "ADMIN",
         items: []
       },
       {

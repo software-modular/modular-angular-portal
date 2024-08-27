@@ -72,6 +72,7 @@ import { AgrappProjectCarouselComponent } from './components/agrapp/agrapp-proje
 import { CarouselModule } from 'primeng/carousel';
 import { AgrappVideoPlayerComponent } from './components/agrapp/agrapp-video-player/agrapp-video-player.component';
 import { InvestmentModalComponent } from './components/agrapp-modals/investment-modal/investment-modal.component';
+import { AgrappTransactionsListComponent } from './pages/agrapp-transactions-list/agrapp-transactions-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,7 +108,8 @@ import { InvestmentModalComponent } from './components/agrapp-modals/investment-
     CustomMultifileUploadComponent,
     AgrappProjectCarouselComponent,
     AgrappVideoPlayerComponent,
-    InvestmentModalComponent
+    InvestmentModalComponent,
+    AgrappTransactionsListComponent
   ],
   imports: [
     BrowserModule,

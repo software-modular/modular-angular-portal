@@ -41,6 +41,11 @@ export class ProjectService {
     return this.httpClientService.post(url, project, this.headers);
   }
 
+  deleteProject(project: ProjectDto) {
+    let url = `${environment.api.host}${environment.api.endpoints.users.deleteProject}${project.code_project}`
+    return this.httpClientService.delete(url, this.headers);
+  }
+
   async updateProject(project: ProjectDto, prepurcharseIsNull: Boolean): Promise<any> {
     let urlUpdateInformation = `${environment.api.host}${environment.api.endpoints.users.updateProjectInformation}`.replace('%s', `${project.code_project}`)
     let urlUpdateCrop = `${environment.api.host}${environment.api.endpoints.users.updateProjectCrop}${project.crop?.code_crop}`;
@@ -50,20 +55,20 @@ export class ProjectService {
     let urlCreatePrepurcharses = `${environment.api.host}${environment.api.endpoints.users.createProjectPrepurcharse}`;
     let prepurcharse: any;
 
-    if (prepurcharseIsNull) {
+    if (project.allow_prepurcharse && prepurcharseIsNull) {
       prepurcharse = await firstValueFrom(this.httpClientService.post(urlCreatePrepurcharses, this.getPrePurcharse(project), this.headers))
-    } else {
+    } else if (project.allow_prepurcharse && !prepurcharseIsNull) {
       prepurcharse = await firstValueFrom(this.httpClientService.patch(urlUpdatePrepurcharses, this.getPrePurcharse(project), this.headers))
     }
-    let infoProject = this.getProyectInformation(project, prepurcharse.code_pre_purcharse);
+    let infoProject = this.getProyectInformation(project, prepurcharse);
     let responseInformation = await firstValueFrom(this.httpClientService.patch(urlUpdateInformation, infoProject, this.headers));
     let responseInvestment = await firstValueFrom(this.httpClientService.patch(urlUpdateInvestment, this.getInvesment(project), this.headers));
     let responseOwner = await firstValueFrom(this.httpClientService.patch(urlUpdateOwner, this.getOwner(project), this.headers));
     let responseCrop = await firstValueFrom(this.httpClientService.patch(urlUpdateCrop, this.getCrop(project), this.headers));
     return new Promise((resolve, reject) => {
-      if (!this.validResponse(prepurcharse) || this.validResponse(responseInformation)
-        || this.validResponse(responseInvestment) || this.validResponse(responseOwner)
-        || this.validResponse(responseCrop)) {
+      if (this.validResponse(responseInformation)
+        && this.validResponse(responseInvestment) && this.validResponse(responseOwner)
+        && this.validResponse(responseCrop)) {
         resolve("Proyecto actualizado");
         return;
       } else {
@@ -73,14 +78,14 @@ export class ProjectService {
   }
 
   private validResponse(response: any): Boolean {
-    if (response.code !== 200) {
+    if (response.code !== undefined) {
       return false;
     }
     return true;
   }
 
-  private getProyectInformation(project: ProjectDto, code_prepurcharse: Number) {
-    return {
+  private getProyectInformation(project: ProjectDto, prepurcharse?: any) {
+    let projectInformation: any = {
       code_project: project.code_project,
       name: project.name,
       description: project.description,
@@ -94,8 +99,11 @@ export class ProjectService {
       state: project.state,
       start_date: project.start_date,
       end_date: project.end_date,
-      pre_purchase: code_prepurcharse
     }
+    if (prepurcharse !== undefined && prepurcharse.code_pre_purcharse !== undefined) {
+      projectInformation.pre_purcharse = prepurcharse.code_pre_purcharse
+    }
+    return projectInformation;
   }
 
   private getCrop(project: ProjectDto) {

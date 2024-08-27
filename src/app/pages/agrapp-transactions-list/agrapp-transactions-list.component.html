@@ -1,0 +1,104 @@
+<div class="agrapp-transactions-management-container">
+  <div class="agrapp-transactions-management-body-container">
+    <div class="agrapp-transactions-management-table-container">
+      <div class="row agrapp-transactions-management-table-header-container">
+        <div class="col-md-12">
+          <div class="agrapp-transactions-management-table-title">
+            <label>Transacciones e inversiones</label>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="agrapp-transactions-management-table-filter">
+                <form [formGroup]="formGroup" style="width: 100%;">
+                  <mat-form-field class="field-filter">
+                    <mat-label>Filtro..</mat-label>
+                    <input formControlName="filter" matInput placeholder="Filtro" #input
+                      (keyup)="applyFilterTransactionTable()">
+                  </mat-form-field>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="card card-table-container">
+            <table mat-table [dataSource]="dataSourceTransaction" class="mat-elevation-z8 agraap-table">
+              <ng-container matColumnDef="cliente">
+                <th mat-header-cell *matHeaderCellDef class="table-content">Cliente</th>
+                <td mat-cell *matCellDef="let transaction" class="table-content">
+                  {{transaction.client.user.name}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="nombre_proyecto">
+                <th mat-header-cell *matHeaderCellDef class="table-content">Proyecto</th>
+                <td mat-cell *matCellDef="let transaction" class="table-content">
+                  {{transaction.project.name}} </td>
+              </ng-container>
+              <ng-container matColumnDef="start_date">
+                <th mat-header-cell *matHeaderCellDef class="table-content">Fecha creación</th>
+                <td mat-cell *matCellDef="let transaction" class="table-content">
+                  {{transaction.start_transacction_date }} </td>
+              </ng-container>
+              <ng-container matColumnDef="estado">
+                <th mat-header-cell *matHeaderCellDef class="table-content">Estado transacción</th>
+                <td mat-cell *matCellDef="let transaction" class="table-content">
+                  {{transaction.project.state }} </td>
+              </ng-container>
+              <ng-container matColumnDef="payment_type">
+                <th mat-header-cell *matHeaderCellDef class="table-content">Metodo de pago</th>
+                <td mat-cell *matCellDef="let transaction" class="table-content">
+                  {{transaction.payment_method}} </td>
+              </ng-container>
+              <ng-container matColumnDef="moneda">
+                <th mat-header-cell *matHeaderCellDef class="table-content">Moneda</th>
+                <td mat-cell *matCellDef="let transaction" class="table-content">
+                  {{transaction.money}} </td>
+              </ng-container>
+              <ng-container matColumnDef="tipo_inversion">
+                <th mat-header-cell *matHeaderCellDef class="table-content">Tipo de inversión</th>
+                <td mat-cell *matCellDef="let transaction" class="table-content">
+                  {{transaction.payment_type}} </td>
+              </ng-container>
+              <ng-container matColumnDef="inversion">
+                <th mat-header-cell *matHeaderCellDef class="table-content">Valor inversión</th>
+                <td mat-cell *matCellDef="let transaction" class="table-content">
+                  {{transaction.product_amount || transaction.amount_in_cents}} </td>
+              </ng-container>
+              <ng-container matColumnDef="url_pago">
+                <th mat-header-cell *matHeaderCellDef class="table-content">Enlace de pago</th>
+                <td mat-cell *matCellDef="let transaction" class="table-content">
+                  {{transaction.payment_url }} </td>
+              </ng-container>
+              <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef class="table-content"> Acciones </th>
+                <td mat-cell *matCellDef="let transaction" class="table-content">
+
+                  <button mat-mini-fab type="button" class="btn button-action">
+                    <i class="fa fa-eye" style="font-size: 20px;"></i>
+                  </button>
+
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="columns"></tr>
+              <tr mat-row *matRowDef="let rowUser; columns: columns;"></tr>
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"
+                </td>
+              </tr>
+            </table>
+            <br>
+            <mat-paginator #paginatorTransaction [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons
+              aria-label="Select page" [pageSize]="5" (page)="onPageProjectChange($event)"></mat-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card flex justify-content-center gap-2">
+  <p-confirmDialog />
+</div>

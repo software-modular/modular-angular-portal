@@ -103,7 +103,6 @@ export class AgrappProjectsComponent implements AfterViewInit {
   }
 
   getInputInvestmentModal(typeTransaction: string): InputInvestmentModal {
-    debugger
     let userInfo = this.authenticationService.getUserAuthenticated();
     return {
       money: "CO",
@@ -148,18 +147,6 @@ export class AgrappProjectsComponent implements AfterViewInit {
   }
   private redirect(url: string) {
     this.router.navigate([url]);
-  }
-
-  private showMessageDialog(titleHeader: string, message: string) {
-    this.confirmationService.confirm({
-      message: message,
-      header: titleHeader,
-      icon: 'pi pi-exclamation-triangle',
-      acceptIcon: "none",
-      acceptLabel: "Continuar",
-      rejectVisible: false,
-
-    });
   }
 
   private openModal(component: any, data?: any) {

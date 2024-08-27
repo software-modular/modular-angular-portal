@@ -192,7 +192,7 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
       this.cardData.imgs = this.getCardImgs();
     }
     let hasPrepurchase = this.form.get("projectHasPrePurchase")?.value
-    this.showPrePurchaseForm = hasPrepurchase;
+    this.showPrePurchaseForm = hasPrepurchase === "true";
   }
 
   getCardImgs(): string[] {
@@ -258,7 +258,7 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
     let formData: ProjectDto = {
       name: this.form.get("projectName")?.value,
       description: this.form.get("projectDescription")?.value,
-      allow_prepurcharse: this.form.get("projectHasPrePurchase")?.value,
+      allow_prepurcharse: this.form.get("projectHasPrePurchase")?.value === "true",
       crop: {
         country: this.form.get("cropCountry")?.value,
         department: this.form.get("cropDepartment")?.value,
@@ -320,11 +320,6 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
         }
       }
     }
-    formData.photo_1 = formData.photo_1 !== undefined && formData.photo_1 !== '' ? formData.photo_1 : '';
-    formData.photo_2 = formData.photo_2 !== undefined && formData.photo_2 !== '' ? formData.photo_2 : '';
-    formData.photo_3 = formData.photo_3 !== undefined && formData.photo_3 !== '' ? formData.photo_3 : '';
-    formData.photo_4 = formData.photo_4 !== undefined && formData.photo_4 !== '' ? formData.photo_4 : '';
-    formData.photo_5 = formData.photo_5 !== undefined && formData.photo_5 !== '' ? formData.photo_5 : '';
     let imgProducer: File[] = this.form.get("producerImgProfile")?.value;
     if (imgProducer !== undefined && imgProducer.length > 0) {
       if (formData.crop !== undefined && formData.crop.owner !== undefined

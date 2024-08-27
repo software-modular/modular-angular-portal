@@ -93,6 +93,10 @@
                   <button mat-mini-fab type="button" class="btn button-action" (click)="redirectDetailProyect(project)">
                     <i class="fa fa-eye" style="font-size: 20px;"></i>
                   </button>
+                  <button *ngIf="false" mat-mini-fab type="button" class="btn button-action"
+                    (click)="deletProject(project)">
+                    <i class="fa fa-trash" style="font-size: 20px;"></i>
+                  </button>
                 </td>
               </ng-container>
               <tr mat-header-row *matHeaderRowDef="columns"></tr>

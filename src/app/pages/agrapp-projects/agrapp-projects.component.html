@@ -236,22 +236,25 @@
         <div class="col-md-4">
           <div class="especific_detail_center">
             <div class="especific_detail-name">Precompra minima</div>
-            <div class="especific_detail-value">{{formatMoney(projectInfo.pre_purcharse?.minimum_amount) }}
-              COP</div>
+            <div class="especific_detail-value">{{projectInfo.pre_purcharse?.minimum_amount + ' '
+              +projectInfo.pre_purcharse?.units }}
+            </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="especific_detail_center">
             <div class="especific_detail-name">Precompra maxima</div>
-            <div class="especific_detail-value">{{formatMoney(projectInfo.pre_purcharse?.maximum_amount)}}
-              COP</div>
+            <div class="especific_detail-value">{{projectInfo.pre_purcharse?.maximum_amount + ' '
+              +projectInfo.pre_purcharse?.units}}
+            </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="especific_detail_center">
             <div class="especific_detail-name">Meta precompra</div>
-            <div class="especific_detail-value">{{formatMoney(projectInfo.pre_purcharse?.total_pre_purcharse)}}
-              COP</div>
+            <div class="especific_detail-value">{{projectInfo.pre_purcharse?.total_pre_purcharse + ' '
+              +projectInfo.pre_purcharse?.units}}
+            </div>
           </div>
         </div>
       </div>
