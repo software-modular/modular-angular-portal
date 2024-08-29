@@ -58,7 +58,7 @@ export class NavbarComponent {
   }
 
   showCustomMenu() {
-    this.showCustomMenus = true;
+    this.showCustomMenus = !this.showCustomMenus;
   }
 
   showCustomProfile() {
@@ -113,4 +113,7 @@ export class NavbarComponent {
     return userInformation.name ?? '';
   }
 
+  showUserProfileMenu() {
+
+  }
 }

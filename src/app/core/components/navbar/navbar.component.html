@@ -160,3 +160,143 @@
     </div>
   </div>
 </div>
+
+
+
+
+<div *ngIf="configuration.typeNavbar === 'CUSTOM'" class="custom-topbar-container-movile">
+  <div class=" custom-topbar-container-first-file-container-movile">
+    <div style="width: 50%;">
+      <div class="movile-custom-container-left">
+        <div class="custom-topbar-container-logo">
+          <div>
+            <a [routerLink]="configuration.urlLogoRedirect">
+              <img [src]="configuration.srcLogo" [alt]="configuration.altLogo"
+                class="custom-navbar-logo d-inline-block align-text-top">
+            </a>
+          </div>
+        </div>
+        <div class="button-menu-movile-container-tablet">
+          <button class="btn btn-first-menu" (click)="showCustomMenu()">Menu
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-chevron-down" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+            </svg>
+          </button>
+          <div class="custom-menu-container-dialog">
+            <div *ngIf="showCustomMenus" class="custom-menu-container-body">
+              <div class="custom-menu-container-option">
+                <ng-container *ngFor="let option of configuration.options">
+                  <div class="custom-menu-2-option-container" *ngIf="option.type === MENU_OPTION_TYPE && option.showOption
+                  && (option.roleView==='ALL' || option.roleView === getTypeUser())">
+                    <button *ngIf="option.redirect"
+                      class="btn-menu-2-option btn flex align-items-center p-menuitem-link custom-menu-option"
+                      [routerLink]="option.urlRedirect" (click)="showCustomMenu()">
+                      <span class="ml-2 custom-menu-option">
+                        <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>
+                        &nbsp;&nbsp;&nbsp;{{ option.name }}</span>
+                    </button>
+                    <div *ngIf="!option.redirect" class="btn-menu-2-option btn flex align-items-center p-menuitem-link">
+                      <span *ngIf="option.icon !== ''" [class]="option.icon" class="custom-menu-option"></span>
+                      <span class="ml-2 custom-menu-option">
+                        <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>
+                        &nbsp;&nbsp;&nbsp;{{ option.name }}</span>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 50%;">
+      <div class="custom-topbar-userprofile-container-movile">
+        <!--UseProfileOptions-->
+        <div *ngIf="showCustomUserprofileOption" class="custom-userprofile-dialog">
+          <div *ngIf="showCustomUserprofileOption" class="custom-userprofile-movile-options-container">
+            <div class="custom-userprofile-elements-container">
+              <div class="custom-userprofile-2-option-container">
+                <div class="custom-topbar-profile-menu-container">
+                  <div class="custom-topbar-username-short-profile-menu-container">
+                    <label class="custom-topbar-username-short-label">
+                      {{getInitialLettersName()}}
+                    </label>
+                  </div>
+                  <div class="custom-topbar-profile-menu-container-user-info">
+                    <label class="custom-topbar-profile-menu-username">{{getUsername()}} </label>
+                    <label class="custom-topbar-profile-menu-email">{{getEmail()}}</label>
+                  </div>
+                </div>
+                <div class="div-separator"></div>
+                <ng-container *ngFor="let option of configuration.options">
+                  <div class="custom-profile-2-option-container" *ngIf="option.type === USERPROFILE_OPTION_TYPE">
+                    <button *ngIf="option.type === USERPROFILE_OPTION_TYPE && option.showOption && !option.redirect"
+                      class="custom-userprofile-2-option btn flex align-items-center p-menuitem-link"
+                      (click)="selectProfileOptionEvent()">
+                      <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>
+                      &nbsp;&nbsp;&nbsp;{{option.name}}
+                    </button>
+                    <button *ngIf="option.type === USERPROFILE_OPTION_TYPE && option.showOption && option.redirect "
+                      class="custom-userprofile-2-option btn flex align-items-center p-menuitem-link"
+                      [routerLink]="option.urlRedirect" (click)="selectProfileOptionEvent()">
+                      <i *ngIf="option.icon !== ''" [ngClass]="option.icon"></i>
+                      &nbsp;&nbsp;&nbsp;{{option.name}}
+                    </button>
+                  </div>
+                </ng-container>
+                <div class="custom-profile-2-option-container">
+                  <button class="custom-userprofile-2-option btn flex align-items-center p-menuitem-link"
+                    (click)="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    &nbsp;&nbsp;&nbsp;Cerrar sesión
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="showCustomProfileInformation() " class="custom-topbar-userprofile-name-container">
+          <label>
+            {{getEmailShort()}}
+          </label>
+        </div>
+        <div *ngIf="showCustomProfileInformation() " class="custom-topbar-username-short-container">
+          <label class="custom-topbar-username-short-label">
+            {{getInitialLettersName()}}
+          </label>
+        </div>
+        <div *ngIf="showCustomProfileInformation() " class="custom-topbar-userprofile-actions">
+          <button class="btn" (click)="showCustomProfile()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-chevron-down" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+            </svg>
+          </button>
+        </div>
+        <div *ngIf="showLoginBtn()" class="custom-topbar-userprofile-logion">
+          <button class="btn" (click)="login()">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            &nbsp;&nbsp;&nbsp;Iniciar sesión
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row menu-container-movile">
+    <div class="col-md-12">
+      <div class="button-menu-movile-container">
+        <button class="btn btn-menu" (click)="showCustomMenu()">Menu
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
