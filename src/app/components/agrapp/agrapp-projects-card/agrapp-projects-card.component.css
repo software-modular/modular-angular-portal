@@ -1,41 +1,38 @@
 @media (min-width: 1101px) {}
 
-@media (min-width: 769px) and (max-width: 1100px) {
+
+
+@media (min-width: 870px) and (max-width: 1100px) {
   .card-container {
-    width: 48vw !important;
+    width: auto !important;
   }
 }
 
+@media (min-width: 769px) and (max-width: 869px) {}
+
 @media (min-width: 601px) and (max-width: 768px) {
   .card-container {
-    width: 85vw !important;
+    width: auto !important;
   }
 }
 
 @media (max-width: 600px) {
   .card-container {
-    width: 85vw !important;
+    width: auto !important;
   }
 }
 
 @media (max-width: 520px) {
   .card-container {
-    width: 85vw !important;
+    width: 450px !important;
+    scale: 0.9;
   }
 }
 
-@media (max-width: 478px) {
-  .card-container {
-    width: 85vw !important;
-  }
-}
+@media (max-width: 478px) {}
 
 /* Estilos para dispositivos móviles */
-@media (max-width: 460px) {
-  .card-container {
-    width: 93vw !important;
-  }
-}
+@media (max-width: 460px) {}
 
 
 .card:hover {
@@ -44,7 +41,7 @@
 
 .card-container {
   padding: 10px;
-  width: 450px;
+  width: 400px;
   background-color: transparent;
 }
 

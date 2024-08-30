@@ -1,300 +1,303 @@
-<div class="card project-info-container">
-  <div class="project-info-detail">
-    <div class="row">
-      <div class="img-carousel-container col-md-6">
-        <div class="project-info-detail-pictures">
-          <carousel-img [carouselId]="carouselId" [imgs]="imgs" [heightImg]="'40vh'"></carousel-img>
+<div class="project-info-body">
+  <div class="card project-info-container">
+    <div class="project-info-detail">
+      <div class="row">
+        <div class="img-carousel-container col-md-6">
+          <div class="project-info-detail-pictures">
+            <carousel-img [carouselId]="carouselId" [imgs]="imgs" [heightImg]="'40vh'"></carousel-img>
+          </div>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="project-info-detail-information">
-          <div class="project-info-detail-information-title-container">
-            <label class="project-info-detail-information-title">
-              {{projectInfo.name}}
-            </label>
-          </div>
-          <div class="div-separator"></div>
-          <div class="project-info-detail-information-description">
-            <label>{{projectInfo.description}}</label>
-          </div>
-          <br>
-          <div class="div-separator"></div>
-          <div class="project-info-detail-information-details">
-            <div class="row separator">
-              <div class="col-md-6">
-                <div class="especific_detail">
-                  <div class="especific_detail-name">
-                    <label>
-                      Inicio proyecto
-                    </label>
+        <div class="col-md-6">
+          <div class="project-info-detail-information">
+            <div class="project-info-detail-information-title-container">
+              <label class="project-info-detail-information-title">
+                {{projectInfo.name}}
+              </label>
+            </div>
+            <div class="div-separator"></div>
+            <div class="project-info-detail-information-description">
+              <label>{{projectInfo.description}}</label>
+            </div>
+            <br>
+            <div class="div-separator"></div>
+            <div class="project-info-detail-information-details">
+              <div class="row separator">
+                <div class="col-md-6">
+                  <div class="especific_detail">
+                    <div class="especific_detail-name">
+                      <label>
+                        Inicio proyecto
+                      </label>
+                    </div>
+                    <div class="especific_detail-value">
+                      <label> {{projectInfo.start_date}}
+                      </label>
+                    </div>
                   </div>
-                  <div class="especific_detail-value">
-                    <label> {{projectInfo.start_date}}
-                    </label>
+                </div>
+                <div class="col-md-6">
+                  <div class="especific_detail">
+                    <div class="especific_detail-name">Fin proyecto</div>
+                    <div class="especific_detail-value">{{projectInfo.end_date}}</div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="especific_detail">
-                  <div class="especific_detail-name">Fin proyecto</div>
-                  <div class="especific_detail-value">{{projectInfo.end_date}}</div>
+              <div class="div-separator"></div>
+              <div class="row separator">
+                <div class="col-md-6">
+                  <div class="especific_detail">
+                    <div class="especific_detail-name">
+                      <label>
+                        Hectáreas
+                      </label>
+                    </div>
+                    <div class="especific_detail-value">
+                      <label> {{projectInfo.crop?.number_of_hectares}}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="especific_detail">
+                    <div class="especific_detail-name">Arbustos</div>
+                    <div class="especific_detail-value">{{projectInfo.crop?.number_of_plants}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row separator">
+                <div class="col-md-6">
+                  <div class="especific_detail">
+                    <div class="especific_detail-name">Periodo vegetativo</div>
+                    <div class="especific_detail-value">{{projectInfo.crop?.productive_period}} Meses</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="especific_detail">
+                    <div class="especific_detail-name">Periodo producción</div>
+                    <div class="especific_detail-value">{{projectInfo.crop?.productive_period}} Meses</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row separator">
+                <div class="col-md-6">
+                  <div class="especific_detail">
+                    <div class="especific_detail-name">Fecha siembra</div>
+                    <div class="especific_detail-value">{{projectInfo.crop?.cultivation_start_date}}</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="especific_detail">
+                    <div class="especific_detail-name">Fecha cosecha</div>
+                    <div class="especific_detail-value">{{projectInfo.crop?.estimated_harvest_date}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row separator">
+                <div class="col-md-12">
+                  <div class="button-information-container">
+                    <button *ngIf="!userIsAuthenticated" class="btn btn-primary">
+                      <label class="label-investment" [routerLink]="'/portal/login'">Mas información</label>
+                    </button>
+                    <button *ngIf="userIsAuthenticated" class="btn btn-primary" (click)="doInvestment()">
+                      <label class="label-investment">Invertir</label>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="project-info-detail-information-title-container">
+          <label class="project-info-detail-information-title">
+            Ubicación del cultivo
+          </label>
+        </div>
+        <div class="div-separator"></div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row separator">
+              <div class="col-md-12">
+                <div class="especific_ubication_descrption">
+                  <div class="ubication-detail-description">El proyecto se encuentra ubicado en el departamento de
+                    {{getDeparmentByCodeHtml(projectInfo.crop?.department)}}, Municipio de
+                    {{getCityByCodeHtml(projectInfo.crop?.municipality)}}</div>
                 </div>
               </div>
             </div>
             <div class="div-separator"></div>
             <div class="row separator">
-              <div class="col-md-6">
-                <div class="especific_detail">
-                  <div class="especific_detail-name">
-                    <label>
-                      Hectáreas
-                    </label>
-                  </div>
-                  <div class="especific_detail-value">
-                    <label> {{projectInfo.crop?.number_of_hectares}}
-                    </label>
+              <div class="col-md-12">
+                <div class="especific_ubication_detail">
+                  <div class="ubication-detail-name-right">Departamento:</div>
+                  <div class="ubication-detail-value-right">{{getDeparmentByCodeHtml(projectInfo.crop?.department)}}
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="especific_detail">
-                  <div class="especific_detail-name">Arbustos</div>
-                  <div class="especific_detail-value">{{projectInfo.crop?.number_of_plants}}</div>
+            </div>
+            <div class="div-separator"></div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="especific_ubication_detail">
+                  <div class="ubication-detail-name-right">Ciudad:</div>
+                  <div class="ubication-detail-value-right">{{getCityByCodeHtml(projectInfo.crop?.municipality)}}</div>
                 </div>
               </div>
             </div>
-            <div class="row separator">
-              <div class="col-md-6">
-                <div class="especific_detail">
-                  <div class="especific_detail-name">Periodo vegetativo</div>
-                  <div class="especific_detail-value">{{projectInfo.crop?.productive_period}} Meses</div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="especific_detail">
-                  <div class="especific_detail-name">Periodo producción</div>
-                  <div class="especific_detail-value">{{projectInfo.crop?.productive_period}} Meses</div>
-                </div>
-              </div>
-            </div>
-            <div class="row separator">
-              <div class="col-md-6">
-                <div class="especific_detail">
-                  <div class="especific_detail-name">Fecha siembra</div>
-                  <div class="especific_detail-value">{{projectInfo.crop?.cultivation_start_date}}</div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="especific_detail">
-                  <div class="especific_detail-name">Fecha cosecha</div>
-                  <div class="especific_detail-value">{{projectInfo.crop?.estimated_harvest_date}}</div>
-                </div>
-              </div>
-            </div>
+            <div class="div-separator"></div>
             <div class="row separator">
               <div class="col-md-12">
-                <div class="button-information-container">
-                  <button *ngIf="!userIsAuthenticated" class="btn btn-primary">
-                    <label class="label-investment" [routerLink]="'/portal/login'">Mas información</label>
-                  </button>
-                  <button *ngIf="userIsAuthenticated" class="btn btn-primary" (click)="doInvestment()">
-                    <label class="label-investment">Invertir</label>
-                  </button>
+                <div class="especific_ubication_detail">
+                  <div class="ubication-detail-name-right">Dirección</div>
+                  <div class="ubication-detail-value-right">{{projectInfo.crop?.address}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="div-separator"></div>
+            <div class="row separator">
+              <div class="col-md-12">
+                <div class="especific_ubication_detail">
+                  <div class="ubication-detail-name-right">Tipo de suelo</div>
+                  <div class="ubication-detail-value-right">{{getTypeGroundLabel(projectInfo.crop?.type_of_ground)}}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="col-md-6">
+            <div class="ubication-frame-container">
+              <iframe #iframeMap
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8160782.285075704!2d-74.51557709638507!3d2.8862900446443116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e15a43aae1594a3%3A0x9a0d9a04eff2a340!2sColombia!5e0!3m2!1ses-419!2sco!4v1724518995107!5m2!1ses-419!2sco"
+                class="iframe-ubication" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="project-info-detail-information-title-container">
-        <label class="project-info-detail-information-title">
-          Ubicación del cultivo
-        </label>
-      </div>
-      <div class="div-separator"></div>
+      <br>
       <div class="row">
-        <div class="col-md-6">
-          <div class="row separator">
-            <div class="col-md-12">
-              <div class="especific_ubication_descrption">
-                <div class="ubication-detail-description">El proyecto se encuentra ubicado en el departamento de
-                  {{getDeparmentByCodeHtml(projectInfo.crop?.department)}}, Municipio de
-                  {{getCityByCodeHtml(projectInfo.crop?.municipality)}}</div>
-              </div>
+        <div class="project-info-detail-information-title-container">
+          <label class="project-info-detail-information-title">
+            Financiación
+          </label>
+        </div>
+        <div class="div-separator"></div>
+        <div class="row separator">
+          <div class="col-md-6">
+            <div class="especific_detail_center">
+              <div class="especific_detail-name">Inversion minima</div>
+              <div class="especific_detail-value">{{formatMoney(projectInfo.invesment?.minimum_investment_amount) }}
+                COP</div>
             </div>
           </div>
-          <div class="div-separator"></div>
-          <div class="row separator">
-            <div class="col-md-12">
-              <div class="especific_ubication_detail">
-                <div class="ubication-detail-name-right">Departamento:</div>
-                <div class="ubication-detail-value-right">{{getDeparmentByCodeHtml(projectInfo.crop?.department)}}</div>
-              </div>
-            </div>
-          </div>
-          <div class="div-separator"></div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="especific_ubication_detail">
-                <div class="ubication-detail-name-right">Ciudad:</div>
-                <div class="ubication-detail-value-right">{{getCityByCodeHtml(projectInfo.crop?.municipality)}}</div>
-              </div>
-            </div>
-          </div>
-          <div class="div-separator"></div>
-          <div class="row separator">
-            <div class="col-md-12">
-              <div class="especific_ubication_detail">
-                <div class="ubication-detail-name-right">Dirección</div>
-                <div class="ubication-detail-value-right">{{projectInfo.crop?.address}}</div>
-              </div>
-            </div>
-          </div>
-          <div class="div-separator"></div>
-          <div class="row separator">
-            <div class="col-md-12">
-              <div class="especific_ubication_detail">
-                <div class="ubication-detail-name-right">Tipo de suelo</div>
-                <div class="ubication-detail-value-right">{{getTypeGroundLabel(projectInfo.crop?.type_of_ground)}}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="ubication-frame-container">
-            <iframe #iframeMap
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8160782.285075704!2d-74.51557709638507!3d2.8862900446443116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e15a43aae1594a3%3A0x9a0d9a04eff2a340!2sColombia!5e0!3m2!1ses-419!2sco!4v1724518995107!5m2!1ses-419!2sco"
-              class="iframe-ubication" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="project-info-detail-information-title-container">
-        <label class="project-info-detail-information-title">
-          Financiación
-        </label>
-      </div>
-      <div class="div-separator"></div>
-      <div class="row separator">
-        <div class="col-md-6">
-          <div class="especific_detail_center">
-            <div class="especific_detail-name">Inversion minima</div>
-            <div class="especific_detail-value">{{formatMoney(projectInfo.invesment?.minimum_investment_amount) }}
-              COP</div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="especific_detail_center">
-            <div class="especific_detail-name">Inversion maxima</div>
-            <div class="especific_detail-value">{{formatMoney(projectInfo.invesment?.maximum_investment_amount)}}
-              COP</div>
-          </div>
-        </div>
-      </div>
-      <div class="row separator">
-        <div class="col-md-6">
-          <div class="especific_detail_center">
-            <div class="especific_detail-name">TIR</div>
-            <div class="especific_detail-value">{{projectInfo.invesment?.tir}}%</div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="especific_detail_center">
-            <div class="especific_detail-name">Rentabilidad estimada</div>
-            <div class="especific_detail-value">{{projectInfo.invesment?.estimated_rate}}% efectivo anual</div>
-          </div>
-        </div>
-      </div>
-      <div class="row separator">
-        <div class="col-md-12">
-          <div class="especific_detail_center">
-            <div class=" card financial_target_container">
-              <div class="especific_detail-name">Meta financiación</div>
-              <div class="especific_detail-value-financial">
-                {{formatMoney(projectInfo.invesment?.total_expected_investment)}}
+          <div class="col-md-6">
+            <div class="especific_detail_center">
+              <div class="especific_detail-name">Inversion maxima</div>
+              <div class="especific_detail-value">{{formatMoney(projectInfo.invesment?.maximum_investment_amount)}}
                 COP</div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="project-info-detail-information-title-container">
-        <label class="project-info-detail-information-title">
-          Precompra
-        </label>
-      </div>
-      <div class="div-separator"></div>
-      <div class="row separator">
-        <div class="col-md-4">
-          <div class="especific_detail_center">
-            <div class="especific_detail-name">Precompra minima</div>
-            <div class="especific_detail-value">{{projectInfo.pre_purcharse?.minimum_amount + ' '
-              +projectInfo.pre_purcharse?.units }}
+        <div class="row separator">
+          <div class="col-md-6">
+            <div class="especific_detail_center">
+              <div class="especific_detail-name">TIR</div>
+              <div class="especific_detail-value">{{projectInfo.invesment?.tir}}%</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="especific_detail_center">
+              <div class="especific_detail-name">Rentabilidad estimada</div>
+              <div class="especific_detail-value">{{projectInfo.invesment?.estimated_rate}}% efectivo anual</div>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="especific_detail_center">
-            <div class="especific_detail-name">Precompra maxima</div>
-            <div class="especific_detail-value">{{projectInfo.pre_purcharse?.maximum_amount + ' '
-              +projectInfo.pre_purcharse?.units}}
+        <div class="row separator">
+          <div class="col-md-12">
+            <div class="especific_detail_center">
+              <div class=" card financial_target_container">
+                <div class="especific_detail-name">Meta financiación</div>
+                <div class="especific_detail-value-financial">
+                  {{formatMoney(projectInfo.invesment?.total_expected_investment)}}
+                  COP</div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="especific_detail_center">
-            <div class="especific_detail-name">Meta precompra</div>
-            <div class="especific_detail-value">{{projectInfo.pre_purcharse?.total_pre_purcharse + ' '
-              +projectInfo.pre_purcharse?.units}}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row separator">
-        <div class="col-md-6">
-          <div class="especific_detail_center">
-            <div class="especific_detail-name">Precio {{projectInfo.pre_purcharse?.units}}</div>
-            <div class="especific_detail-value">{{formatMoney(projectInfo.pre_purcharse?.unit_price)}}
-              COP</div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="especific_detail_center">
-            <div class="especific_detail-name">Disponibilidad</div>
-            <div class="especific_detail-value">{{projectInfo.pre_purcharse?.start_date + ' - '+
-              projectInfo.pre_purcharse?.end_date }}</div>
           </div>
         </div>
       </div>
       <br>
-      <div class="row separator">
-        <div class="col-md-12">
-          <div class="precompra-container">
-            <button *ngIf="!userIsAuthenticated" class="btn btn-primary">
-              <label class="label-investment" [routerLink]="'/portal/login'">Mas información</label>
-            </button>
-            <button *ngIf="userIsAuthenticated" class="btn btn-primary" (click)="doPrecompra()">
-              <label class="label-investment">Precomprar</label>
-            </button>
+      <div class="row">
+        <div class="project-info-detail-information-title-container">
+          <label class="project-info-detail-information-title">
+            Precompra
+          </label>
+        </div>
+        <div class="div-separator"></div>
+        <div class="row separator">
+          <div class="col-md-4">
+            <div class="especific_detail_center">
+              <div class="especific_detail-name">Precompra minima</div>
+              <div class="especific_detail-value">{{projectInfo.pre_purcharse?.minimum_amount + ' '
+                +projectInfo.pre_purcharse?.units }}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="especific_detail_center">
+              <div class="especific_detail-name">Precompra maxima</div>
+              <div class="especific_detail-value">{{projectInfo.pre_purcharse?.maximum_amount + ' '
+                +projectInfo.pre_purcharse?.units}}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="especific_detail_center">
+              <div class="especific_detail-name">Meta precompra</div>
+              <div class="especific_detail-value">{{projectInfo.pre_purcharse?.total_pre_purcharse + ' '
+                +projectInfo.pre_purcharse?.units}}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <br>
-      <div *ngIf="urlVideo !== null && urlVideo !== undefined" class="div-separator"></div>
-      <div *ngIf="urlVideo !== null && urlVideo !== undefined" class="row">
-        <div class="video-container">
-          <iframe class="video-iframe" [src]="urlVideo" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
+        <div class="row separator">
+          <div class="col-md-6">
+            <div class="especific_detail_center">
+              <div class="especific_detail-name">Precio {{projectInfo.pre_purcharse?.units}}</div>
+              <div class="especific_detail-value">{{formatMoney(projectInfo.pre_purcharse?.unit_price)}}
+                COP</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="especific_detail_center">
+              <div class="especific_detail-name">Disponibilidad</div>
+              <div class="especific_detail-value">{{projectInfo.pre_purcharse?.start_date + ' - '+
+                projectInfo.pre_purcharse?.end_date }}</div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row separator">
+          <div class="col-md-12">
+            <div class="precompra-container">
+              <button *ngIf="!userIsAuthenticated" class="btn btn-primary">
+                <label class="label-investment" [routerLink]="'/portal/login'">Mas información</label>
+              </button>
+              <button *ngIf="userIsAuthenticated" class="btn btn-primary" (click)="doPrecompra()">
+                <label class="label-investment">Precomprar</label>
+              </button>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div *ngIf="urlVideo !== null && urlVideo !== undefined" class="div-separator"></div>
+        <div *ngIf="urlVideo !== null && urlVideo !== undefined" class="row">
+          <div class="video-container">
+            <iframe class="video-iframe" [src]="urlVideo" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
         </div>
       </div>
     </div>

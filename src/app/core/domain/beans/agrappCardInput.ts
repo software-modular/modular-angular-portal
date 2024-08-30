@@ -11,4 +11,5 @@ export interface AgrappCardInput {
   funded?: number,
   imgs?: string[],
   id: string,
+  state?: string
 }

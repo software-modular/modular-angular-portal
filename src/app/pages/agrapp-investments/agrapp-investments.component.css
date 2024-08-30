@@ -1,0 +1,26 @@
+.card {
+  background: var(--surface-card);
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.header-container {
+  display: flex;
+}
+
+.header-title-container {
+  display: flex;
+  align-items: center;
+}
+
+.header-title-label {
+  font-size: 25px;
+  font-weight: 600;
+  font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+}
+
+.dataview-options-header {
+  display: flex;
+  justify-content: flex-end;
+}

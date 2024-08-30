@@ -18,18 +18,23 @@ export class AgrappProjectCarouselComponent {
 
   responsiveOptions: any[] = [
     {
+      breakpoint: '4000px',
+      numVisible: 3,
+      numScroll: 3
+    },
+    {
       breakpoint: '1300px',
       numVisible: 2,
       numScroll: 2
     },
     {
-      breakpoint: '1199px',
-      numVisible: 1,
+      breakpoint: '1100px',
+      numVisible: 2,
       numScroll: 1
     },
     {
-      breakpoint: '991px',
-      numVisible: 2,
+      breakpoint: '870px',
+      numVisible: 1,
       numScroll: 1
     },
     {

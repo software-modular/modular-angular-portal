@@ -1,9 +1,15 @@
+.project-info-body {
+  display: flex;
+  padding: 50px;
+  justify-content: center;
+}
+
 .project-info-container {
-  width: 90vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 22px;
+  padding-bottom: 22px;
   margin-top: 30px;
   margin-bottom: 30px;
 }
@@ -15,7 +21,7 @@
 }
 
 .project-info-detail {
-  padding: 20px;
+  padding: 22px;
 }
 
 .img-carousel-container {
@@ -36,7 +42,7 @@
 
 
 .project-info-detail-information-description {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 400;
   font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
 }
@@ -61,13 +67,13 @@
 
 .especific_detail-name {
   font-weight: 700;
-  font-size: 1.5vw;
+  font-size: 22px;
   font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
 }
 
 .especific_detail-value {
   padding-top: 10px;
-  font-size: 1.2vw;
+  font-size: 15px;
   color: var(--agrapp-text-color);
   font-weight: 700;
   font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
@@ -75,7 +81,7 @@
 
 .especific_detail-value-financial {
   padding-top: 10px;
-  font-size: 1.2vw;
+  font-size: 15px;
   color: var(--agrapp-text-color);
   font-weight: 700;
   font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
@@ -96,7 +102,7 @@
 }
 
 .video-container {
-  padding-top: 20px;
+  padding-top: 22px;
   padding-left: 35px;
   display: flex;
   flex-direction: column;
@@ -122,13 +128,13 @@
 
 .ubication-detail-name-right {
   font-weight: 700;
-  font-size: 1.5vw;
+  font-size: 22px;
   font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
 }
 
 .ubication-detail-value-right {
   margin-left: 10px;
-  font-size: 1.2vw;
+  font-size: 15px;
   color: var(--agrapp-text-color);
   font-weight: 700;
   font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
@@ -150,19 +156,19 @@
 
 .button-information-container {
   display: flex;
-  margin-top: 20px;
+  margin-top: 22px;
   justify-content: space-around;
 }
 
 .label-investment {
-  font-size: 1.2vw;
+  font-size: 15px;
   font-weight: 700;
   font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
 }
 
 
 .precompra-container {
-  padding: 20px;
+  padding: 22px;
   display: flex;
   justify-content: center;
 }

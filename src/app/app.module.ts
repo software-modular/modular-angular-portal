@@ -12,6 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioButton } from '@angular/material/radio';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // (si no está ya importado)
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { RatingModule } from 'primeng/rating';
+import { TagModule } from 'primeng/tag';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -31,17 +33,23 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { CarouselModule } from 'primeng/carousel';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DataViewModule } from 'primeng/dataview';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
+import { InvestmentModalComponent } from './components/agrapp-modals/investment-modal/investment-modal.component';
 import { UserModalComponent } from './components/agrapp-modals/user-modal/user-modal.component';
 import { AgrappHomeAnimationsComponent } from './components/agrapp/agrapp-home-animations/agrapp-home-animations.component';
+import { AgrappMiniCardComponent } from './components/agrapp/agrapp-mini-card/agrapp-mini-card.component';
+import { AgrappProjectCarouselComponent } from './components/agrapp/agrapp-project-carousel/agrapp-project-carousel.component';
 import { AgrappProjectsCardComponent } from './components/agrapp/agrapp-projects-card/agrapp-projects-card.component';
 import { AgrappProjectsListCardComponent } from './components/agrapp/agrapp-projects-list-card/agrapp-projects-list-card.component';
 import { AgrappProjectsRegisterComponent } from './components/agrapp/agrapp-projects-register/agrapp-projects-register.component';
+import { AgrappVideoPlayerComponent } from './components/agrapp/agrapp-video-player/agrapp-video-player.component';
 import { CarouselImgComponent } from './core/components/carousel-img/carousel-img.component';
 import { CustomMultifileUploadComponent } from './core/components/custom-multifile-upload/custom-multifile-upload.component';
 import { DynamicFormComponent } from './core/components/dynamic-form/dynamic-form.component';
@@ -68,10 +76,6 @@ import { AgrappInvestmentsComponent } from './pages/agrapp-investments/agrapp-in
 import { AgrappManageUserComponent } from './pages/agrapp-manage-user/agrapp-manage-user.component';
 import { AgrappProjectsManagerComponent } from './pages/agrapp-projects-manager/agrapp-projects-manager.component';
 import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
-import { AgrappProjectCarouselComponent } from './components/agrapp/agrapp-project-carousel/agrapp-project-carousel.component';
-import { CarouselModule } from 'primeng/carousel';
-import { AgrappVideoPlayerComponent } from './components/agrapp/agrapp-video-player/agrapp-video-player.component';
-import { InvestmentModalComponent } from './components/agrapp-modals/investment-modal/investment-modal.component';
 import { AgrappTransactionsListComponent } from './pages/agrapp-transactions-list/agrapp-transactions-list.component';
 @NgModule({
   declarations: [
@@ -109,7 +113,8 @@ import { AgrappTransactionsListComponent } from './pages/agrapp-transactions-lis
     AgrappProjectCarouselComponent,
     AgrappVideoPlayerComponent,
     InvestmentModalComponent,
-    AgrappTransactionsListComponent
+    AgrappTransactionsListComponent,
+    AgrappMiniCardComponent
   ],
   imports: [
     BrowserModule,
@@ -151,7 +156,11 @@ import { AgrappTransactionsListComponent } from './pages/agrapp-transactions-lis
     ConfirmDialogModule,
     ToastModule,
     TableModule,
-    CarouselModule
+    CarouselModule,
+    DataViewModule,
+    DataViewModule,
+    TagModule,
+    RatingModule,
   ],
   providers: [
     provideClientHydration(),

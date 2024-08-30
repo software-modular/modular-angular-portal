@@ -30,7 +30,7 @@
   .custom-menu-container-body {
     margin-top: 50px !important;
     margin-left: 10px !important;
-    width: 65vw !important;
+    width: 300px !important;
   }
 
 
@@ -39,9 +39,6 @@
     margin-left: -235px !important;
   }
 
-  .custom-topbar-userprofile-container-movile {
-    margin-left: 25vw !important;
-  }
 
 }
 
@@ -68,7 +65,7 @@
   .custom-menu-container-body {
     margin-top: 53px !important;
     margin-left: 10px !important;
-    width: 45vw !important;
+    width: 300px !important;
   }
 
 }
@@ -181,9 +178,9 @@
 
 
   .custom-menu-container-body {
-    margin-top: 67px !important;
+    margin-top: 160px !important;
     margin-left: -60px !important;
-    width: 20vw !important;
+    width: 290px !important;
   }
 
 }
@@ -233,9 +230,13 @@
   }
 
   .custom-menu-container-body {
-    margin-top: 158px !important;
-    margin-left: -55px !important;
-    width: 70vw !important;
+    margin-top: 160px !important;
+    margin-left: -75px !important;
+    width: 290px !important;
+  }
+
+  .custom-topbar-userprofile-container-movile {
+    padding-right: 0px !important;
   }
 
 }
@@ -489,7 +490,7 @@
 
 .custom-menu-container-body {
   z-index: 3 !important;
-  position: fixed;
+  position: absolute;
   width: auto;
   overflow: auto;
   height: auto;

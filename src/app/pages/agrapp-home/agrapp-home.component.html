@@ -29,8 +29,10 @@
 <h4 id="calculator" style="margin-top: 7rem;">... Animate, financia un agricultar y particpa en proyectos rentables ...
 </h4>
 <app-agrapp-video-player></app-agrapp-video-player>
-<h4 id="calculator" style="margin-top: 3rem;">... Algunos de nuestros proyectos más populares ...
-</h4>
+<div class="projects-home-container-title">
+  <h4 id="calculator" style="margin-top: 3rem;">... Algunos de nuestros proyectos más populares ...</h4>
+  <button class="btn btn-primary btn-show-projects" [routerLink]="'/portal/project'">Mirar proyectos</button>
+</div>
 <div class="home-carousel-home-container">
   <app-agrapp-project-carousel></app-agrapp-project-carousel>
 </div>

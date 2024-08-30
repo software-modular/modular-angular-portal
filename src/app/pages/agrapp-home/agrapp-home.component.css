@@ -1,3 +1,23 @@
+@media (max-width: 520px) {
+  .btn-show-projects {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 478px) {
+  .btn-show-projects {
+    display: flex !important;
+  }
+
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 460px) {
+  .btn-show-projects {
+    display: flex !important;
+  }
+}
+
 /* Estilos generales */
 body,
 html {
@@ -192,4 +212,16 @@ h4 {
   display: flex;
   padding: 10px;
   justify-content: center;
+}
+
+.btn-show-projects {
+  display: none;
+}
+
+.projects-home-container-title {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 30px;
 }
