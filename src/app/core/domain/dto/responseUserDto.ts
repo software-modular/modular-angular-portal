@@ -9,5 +9,7 @@ export interface ResponseUserDto {
   address?: string,
   date_of_birth?: string,
   is_active?: Boolean,
-  is_staff?: Boolean
+  is_staff?: Boolean,
+  municipality_expedition_dni?: string,
+  status?: boolean
 }

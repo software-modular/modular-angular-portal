@@ -34,7 +34,7 @@
                 "input": "public",
                 "output": "assets"
               },
-              "src/favicon.ico",
+              "src/assets/img/logo.ico",
               "src/assets"
             ],
             "styles": [

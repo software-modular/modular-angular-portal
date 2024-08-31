@@ -14,6 +14,7 @@ import { DynamicFormService } from '../../services/components/dynamic-form.servi
 import { typeIdentifications } from '../../domain/const/TypeIdentification';
 import { Router } from '@angular/router';
 import { Validators } from '@angular/forms';
+import { cities } from '../../domain/const/Colombia';
 
 @Component({
   selector: 'app-register',
@@ -72,6 +73,8 @@ export class RegisterComponent {
       new ListOptionFieldForm("Tipo identificacion", "Escribe tipo identificacion", "type_ide", "",
         TypeInputForm.LIST_OPTION, typeIdentifications, [Validators.required]),
       new TextFieldForm("Identificación", "Escribe tu identificación", "document_id", "", TypeInputForm.NUMBER, "", [Validators.required, Validators.minLength(7)]),
+      new ListOptionFieldForm("Ciudad expedición documento", "Seleccione", "municipality_expedition_dni", "",
+        TypeInputForm.LIST_OPTION, cities, [Validators.required]),
       new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.NUMBER, "", [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
       new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, "", [Validators.required]),
       new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, "", [Validators.required]),

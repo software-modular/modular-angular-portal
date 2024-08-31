@@ -40,7 +40,7 @@ export class AgrappTransactionsListComponent {
     this.formGroup = this.formBuilder.group({
       filter: ["", []]
     });
-    this.userInfo = authenticationService.getUserAuthenticated();
+    this.userInfo = authenticationService.getUserInformation();
     this.fillTableTransactions();
     this.doTypeUserValueChangeEvent();
   }

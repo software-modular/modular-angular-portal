@@ -192,16 +192,36 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
       this.cardData.imgs = this.getCardImgs();
     }
     let hasPrepurchase = this.form.get("projectHasPrePurchase")?.value
-    this.showPrePurchaseForm = hasPrepurchase === "true";
+    this.showPrePurchaseForm = hasPrepurchase && hasPrepurchase === "true";
   }
 
   getCardImgs(): string[] {
     let cardFiles: string[] = [];
-    cardFiles.push(this.projectData.photo_1 ?? '')
-    cardFiles.push(this.projectData.photo_2 ?? '')
-    cardFiles.push(this.projectData.photo_3 ?? '')
-    cardFiles.push(this.projectData.photo_4 ?? '')
-    cardFiles.push(this.projectData.photo_5 ?? '')
+    if (this.projectData.photo_1 !== null && this.projectData.photo_1 !== undefined
+      && this.projectData.photo_1 !== ""
+    ) {
+      cardFiles.push(this.projectData.photo_1);
+    }
+    if (this.projectData.photo_2 !== null && this.projectData.photo_2 !== undefined
+      && this.projectData.photo_2 !== ""
+    ) {
+      cardFiles.push(this.projectData.photo_2);
+    }
+    if (this.projectData.photo_3 !== null && this.projectData.photo_3 !== undefined
+      && this.projectData.photo_3 !== ""
+    ) {
+      cardFiles.push(this.projectData.photo_3);
+    }
+    if (this.projectData.photo_4 !== null && this.projectData.photo_4 !== undefined
+      && this.projectData.photo_4 !== ""
+    ) {
+      cardFiles.push(this.projectData.photo_4)
+    }
+    if (this.projectData.photo_5 !== null && this.projectData.photo_5 !== undefined
+      && this.projectData.photo_5 !== ""
+    ) {
+      cardFiles.push(this.projectData.photo_5)
+    }
     return cardFiles;
   }
 

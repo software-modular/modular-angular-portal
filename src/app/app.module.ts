@@ -77,6 +77,8 @@ import { AgrappManageUserComponent } from './pages/agrapp-manage-user/agrapp-man
 import { AgrappProjectsManagerComponent } from './pages/agrapp-projects-manager/agrapp-projects-manager.component';
 import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
 import { AgrappTransactionsListComponent } from './pages/agrapp-transactions-list/agrapp-transactions-list.component';
+import { AgrappUserCompleteInformationModalComponent } from './components/agrapp-modals/agrapp-user-complete-information-modal/agrapp-user-complete-information-modal.component';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,7 +116,8 @@ import { AgrappTransactionsListComponent } from './pages/agrapp-transactions-lis
     AgrappVideoPlayerComponent,
     InvestmentModalComponent,
     AgrappTransactionsListComponent,
-    AgrappMiniCardComponent
+    AgrappMiniCardComponent,
+    AgrappUserCompleteInformationModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -148,6 +151,7 @@ import { AgrappTransactionsListComponent } from './pages/agrapp-transactions-lis
     MatRadioModule,
     MatSnackBarModule,
     MatSliderModule,
+    MatTooltipModule,
     MatStepperModule,
     FileUploadModule,
     MultiSelectModule,

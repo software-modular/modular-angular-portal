@@ -13,6 +13,7 @@ import { AgrappProjectsRegisterComponent } from './components/agrapp/agrapp-proj
 import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
 import { AgrappInvestmentsComponent } from './pages/agrapp-investments/agrapp-investments.component';
 import { AgrappTransactionsListComponent } from './pages/agrapp-transactions-list/agrapp-transactions-list.component';
+import { userAgreementGuard } from './core/guards/user-agreement.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'portal/home', pathMatch: 'full' },
@@ -29,7 +30,7 @@ const routes: Routes = [
       { path: 'project/register', component: AgrappProjectsRegisterComponent, canActivate: [authenticationGuard()] },
       { path: 'project/investment', component: AgrappTransactionsListComponent, canActivate: [authenticationGuard()] },
       { path: 'project/info/:id', component: AgrappProjectsComponent },
-      { path: 'home', component: AgrappHomeComponent },
+      { path: 'home', component: AgrappHomeComponent, canActivate: [userAgreementGuard()] },
     ]
   }
 

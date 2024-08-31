@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
 
   private loadUserData() {
     if (this.authenticationService.userIsAuthenticated()) {
-      let userData: ResponseClientDto = this.authenticationService.getUserAuthenticated();
+      let userData: ResponseClientDto = this.authenticationService.getUserInformation();
       if (userData.user !== undefined) {
         let userInformationNabvar: NabvarUserInformation = {
           name: userData.user.name || '',

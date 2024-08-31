@@ -79,7 +79,7 @@ export class AuthenticationService {
     return this.localStorageTokenService.decodeToken();
   }
 
-  getUserAuthenticated(): ResponseClientDto {
+  getUserInformation(): ResponseClientDto {
     return this.localStorageTokenService.getUserData();
   }
 

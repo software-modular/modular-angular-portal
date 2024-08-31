@@ -1,47 +1,51 @@
 <div class="user-profile-container">
-  <div class="card user-profile-header-container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="user-profile-body-picture-container">
-          <div class="picture-container">
-            <img class="img-profile" [src]="imgProfileSource">
-            <span class="edit-img-profile" onclick="document.getElementById('fileInput').click();">
-              <i class="fa fa-edit"></i>
-              <input id="fileInput" type="file" style="display: none;" lang="en" formControlName="file"
-                (change)="onFileSelected($event)">
-            </span>
-          </div>
-          <div class="profile-info-user-container">
-            <label class="profile-info-name">{{userInfo.user.name}}</label>
-            <label class="profile-info-email">{{userInfo.user.email}}</label>
+  <div class="user-profile-content">
+    <div class="card user-profile-header-container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="user-profile-body-picture-container">
+            <form [formGroup]="imgForm">
+              <div class="picture-container">
+                <img class="img-profile" [src]="imgProfileSource">
+                <span class="edit-img-profile" onclick="document.getElementById('fileInput').click();">
+                  <i class="fa fa-edit"></i>
+                  <input id="fileInput" type="file" accept=".png, .jpg" style="display: none;" lang="en"
+                    formControlName="file" (change)="onFileSelected($event)">
+                </span>
+              </div>
+            </form>
+            <div class="profile-info-user-container">
+              <label class="profile-info-name">{{userInfo.user.name}}</label>
+              <label class="profile-info-email">{{userInfo.user.email}}</label>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="card user-profile-body-container">
-    <div class="row">
-      <div class="col-md-12 user-profile-detail-label-container">
-        <label class="user-profile-detail-label">Detalles del perfil</label>
+    <div class="card user-profile-body-container">
+      <div class="row">
+        <div class="col-md-12 user-profile-detail-label-container">
+          <label class="user-profile-detail-label">Detalles del perfil</label>
+        </div>
       </div>
-    </div>
-    <div class="div-separator"></div>
-    <div class="row">
-      <div class="col-md-12 edit-form-container">
-        <div class="user-profile-body-form-container">
-          <dynamic-form [data]="dynamicFormInput"></dynamic-form>
+      <div class="div-separator"></div>
+      <div class="row">
+        <div class="col-md-12 edit-form-container">
+          <div class="user-profile-body-form-container">
+            <dynamic-form [data]="dynamicFormInput"></dynamic-form>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="user-profile-actions-container">
+          <button class="btn btn-primary btn-profile-actions" [disabled]="!isValidForm()"
+            (click)="updateUserProfile()">Actualizar</button>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="user-profile-actions-container">
-        <button class="btn btn-primary btn-profile-actions" [disabled]="!isValidForm()"
-          (click)="updateUserProfile()">Actualizar</button>
-      </div>
-    </div>
   </div>
-</div>
-<div>
-  <p-confirmDialog [visible]="false" />
+  <div>
+    <p-confirmDialog [visible]="false" />
+  </div>
 </div>

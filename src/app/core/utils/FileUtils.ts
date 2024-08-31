@@ -13,7 +13,7 @@ export function base64ToFile(base64: string, fileName: string, contentType: stri
 }
 
 
-export function convertImgToBase64(file: File): Promise<string> {
+export function convertFileImgToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
 
@@ -27,4 +27,26 @@ export function convertImgToBase64(file: File): Promise<string> {
 
     reader.readAsDataURL(file);
   });
+
+}
+
+
+export function downloadFile(filename: string, fileBase64?: string): void {
+  if (fileBase64 !== null && fileBase64 !== undefined) {
+    const base64Data = fileBase64.split(',')[1];
+    const contentType = fileBase64.split(';')[0].split(':')[1];
+    const byteCharacters = atob(base64Data);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: contentType });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${filename}.${contentType.split('/')[1]}`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
 }

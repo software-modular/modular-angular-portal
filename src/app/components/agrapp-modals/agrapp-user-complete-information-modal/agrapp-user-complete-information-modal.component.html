@@ -1,0 +1,68 @@
+<div class="contract-modal-container">
+  <mat-dialog-content style="overflow: auto;">
+    <div class="modal-user-complete-information-container">
+      <div class="modal-user-complete-information-header-container">
+        <div class="row">
+          <div class="col-md-12">
+            <label class="modal-user-complete-information-header-title">
+              Firma contrato
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-user-complete-information-body-container">
+        <div class="row">
+          <div class="col-md-12">
+            <label class="modal-user-complete-information-body-label">Antes de que Agrofin pueda manejar su dinero, debe
+              firmar un contrato que le otorga a la empresa el
+              permiso para administrar sus inversiones. Este proceso es necesario para garantizar la seguridad y
+              transparencia de sus fondos.</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label class="modal-user-complete-information-body-label">A continuación, puede descargar el contrato,
+              firmarlo y cargarlo de vuelta a la plataforma. Una vez
+              revisado, podremos proceder con la gestión de sus inversiones.</label>
+          </div>
+        </div>
+        <div class="row contract-options-container">
+          <form [formGroup]="formFile">
+            <input id="agreementInput" type="file" style="display: none;" lang="es" formControlName="fileUpload"
+              (change)="uploadDocument($event)" accept=".pdf">
+          </form>
+          <div class="col-md-6 button-container">
+            <button class="btn btn-secundary" (click)="downloadAgreement()">
+              <i class="fa fa-download"></i>
+              <label class="text-button">
+                Descargar contrato
+              </label>
+            </button>
+          </div>
+          <div class="col-md-6 button-container">
+            <button class="btn btn-secundary" onclick="document.getElementById('agreementInput').click();">
+              <i class="fa fa-upload"></i>
+              <label class="text-button">Subir contrato</label>
+            </button>
+          </div>
+        </div>
+        <div class="row information-contact-container">
+          <div class="col-md-12">
+            <label class="text-button">Para más información, por favor consulte con nuestro administrador al número de
+              WhatsApp:
+              <a [href]="getWhatsappUrl()">{{whatsappNumber}}</a>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 modal-buttons-container">
+            <button type="button" class="btn-modal btn btn-secondary" (click)="closeModal()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>
+<div>
+  <p-confirmDialog [visible]="false" />
+</div>

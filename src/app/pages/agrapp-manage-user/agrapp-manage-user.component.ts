@@ -14,6 +14,7 @@ import { TypeClient } from '../../core/domain/enum/TypeClient';
 import { TypeModalMode } from '../../core/domain/enum/TypeModalMode';
 import { UserService } from '../../core/services/client/user.service';
 import { InputUserModal } from '../../core/domain/beans/inputUserModal';
+import { downloadFile } from '../../core/utils/FileUtils';
 
 @Component({
   selector: 'agrapp-manage-user',
@@ -27,7 +28,7 @@ export class AgrappManageUserComponent {
   dataSourceUsers = new MatTableDataSource(this.users);
   typeClientSelect: string = "";
 
-  columns: string[] = ['Nombre', 'Correo', 'Identificación', 'Telefono', "Dirección", "Activo", 'Actions'];
+  columns: string[] = ['Nombre', 'Correo', 'Identificación', 'Telefono', "Dirección", "Activo", "inversiones_habilitadas", 'Actions'];
 
   @ViewChild('paginatorUsers') paginatorUsers!: MatPaginator;
   @ViewChild('sortUsers') sortOig!: MatSort;
@@ -47,7 +48,7 @@ export class AgrappManageUserComponent {
 
   }
 
-  doTypeUserValueChangeEvent() {
+  private doTypeUserValueChangeEvent() {
     this.formGroup.get("typeUser")?.valueChanges.subscribe({
       next: (data: string) => {
         this.typeClientSelect = data;
@@ -60,11 +61,11 @@ export class AgrappManageUserComponent {
     this.applyFilterBusiness(this.formGroup.get('filter')?.value)
   }
 
-  applyFilterBusiness(value: string) {
+  private applyFilterBusiness(value: string) {
     this.dataSourceUsers.filter = value.trim().toLowerCase();
   }
 
-  getListUserByType(data: string) {
+  private getListUserByType(data: string) {
     switch (data) {
       case TypeClient.CLIENT: {
         this.getListUserClient();
@@ -81,7 +82,7 @@ export class AgrappManageUserComponent {
     return [];
   }
 
-  getListUserStaff() {
+  private getListUserStaff() {
     this.userService.findAllStaffs().subscribe({
       next: (data: ResponseUserTableDto) => {
         this.updateUserListTable(data.results)
@@ -92,7 +93,7 @@ export class AgrappManageUserComponent {
     });
   }
 
-  getListUserClient() {
+  private getListUserClient() {
     this.userService.findAllClients().subscribe({
       next: (data: ResponseUserTableDto) => {
         this.updateUserListTable(data.results)
@@ -103,7 +104,7 @@ export class AgrappManageUserComponent {
     });
   }
 
-  updateUserListTable(data: ResponseClientDto[]) {
+  private updateUserListTable(data: ResponseClientDto[]) {
     this.users = data;
     this.dataSourceUsers = new MatTableDataSource(this.users);
     this.dataSourceUsers.paginator = this.paginatorUsers;
@@ -138,7 +139,7 @@ export class AgrappManageUserComponent {
     this.dataSourceUsers.paginator!.pageSize = event.pageSize;
   }
 
-  showNotification(titleHeader: string, message: string, icon: string) {
+  private showNotification(titleHeader: string, message: string, icon: string) {
     this.confirmationService.confirm({
       message: message,
       header: titleHeader,
@@ -150,13 +151,13 @@ export class AgrappManageUserComponent {
   }
 
 
-  loadDataSourceFilter() {
+  private loadDataSourceFilter() {
     this.dataSourceUsers.filterPredicate = (data: ResponseClientDto, filter: string) => {
       return this.customFilter(data, filter);
     }
   }
 
-  customFilter(data: ResponseClientDto, filter: string): boolean {
+  private customFilter(data: ResponseClientDto, filter: string): boolean {
     const filterValue = filter.trim().toLowerCase();
     const dataStr = JSON.stringify(data).toLowerCase();
     if (filter === '') {
@@ -178,13 +179,17 @@ export class AgrappManageUserComponent {
     this.openModal(UserModalComponent, data);
   }
 
-  openModal(component: any, data?: any) {
+  private openModal(component: any, data?: any) {
     const dialogRef: MatDialogRef<any> = this.dialog.open(component, {
       data: data
     });
     dialogRef.afterClosed().subscribe((_) => {
       this.getListUserByType(this.typeClientSelect);
     });
+  }
+
+  downloadAgreement(user: ResponseClientDto) {
+    downloadFile("Contrato", user.user.profile_picture)
   }
 }
 

@@ -61,14 +61,34 @@ export class AgrappInvestmentsComponent implements OnInit {
     }
   }
 
-  getImgsProject(project: ProjectDto): string[] {
-    return [
-      project.photo_1 ?? '',
-      project.photo_2 ?? '',
-      project.photo_3 ?? '',
-      project.photo_4 ?? '',
-      project.photo_5 ?? ''
-    ];
+  getImgsProject(projectData: ProjectDto): string[] {
+    let cardFiles: string[] = [];
+    if (projectData.photo_1 !== null && projectData.photo_1 !== undefined
+      && projectData.photo_1 !== ""
+    ) {
+      cardFiles.push(projectData.photo_1);
+    }
+    if (projectData.photo_2 !== null && projectData.photo_2 !== undefined
+      && projectData.photo_2 !== ""
+    ) {
+      cardFiles.push(projectData.photo_2);
+    }
+    if (projectData.photo_3 !== null && projectData.photo_3 !== undefined
+      && projectData.photo_3 !== ""
+    ) {
+      cardFiles.push(projectData.photo_3);
+    }
+    if (projectData.photo_4 !== null && projectData.photo_4 !== undefined
+      && projectData.photo_4 !== ""
+    ) {
+      cardFiles.push(projectData.photo_4)
+    }
+    if (projectData.photo_5 !== null && projectData.photo_5 !== undefined
+      && projectData.photo_5 !== ""
+    ) {
+      cardFiles.push(projectData.photo_5)
+    }
+    return cardFiles;
   }
 
   cardEvent(projectId: string) {
@@ -87,7 +107,7 @@ export class AgrappInvestmentsComponent implements OnInit {
         return "Inactivo"
       }
       default: {
-        return "Activo"
+        return "Disponible"
       }
     }
   }
