@@ -30,6 +30,7 @@ export interface ProjectDto {
         address?: string,
         date_of_birth?: string,
         is_active?: Boolean
+        municipality_expedition_dni?: string
       }
     }
   },

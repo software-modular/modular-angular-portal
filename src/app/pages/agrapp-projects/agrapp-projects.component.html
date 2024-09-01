@@ -227,7 +227,7 @@
         </div>
       </div>
       <br>
-      <div class="row">
+      <div *ngIf="projectInfo?.pre_purcharse !== null && projectInfo?.pre_purcharse !== undefined" class="row">
         <div class="project-info-detail-information-title-container">
           <label class="project-info-detail-information-title">
             Precompra
@@ -289,15 +289,15 @@
             </div>
           </div>
         </div>
-        <br>
-        <div *ngIf="urlVideo !== null && urlVideo !== undefined" class="div-separator"></div>
-        <div *ngIf="urlVideo !== null && urlVideo !== undefined" class="row">
-          <div class="video-container">
-            <iframe class="video-iframe" [src]="urlVideo" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
-          </div>
+      </div>
+      <br>
+      <div *ngIf="urlVideo !== null && urlVideo !== undefined" class="div-separator"></div>
+      <div *ngIf="urlVideo !== null && urlVideo !== undefined" class="row">
+        <div class="video-container">
+          <iframe class="video-iframe" [src]="urlVideo" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
         </div>
       </div>
     </div>

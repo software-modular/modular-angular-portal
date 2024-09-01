@@ -16,6 +16,8 @@ import { TypeModalMode } from '../../../core/domain/enum/TypeModalMode';
 import { UserService } from '../../../core/services/client/user.service';
 import { DynamicFormService } from '../../../core/services/components/dynamic-form.service';
 import { InputUserModal } from '../../../core/domain/beans/inputUserModal';
+import { cities } from '../../../core/domain/const/Colombia';
+import { AuthenticationService } from '../../../core/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-user-modal',
@@ -32,6 +34,7 @@ export class UserModalComponent implements AfterViewInit {
     private dynamicFormService: DynamicFormService,
     private confirmationService: ConfirmationService,
     private userService: UserService,
+    private authenticationService: AuthenticationService,
     @Inject(MAT_DIALOG_DATA) public data: InputUserModal
   ) {
     this.loadForm();
@@ -64,6 +67,7 @@ export class UserModalComponent implements AfterViewInit {
       this.dynamicFormService.setValueField("address", this.data.data.address);
       this.dynamicFormService.setValueField("date_of_birth", this.data.data.date_of_birth);
       this.dynamicFormService.setValueField("type_user", this.data.data.type_user);
+      this.dynamicFormService.setValueField("municipality_expedition_dni", this.data.data.municipality_expedition_dni);
     }
   }
 
@@ -89,23 +93,26 @@ export class UserModalComponent implements AfterViewInit {
         value: "CL"
       },
     ];
-    return [
-      new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, '', [Validators.required]),
-      new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.EMAIL, '', [Validators.required, Validators.email]),
-      new ListOptionFieldForm("Tipo de usuario", "Seleccione", "type_user", "", TypeInputForm.LIST_OPTION, typeUsers, []),
-      new ListOptionFieldForm("Tipo identificacion", "Seleccione", "type_ide", "",
-        TypeInputForm.LIST_OPTION, typeIdentifications, [Validators.required]),
-      new TextFieldForm("Identificación", "Escribe tu identificación", "document_id", "", TypeInputForm.NUMBER, '',
-        [Validators.required, Validators.minLength(7)]),
-      new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.NUMBER, '', [Validators.required]),
-      new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, '', [Validators.required]),
-      new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, '', [Validators.required]),
-      new HiddenFieldForm("", "", "is_active", "", TypeInputForm.HIDDEN, true),
-      new TextFieldForm("", "", "profile_picture", "", TypeInputForm.HIDDEN, "", []),
-
-      new HiddenFieldForm("", "", "is_staff", "", TypeInputForm.HIDDEN, false),
-
-    ];
+    let listField: InputForm<any>[] = [];
+    listField.push(new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, '', [Validators.required]))
+    listField.push(new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.EMAIL, '', [Validators.required, Validators.email]))
+    if (this.data === undefined) {
+      listField.push(new TextFieldForm("Contraseña", "", "password", "", TypeInputForm.PASSWORD, '', [Validators.required]),);
+    }
+    listField.push(new ListOptionFieldForm("Tipo de usuario", "Seleccione", "type_user", "", TypeInputForm.LIST_OPTION, typeUsers, []))
+    listField.push(new ListOptionFieldForm("Tipo identificacion", "Seleccione", "type_ide", "",
+      TypeInputForm.LIST_OPTION, typeIdentifications, [Validators.required]))
+    listField.push(new TextFieldForm("Identificación", "Escribe tu identificación", "document_id", "", TypeInputForm.NUMBER, '',
+      [Validators.required, Validators.minLength(7)]))
+    listField.push(new ListOptionFieldForm("Ciudad expedición documento", "Seleccione", "municipality_expedition_dni", "",
+      TypeInputForm.LIST_OPTION, cities, [Validators.required]))
+    listField.push(new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.NUMBER, '', [Validators.required]))
+    listField.push(new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, '', [Validators.required]))
+    listField.push(new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, '', [Validators.required]))
+    listField.push(new HiddenFieldForm("", "", "is_active", "", TypeInputForm.HIDDEN, true))
+    listField.push(new TextFieldForm("", "", "profile_picture", "", TypeInputForm.HIDDEN, "", []))
+    listField.push(new HiddenFieldForm("", "", "is_staff", "", TypeInputForm.HIDDEN, false))
+    return listField;
   }
 
 
@@ -118,6 +125,7 @@ export class UserModalComponent implements AfterViewInit {
     this.dynamicFormService.disableFieldByFormControlName("document_id", disable);
     this.dynamicFormService.disableFieldByFormControlName("date_of_birth", disable);
     this.dynamicFormService.disableFieldByFormControlName("type_user", disable);
+    this.dynamicFormService.disableFieldByFormControlName("municipality_expedition_dni", disable);
   }
 
   closeModal() {
@@ -131,13 +139,25 @@ export class UserModalComponent implements AfterViewInit {
   save() {
     let showError = (title: string, message: string) => this.showMessageDialog(title, message);
     let userData = this.getClientRegisterData();
-    this.userService.createStaff(userData).subscribe({
-      next: (data) => {
-        this.showMessageDialog("Registro usuario", "Usuario creado")
-      }, error(err) {
-        showError("Registro usuario", `Ya existe un usuario con identificacion:${userData.user?.document_id}`);
-      }
-    });
+    if (userData.user?.type_user === "ST") {
+      this.userService.createStaff(userData).subscribe({
+        next: (data) => {
+          this.showMessageDialog("Registro usuario", "Usuario creado")
+        }, error(err) {
+          showError("Registro usuario", `Ya existe un usuario con identificacion:${userData.user?.document_id}`);
+        }
+      });
+    } else {
+      this.authenticationService.registerUser(userData).subscribe({
+        next: (_) => {
+          this.showMessageDialog("Registro usuario", "Usuario creado")
+        },
+        error: (_) => {
+          showError("Registro usuario", `Ya existe un usuario con identificacion:${userData.user?.document_id}`);
+        }
+      });
+    }
+
 
   }
 
@@ -152,6 +172,7 @@ export class UserModalComponent implements AfterViewInit {
     if (formValue.type_user === "ST") {
       clientRegister.ocupation_staff = 1;
     }
+
 
     return clientRegister;
   }

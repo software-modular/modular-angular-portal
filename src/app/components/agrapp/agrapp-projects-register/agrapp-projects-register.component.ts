@@ -82,6 +82,7 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
       cropCountry: ["", [Validators.required]],
       cropDepartment: ["", [Validators.required]],
       cropCity: ["", [Validators.required]],
+      croExpeditionCity: ["", [Validators.required]],
       cropAddress: ["", [Validators.required]],
       cropTypeGround: ["", [Validators.required]],
       cropHetares: ["", [Validators.required]],
@@ -143,6 +144,7 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
     this.form.get("cropCountry")?.setValue(projectDto.crop?.country ?? '');
     this.form.get("cropDepartment")?.setValue(projectDto.crop?.department ?? '');
     this.form.get("cropCity")?.setValue(projectDto.crop?.municipality ?? '');
+    this.form.get("croExpeditionCity")?.setValue(projectDto.crop?.owner?.user?.municipality_expedition_dni ?? '');
     this.form.get("cropAddress")?.setValue(projectDto.crop?.address ?? '');
     this.form.get("cropTypeGround")?.setValue(projectDto.crop?.type_of_ground ?? '');
     this.form.get("cropHetares")?.setValue(projectDto.crop?.number_of_hectares ?? '');
@@ -302,6 +304,7 @@ export class AgrappProjectsRegisterComponent implements AfterViewInit, OnInit {
             phone: this.form.get("producerPhone")?.value,
             address: this.form.get("producerAddress")?.value,
             date_of_birth: this.getDateFormat(this.form.get("producerBirthday")?.value ?? ''),
+            municipality_expedition_dni: this.form.get("croExpeditionCity")?.value ?? '',
             is_active: true
           }
         }

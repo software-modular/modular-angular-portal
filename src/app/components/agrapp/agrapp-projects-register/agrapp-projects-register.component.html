@@ -279,9 +279,21 @@
                           <label *ngIf="form.get('producerIdValue')?.hasError('minlength')">El campo tiene menos de 7
                             numeros</label>
                         </mat-error>
-
                       </div>
                     </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <input-list-option formControlName="croExpeditionCity" [label]="'Ciudad expedición dni'"
+                          [options]="cityList"></input-list-option>
+                        <mat-error class="error-field" *ngIf="form.get('croExpeditionCity')?.invalid
+                          && (form.get('croExpeditionCity')?.dirty
+                          || form.get('croExpeditionCity')?.touched)">
+                          <label *ngIf="form.get('croExpeditionCity')?.hasError('required')">El campo es
+                            obligatorio</label>
+                        </mat-error>
+                      </div>
+                    </div>
+
                     <div class="row">
                       <div class="col-md-12">
                         <input-text formControlName="producerName" [label]="'Nombre'" />
