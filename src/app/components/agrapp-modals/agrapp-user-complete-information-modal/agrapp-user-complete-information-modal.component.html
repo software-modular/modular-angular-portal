@@ -10,7 +10,7 @@
           </div>
         </div>
       </div>
-      <div class="modal-user-complete-information-body-container">
+      <div *ngIf="showUploadContract" class="modal-user-complete-information-body-container">
         <div class="row">
           <div class="col-md-12">
             <label class="modal-user-complete-information-body-label">Antes de que Agrofin pueda manejar su dinero, debe
@@ -29,7 +29,7 @@
         <div class="row contract-options-container">
           <form [formGroup]="formFile">
             <input id="agreementInput" type="file" style="display: none;" lang="es" formControlName="fileUpload"
-              (change)="uploadDocument($event)" accept=".pdf">
+              (change)="uploadDocument($event)" accept=".docx">
           </form>
           <div class="col-md-6 button-container">
             <button class="btn btn-secundary" (click)="downloadAgreement()">
@@ -60,9 +60,44 @@
           </div>
         </div>
       </div>
+      <div *ngIf="!showUploadContract" class="modal-user-complete-information-body-container">
+        <div class="row">
+          <div class="col-md-12">
+            <label class="modal-user-complete-information-body-label">Información Cargada: En Espera de
+              Validación</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label class="modal-user-complete-information-body-label">Gracias por subir la información. Tu solicitud
+              está siendo revisada por el administrador. Por favor, ten en cuenta que el proceso de validación puede
+              tardar hasta 3 días hábiles. Si no recibes una respuesta dentro de este plazo, te invitamos a ponerte en
+              contacto con el administrador para obtener una actualización sobre el estado de tu solicitud.</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label class="modal-user-complete-information-body-label">Agradecemos tu paciencia y comprensión.</label>
+          </div>
+        </div>
+        <br>
+        <div class="row information-contact-container">
+          <div class="col-md-12">
+            <label class="text-button-2">Para más información, por favor consulte con nuestro administrador al número de
+              WhatsApp:
+              <a [href]="getWhatsappUrl()">{{whatsappNumber}}</a>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 modal-buttons-container">
+            <button type="button" class="btn-modal btn btn-secondary" (click)="closeModal()">Cancelar</button>
+          </div>
+        </div>
+      </div>
     </div>
   </mat-dialog-content>
 </div>
-<div>
-  <p-confirmDialog [visible]="false" />
+<div class="card flex justify-content-center gap-2">
+  <p-confirmDialog />
 </div>

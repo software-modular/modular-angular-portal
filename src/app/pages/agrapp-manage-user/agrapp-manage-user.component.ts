@@ -166,6 +166,19 @@ export class AgrappManageUserComponent {
     return dataStr.includes(filterValue);
   }
 
+  enableInversions(user: ResponseClientDto, enable: boolean) {
+    this.userService.enableInversions(`${user.code_client}`, enable).subscribe({
+      next: (data) => {
+        let message: string = `Se  ${enable ? 'habilitaron' : 'deshabilitaron'} las inversiones para el usuario`;
+        this.showMessageDialog("Activación inversiones", message);
+        this.getListUserClient();
+      },
+      error: (_) => {
+        let message: string = `No fue posible ${enable ? 'habilitar' : 'deshabilitar'} las inversiones para el usuario`;
+        this.showMessageDialog("Activación inversiones", message);
+      }
+    });
+  }
 
   createUser() {
     this.openModal(UserModalComponent);
@@ -189,7 +202,26 @@ export class AgrappManageUserComponent {
   }
 
   downloadAgreement(user: ResponseClientDto) {
-    downloadFile("Contrato", user.user.profile_picture)
+    if (user.mandate_contract) {
+      this.userService.getAgreementUrl(`${user.code_client}`).subscribe(
+        {
+          next: (data) => {
+            window.open(data.pdf_url, "_blank");
+          }
+        }
+      );
+    }
+  }
+
+  private showMessageDialog(titleHeader: string, message: string) {
+    this.confirmationService.confirm({
+      message: message,
+      header: titleHeader,
+      icon: 'pi pi-success',
+      acceptIcon: "none",
+      acceptLabel: "Continuar",
+      rejectVisible: false,
+    });
   }
 }
 

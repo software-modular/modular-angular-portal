@@ -75,12 +75,12 @@
               <ng-container matColumnDef="Activo">
                 <th mat-header-cell *matHeaderCellDef class="table-content"> Activo </th>
                 <td mat-cell *matCellDef="let user" class="table-content">
-                  {{user.user.is_active ? 'SI':'NO' }} </td>
+                  {{user.status ? 'SI':'NO' }} </td>
               </ng-container>
               <ng-container matColumnDef="inversiones_habilitadas">
                 <th mat-header-cell *matHeaderCellDef class="table-content"> Inversiones habilitadas </th>
                 <td mat-cell *matCellDef="let user" class="table-content">
-                  {{user.user.is_active ? 'SI':'NO' }} </td>
+                  {{user.status ? 'SI':'NO' }} </td>
               </ng-container>
               <ng-container matColumnDef="Actions">
                 <th mat-header-cell *matHeaderCellDef class="table-content"> Acciones </th>
@@ -89,21 +89,21 @@
                     matTooltip="Ver informacion">
                     <i class="fa fa-eye" style="font-size: 20px;"></i>
                   </button>
-                  <button mat-mini-fab color="warn" type="button" class="btn button-action"
-                    matTooltip="Eliminar" (click)="deleteClient(user)">
+                  <button mat-mini-fab color="warn" type="button" class="btn button-action" matTooltip="Eliminar"
+                    (click)="deleteClient(user)">
                     <i class="fa fa-trash" style="font-size: 20px;"></i>
                   </button>
                   <button *ngIf="user.user.type_user ==='CL'" mat-mini-fab type="button" class="btn button-action"
                     matTooltip="Descargar contrato" (click)="downloadAgreement(user)">
                     <i class="fa fa-file" style="font-size: 20px;"></i>
                   </button>
-                  <button *ngIf="user.user.type_user ==='CL' && !user.user.is_active" mat-mini-fab type="button"
-                    class="btn button-action" matTooltip="Habilitar inversiones">
+                  <button *ngIf="user.user.type_user ==='CL' && !user.status" mat-mini-fab type="button"
+                    (click)="enableInversions(user, true)" class="btn button-action" matTooltip="Habilitar inversiones">
                     <i class="fa fa-user-plus" style="font-size: 20px;"></i>
-                    <i class="fa fa-user-times" style="font-size: 20px;"></i>
                   </button>
-                  <button *ngIf="user.user.type_user ==='CL' && user.user.is_active" mat-mini-fab type="button"
-                    class="btn button-action" matTooltip="Deshabilitar inversiones">
+                  <button *ngIf="user.user.type_user ==='CL' && user.status" mat-mini-fab type="button"
+                    (click)="enableInversions(user, false)" class="btn button-action"
+                    matTooltip="Deshabilitar inversiones">
                     <i class="fa fa-user-times" style="font-size: 20px;"></i>
                   </button>
                 </td>

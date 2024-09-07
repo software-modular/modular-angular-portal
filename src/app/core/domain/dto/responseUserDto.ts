@@ -11,5 +11,6 @@ export interface ResponseUserDto {
   is_active?: Boolean,
   is_staff?: Boolean,
   municipality_expedition_dni?: string,
-  status?: boolean
+  status?: boolean,
+  mandate_contract?: string,
 }

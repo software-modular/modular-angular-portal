@@ -32,6 +32,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CarouselModule } from 'primeng/carousel';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -41,7 +42,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
+import { AgrappUserCompleteInformationModalComponent } from './components/agrapp-modals/agrapp-user-complete-information-modal/agrapp-user-complete-information-modal.component';
 import { InvestmentModalComponent } from './components/agrapp-modals/investment-modal/investment-modal.component';
+import { TermsModalComponent } from './components/agrapp-modals/terms-modal/terms-modal.component';
 import { UserModalComponent } from './components/agrapp-modals/user-modal/user-modal.component';
 import { AgrappHomeAnimationsComponent } from './components/agrapp/agrapp-home-animations/agrapp-home-animations.component';
 import { AgrappMiniCardComponent } from './components/agrapp/agrapp-mini-card/agrapp-mini-card.component';
@@ -77,8 +80,7 @@ import { AgrappManageUserComponent } from './pages/agrapp-manage-user/agrapp-man
 import { AgrappProjectsManagerComponent } from './pages/agrapp-projects-manager/agrapp-projects-manager.component';
 import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
 import { AgrappTransactionsListComponent } from './pages/agrapp-transactions-list/agrapp-transactions-list.component';
-import { AgrappUserCompleteInformationModalComponent } from './components/agrapp-modals/agrapp-user-complete-information-modal/agrapp-user-complete-information-modal.component';
-import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,6 +120,7 @@ import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
     AgrappTransactionsListComponent,
     AgrappMiniCardComponent,
     AgrappUserCompleteInformationModalComponent,
+    TermsModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -165,6 +168,7 @@ import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
     DataViewModule,
     TagModule,
     RatingModule,
+    MatCheckboxModule
   ],
   providers: [
     provideClientHydration(),

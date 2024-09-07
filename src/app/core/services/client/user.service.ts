@@ -27,10 +27,12 @@ export class UserService {
 
   updateClient(user: ResponseUserDto, id: string) {
     let url = `${environment.api.host}${environment.api.endpoints.users.updateClient.replace("%s", id)}`
-    let data = {
-      user: user
-    };
-    return this.httpClientService.patch(url, data, this.headers);
+    return this.httpClientService.patch(url, user, this.headers);
+  }
+
+  uploadContractUser(idUser: string, file: File) {
+    let url = `${environment.api.host}${environment.api.endpoints.users.uploadContractUser}${idUser}`;
+    return this.httpClientService.post(url, this.getFormDataContract(file));
   }
 
   updateStaff(user: ResponseUserDto, id: string) {
@@ -61,6 +63,26 @@ export class UserService {
   createStaff(data: any) {
     let url = `${environment.api.host}${environment.api.endpoints.users.createStaff}`
     return this.httpClientService.post(url, data, this.headers);
+  }
+
+  getAgreementUrl(userId?: string) {
+    let url = `${environment.api.host}${environment.api.endpoints.users.getAgreementByUserId}${userId}`;
+    return this.httpClientService.get(url, this.headers);
+  }
+
+  enableInversions(userId: string, enabled: boolean) {
+    let url = `${environment.api.host}${environment.api.endpoints.users.enableInversionsByUserId}${userId}`;
+    return this.httpClientService.post(url, {
+      "status": enabled
+    },
+      this.headers);
+  }
+
+
+  private getFormDataContract(file: any): FormData {
+    const formData = new FormData();
+    formData.append('mandate_contract', file, file.name);
+    return formData;
   }
 
 

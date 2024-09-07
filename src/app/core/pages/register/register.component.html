@@ -11,6 +11,16 @@
       <div class="register-footer-content">
         <div class="row">
           <div class="col-md-12">
+            <form [formGroup]="form">
+              <mat-checkbox formControlName="terms" class="example-margin">
+                Acepto los <span (click)="showTerms()" class="term"><u>términos y condiciones.</u></span>
+                &nbsp;&nbsp;&nbsp;
+              </mat-checkbox>
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
             <button class="btn btn-primary" (click)="register()" [disabled]="!disableBtnRegister()">Registrarme</button>
           </div>
         </div>

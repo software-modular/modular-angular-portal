@@ -13,7 +13,7 @@ export function base64ToFile(base64: string, fileName: string, contentType: stri
 }
 
 
-export function convertFileImgToBase64(file: File): Promise<string> {
+export function convertFileToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
 

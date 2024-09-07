@@ -44,7 +44,9 @@
 <h4 *ngIf="!userIsAuthenticate()" id="register" style="margin-top: 3rem;">... ¿Que estas esperando? registrate y empieza
   la aventura ...</h4>
 <br *ngIf="!userIsAuthenticate()">
-<app-register *ngIf="!userIsAuthenticate()"></app-register>
+<div class="app-register-container">
+  <app-register *ngIf="!userIsAuthenticate()"></app-register>
+</div>
 <!-- Sección para los patrocinadores -->
 <div class="sponsors">
   <div class="sponsors-inner">

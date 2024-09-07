@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { DynamicFormInput } from '../../domain/beans/dynamicFormInput';
 import { HiddenFieldForm } from '../../domain/beans/hiddenFieldForm';
 import { InputForm } from '../../domain/beans/InputForm';
 import { ListOptionFieldForm } from '../../domain/beans/ListOptioFieldForm';
 import { TextFieldForm } from '../../domain/beans/textFieldForm';
+import { cities } from '../../domain/const/Colombia';
+import { typeIdentifications } from '../../domain/const/TypeIdentification';
 import { ClientRegisterData } from '../../domain/entity/ClientRegister';
 import { UserResgisterData } from '../../domain/entity/UserRegister';
 import { TypeClient } from '../../domain/enum/TypeClient';
 import { TypeInputForm } from '../../domain/enum/TypeInputForm';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { DynamicFormService } from '../../services/components/dynamic-form.service';
-import { typeIdentifications } from '../../domain/const/TypeIdentification';
-import { Router } from '@angular/router';
-import { Validators } from '@angular/forms';
-import { cities } from '../../domain/const/Colombia';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { TermsModalComponent } from '../../../components/agrapp-modals/terms-modal/terms-modal.component';
 
 @Component({
   selector: 'app-register',
@@ -23,12 +25,15 @@ import { cities } from '../../domain/const/Colombia';
 })
 export class RegisterComponent {
   dynamicFormInput: DynamicFormInput;
+  form!: FormGroup;
 
   constructor(
     private dynamicFormService: DynamicFormService,
     private authenticationService: AuthenticationService,
     private confirmationService: ConfirmationService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog,
+    private formBuilder: FormBuilder
   ) {
     this.dynamicFormInput = {
       title: "Registro",
@@ -37,10 +42,13 @@ export class RegisterComponent {
       showFooter: false,
       showBorder: false
     }
+    this.form = this.formBuilder.group({
+      terms: [false]
+    });
   }
 
   disableBtnRegister() {
-    return this.dynamicFormService.isValidForm();
+    return this.dynamicFormService.isValidForm() && this.form.get('terms')?.value;
   }
 
   register() {
@@ -54,6 +62,20 @@ export class RegisterComponent {
       }
     });
   }
+
+  showTerms() {
+    debugger
+    let f = this.form.get('terms')?.value;
+    this.openModal(TermsModalComponent);
+  }
+
+
+  private openModal(component: any, data?: any) {
+    const dialogRef: MatDialogRef<any> = this.dialog.open(component);
+    dialogRef.afterClosed().subscribe((_) => {
+    });
+  }
+
 
   private getClientRegisterData(): ClientRegisterData {
     let formValue: UserResgisterData = JSON.parse(this.dynamicFormService.getJsonOfForm());

@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { environment } from '../../../../environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '../../../core/services/authentication/authentication.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { NavbarService } from '../../../core/services/components/navbar.service';
-import { UserService } from '../../../core/services/client/user.service';
+import { environment } from '../../../../environments/environment';
 import { ResponseUserDto } from '../../../core/domain/dto/responseUserDto';
-import { downloadFile } from '../../../core/utils/FileUtils';
+import { AuthenticationService } from '../../../core/services/authentication/authentication.service';
+import { UserService } from '../../../core/services/client/user.service';
+import { NavbarService } from '../../../core/services/components/navbar.service';
+import { convertFileToBase64 } from '../../../core/utils/FileUtils';
+import { ResponseClientDto } from '../../../core/domain/dto/responseClientDto';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-agrapp-user-complete-information-modal',
@@ -18,7 +20,9 @@ export class AgrappUserCompleteInformationModalComponent {
 
   formFile: FormGroup;
   whatsappNumber: string = environment.aditionalInfo.whatsappNumber;
-  filesAllow: string[] = ['application/pdf'];
+  filesAllow: string[] = ['application/docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+  userInformation!: ResponseClientDto;
+  showUploadContract: boolean = true
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,12 +30,18 @@ export class AgrappUserCompleteInformationModalComponent {
     private router: Router,
     private navbarService: NavbarService,
     private userService: UserService,
+    private confirmationService: ConfirmationService,
+    public dialog: MatDialog,
     public dialogRef: MatDialogRef<AgrappUserCompleteInformationModalComponent>) {
     this.formFile = this.formBuilder.group(
       {
         fileUpload: ["", [Validators.required]]
       }
     );
+    this.userInformation = this.authenticationService.getUserInformation();
+    if (!this.userInformation.status && this.userInformation.file_upload) {
+      this.showUploadContract = false;
+    }
   }
 
   closeModal() {
@@ -42,7 +52,7 @@ export class AgrappUserCompleteInformationModalComponent {
     this.dialogRef.close()
   }
 
-  uploadDocument(event: any) {
+  async uploadDocument(event: any) {
     for (let file of event.target.files) {
       if (!this.filesAllow.includes(file.type)) {
         alert(`Formato de archivo no permitido, archivos permitidos: ${this.filesAllow}`);
@@ -52,16 +62,17 @@ export class AgrappUserCompleteInformationModalComponent {
     let fileUpload = event.target.files[0];
     let result = confirm(`Desea subir el siguiente archivo: ${fileUpload.name}`);
     if (result) {
-      let userInformation = this.authenticationService.getUserInformation();
-      this.userService.updateClient(this.getClientUpdate(), `${userInformation.code_client}`);
+      this.userService.uploadContractUser(`${this.userInformation.code_client}`, fileUpload)
+        .subscribe({
+          next: (data) => {
+            this.showMessageDialog("Carga contrato", "El contrato fue cargado exitosamente");
+          },
+          error: (_) => {
+            this.showMessageDialog("Carga contrato", "No fue posible cargar el contrato, contacte con el administrador");
+          }
+        });
     }
   }
-
-  getClientUpdate(): ResponseUserDto {
-    return {};
-  }
-
-
 
   redirect(url: string) {
     this.router.navigate([url]);
@@ -72,12 +83,26 @@ export class AgrappUserCompleteInformationModalComponent {
   }
 
   downloadAgreement() {
-    //cambiar por el archivo
     let userInformation = this.authenticationService.getUserInformation();
-    if (userInformation.user.profile_picture) {
-      downloadFile(userInformation.user.profile_picture, "perfil");
+    if (userInformation.mandate_contract) {
+      this.userService.getAgreementUrl(`${userInformation.code_client}`).subscribe(
+        {
+          next: (data) => {
+            window.open(data.pdf_url, "_blank");
+          }
+        }
+      );
     }
   }
 
-
+  private showMessageDialog(titleHeader: string, message: string) {
+    this.confirmationService.confirm({
+      message: message,
+      header: titleHeader,
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: "none",
+      acceptLabel: "Continuar",
+      rejectVisible: false,
+    });
+  }
 }

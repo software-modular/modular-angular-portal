@@ -12,7 +12,7 @@ import { TypeInputForm } from '../../domain/enum/TypeInputForm';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { UserService } from '../../services/client/user.service';
 import { DynamicFormService } from '../../services/components/dynamic-form.service';
-import { convertFileImgToBase64 } from '../../utils/FileUtils';
+import { convertFileToBase64 } from '../../utils/FileUtils';
 import { cities } from '../../domain/const/Colombia';
 
 @Component({
@@ -122,7 +122,7 @@ export class UserProfileComponent implements OnInit {
     if (this.imgForm.get("file")?.value !== null
       && this.imgForm.get("file")?.value !== undefined
       && this.imgForm.get("file")?.value !== '') {
-      user.profile_picture = await convertFileImgToBase64(this.fileUpload);
+      user.profile_picture = await convertFileToBase64(this.fileUpload);
     }
     return user;
   }
@@ -145,7 +145,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   async convertImageProfile() {
-    this.imgProfileSource = await convertFileImgToBase64(this.fileUpload);
+    this.imgProfileSource = await convertFileToBase64(this.fileUpload);
   }
 
   private getUserInfo(): ResponseClientDto {
