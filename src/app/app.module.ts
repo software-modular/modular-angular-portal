@@ -81,6 +81,7 @@ import { AgrappProjectsManagerComponent } from './pages/agrapp-projects-manager/
 import { AgrappProjectsComponent } from './pages/agrapp-projects/agrapp-projects.component';
 import { AgrappTransactionsListComponent } from './pages/agrapp-transactions-list/agrapp-transactions-list.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { WhatsappWidgetComponent } from './whatsapp-widget/whatsapp-widget.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -121,6 +122,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     AgrappMiniCardComponent,
     AgrappUserCompleteInformationModalComponent,
     TermsModalComponent,
+    WhatsappWidgetComponent,
   ],
   imports: [
     BrowserModule,
