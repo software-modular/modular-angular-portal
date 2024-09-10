@@ -1,6 +1,34 @@
+@media (min-width: 601px) and (max-width: 768px) {
+  .sponsor-item-container-1 {
+    justify-content: center !important;
+  }
+
+  .sponsor-item-container-2 {
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .sponsor-item-container-1 {
+    justify-content: center !important;
+  }
+
+  .sponsor-item-container-2 {
+    justify-content: center !important;
+  }
+}
+
 @media (max-width: 520px) {
   .btn-show-projects {
     display: flex !important;
+  }
+
+  .sponsor-item-container-1 {
+    justify-content: center !important;
+  }
+
+  .sponsor-item-container-2 {
+    justify-content: center !important;
   }
 }
 
@@ -9,6 +37,13 @@
     display: flex !important;
   }
 
+  .sponsor-item-container-1 {
+    justify-content: center !important;
+  }
+
+  .sponsor-item-container-2 {
+    justify-content: center !important;
+  }
 }
 
 /* Estilos para dispositivos móviles */
@@ -16,6 +51,15 @@
   .btn-show-projects {
     display: flex !important;
   }
+
+  .sponsor-item-container-1 {
+    justify-content: center !important;
+  }
+
+  .sponsor-item-container-2 {
+    justify-content: center !important;
+  }
+
 }
 
 /* Estilos generales */
@@ -161,51 +205,34 @@ h4 {
   font-weight: bold;
 }
 
-/* Sponsors*/
 .sponsors {
-  width: 100%;
-  /* Ajusta el ancho según tus necesidades */
-  overflow: hidden;
-  /* Oculta el contenido que desborda */
-  position: relative;
-  /* Posición relativa para el contenedor de desplazamiento */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  padding-bottom: 50px;
 }
 
-.sponsors-inner {
+.sponsor-item-container-1 {
   display: flex;
-  /* Flexbox para alinear los elementos en fila */
-  width: 100%;
-  /* Asegura que el contenedor interior tenga el ancho completo */
-  /* Usa un ancho mayor si quieres que el contenido se desplace más allá del contenedor */
-  animation: scroll 20s linear infinite;
-  /* Ajusta el tiempo según la velocidad deseada */
+  align-items: center;
+  justify-content: right;
+  flex-direction: row;
+}
+
+.sponsor-item-container-2 {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-direction: row;
 }
 
 .sponsors-item {
-  flex: 0 0 auto;
-  /* Flex item no se redimensiona */
-  width: 25%;
-  /* Ancho de cada item, ajusta según el número de elementos que quieres mostrar */
+  margin: 20px
 }
 
-.sponsors-item img {
-  display: block;
-  width: 100%;
-  /* Hace que la imagen ocupe el ancho completo del contenedor */
-  height: auto;
-  /* Mantiene la proporción de la imagen */
-}
-
-/* Animación del carrusel */
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-100%);
-    /* Desplaza completamente el contenido */
-  }
+.sponsor-img {
+  height: 100px;
 }
 
 .home-carousel-home-container {
@@ -213,6 +240,7 @@ h4 {
   padding: 10px;
   justify-content: center;
 }
+
 
 .btn-show-projects {
   display: none;

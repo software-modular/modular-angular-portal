@@ -1,12 +1,8 @@
 <div class="whatsapp-bubble" (click)="toggleChat()">
     <img src="/assets/img/home/whatsapp-icon.png" alt="WhatsApp" />
   </div>
-  
   <div class="chat-box" *ngIf="showChat">
     <h3>Envíanos un mensaje</h3>
-    
     <textarea [(ngModel)]="message" placeholder="Escribe tu mensaje aquí..."></textarea>
-    
     <button (click)="sendMessage()">Enviar</button>
   </div>
-  

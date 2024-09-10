@@ -8,5 +8,23 @@
         </ng-template>
       </p-carousel>
     </div>
+    <div *ngIf="projectsCard.length === 0" class="not_found_projects_container">
+      <div class="row">
+        <div class="col-md-6 img_not_found_container">
+          <img class="img_not_found_projects" src="assets/img/agricultoraIlustrada.png">
+        </div>
+        <div class="col-md-6">
+          <div class="information-container">
+            <label class="information-title">¡Gracias por ser parte de la transformación de la financiación del campo
+              colombiano!</label>
+            <label class="information-subtitle">Estamos trabajando junto con los agricultores, para estructurar
+              proyectos que dejen el nombre de nuestro país en alto, con sus cultivos de exportación que recorrerán todo
+              el mundo.</label>
+            <label class="information-subtitle">Te invitamos a que te registres en nuestra plataforma y estés listo
+              para ser socio inversionista de uno de nuestros próximos proyectos.</label>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -5,6 +5,7 @@ import { getCityByCode, getDepartmentByCode } from '../../core/domain/const/Colo
 import { AgrappCardInput } from '../../core/domain/beans/agrappCardInput';
 import { projectList } from '../../core/domain/const/Mocks';
 import { AuthenticationService } from '../../core/services/authentication/authentication.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'agrapp-home',
@@ -20,5 +21,9 @@ export class AgrappHomeComponent {
 
   userIsAuthenticate(): Boolean {
     return this.authenticationService.userIsAuthenticated();
+  }
+
+  getWhatsappNumber() {
+    return environment.aditionalInfo.whatsappNumber;
   }
 }

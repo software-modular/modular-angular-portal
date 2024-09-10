@@ -30,3 +30,48 @@
   display: flex;
   justify-content: flex-end;
 }
+
+
+
+.not_found_projects_container {
+  height: 70vh;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img_not_found_container {
+  display: flex;
+  justify-content: center;
+}
+
+.img_not_found_projects {
+  height: 35vh;
+  width: auto;
+}
+
+
+.information-container {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.information-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--agrapp-text-color-title);
+  font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+}
+
+.information-subtitle {
+  margin-top: 60px;
+  font-size: 24px;
+  font-weight: 300;
+  font-family: Canva Sans, Noto Sans Variable, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+  text-align: justify;
+}

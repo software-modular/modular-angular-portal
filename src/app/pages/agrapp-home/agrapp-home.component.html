@@ -48,17 +48,18 @@
   <app-register *ngIf="!userIsAuthenticate()"></app-register>
 </div>
 <!-- Sección para los patrocinadores -->
-<app-whatsapp-widget [phoneNumber]="'3014077387'"></app-whatsapp-widget>
-<div class="sponsors">
-  <div class="sponsors-inner">
-    <div class="sponsors-item"><img src="/assets/img/home/areandina_logo.png" alt="Logo 1"></div>
-    <div class="sponsors-item"><img src="/assets/img/home/drummond.png" alt="Logo 2"></div>
-    <div class="sponsors-item"><img src="/assets/img/home/areandina_logo.png" alt="Logo 1"></div>
-    <div class="sponsors-item"><img src="/assets/img/home/drummond.png" alt="Logo 2"></div>
-    <!-- Añade más elementos aquí si es necesario -->
-    <div class="sponsors-item"><img src="/assets/img/home/areandina_logo.png" alt="Logo 1"></div>
-    <div class="sponsors-item"><img src="/assets/img/home/drummond.png" alt="Logo 2"></div>
-    <div class="sponsors-item"><img src="/assets/img/home/areandina_logo.png" alt="Logo 1"></div>
-    <div class="sponsors-item"><img src="/assets/img/home/drummond.png" alt="Logo 2"></div>
+<app-whatsapp-widget [phoneNumber]="getWhatsappNumber()"></app-whatsapp-widget>
+<div>
+  <div class="row sponsors">
+    <div class="col-md-6 sponsor-item-container-1">
+      <div class="card sponsors-item">
+        <img class="sponsor-img" src="/assets/img/home/areandina_logo.png" alt="Logo 1">
+      </div>
+    </div>
+    <div class="col-md-6 sponsor-item-container-2">
+      <div class="card sponsors-item">
+        <img class="sponsor-img" src="/assets/img/home/drummond.png" alt="Logo 2">
+      </div>
+    </div>
   </div>
 </div>

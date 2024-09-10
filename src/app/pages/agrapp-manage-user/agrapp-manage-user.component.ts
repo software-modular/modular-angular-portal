@@ -31,7 +31,7 @@ export class AgrappManageUserComponent {
   columns: string[] = ['Nombre', 'Correo', 'Identificación', 'Telefono', "Dirección", "Activo", "inversiones_habilitadas", 'Actions'];
 
   @ViewChild('paginatorUsers') paginatorUsers!: MatPaginator;
-  @ViewChild('sortUsers') sortOig!: MatSort;
+  @ViewChild('sortUsers') sortUsers!: MatSort;
 
 
   constructor(
@@ -44,6 +44,8 @@ export class AgrappManageUserComponent {
       typeUser: ["", [Validators.required]],
       filter: ["", []]
     });
+    this.dataSourceUsers.paginator = this.paginatorUsers;
+    this.dataSourceUsers.sort = this.sortUsers;
     this.doTypeUserValueChangeEvent();
 
   }
@@ -108,6 +110,7 @@ export class AgrappManageUserComponent {
     this.users = data;
     this.dataSourceUsers = new MatTableDataSource(this.users);
     this.dataSourceUsers.paginator = this.paginatorUsers;
+    this.dataSourceUsers.sort = this.sortUsers;
     this.loadDataSourceFilter()
   }
 
