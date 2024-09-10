@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserLoginDto } from '../../../domain/dto/userLoginDto';
 import { UserAuthenticateData } from '../../../domain/entity/UserAuthenticate';
-import { Authenticator } from '../../contracts/Authenticator';
+import { Authenticator } from '../../../domain/contracts/Authenticator';
 import { HttpClientService } from '../../http/http-client.service';
 import { UserResgisterData } from '../../../domain/entity/UserRegister';
 

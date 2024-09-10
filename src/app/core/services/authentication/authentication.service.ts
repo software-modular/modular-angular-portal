@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { firstValueFrom, Observable } from 'rxjs';
+import { catchError, firstValueFrom, map, Observable, of, tap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { JwtContent } from '../../domain/beans/jwtContent';
 import { ResponseClientDto } from '../../domain/dto/responseClientDto';
@@ -8,9 +8,11 @@ import { ClientRegisterData } from '../../domain/entity/ClientRegister';
 import { UserAuthenticateData } from '../../domain/entity/UserAuthenticate';
 import { TypeAuthenticator } from '../../domain/enum/TypeAuthenticator';
 import { TypeAuthenticatorUtils } from '../../utils/TypeAuthenticatorUtils';
-import { Authenticator } from '../contracts/Authenticator';
+import { Authenticator } from '../../domain/contracts/Authenticator';
 import { AuthenticatorFactory } from '../factory/AuthenticatorFactory';
 import { LocalStorageTokenService } from './../storage/local-storage-token.service';
+import { HttpClient } from '@angular/common/http';
+import { env } from 'process';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,10 @@ import { LocalStorageTokenService } from './../storage/local-storage-token.servi
 export class AuthenticationService {
   private readonly authenticator: Authenticator;
 
-  constructor(private localStorageTokenService: LocalStorageTokenService,) {
+  constructor(
+    private httpClient: HttpClient,
+    private localStorageTokenService: LocalStorageTokenService,
+  ) {
     let authenticatorFactory = new AuthenticatorFactory();
     let typeAuthenticator: TypeAuthenticator = TypeAuthenticatorUtils
       .getAutheticatorTypeByName(environment.configuration.typeAuthenticator);
@@ -86,6 +91,26 @@ export class AuthenticationService {
   updateUserAuthenticated(user: ResponseClientDto) {
     this.localStorageTokenService.setUserData(user);
   }
+
+
+
+  refreshAccessToken(): Observable<string | null> {
+    const refreshToken = this.getRefreshToken();
+    const urlRefreshToken = environment.api.endpoints.users.loginRefresh;
+    if (!refreshToken) return of(null);
+    return this.httpClient.post<{ accessToken: string }>(urlRefreshToken, { token: refreshToken }).pipe(
+      map(response => {
+        const newAccessToken = response.accessToken;
+        localStorage.setItem('accessToken', newAccessToken); // Guardar el nuevo token
+        return newAccessToken; // Retorna el nuevo token como string
+      }),
+      catchError(() => {
+        console.error('Error refreshing token');
+        return of(null); // Retorna null si hay un error
+      })
+    );
+  }
+
 
   private getAuthenticator(): Authenticator {
     return this.authenticator;

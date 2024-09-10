@@ -66,6 +66,7 @@ export class AgrappUserCompleteInformationModalComponent {
         .subscribe({
           next: (data) => {
             this.showMessageDialog("Carga contrato", "El contrato fue cargado exitosamente");
+            this.showUploadContract = false;
           },
           error: (_) => {
             this.showMessageDialog("Carga contrato", "No fue posible cargar el contrato, contacte con el administrador");

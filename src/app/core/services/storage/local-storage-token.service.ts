@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { JwtContent } from '../../domain/beans/jwtContent';
 import { LocalStorageTokenNames } from '../../domain/enum/LocalStorageTokenNames';
 
-import { ILocalStorageToken } from '../contracts/ILocalStorageToken';
-import { ResponseUserDto } from '../../domain/dto/responseUserDto';
 import { ResponseClientDto } from '../../domain/dto/responseClientDto';
+import { ILocalStorageToken } from '../../domain/contracts/ILocalStorageToken';
 
 @Injectable({
   providedIn: 'root'

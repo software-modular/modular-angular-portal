@@ -49,7 +49,6 @@ export class HeaderComponent implements OnInit {
     } else {
       this.navbarService.showUserProfileMenu(false);
       this.navbarService.showLoginBtn(true);
-      this.redirect('/portal/login');
     }
   }
 
