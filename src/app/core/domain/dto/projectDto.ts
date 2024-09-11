@@ -41,6 +41,8 @@ export interface ProjectDto {
     minimum_investment_amount?: Number,
     maximum_investment_amount?: Number,
     total_expected_investment?: Number,
+    total_investment_collected?: number,
+    total_investments_received?: number,
     start_date?: string,
     end_date?: string
   },

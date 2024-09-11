@@ -72,7 +72,7 @@ export class UserService {
 
   enableInversions(userId: string, enabled: boolean) {
     let url = `${environment.api.host}${environment.api.endpoints.users.enableInversionsByUserId}${userId}`;
-    return this.httpClientService.post(url, {
+    return this.httpClientService.patch(url, {
       "status": enabled
     },
       this.headers);

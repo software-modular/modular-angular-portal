@@ -18,7 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -180,7 +180,7 @@ import { SpinnersComponent } from './core/components/spinners/spinners.component
     DatePipe,
     ConfirmationService,
     MessageService,
-    provideHttpClient(withInterceptors([authenticationInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([authenticationInterceptor])),
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]

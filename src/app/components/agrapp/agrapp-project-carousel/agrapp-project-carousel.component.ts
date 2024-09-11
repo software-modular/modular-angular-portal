@@ -69,14 +69,15 @@ export class AgrappProjectCarouselComponent {
     return {
       ownerName: project.crop?.owner?.user?.name ?? '',
       nameCrop: project.name ?? '',
-      partners: 2,
+      partners: project.invesment?.total_investments_received,
       ubication: `${getCityByCode(project.crop?.municipality ?? '')} - ${getDepartmentByCode(project.crop?.department ?? '')}`,
       investmentTarget: Number(project.invesment?.maximum_investment_amount) ?? 0,
       minInvestment: Number(project.invesment?.minimum_investment_amount) ?? 0,
       percentageProfit: `${project.invesment?.estimated_rate}%`,
-      funded: 500000,
+      funded: project.invesment?.total_investment_collected,
       imgs: this.getImgsProject(project),
       redirect: true,
+      state: project.state,
       id: `${project.code_project}`
     }
   }

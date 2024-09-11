@@ -102,3 +102,13 @@ mat-slider {
 .funded-description-body-label {
   font-size: 14px;
 }
+
+.inversores-container {
+  border-radius: 30px;
+  width: 190px;
+  position: absolute;
+  margin-top: -50px;
+  margin-left: 19%;
+  border-radius: 30px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.04), 0px 1px 2px 0px rgba(0, 0, 0, 0.06)
+}

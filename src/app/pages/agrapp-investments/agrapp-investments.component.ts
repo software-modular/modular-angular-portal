@@ -48,12 +48,12 @@ export class AgrappInvestmentsComponent implements OnInit {
     return {
       ownerName: project.crop?.owner?.user?.name ?? '',
       nameCrop: project.name ?? '',
-      partners: 2,
+      partners: project.invesment?.total_investments_received ?? 0,
       ubication: `${getCityByCode(project.crop?.municipality ?? '')} - ${getDepartmentByCode(project.crop?.department ?? '')}`,
       investmentTarget: Number(project.invesment?.maximum_investment_amount) ?? 0,
       minInvestment: Number(project.invesment?.minimum_investment_amount) ?? 0,
       percentageProfit: `${project.invesment?.estimated_rate}%`,
-      funded: 500000,
+      funded: project.invesment?.total_investment_collected ?? 0,
       imgs: this.getImgsProject(project),
       redirect: true,
       id: `${project.code_project}`,
@@ -103,7 +103,10 @@ export class AgrappInvestmentsComponent implements OnInit {
       case "FIN": {
         return "Finalizado"
       }
-      case "INAC": {
+      case "CAN": {
+        return "Cancelado"
+      }
+      case "INA": {
         return "Inactivo"
       }
       default: {

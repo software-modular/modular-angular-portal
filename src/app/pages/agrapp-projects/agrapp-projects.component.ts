@@ -156,4 +156,25 @@ export class AgrappProjectsComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe(() => {
     });
   }
+
+
+  getStatus(code?: string) {
+    switch (code) {
+      case "ACT": {
+        return "Disponible"
+      }
+      case "FIN": {
+        return "Finalizado"
+      }
+      case "CAN": {
+        return "Cancelado"
+      }
+      case "INA": {
+        return "Inactivo"
+      }
+      default: {
+        return "Disponible"
+      }
+    }
+  }
 }

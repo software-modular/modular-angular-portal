@@ -11,7 +11,7 @@
           <div class="project-info-detail-information">
             <div class="project-info-detail-information-title-container">
               <label class="project-info-detail-information-title">
-                {{projectInfo.name}}
+                {{projectInfo.name}} ({{getStatus(projectInfo.state)}})
               </label>
             </div>
             <div class="div-separator"></div>
@@ -95,10 +95,12 @@
               <div class="row separator">
                 <div class="col-md-12">
                   <div class="button-information-container">
-                    <button *ngIf="!userIsAuthenticated" class="btn btn-primary">
+                    <button *ngIf="!userIsAuthenticated" class="btn btn-primary"
+                      [disabled]="projectInfo.state !== 'ACT'">
                       <label class="label-investment" [routerLink]="'/portal/login'">Mas información</label>
                     </button>
-                    <button *ngIf="userIsAuthenticated" class="btn btn-primary" (click)="doInvestment()">
+                    <button *ngIf="userIsAuthenticated" class="btn btn-primary" (click)="doInvestment()"
+                      [disabled]="projectInfo.state !== 'ACT'">
                       <label class="label-investment">Invertir</label>
                     </button>
                   </div>
@@ -280,10 +282,11 @@
         <div class="row separator">
           <div class="col-md-12">
             <div class="precompra-container">
-              <button *ngIf="!userIsAuthenticated" class="btn btn-primary">
+              <button *ngIf="!userIsAuthenticated" class="btn btn-primary" [disabled]="projectInfo.state !== 'ACT'">
                 <label class="label-investment" [routerLink]="'/portal/login'">Mas información</label>
               </button>
-              <button *ngIf="userIsAuthenticated" class="btn btn-primary" (click)="doPrecompra()">
+              <button *ngIf="userIsAuthenticated" class="btn btn-primary" (click)="doPrecompra()"
+                [disabled]="projectInfo.state !== 'ACT'">
                 <label class="label-investment">Precomprar</label>
               </button>
             </div>
