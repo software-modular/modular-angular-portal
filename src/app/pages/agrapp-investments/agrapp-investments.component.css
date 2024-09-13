@@ -1,3 +1,35 @@
+@media (min-width: 601px) and (max-width: 869px) {
+  .not_found_projects_container {
+    height: auto !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .not_found_projects_container {
+    height: auto !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .not_found_projects_container {
+    height: auto !important;
+  }
+}
+
+@media (max-width: 478px) {
+  .not_found_projects_container {
+    height: auto !important;
+  }
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 460px) {
+  .not_found_projects_container {
+    height: auto !important;
+  }
+}
+
+
 .card {
   background: var(--surface-card);
   padding: 2rem;

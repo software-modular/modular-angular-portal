@@ -1,27 +1,38 @@
 <div class="project-carousel-container">
   <div id="projectCarousel" class="project-carousel">
     <div *ngIf="projectsCard.length > 0">
-      <p-carousel [value]="projectsCard" [numVisible]="3" [numScroll]="3" [circular]="false"
+      <p-carousel [value]="projectsCard" [numVisible]="3" [numScroll]="3"
+        [circular]="false"
         [responsiveOptions]="responsiveOptions">
         <ng-template let-project pTemplate="item">
-          <agrapp-projects-card [data]="project" (clickCard)="cardEvent(project.id)"></agrapp-projects-card>
+          <agrapp-projects-card [data]="project"
+            (clickCard)="cardEvent(project.id)"></agrapp-projects-card>
         </ng-template>
       </p-carousel>
     </div>
     <div *ngIf="projectsCard.length === 0" class="not_found_projects_container">
       <div class="row">
-        <div class="col-md-6 img_not_found_container">
-          <img class="img_not_found_projects" src="assets/img/agricultoraIlustrada.png">
+        <div class="col-md-12 img_not_found_container">
+          <img class="img_not_found_projects"
+            src="assets/img/agricultoraIlustrada.png">
         </div>
-        <div class="col-md-6">
+      </div>
+      <br>
+      <div class="row projects_not_found_description_container">
+        <div class="col-md-12">
           <div class="information-container">
-            <label class="information-title">¡Gracias por ser parte de la transformación de la financiación del campo
-              colombiano!</label>
-            <label class="information-subtitle">Estamos trabajando junto con los agricultores, para estructurar
-              proyectos que dejen el nombre de nuestro país en alto, con sus cultivos de exportación que recorrerán todo
+            <label class="information-title">¡Gracias por ser parte del cambio:
+              juntos transformamos la financiación y el crecimiento del campo
+              colombiano.!</label>
+            <label class="information-subtitle">Estamos trabajando junto con los
+              agricultores, para estructurar
+              proyectos que dejen el nombre de nuestro país en alto, con sus
+              cultivos de exportación que recorrerán todo
               el mundo.</label>
-            <label class="information-subtitle">Te invitamos a que te registres en nuestra plataforma y estés listo
-              para ser socio inversionista de uno de nuestros próximos proyectos.</label>
+            <label class="information-subtitle">Te invitamos a que te registres
+              en nuestra plataforma y estés listo
+              para ser socio inversionista de uno de nuestros próximos
+              proyectos.</label>
           </div>
         </div>
       </div>

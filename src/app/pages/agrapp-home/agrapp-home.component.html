@@ -4,7 +4,8 @@
     <h1>¿Buscas donde hacer crecer tu dinero?</h1>
     <div class="cta">
       <span>Conoce Agrofin</span>
-      <a class="arrow" href="#description"><span class="arrow">&#x2193;</span> <!-- Flecha hacia abajo -->
+      <a class="arrow" href="#description"><span class="arrow">&#x2193;</span>
+        <!-- Flecha hacia abajo -->
       </a>
     </div>
   </div>
@@ -14,52 +15,66 @@
   <div class="card">
     <app-agrapp-home-animations style="text-align: center;" />
     <h2>Agrofin</h2>
-    <p>Es una <strong>Aplicación Web</strong> que permite a las personas rentabilizar una inversión
+    <p>Es una <strong>Aplicación Web</strong> que permite a las personas
+      rentabilizar una inversión
       con un enfoque social, conectandolos con proyectos del agro.</p>
-    <p>Puedes <strong>financiar proyectos</strong> de cultivo para consumo local o de expotación,
-      los cuales te ofrecen un <strong>%</strong> de rentabilidad <strong>E.A.</strong>
-      O <strong>precomprar</strong> la cosecha a un <strong>precio preferencial</strong> sobre la venta final.</p>
+    <p>Puedes <strong>financiar proyectos</strong> de cultivo para consumo local
+      o de exportación,
+      los cuales te ofrecen un <strong>%</strong> de rentabilidad
+      <strong>E.A.</strong>
+      O <strong>precomprar</strong> la cosecha a un <strong>precio
+        preferencial</strong> sobre la venta final.</p>
     <div class="cta">
-      <a class="arrow" href="#calculator"><span class="arrow">&#x2193;</span> <!-- Flecha hacia abajo -->
+      <a class="arrow" href="#calculator"><span class="arrow">&#x2193;</span>
+        <!-- Flecha hacia abajo -->
       </a>
     </div>
   </div>
 </section>
 <!-- seccion para los proyectos -->
-<h4 id="calculator" style="margin-top: 7rem;">... Animate, financia un agricultar y particpa en proyectos rentables ...
+<h4 id="calculator" style="margin-top: 7rem;">... Animaté, financia un
+  agricultor y particpa en proyectos rentables ...
 </h4>
 <app-agrapp-video-player></app-agrapp-video-player>
 <div class="projects-home-container-title">
-  <h4 id="calculator" style="margin-top: 3rem;">... Algunos de nuestros proyectos más populares ...</h4>
-  <button class="btn btn-primary btn-show-projects" [routerLink]="'/portal/project'">Mirar proyectos</button>
+  <h4 *ngIf="projects.length > 0" id="calculator" style="margin-top: 3rem;">...
+    Algunos de nuestros
+    proyectos más populares ...</h4>
+  <button *ngIf="projects.length > 0" class="btn btn-primary btn-show-projects"
+    [routerLink]="'/portal/project'">Mirar proyectos</button>
 </div>
 <div class="home-carousel-home-container">
   <app-agrapp-project-carousel></app-agrapp-project-carousel>
 </div>
 <!--seccion para el registro-->
 <div *ngIf="!userIsAuthenticate()" class="cta">
-  <a class="arrow" href="#register"><span class="arrow">&#x2193;</span> <!-- Flecha hacia abajo -->
+  <a class="arrow" href="#register"><span class="arrow">&#x2193;</span>
+    <!-- Flecha hacia abajo -->
   </a>
 </div>
-<h4 *ngIf="!userIsAuthenticate()" id="register" style="margin-top: 3rem;">... ¿Que estas esperando? registrate y empieza
+<h4 *ngIf="!userIsAuthenticate()" id="register"
+  style="margin-top: 3rem;">... ¿Que estas esperando? registrate y empieza
   la aventura ...</h4>
 <br *ngIf="!userIsAuthenticate()">
 <div class="app-register-container">
   <app-register *ngIf="!userIsAuthenticate()"></app-register>
+
 </div>
-<!-- Sección para los patrocinadores -->
-<app-whatsapp-widget [phoneNumber]="getWhatsappNumber()"></app-whatsapp-widget>
-<div>
+<div class="sponsors_container">
   <div class="row sponsors">
     <div class="col-md-6 sponsor-item-container-1">
       <div class="card sponsors-item">
-        <img class="sponsor-img" src="/assets/img/home/areandina_logo.png" alt="Logo 1">
+        <img class="sponsor-img" src="/assets/img/home/areandina_logo.png"
+          alt="Logo 1">
       </div>
     </div>
     <div class="col-md-6 sponsor-item-container-2">
       <div class="card sponsors-item">
-        <img class="sponsor-img" src="/assets/img/home/drummond.png" alt="Logo 2">
+        <img class="sponsor-img" src="/assets/img/home/drummond.png"
+          alt="Logo 2">
       </div>
     </div>
   </div>
 </div>
+<!-- Sección para los patrocinadores -->
+<app-whatsapp-widget [phoneNumber]="getWhatsappNumber()"></app-whatsapp-widget>
