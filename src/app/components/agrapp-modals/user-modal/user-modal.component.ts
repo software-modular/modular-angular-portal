@@ -96,27 +96,28 @@ export class UserModalComponent implements AfterViewInit {
       },
     ];
     let listField: InputForm<any>[] = [];
-    listField.push(new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, '', [requiredValidator()]))
-    listField.push(new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.EMAIL, '', [requiredValidator(), emailValidator()]))
+    listField.push(new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, '', [requiredValidator()]));
+    listField.push(new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.EMAIL, '', [requiredValidator(), emailValidator()]));
     if (this.data === undefined) {
-      listField.push(new TextFieldForm("Contraseña", "", "password", "", TypeInputForm.PASSWORD, '', [requiredValidator()]),);
+      listField.push(new TextFieldForm("Contraseña", "", "password", "", TypeInputForm.PASSWORD, '', [requiredValidator()]));
     }
-    listField.push(new ListOptionFieldForm("Tipo de usuario", "Seleccione", "type_user", "", TypeInputForm.LIST_OPTION, typeUsers, []))
-    listField.push(new ListOptionFieldForm("Tipo identificacion", "Seleccione", "type_ide", "",
-      TypeInputForm.LIST_OPTION, typeIdentifications, [requiredValidator()]))
+    listField.push(new ListOptionFieldForm("Tipo de usuario", "Seleccione", "type_user", "", TypeInputForm.LIST_OPTION, typeUsers, []));
+    listField.push(new ListOptionFieldForm("Tipo de identificación", "Seleccione", "type_ide", "",
+      TypeInputForm.LIST_OPTION, typeIdentifications, [requiredValidator()]));
     listField.push(new TextFieldForm("Identificación", "Escribe tu identificación", "document_id", "", TypeInputForm.NUMBER, '',
-      [requiredValidator(), minLengthValidator(7)]))
-    listField.push(new ListOptionFieldForm("Ciudad expedición documento", "Seleccione", "municipality_expedition_dni", "",
-      TypeInputForm.LIST_OPTION, cities, [requiredValidator()]))
-    listField.push(new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.NUMBER, '',
-      [requiredValidator(), minLengthValidator(10), maxLengthValidator(10)]))
-    listField.push(new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, '', [requiredValidator()]))
-    listField.push(new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, '', [requiredValidator()]))
-    listField.push(new HiddenFieldForm("", "", "is_active", "", TypeInputForm.HIDDEN, true))
-    listField.push(new TextFieldForm("", "", "profile_picture", "", TypeInputForm.HIDDEN, "", []))
-    listField.push(new HiddenFieldForm("", "", "is_staff", "", TypeInputForm.HIDDEN, false))
+      [requiredValidator(), minLengthValidator(7)]));
+    listField.push(new ListOptionFieldForm("Ciudad de expedición del documento", "Seleccione", "municipality_expedition_dni", "",
+      TypeInputForm.LIST_OPTION, cities, [requiredValidator()]));
+    listField.push(new TextFieldForm("Teléfono", "Escribe tu teléfono", "phone", "", TypeInputForm.NUMBER, '',
+      [requiredValidator(), minLengthValidator(10), maxLengthValidator(10)]));
+    listField.push(new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, '', [requiredValidator()]));
+    listField.push(new TextFieldForm("Fecha de nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, '', [requiredValidator()]));
+    listField.push(new HiddenFieldForm("", "", "is_active", "", TypeInputForm.HIDDEN, true));
+    listField.push(new TextFieldForm("", "", "profile_picture", "", TypeInputForm.HIDDEN, "", []));
+    listField.push(new HiddenFieldForm("", "", "is_staff", "", TypeInputForm.HIDDEN, false));
     return listField;
   }
+
 
 
   disableFieldsForm(disable: Boolean) {

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, Component } from '@angular/core';
 import { gsap } from 'gsap';
 
 @Component({
@@ -8,10 +8,15 @@ import { gsap } from 'gsap';
 })
 export class AgrappHomeAnimationsComponent implements AfterViewInit {
   ngAfterViewInit() {
-    const duration = 5;
-    gsap.fromTo(".svg", 
-      { opacity: 0 }, 
-      { opacity: 1, duration, repeat: -1, yoyo: true, stagger: duration }
-    );
+    if (typeof document !== 'undefined') {
+      const elements = document.querySelectorAll(".svg");
+      if (elements.length > 0) {
+        const duration = 5;
+        gsap.fromTo(".svg",
+          { opacity: 0 },
+          { opacity: 1, duration, repeat: -1, yoyo: true, stagger: duration }
+        );
+      }
+    }
   }
 }

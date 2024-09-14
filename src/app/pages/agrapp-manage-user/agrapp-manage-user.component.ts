@@ -47,6 +47,7 @@ export class AgrappManageUserComponent {
     this.dataSourceUsers.paginator = this.paginatorUsers;
     this.dataSourceUsers.sort = this.sortUsers;
     this.doTypeUserValueChangeEvent();
+    this.getListUserByType(TypeClient.CLIENT);
 
   }
 

@@ -23,11 +23,11 @@ export class AgrappTransactionsListComponent {
   userInfo: ResponseClientDto;
   dataSourceTransaction = new MatTableDataSource(this.transactions);
 
-  columns: string[] = ['cliente', 'nombre_proyecto', 'start_date', 'estado', 'payment_type', 'moneda', 'tipo_inversion', 'inversion', 'url_pago', "acciones"];
+  columns: string[] = ['cliente', 'nombre_proyecto', 'transaction_id', 'payment_reference', 'start_date', 'estado', 'payment_type', 'moneda', 'tipo_inversion', 'inversion', 'url_pago'];
 
 
-  @ViewChild('paginatorProjects') paginatorTransaction!: MatPaginator;
-  @ViewChild('sortProject') sortTransaction!: MatSort;
+  @ViewChild('paginatorTransaction') paginatorTransaction!: MatPaginator;
+  @ViewChild('sortTransaction') sortTransaction!: MatSort;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,6 +41,8 @@ export class AgrappTransactionsListComponent {
       filter: ["", []]
     });
     this.userInfo = authenticationService.getUserInformation();
+    this.dataSourceTransaction.paginator = this.paginatorTransaction;
+    this.dataSourceTransaction.sort = this.sortTransaction;
     this.fillTableTransactions();
     this.doTypeUserValueChangeEvent();
   }
@@ -62,6 +64,7 @@ export class AgrappTransactionsListComponent {
         this.transactions = data.results;
         this.dataSourceTransaction = new MatTableDataSource(this.transactions);
         this.dataSourceTransaction.paginator = this.paginatorTransaction;
+        this.dataSourceTransaction.sort = this.sortTransaction;
         this.applyFilterTransactionTable();
       }
     });
@@ -108,10 +111,28 @@ export class AgrappTransactionsListComponent {
 
   protected getStatus(code: string) {
     let status = "";
-    if (code === "ACT") {
-      status = "Activo";
+    if (code === "APPROVED") {
+      status = "Aprobado";
+    }
+    if (code === "ERROR") {
+      status = "Error";
+    }
+    if (code === "DECLINED") {
+      status = "Declinado";
+    }
+    if (code === "WAITING") {
+      status = "En espera";
     }
     return status;
   }
 
+  getPaymentTypeByCode(code: string): string {
+    if (code === "INV") {
+      return "Inversión";
+    }
+    if (code === "PRP") {
+      return "Inversión";
+    }
+    return "";
+  }
 }

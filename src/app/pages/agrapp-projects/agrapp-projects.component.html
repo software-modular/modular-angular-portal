@@ -188,14 +188,14 @@
         <div class="row separator">
           <div class="col-md-6">
             <div class="especific_detail_center">
-              <div class="especific_detail-name">Inversion minima</div>
+              <div class="especific_detail-name">Inversión minima</div>
               <div class="especific_detail-value">{{formatMoney(projectInfo.invesment?.minimum_investment_amount) }}
                 COP</div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="especific_detail_center">
-              <div class="especific_detail-name">Inversion maxima</div>
+              <div class="especific_detail-name">Inversión maxima</div>
               <div class="especific_detail-value">{{formatMoney(projectInfo.invesment?.maximum_investment_amount)}}
                 COP</div>
             </div>
@@ -239,7 +239,7 @@
         <div class="row separator">
           <div class="col-md-4">
             <div class="especific_detail_center">
-              <div class="especific_detail-name">Precompra minima</div>
+              <div class="especific_detail-name">Precompra mínima</div>
               <div class="especific_detail-value">{{projectInfo.pre_purcharse?.minimum_amount + ' '
                 +projectInfo.pre_purcharse?.units }}
               </div>
@@ -247,7 +247,7 @@
           </div>
           <div class="col-md-4">
             <div class="especific_detail_center">
-              <div class="especific_detail-name">Precompra maxima</div>
+              <div class="especific_detail-name">Precompra máxima</div>
               <div class="especific_detail-value">{{projectInfo.pre_purcharse?.maximum_amount + ' '
                 +projectInfo.pre_purcharse?.units}}
               </div>
@@ -283,7 +283,7 @@
           <div class="col-md-12">
             <div class="precompra-container">
               <button *ngIf="!userIsAuthenticated" class="btn btn-primary" [disabled]="projectInfo.state !== 'ACT'">
-                <label class="label-investment" [routerLink]="'/portal/login'">Mas información</label>
+                <label class="label-investment" [routerLink]="'/portal/login'">Más información</label>
               </button>
               <button *ngIf="userIsAuthenticated" class="btn btn-primary" (click)="doPrecompra()"
                 [disabled]="projectInfo.state !== 'ACT'">

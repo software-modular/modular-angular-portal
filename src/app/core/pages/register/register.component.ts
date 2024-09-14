@@ -92,20 +92,21 @@ export class RegisterComponent {
       new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, "", [requiredValidator()]),
       new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.EMAIL, "", [requiredValidator(), emailValidator()]),
       new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, "", [requiredValidator()]),
-      new ListOptionFieldForm("Tipo identificacion", "Escribe tipo identificacion", "type_ide", "",
+      new ListOptionFieldForm("Tipo de identificación", "Selecciona el tipo de identificación", "type_ide", "",
         TypeInputForm.LIST_OPTION, typeIdentifications, [requiredValidator()]),
       new TextFieldForm("Identificación", "Escribe tu identificación", "document_id", "", TypeInputForm.NUMBER, "", [requiredValidator(), minLengthValidator(7)]),
-      new ListOptionFieldForm("Ciudad expedición documento", "Seleccione", "municipality_expedition_dni", "",
+      new ListOptionFieldForm("Ciudad de expedición del documento", "Selecciona", "municipality_expedition_dni", "",
         TypeInputForm.LIST_OPTION, cities, [requiredValidator()]),
-      new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.NUMBER, "", [requiredValidator(), minLengthValidator(10), maxLengthValidator(10)]),
+      new TextFieldForm("Teléfono", "Escribe tu teléfono", "phone", "", TypeInputForm.NUMBER, "", [requiredValidator(), minLengthValidator(10), maxLengthValidator(10)]),
       new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, "", [requiredValidator()]),
-      new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, "", [requiredValidator()]),
+      new TextFieldForm("Fecha de nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, "", [requiredValidator()]),
       new HiddenFieldForm("", "", "is_active", "", TypeInputForm.HIDDEN, true),
       new TextFieldForm("", "", "profile_picture", "", TypeInputForm.HIDDEN, "", []),
       new HiddenFieldForm("", "", "is_staff", "", TypeInputForm.HIDDEN, false),
       new TextFieldForm("", "", "type_user", "", TypeInputForm.HIDDEN, TypeClient.CLIENT, []),
     ];
   }
+
 
   private showMessageDialog(titleHeader: string, message: string, redirect: Boolean) {
     this.confirmationService.confirm({

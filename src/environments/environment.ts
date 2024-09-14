@@ -147,7 +147,7 @@ export const environment = {
 
   },
   aditionalInfo: {
-    whatsappNumber: "3182665714",
+    whatsappNumber: "3156627242",
     whatsappDefaultMessage: "Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20la%20gestión%20de%20un%20contrato%20para%20inversiones%20en%20la%20plataforma%20Agrofin.%20¿Podrían%20proporcionarme%20detalles%20sobre%20los%20requisitos,%20el%20proceso%20y%20las%20opciones%20disponibles?%20Agradezco%20su%20pronta%20respuesta."
   }
 };

@@ -70,7 +70,7 @@ export class LoginComponent {
 
   private getFieldsForm(): InputForm<any>[] {
     let fields: InputForm<any>[] = [
-      new TextFieldForm("Identificacion", "Escribe tu identificacion", "identification", "", TypeInputForm.NUMBER, "", [requiredValidator()]),
+      new TextFieldForm("Identificación", "Escribe tu identificación", "identification", "", TypeInputForm.NUMBER, "", [requiredValidator()]),
       new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, "", [requiredValidator()]),
     ];
     return fields;

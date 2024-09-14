@@ -4,7 +4,7 @@
       <div class="row agrapp-transactions-management-table-header-container">
         <div class="col-md-12">
           <div class="agrapp-transactions-management-table-title">
-            <label>Transacciones e inversiones</label>
+            <label>Transacciones e Inversiones</label>
           </div>
         </div>
         <div class="col-md-12">
@@ -13,7 +13,7 @@
               <div class="agrapp-transactions-management-table-filter">
                 <form [formGroup]="formGroup" style="width: 100%;">
                   <mat-form-field class="field-filter">
-                    <mat-label>Filtro..</mat-label>
+                    <mat-label>Filtro...</mat-label>
                     <input formControlName="filter" matInput placeholder="Filtro" #input
                       (keyup)="applyFilterTransactionTable()">
                   </mat-form-field>
@@ -38,20 +38,30 @@
                 <td mat-cell *matCellDef="let transaction" class="table-content">
                   {{transaction.project.name}} </td>
               </ng-container>
+              <ng-container matColumnDef="transaction_id">
+                <th mat-header-cell *matHeaderCellDef class="table-content">Id transacción</th>
+                <td mat-cell *matCellDef="let transaction" class="table-content">
+                  {{transaction.transactions_id}} </td>
+              </ng-container>
+              <ng-container matColumnDef="payment_reference">
+                <th mat-header-cell *matHeaderCellDef class="table-content">Referencia de pago</th>
+                <td mat-cell *matCellDef="let transaction" class="table-content">
+                  {{transaction.reference}} </td>
+              </ng-container>
               <ng-container matColumnDef="start_date">
-                <th mat-header-cell *matHeaderCellDef class="table-content">Fecha creación</th>
+                <th mat-header-cell *matHeaderCellDef class="table-content">Fecha de creación</th>
                 <td mat-cell *matCellDef="let transaction" class="table-content">
                   {{transaction.start_transacction_date }} </td>
               </ng-container>
               <ng-container matColumnDef="estado">
-                <th mat-header-cell *matHeaderCellDef class="table-content">Estado transacción</th>
+                <th mat-header-cell *matHeaderCellDef class="table-content">Estado de la transacción</th>
                 <td mat-cell *matCellDef="let transaction" class="table-content">
-                  {{getStatus(transaction.project.state)}} </td>
+                  {{getStatus(transaction.status)}} </td>
               </ng-container>
               <ng-container matColumnDef="payment_type">
-                <th mat-header-cell *matHeaderCellDef class="table-content">Metodo de pago</th>
+                <th mat-header-cell *matHeaderCellDef class="table-content">Método de pago</th>
                 <td mat-cell *matCellDef="let transaction" class="table-content">
-                  {{transaction.payment_method}} </td>
+                  {{transaction.payment_method === "TRANSFER" ? "Transferencia": ""}} </td>
               </ng-container>
               <ng-container matColumnDef="moneda">
                 <th mat-header-cell *matHeaderCellDef class="table-content">Moneda</th>
@@ -61,38 +71,30 @@
               <ng-container matColumnDef="tipo_inversion">
                 <th mat-header-cell *matHeaderCellDef class="table-content">Tipo de inversión</th>
                 <td mat-cell *matCellDef="let transaction" class="table-content">
-                  {{transaction.payment_type === "TRANSFER" ? "Transferencia": ""}} </td>
+                  {{getPaymentTypeByCode(transaction.payment_type)}} </td>
               </ng-container>
               <ng-container matColumnDef="inversion">
-                <th mat-header-cell *matHeaderCellDef class="table-content">Valor inversión</th>
+                <th mat-header-cell *matHeaderCellDef class="table-content">Valor de la inversión</th>
                 <td mat-cell *matCellDef="let transaction" class="table-content">
                   {{transaction.product_amount || transaction.amount_in_cents}} </td>
               </ng-container>
               <ng-container matColumnDef="url_pago">
                 <th mat-header-cell *matHeaderCellDef class="table-content">Enlace de pago</th>
                 <td mat-cell *matCellDef="let transaction" class="table-content">
-                  {{transaction.payment_url }} </td>
-              </ng-container>
-              <ng-container matColumnDef="acciones">
-                <th mat-header-cell *matHeaderCellDef class="table-content"> Acciones </th>
-                <td mat-cell *matCellDef="let transaction" class="table-content">
-
-                  <button mat-mini-fab type="button" class="btn button-action">
-                    <i class="fa fa-eye" style="font-size: 20px;"></i>
-                  </button>
-
+                  <a [href]="transaction.payment_url"> {{transaction.payment_url }}</a>
                 </td>
               </ng-container>
+
               <tr mat-header-row *matHeaderRowDef="columns"></tr>
               <tr mat-row *matRowDef="let rowUser; columns: columns;"></tr>
               <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"
+                <td class="mat-cell" colspan="4">No hay datos que coincidan con el filtro "{{input.value}}"
                 </td>
               </tr>
             </table>
             <br>
             <mat-paginator #paginatorTransaction [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons
-              aria-label="Select page" [pageSize]="5" (page)="onPageProjectChange($event)"></mat-paginator>
+              aria-label="Seleccionar página" [pageSize]="5" (page)="onPageProjectChange($event)"></mat-paginator>
           </div>
         </div>
       </div>

@@ -81,9 +81,9 @@ export class InvestmentModalComponent implements AfterViewInit {
     let transaction: TransactionDto = this.getTransaction();
     this.transactionService.createTransaction(transaction).subscribe({
       next: (data: TransactionResponseDto) => {
-        this.showMessageDialog("Transacción", `Transaccion creada con exito; Haga click en el siguiente enlace para realizar el pago <a href='${data.payment_url}' target='_blank'>${data.payment_url}</a>; <br> Una vez hecho el pago su estado se visualizara en el visor transacciones`);
+        this.showMessageDialog("Transacción", `Transacción creada con éxito; Haga clic en el siguiente enlace para realizar el pago <a href='${data.payment_url}' target='_blank'>${data.payment_url}</a>; <br> Una vez hecho el pago, su estado se visualizará en el visor de transacciones.`);
       }, error: (_) => {
-        this.showMessageDialog("Transacción", "Error: no es posible realizar la compra, intente mas tarde");
+        this.showMessageDialog("Transacción", "Error: no es posible realizar la compra. Intente más tarde.");
       }
     });
 
@@ -105,7 +105,6 @@ export class InvestmentModalComponent implements AfterViewInit {
     }
     return transaction;
   }
-
   private getFieldsForm(): InputForm<any>[] {
     let typeInvestment: OptionInput[] = [
       {
@@ -131,14 +130,14 @@ export class InvestmentModalComponent implements AfterViewInit {
     ];
     if (this.data.paymentType === "INV") {
       fields.push(
-        new TextFieldForm("Valor inversión (COP)", "Ingresa el monto", "amount_in_cents", "", TypeInputForm.NUMBER, '', [requiredValidator()]));
-
+        new TextFieldForm("Valor de inversión (COP)", "Ingrese el monto", "amount_in_cents", "", TypeInputForm.NUMBER, '', [requiredValidator()]));
     } else {
       fields.push(
-        new TextFieldForm("Cantidad inversión", `Ingrese cantidad (${this.data.unit})`, "product_amount", "", TypeInputForm.NUMBER, '', [requiredValidator()]));
+        new TextFieldForm("Cantidad de inversión", `Ingrese cantidad (${this.data.unit})`, "product_amount", "", TypeInputForm.NUMBER, '', [requiredValidator()]));
     }
     return fields;
   }
+
 
   private showMessageDialog(titleHeader: string, message: string) {
     this.confirmationService.confirm({

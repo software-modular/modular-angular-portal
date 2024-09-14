@@ -41,14 +41,14 @@
                   <p-tag [value]="getStatus(project.state)" [severity]="'success'"></p-tag>
                 </div>
                 <div class="flex flex-column md:align-items-end gap-5">
-                  <span class="text-xl font-semibold text-900">{{ 'Inversión minima: ' +
+                  <span class="text-xl font-semibold text-900">{{ 'Inversión mínima: ' +
                     project.minInvestment.toLocaleString('es-CO')+ ' COP' }}</span>
                   <span class="text-xl font-semibold text-900">{{ 'Financiado: ' +
                     project.funded.toLocaleString('es-CO')+ ' COP' }}</span>
                   <span class="text-xl font-semibold text-900">{{ 'Meta: ' +
                     project.investmentTarget.toLocaleString('es-CO')+ ' COP' }}</span>
                   <div class="flex flex-row-reverse md:flex-row gap-2">
-                    <p-button class="flex-auto md:flex-initial white-space-nowrap" label="Mas información"
+                    <p-button class="flex-auto md:flex-initial white-space-nowrap" label="Más información"
                       [disabled]="project.state !== 'ACT'" (onClick)="cardEvent(project.id)" />
                   </div>
                 </div>
@@ -87,14 +87,14 @@
                   </div>
                 </div>
                 <div class=" font-medium text-secondary text-sm flex flex-column gap-2">
-                  <span class="text-lg font-medium text-900 mt-1">{{ 'Inversión minima: ' +
+                  <span class="text-lg font-medium text-900 mt-1">{{ 'Inversión mínima: ' +
                     project.minInvestment.toLocaleString('es-CO')+ ' COP' }}</span>
                   <span class="text-lg font-medium text-900 mt-1">{{ 'Financiado: ' +
                     project.funded.toLocaleString('es-CO')+ ' COP' }}</span>
                   <span class="text-lg font-medium text-900 mt-1">{{ 'Meta: ' +
                     project.investmentTarget.toLocaleString('es-CO')+ ' COP' }}</span>
                   <div class="flex gap-2" style="display: flex !important;justify-content: center;">
-                    <p-button class="flex-auto md:flex-initial white-space-nowrap" label="Mas información"
+                    <p-button class="flex-auto md:flex-initial white-space-nowrap" label="Más información"
                       [disabled]="project.state !== 'ACT'" (onClick)="cardEvent(project.id)" />
                   </div>
                 </div>
@@ -113,7 +113,7 @@
           <div class="information-container">
             <label class="information-title">¡Gracias por ser parte de la transformación de la financiación del campo
               colombiano!</label>
-            <label class="information-subtitle">Estamos trabajando junto con los agricultores, para estructurar
+            <label class="information-subtitle">Estamos trabajando junto con los agricultores para estructurar
               proyectos que dejen el nombre de nuestro país en alto, con sus cultivos de exportación que recorrerán todo
               el mundo.</label>
             <label class="information-subtitle">Te invitamos a que te registres en nuestra plataforma y estés listo

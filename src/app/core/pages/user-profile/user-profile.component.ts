@@ -158,16 +158,16 @@ export class UserProfileComponent implements OnInit {
     let fields: InputForm<any>[] = [
       new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, userInfo.user.name ?? '', [requiredValidator()]),
       new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.EMAIL, userInfo.user.email ?? '', [requiredValidator()]),
-      new ListOptionFieldForm("Tipo identificacion", "Escribe tipo identificacion", "typeId", "",
+      new ListOptionFieldForm("Tipo de identificación", "Selecciona el tipo de identificación", "typeId", "",
         TypeInputForm.LIST_OPTION, typeIdentifications, []),
       new TextFieldForm("Identificación", "Escribe tu identificación", "identification", "", TypeInputForm.TEXT,
         userInfo.user.document_id ?? '', []),
-      new ListOptionFieldForm("Ciudad expedición documento", "Seleccione", "municipality_expedition_dni", "",
+      new ListOptionFieldForm("Ciudad de expedición del documento", "Selecciona", "municipality_expedition_dni", "",
         TypeInputForm.LIST_OPTION, cities, [requiredValidator()]),
-      new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.TEXT, userInfo.user.phone ?? '',
+      new TextFieldForm("Teléfono", "Escribe tu teléfono", "phone", "", TypeInputForm.TEXT, userInfo.user.phone ?? '',
         [requiredValidator(), minLengthValidator(10), maxLengthValidator(10)]),
       new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, userInfo.user.address ?? '', [requiredValidator()]),
-      new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE,
+      new TextFieldForm("Fecha de nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE,
         userInfo.user.date_of_birth ?? '', [requiredValidator()]),
     ];
     return fields;
