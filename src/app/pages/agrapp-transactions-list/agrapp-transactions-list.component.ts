@@ -106,4 +106,12 @@ export class AgrappTransactionsListComponent {
     });
   }
 
+  protected getStatus(code: string) {
+    let status = "";
+    if (code === "ACT") {
+      status = "Activo";
+    }
+    return status;
+  }
+
 }
