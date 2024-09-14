@@ -12,7 +12,7 @@ export class ListOptionFieldForm extends InputForm<OptionInput[]> {
 
   constructor(label: string, placeholder: string, formControlName: string,
     customErrorMessage: string, type: TypeInputForm,
-    value: OptionInput[], validators: ValidatorFn[]) {
+    value: OptionInput[], validators: any[]) {
     super(label, placeholder, formControlName, customErrorMessage, type);
     this.value = value;
     this.validators = validators;
@@ -25,7 +25,7 @@ export class ListOptionFieldForm extends InputForm<OptionInput[]> {
     return [];
   }
 
-  override getValidators(): ValidatorFn[] {
+  override getValidators(): any[] {
     return this.validators;
   }
 

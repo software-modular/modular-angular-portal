@@ -17,6 +17,7 @@ import { AuthenticationService } from '../../services/authentication/authenticat
 import { DynamicFormService } from '../../services/components/dynamic-form.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TermsModalComponent } from '../../../components/agrapp-modals/terms-modal/terms-modal.component';
+import { emailValidator, maxLengthValidator, minLengthValidator, requiredValidator } from '../../domain/beans/dynamicValidator';
 
 @Component({
   selector: 'app-register',
@@ -64,7 +65,6 @@ export class RegisterComponent {
   }
 
   showTerms() {
-    debugger
     let f = this.form.get('terms')?.value;
     this.openModal(TermsModalComponent);
   }
@@ -89,17 +89,17 @@ export class RegisterComponent {
 
   private getFieldsForm(): InputForm<any>[] {
     return [
-      new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, "", [Validators.required]),
-      new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.EMAIL, "", [Validators.required, Validators.email]),
-      new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, "", [Validators.required]),
+      new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, "", [requiredValidator()]),
+      new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.EMAIL, "", [requiredValidator(), emailValidator()]),
+      new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, "", [requiredValidator()]),
       new ListOptionFieldForm("Tipo identificacion", "Escribe tipo identificacion", "type_ide", "",
-        TypeInputForm.LIST_OPTION, typeIdentifications, [Validators.required]),
-      new TextFieldForm("Identificación", "Escribe tu identificación", "document_id", "", TypeInputForm.NUMBER, "", [Validators.required, Validators.minLength(7)]),
+        TypeInputForm.LIST_OPTION, typeIdentifications, [requiredValidator()]),
+      new TextFieldForm("Identificación", "Escribe tu identificación", "document_id", "", TypeInputForm.NUMBER, "", [requiredValidator(), minLengthValidator(7)]),
       new ListOptionFieldForm("Ciudad expedición documento", "Seleccione", "municipality_expedition_dni", "",
-        TypeInputForm.LIST_OPTION, cities, [Validators.required]),
-      new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.NUMBER, "", [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
-      new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, "", [Validators.required]),
-      new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, "", [Validators.required]),
+        TypeInputForm.LIST_OPTION, cities, [requiredValidator()]),
+      new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.NUMBER, "", [requiredValidator(), minLengthValidator(10), maxLengthValidator(10)]),
+      new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, "", [requiredValidator()]),
+      new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE, "", [requiredValidator()]),
       new HiddenFieldForm("", "", "is_active", "", TypeInputForm.HIDDEN, true),
       new TextFieldForm("", "", "profile_picture", "", TypeInputForm.HIDDEN, "", []),
       new HiddenFieldForm("", "", "is_staff", "", TypeInputForm.HIDDEN, false),

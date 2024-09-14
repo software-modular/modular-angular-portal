@@ -15,6 +15,7 @@ import { DynamicFormService } from '../../../core/services/components/dynamic-fo
 import { TransactionDto } from '../../../core/domain/dto/transactions';
 import { TransactionService } from '../../../core/services/transaction/transaction.service';
 import { TransactionResponseDto } from '../../../core/domain/dto/transactionResponseDto';
+import { requiredValidator } from '../../../core/domain/beans/dynamicValidator';
 
 @Component({
   selector: 'app-investment-modal',
@@ -124,17 +125,17 @@ export class InvestmentModalComponent implements AfterViewInit {
     ];
     let fields: InputForm<any>[] = [
       new ListOptionFieldForm("Tipo de inversión", "Seleccione", "payment_type", "",
-        TypeInputForm.LIST_OPTION, typeInvestment, [Validators.required]),
+        TypeInputForm.LIST_OPTION, typeInvestment, [requiredValidator()]),
       new ListOptionFieldForm("Moneda", "Seleccione", "money", "",
-        TypeInputForm.LIST_OPTION, divisas, [Validators.required]),
+        TypeInputForm.LIST_OPTION, divisas, [requiredValidator()]),
     ];
     if (this.data.paymentType === "INV") {
       fields.push(
-        new TextFieldForm("Valor inversión (COP)", "Ingresa el monto", "amount_in_cents", "", TypeInputForm.NUMBER, '', [Validators.required]));
+        new TextFieldForm("Valor inversión (COP)", "Ingresa el monto", "amount_in_cents", "", TypeInputForm.NUMBER, '', [requiredValidator()]));
 
     } else {
       fields.push(
-        new TextFieldForm("Cantidad inversión", `Ingrese cantidad (${this.data.unit})`, "product_amount", "", TypeInputForm.NUMBER, '', [Validators.required]));
+        new TextFieldForm("Cantidad inversión", `Ingrese cantidad (${this.data.unit})`, "product_amount", "", TypeInputForm.NUMBER, '', [requiredValidator()]));
     }
     return fields;
   }

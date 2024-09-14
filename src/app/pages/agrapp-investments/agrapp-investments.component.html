@@ -65,7 +65,8 @@
 
                 <div class="md:w-20rem relative">
                   <carousel-img [imgs]="project.imgs" [carouselId]="project.id"></carousel-img>
-                  <p-tag [value]="getStatus( project.state)" [severity]="'success'"></p-tag>
+                  <p-tag [value]="getStatus(project.state)"
+                    [severity]="project.state === 'ACT' ? 'success':  'secondary'"></p-tag>
                 </div>
               </div>
               <div class="pt-4">

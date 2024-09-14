@@ -25,3 +25,12 @@
 .dynamic-form-field-container {
   width: 100% !important;
 }
+
+.label-error {
+  font-size: 15px;
+  color: red;
+}
+
+.errors-container {
+  margin-top: -20px;
+}

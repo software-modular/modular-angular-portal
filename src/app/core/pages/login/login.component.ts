@@ -12,6 +12,7 @@ import { NabvarUserInformation } from '../../domain/beans/navbarUserInformation'
 import { Router } from '@angular/router';
 import { Validators } from '@angular/forms';
 import { TypeClient } from '../../domain/enum/TypeClient';
+import { requiredValidator } from '../../domain/beans/dynamicValidator';
 
 @Component({
   selector: 'app-login',
@@ -69,8 +70,8 @@ export class LoginComponent {
 
   private getFieldsForm(): InputForm<any>[] {
     let fields: InputForm<any>[] = [
-      new TextFieldForm("Identificacion", "Escribe tu identificacion", "identification", "", TypeInputForm.NUMBER, "", [Validators.required]),
-      new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, "", [Validators.required]),
+      new TextFieldForm("Identificacion", "Escribe tu identificacion", "identification", "", TypeInputForm.NUMBER, "", [requiredValidator()]),
+      new TextFieldForm("Contraseña", "Escribe tu contraseña", "password", "", TypeInputForm.PASSWORD, "", [requiredValidator()]),
     ];
     return fields;
   }

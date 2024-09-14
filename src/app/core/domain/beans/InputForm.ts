@@ -1,6 +1,6 @@
-import { ValidatorFn } from "@angular/forms";
 import { IInputForm } from "../contracts/IInputForm";
 import { TypeInputForm } from "../enum/TypeInputForm";
+import { DynamicValidator } from "./dynamicValidator";
 
 export abstract class InputForm<V> implements IInputForm<V> {
   label?: string;
@@ -20,5 +20,5 @@ export abstract class InputForm<V> implements IInputForm<V> {
 
   abstract getValue(): V;
 
-  abstract getValidators(): ValidatorFn[];
+  abstract getValidators(): DynamicValidator[];
 }

@@ -14,6 +14,7 @@ import { UserService } from '../../services/client/user.service';
 import { DynamicFormService } from '../../services/components/dynamic-form.service';
 import { convertFileToBase64 } from '../../utils/FileUtils';
 import { cities } from '../../domain/const/Colombia';
+import { maxLengthValidator, minLengthValidator, requiredValidator } from '../../domain/beans/dynamicValidator';
 
 @Component({
   selector: 'user-profile',
@@ -155,18 +156,19 @@ export class UserProfileComponent implements OnInit {
 
   private getFieldForm(userInfo: ResponseClientDto): InputForm<any>[] {
     let fields: InputForm<any>[] = [
-      new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, userInfo.user.name ?? '', [Validators.required]),
-      new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.EMAIL, userInfo.user.email ?? '', [Validators.required]),
+      new TextFieldForm("Nombre", "Escribe tu nombre", "name", "", TypeInputForm.TEXT, userInfo.user.name ?? '', [requiredValidator()]),
+      new TextFieldForm("Correo", "Escribe tu correo", "email", "", TypeInputForm.EMAIL, userInfo.user.email ?? '', [requiredValidator()]),
       new ListOptionFieldForm("Tipo identificacion", "Escribe tipo identificacion", "typeId", "",
         TypeInputForm.LIST_OPTION, typeIdentifications, []),
       new TextFieldForm("Identificación", "Escribe tu identificación", "identification", "", TypeInputForm.TEXT,
         userInfo.user.document_id ?? '', []),
       new ListOptionFieldForm("Ciudad expedición documento", "Seleccione", "municipality_expedition_dni", "",
-        TypeInputForm.LIST_OPTION, cities, [Validators.required]),
-      new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.TEXT, userInfo.user.phone ?? '', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
-      new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, userInfo.user.address ?? '', [Validators.required]),
+        TypeInputForm.LIST_OPTION, cities, [requiredValidator()]),
+      new TextFieldForm("Telefono", "Escribe tu telefono", "phone", "", TypeInputForm.TEXT, userInfo.user.phone ?? '',
+        [requiredValidator(), minLengthValidator(10), maxLengthValidator(10)]),
+      new TextFieldForm("Dirección", "Escribe tu dirección", "address", "", TypeInputForm.TEXT, userInfo.user.address ?? '', [requiredValidator()]),
       new TextFieldForm("Fecha nacimiento", "Escribe tu fecha de nacimiento", "date_of_birth", "", TypeInputForm.DATE,
-        userInfo.user.date_of_birth ?? '', [Validators.required]),
+        userInfo.user.date_of_birth ?? '', [requiredValidator()]),
     ];
     return fields;
   }

@@ -8,5 +8,9 @@
   justify-content: center;
   align-items: center;
   background-color: white;
-  z-index: 1000;
+  z-index: 9999;
+}
+
+.custom-spinner .mat-progress-spinner circle {
+  stroke: rgb(19, 70, 57) !important;
 }

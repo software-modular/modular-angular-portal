@@ -325,7 +325,7 @@
                           <label>El campo es obligatorio</label>
                           <label *ngIf="form.get('producerPhone')?.hasError('minlength')">El campo tiene menos de 10
                             caracteres</label>
-                          <label *ngIf="form.get('producerPhone')?.hasError('minlength')">El campo tiene mas de 10
+                          <label *ngIf="form.get('producerPhone')?.hasError('maxlength')">El campo tiene mas de 10
                             caracteres</label>
                         </mat-error>
                       </div>

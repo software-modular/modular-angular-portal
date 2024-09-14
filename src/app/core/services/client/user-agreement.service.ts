@@ -19,7 +19,6 @@ export class UserAgreementService {
 
   validateUserAgreement() {
     if (this.authenticationService.userIsAuthenticated()) {
-      debugger
       let userInformation: ResponseClientDto = this.authenticationService.getUserInformation();
       if (userInformation.user.type_user === TypeClient.CLIENT.toString() && !userInformation.status) {
         this.showModalCompleteUserInformation();

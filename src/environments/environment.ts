@@ -5,7 +5,7 @@ export const environment = {
     defaultUrlRedirect: "portal/home"
   },
   api: {
-    host: 'http://127.0.0.1:8000/api',
+    host: 'https://app.agrofin.com.co/api',
     endpoints: {
       users: {
         login: "/users/login/",

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { DynamicFormInput } from '../../domain/beans/dynamicFormInput';
 import { TypeInputForm } from '../../domain/enum/TypeInputForm';
@@ -7,6 +7,8 @@ import { DynamicFormService } from '../../services/components/dynamic-form.servi
 import { DynamicFormExternalChange } from '../../domain/beans/dynamicFormExternalChange';
 import { DynamicTypeExternalChange } from '../../domain/enum/dynamicTypeExternalChange';
 import { DynamicTypeFieldProperty } from '../../domain/enum/dynamicTypeFieldProperty';
+import { InputForm } from '../../domain/beans/InputForm';
+import { TypeDynamicValidator } from '../../domain/enum/typeDynamicValidators';
 
 @Component({
   selector: 'dynamic-form',
@@ -40,6 +42,7 @@ export class DynamicFormComponent implements OnInit {
   }
 
   fieldHasError(formControlName: string, errorName: string) {
+    let control = this.formGroup.get(formControlName)?.hasError('minlength');
     return this.formGroup.get(formControlName)?.hasError(errorName) ?? false;
   }
 
@@ -47,13 +50,56 @@ export class DynamicFormComponent implements OnInit {
   private buildFormGroup() {
     if (this.data.fields) {
       for (let field of this.data.fields) {
-        this.formGroup.addControl(field.formControlName, new FormControl(field.getValue(), field.getValidators()))
+        this.formGroup.addControl(field.formControlName, this.getControlWithValidators(field))
       }
     }
     this.formFieldValueChangeEvent();
     this.doExternalFieldChangeEvent();
   }
 
+  private getControlWithValidators(field: InputForm<any>): FormControl {
+    let control: FormControl = new FormControl(field.getValue());
+    let validators: ValidatorFn[] = [];
+    for (let validator of field.getValidators()) {
+      if (validator.type === TypeDynamicValidator.REQUIRED) {
+        validators.push(Validators.required)
+      }
+      if (validator.type === TypeDynamicValidator.EMAIL) {
+        validators.push(Validators.email);
+      }
+      if (validator.type === TypeDynamicValidator.MIN_LENGTH) {
+        validators.push(Validators.minLength(5));
+      }
+      if (validator.type === TypeDynamicValidator.MAX_LENGTH) {
+        validators.push(Validators.maxLength(Number(validator.maxLength)));
+      }
+    }
+    control.setValidators(validators);
+    control.updateValueAndValidity();
+    return control;
+  }
+
+  hasErrorMinlength(controlName: string, field: InputForm<any>): boolean {
+    for (let validator of field.getValidators()) {
+      if (validator.type === TypeDynamicValidator.MIN_LENGTH) {
+        if (`${this.formGroup.get(controlName)?.value}`.length < Number(validator.minLength)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  hasErrorMaxlength(controlName: string, field: InputForm<any>) {
+    for (let validator of field.getValidators()) {
+      if (validator.type === TypeDynamicValidator.MAX_LENGTH) {
+        if (`${this.formGroup.get(controlName)?.value}`.length > Number(validator.minLength)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 
   private formFieldValueChangeEvent() {
     this.formGroup.valueChanges.subscribe({
